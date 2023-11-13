@@ -9,7 +9,7 @@ public class Main {
             System.out.print(a*b);
         }
         else{
-            System.out.printf(b/a);
+            System.out.print(b/a);
         }
     }
 }
