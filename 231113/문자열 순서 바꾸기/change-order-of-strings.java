@@ -6,6 +6,6 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String s = sc.next();
         String t = sc.next();
-        system.out.printf("%s\n%s", t, s);
+        System.out.printf("%s\n%s", t, s);
     }
 }
