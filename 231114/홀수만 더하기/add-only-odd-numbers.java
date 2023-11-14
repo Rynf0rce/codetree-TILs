@@ -8,7 +8,7 @@ public class Main {
 
         for(int i = 0 ; i < num ; i++){
             input = sc.nextInt();
-            if(input % 2 == 0 && input % 3 ==0){
+            if(input % 2 == 1 && input % 3 ==0){
                 sumval += input;
             }
         }
