@@ -5,7 +5,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         for(int i = 1 ; i <= n ; i++){
-            if((i % 10) % 3 == 0 || (i % 100) % 30 == 0){
+            if((i % 10) % 3 == 0 || (i % 10) % 6 == 0 || (i % 10) % 9 == 0 || (i % 100) % 30 == 0 || (i % 100) % 60 == 0 || (i % 100) % 90 == 0){
                 System.out.print("0 ");
             }
             else{
