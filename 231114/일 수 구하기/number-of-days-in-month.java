@@ -6,14 +6,14 @@ public class Main {
         int n = sc.nextInt();
         int totalDay = 0;
 
-        if(n%2 == 1){
+        if( (n%2 == 1 && n <= 7) || (n%2 == 0 && n> 7)){
             totalDay = 31;
         }
-        else if(n % 2 == 0 && n != 2){
-            totalDay = 30;
+        else if(n != 2){
+            totalDay = 28;
         }
         else{
-            totalDay = 28;
+            totalDay = 30;
         }
         System.out.print(totalDay);
     }
