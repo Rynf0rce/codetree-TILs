@@ -6,12 +6,10 @@ public class Main {
         int n = sc.nextInt();
         int sumVal = 0;
         for(int i = 1 ; i < 100 ; i++){
-            if(sumVal > n){
-                System.out.print(i-1);
+            sumVal += i;
+            if(sumVal >= n){
+                System.out.print(i);
                 break;
-            }
-            else{
-                sumVal += i;
             }
         }
         
