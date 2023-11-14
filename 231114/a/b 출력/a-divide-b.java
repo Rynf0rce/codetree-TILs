@@ -10,7 +10,8 @@ public class Main {
             if(i == 0){
                 System.out.print(".");
             }
-            a = ( a - b * (a/b) ) * 10;
+            // a = ( a - b * (a/b) ) * 10;
+            a = (a%b)*10;
         }
     }
 }
