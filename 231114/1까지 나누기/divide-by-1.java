@@ -5,7 +5,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int i = 1;
-        double dValue = n;
+        int dValue = n;
         while(true){
             dValue /= i;
             if(dValue <= 1){
