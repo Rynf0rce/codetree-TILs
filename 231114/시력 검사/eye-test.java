@@ -11,7 +11,7 @@ public class Main {
             output = "High";
         }
         else if(leftEye >= 0.5 && leftEye >= 0.5){
-            output ="Middle";
+            output = "Middle";
         }
         else{
             output = "Low";
