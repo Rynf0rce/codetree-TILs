@@ -10,7 +10,7 @@ public class Main {
         if(leftEye >= 1.0 && rightEye >= 1.0){
             output = "High";
         }
-        else if(leftEye >= 0.5 && leftEye >= 0.5){
+        else if(leftEye >= 0.5 && rightEye >= 0.5){
             output = "Middle";
         }
         else{
