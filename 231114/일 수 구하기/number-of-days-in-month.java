@@ -6,11 +6,11 @@ public class Main {
         int n = sc.nextInt();
         int totalDay = 0;
 
-        if( (n%2 == 1 && n <= 7) || (n%2 == 0 && n> 7)){
-            totalDay = 31;
-        }
-        else if(n != 2){
+        if(n == 2){
             totalDay = 28;
+        }
+        else if((n%2 == 1 && n <= 7) || (n%2 == 0 && n> 7)){
+            totalDay = 31;
         }
         else{
             totalDay = 30;
