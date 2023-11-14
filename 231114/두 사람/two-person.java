@@ -9,7 +9,7 @@ public class Main {
         char secondManGender = sc.next().charAt(0);
         int output = 0;
 
-        if((firstManOld >= 19 && firstManGender == 'M') || (secondManOld >= 19 && firstManGender == 'M')){
+        if((firstManOld >= 19 && firstManGender == 'M') || (secondManOld >= 19 && secondManGender == 'M')){
             output = 1;
         }
         else{
