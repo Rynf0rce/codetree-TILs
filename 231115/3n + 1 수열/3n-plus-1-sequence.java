@@ -6,6 +6,10 @@ public class Main {
         int input = sc.nextInt();
         int conVal = input, cnt = 0;
         while(true){
+            if(conVal ==1){
+                break;
+            }
+            
             if(conVal % 2 == 0){
                  conVal /= 2;
             }
@@ -13,9 +17,7 @@ public class Main {
                 conVal = conVal * 3 + 1;
             }
             cnt++;
-            if(conVal ==1){
-                break;
-            }
+            
         }
         System.out.print(cnt);
     }
