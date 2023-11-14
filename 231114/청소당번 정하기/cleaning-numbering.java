@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int day = sc.nextInt(), cleanClass = 0, cleancorridor = 0, cleanToilet = 0;
-        for(int i = 1 ; i < day ; i++){
+        for(int i = 1 ; i <= day ; i++){
             if(i % 12 == 0){
                 cleanToilet++;
             }
