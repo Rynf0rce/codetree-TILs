@@ -6,7 +6,7 @@ public class Main {
         int n = sc.nextInt();
         int productVal = 1;
         int i = 0;
-        for(i = 1 ; i < 100 ; i++){
+        for(i = 1 ; i <= 10 ; i++){
             productVal *= i;
             if(productVal >= n){
                 break;
