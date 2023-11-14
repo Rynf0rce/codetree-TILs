@@ -5,7 +5,12 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int a = sc.nextInt();
         int b = sc.nextInt();
-        double output = (double)a/b;
-        System.out.printf("%.20f",output);
+        for(int i = 0; i <= 20 ; i++){
+            System.out.print(a/b);
+            if(i == 0){
+                System.out.print(".");
+            }
+            a = ( a - b * (a/b) ) * 10;
+        }
     }
 }
