@@ -6,8 +6,8 @@ public class Main {
         int a = sc.nextInt(), b = sc.nextInt(), sum = 0;
         int[] arr = new int[b];
         while(a>1){
-            a = a / b;
             arr[a%b]++;
+            a = a / b;
         }
         for(int i = 0 ; i < arr.length ; i++){
             sum += arr[i] * arr[i];
