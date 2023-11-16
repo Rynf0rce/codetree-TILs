@@ -8,7 +8,7 @@ public class Main {
         int[] arr = new int[10];
         for(int i = 0 ; i < arr.length ; i++){
             arr[i] = sc.nextInt();
-            if(arr[i] >= 250){
+            if(arr[i] >= 250 || i == arr.length - 1){
                 if(sum == 0){
                     average = 0;
                 }
