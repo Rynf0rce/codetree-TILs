@@ -5,9 +5,9 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         for(int i = 1 ; i <= n ; i++){
-            for(int j = n ; j > 0; j--){
-                if(i <= n - j + 1){
-                    System.out.print(j + " ");
+            for(int j = 1 ; j <= n; j++){
+                if(i <= j ){
+                    System.out.print(n - j + 1 + " ");
                 }
                 else{
                     System.out.print("  ");
