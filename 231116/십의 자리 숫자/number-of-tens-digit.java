@@ -8,6 +8,9 @@ public class Main {
         for(int i = 0 ; i < arr.length ; i++){
             try{
                 arr[i] = sc.nextInt();
+                if(arr[i] == 0){
+                    break;
+                }
                 count[arr[i] / 10]++;
 
             }catch(NoSuchElementException e){
