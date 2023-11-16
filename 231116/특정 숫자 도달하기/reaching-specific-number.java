@@ -8,7 +8,7 @@ public class Main {
         int[] arr = new int[10];
         for(int i = 0 ; i < arr.length ; i++){
             arr[i] = sc.nextInt();
-            if(arr[i] >= 250 || i == arr.length - 1){
+            if(arr[i] >= 250){
                 if(sum == 0){
                     average = 0;
                 }
@@ -17,7 +17,12 @@ public class Main {
                 }
                 break;
             }
-            sum += arr[i];
+            else{
+                sum += arr[i];
+                if(i == arr.length - 1){
+                    average = (double) sum / arr.length;
+                }
+            }
         }
         System.out.printf("%d %.1f", sum, average);
     }
