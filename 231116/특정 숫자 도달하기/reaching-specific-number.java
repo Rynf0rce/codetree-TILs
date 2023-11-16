@@ -17,9 +17,7 @@ public class Main {
                 }
                 break;
             }
-            else{
-                sum += arr[i];
-            }
+            sum += arr[i];
         }
         System.out.printf("%d %.1f", sum, average);
     }
