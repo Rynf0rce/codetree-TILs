@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int a = sc.nextInt(), b = sc.nextInt(), sum = 0;
-        int[] arr = new int[b+1];
+        int[] arr = new int[b];
         while(a>1){
             a = a / b;
             arr[a%b]++;
