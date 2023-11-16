@@ -9,7 +9,12 @@ public class Main {
             for(int j = 1 ; j <= n; j++){
                 if(i>=j){
                     System.out.print((char)charNum);
-                    charNum++;
+                    if(charNum =='Z'){
+                        charNum = 'A';
+                    }
+                    else{
+                        charNum++;
+                    }
                 }
                 else{
                     break;
