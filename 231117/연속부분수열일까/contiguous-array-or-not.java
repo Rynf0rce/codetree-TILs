@@ -16,15 +16,15 @@ public class Main {
         for(int i = 0 ; i < arrA.length ; i++){
             if(arrA[i] == arrB[0]){
                 for(int j = 1 ; j < arrB.length ; j++){
-                    if(i + j > arrA.length){
+                    try{
+                        if(arrA[i + j] != arrB[j]){
                         break;
-                    }
-                
-                    if(arrA[i + j] != arrB[j]){
+                        }
+                        else if(j == arrB.length - 1){
+                            answer = true;
+                        }
+                    }catch(ArrayIndexOutOfBoundsException e){
                         break;
-                    }
-                    else if(j == arrB.length - 1){
-                        answer = true;
                     }
                 }
             }
