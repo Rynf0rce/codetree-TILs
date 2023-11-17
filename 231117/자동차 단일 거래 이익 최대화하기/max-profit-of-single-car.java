@@ -5,21 +5,19 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int numOfInt = sc.nextInt();
         int[] arr = new int[numOfInt];
-        int minVal = Integer.MAX_VALUE, idxMin = 0, maxVal = Integer.MIN_VALUE;
+        int maxVal = Integer.MIN_VALUE;
         for(int i = 0 ; i < arr.length ; i++){
             arr[i] = sc.nextInt();
-            if(arr[i] < minVal){
-                minVal = arr[i];
-                idxMin = i;
-            }
         }
-        for(int i = idxMin ; i < arr.length ; i++){
-            if(arr[i] > maxVal){
-                maxVal = arr[i];
+        for(int i = 0 ; i < arr.length ; i++){
+            for(int j = i ; j < arr.length ; j++){
+                if( (arr[j] - arr[i]) > maxVal){
+                    maxVal = arr[j] - arr[i];
+                }
             }
         }
 
-        System.out.print(maxVal - minVal);
+        System.out.print(maxVal);
         
     }
 }
