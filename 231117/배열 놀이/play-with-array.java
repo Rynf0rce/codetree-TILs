@@ -25,6 +25,7 @@ public class Main {
                             break;
                         }
                     }
+                    System.out.println(0);
                     break;
                 case 3 :
                     a = sc.nextInt();
