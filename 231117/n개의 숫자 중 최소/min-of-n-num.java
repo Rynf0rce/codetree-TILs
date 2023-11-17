@@ -3,7 +3,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int inputVal = sc.nextInt(), cnt = 1;
+        int inputVal = sc.nextInt(), cnt = 0;
         int[] arr = new int[100];
         final int INT_MAX = Integer.MAX_VALUE;
         int minVal = INT_MAX;
