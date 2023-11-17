@@ -16,6 +16,10 @@ public class Main {
         for(int i = 0 ; i < arrA.length ; i++){
             if(arrA[i] == arrB[0]){
                 for(int j = 1 ; j < arrB.length ; j++){
+                    if(i + j > arrB.length){
+                        break;
+                    }
+                
                     if(arrA[i + j] != arrB[j]){
                         break;
                     }
