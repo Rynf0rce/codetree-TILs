@@ -13,9 +13,6 @@ public class Main {
             arrB[i] = sc.nextInt();
         }
 
-        // arrA = new int[]{9, 2, 4, 1, 3, 3, 1, 4, 6, 8};
-        // arrB = new int[]{4, 1, 3, 3, 1, 4};
-
         for(int i = 0 ; i < arrA.length ; i++){
             if(arrA[i] == arrB[0]){
                 for(int j = 1 ; j < arrB.length ; j++){
@@ -27,11 +24,12 @@ public class Main {
                     }
                 }
             }
-            else if(answer == true){
-                break;
+            else{
+                continue;
             }
         }
 
         System.out.print(answer ? "Yes" : "No");
+
     }
 }
