@@ -14,6 +14,8 @@ public class Main {
 
         final int INT_MIN = Integer.MIN_VALUE;
         int maxVal = INT_MIN;
+
+        // arr = new int[]{3, 2, 3, 1};
         
         for(int i = 0 ; i < arr.length ; i++ ){
             pointer = i;
@@ -28,13 +30,14 @@ public class Main {
             if(pointer != i){
                 arr[pointer] = arr[i];
                 arr[i] = maxVal;
-                cntArr[maxVal]++;
             }
+            cntArr[maxVal]++;
         }
-        // System.out.printf("%d %d", arr[0], arr[1]);
+        // System.out.printf("%d %d %d %d", cntArr[1], cntArr[2], cntArr[3], cntArr[4]);
         for(int i = 0 ; i < arr.length ; i++){
             overlap = true;
             if(cntArr[arr[i]] == 1){
+                // System.out.println("current : " + cntArr[arr[i]]);
                 overlap = false;
                 pointer = arr[i];
                 break;
