@@ -24,7 +24,7 @@ public class Main {
                             System.out.println(j + 1);
                             break;
                         }
-                        if(j == arr.length){
+                        if(j == arr.length - 1){
                             System.out.println(0);
                         }
                     }
