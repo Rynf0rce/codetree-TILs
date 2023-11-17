@@ -27,12 +27,11 @@ public class Main {
                     }
                 }
             }
-            else{
-                continue;
+            else if(answer == true){
+                break;
             }
         }
 
         System.out.print(answer ? "Yes" : "No");
-
     }
 }
