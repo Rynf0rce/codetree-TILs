@@ -16,20 +16,23 @@ public class Main {
         for(int i = 0 ; i < arrA.length ; i++){
             if(arrA[i] == arrB[0]){
                 for(int j = 1 ; j < arrB.length ; j++){
-                    if(i + j > arrB.length){
+                    if(i + j > arrA.length){
+                        System.out.print("chack1");
                         break;
                     }
                 
                     if(arrA[i + j] != arrB[j]){
+                        System.out.print("chack2");
                         break;
                     }
                     else if(j == arrB.length - 1){
+                        System.out.print("chack3");
                         answer = true;
                     }
                 }
             }
-            else{
-                continue;
+            else if(answer == true){
+                break;
             }
         }
 
