@@ -24,8 +24,10 @@ public class Main {
                             System.out.println(j + 1);
                             break;
                         }
+                        if(j == arr.length){
+                            System.out.println(0);
+                        }
                     }
-                    System.out.println(0);
                     break;
                 case 3 :
                     a = sc.nextInt();
