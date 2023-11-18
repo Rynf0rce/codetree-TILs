@@ -6,7 +6,7 @@ public class Main {
         int n = sc.nextInt(), num = 1;
         int[][] arr2d = new int[n][n];
         for(int j = arr2d[0].length - 1 ; j >= 0 ; j--){
-            if(j % 2 == 0){
+            if(j % 2 == n % 2){
                 for(int i = 0 ; i < arr2d.length ; i++){
                     arr2d[i][j] = num;
                     num++;
