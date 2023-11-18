@@ -11,9 +11,11 @@ public class Main {
         char criteria = sc.next().charAt(0);
 
         for(int i = 0 ; i < arr.length ; i++){
-            
             if(arr[i].charAt(arr[i].length() - 1) == criteria){
                 System.out.println(arr[i]);
+            }
+            else{
+                System.out.println("None");
             }
         }
     }
