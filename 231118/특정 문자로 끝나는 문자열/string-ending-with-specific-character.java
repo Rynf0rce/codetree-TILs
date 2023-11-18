@@ -12,7 +12,7 @@ public class Main {
 
         for(int i = 0 ; i < arr.length ; i++){
             
-            if(arr[i].charAt(arr[i].length() - 1) == 'e'){
+            if(arr[i].charAt(arr[i].length() - 1) == criteria){
                 System.out.println(arr[i]);
             }
         }
