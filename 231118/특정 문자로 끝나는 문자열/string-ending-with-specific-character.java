@@ -4,6 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String[] arr = new String[10];
+        boolean triger = false;
         for(int i = 0 ; i < arr.length ; i++){
             arr[i] = sc.next();
         }
@@ -13,10 +14,11 @@ public class Main {
         for(int i = 0 ; i < arr.length ; i++){
             if(arr[i].charAt(arr[i].length() - 1) == criteria){
                 System.out.println(arr[i]);
+                triger = true;
             }
-            else{
-                System.out.println("None");
-            }
+        }
+        if(!triger){
+            System.out.print("None");
         }
     }
 }
