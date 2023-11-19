@@ -5,7 +5,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String str = sc.next();
 
-        str = "ba";
+        //str = "ba";
 
         char[] arr = str.toCharArray();
         char temp = ' ';
