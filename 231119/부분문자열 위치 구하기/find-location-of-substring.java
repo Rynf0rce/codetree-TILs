@@ -5,6 +5,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String input = sc.next();
         String target = sc.next();
+
         boolean triger = false;
         for(int i = 0 ; i < input.length() ; i++){
             if(input.charAt(i) == target.charAt(0) && i + target.length() <= input.length()){
@@ -27,6 +28,9 @@ public class Main {
                 System.out.print(i);
                 break;
             }
+        }
+        if(!triger){
+            System.out.print(-1);
         }
     }
 }
