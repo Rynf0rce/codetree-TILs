@@ -11,23 +11,22 @@ public class Main {
             task = sc.nextInt();
             switch(task){
                 case 1 :
-                    temp = arr[0]
+                    temp = arr[0];
                     for(int j = 0 ;  j < arr.length-1 ; j++){
                         arr[j] = arr[j+1];
                     }
-                    arr[arr.legnth - 1] = temp;
-                    str = arr.toString();
+                    arr[arr.length - 1] = temp;
+                    str = String.valueOf(arr);
                     break;
                 case 2 :
-                    temp = arr[arr.length -1]
-                    for(int j = arr.legnth - 1 ;  j > 0 ; j--){
+                    temp = arr[arr.length -1];
+                    for(int j = arr.length - 1 ;  j > 0 ; j--){
                         arr[j] = arr[j-1];
                     }
                     arr[0] = temp;
-                    str = arr.toString();
+                    str = String.valueOf(arr);
                     break;
                 case 3 :
-                    char[] arr = str.toCharArray();
                     str = "";
                     for(int j = arr.length - 1 ; j >= 0 ; j--){
                         str += arr[j];
