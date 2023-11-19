@@ -7,7 +7,7 @@ public class Main {
         char[] arr = str.toCharArray();
         boolean triger = true;
         for(int i = 0 ; i < arr.length ; i++){
-            if(arr[i] = 'e' && triger){
+            if(arr[i] == 'e' && triger){
                 triger = false;
             }
             else{
