@@ -7,9 +7,12 @@ public class Main {
         int idx = -1;
         boolean triger = false;
 
+        //inputStr = "freedom";
+        //compareStr = "doma";
+
         for(int i = 0 ; i < compareStr.length() ; i++){
             for(int j = 0; j < inputStr.length() ; j++){
-                if(compareStr.charAt(i) == inputStr.charAt(j)){
+                if(compareStr.charAt(i) == inputStr.charAt(j) && idx + compareStr.length() <= inputStr.length()){
                     if(!triger){
                         idx = j;
                         triger = true;
@@ -20,9 +23,6 @@ public class Main {
                     triger = false;
                     idx = -1;
                 }
-            }
-            if(triger){
-                break;
             }
         }
         System.out.print(idx);
