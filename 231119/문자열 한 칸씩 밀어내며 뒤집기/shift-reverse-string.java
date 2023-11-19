@@ -5,10 +5,15 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String str = sc.next();
 
+        // str = "dc";
+        // int[] taskarr = new int[]{3 ,3};
+
         char[] arr = str.toCharArray();
         char temp = ' ';
         int num = sc.nextInt(), task = 0;
+        // int task = 0 ; // num = 2;
         for(int i = 0 ; i < num ; i++){
+            // task = taskarr[i];// sc.nextInt();
             task = sc.nextInt();
             char[] workArr = new char[str.length()];
             switch(task){
@@ -35,6 +40,7 @@ public class Main {
                     for(int j = arr.length - 1 ; j >= 0 ; j--){
                         str += arr[j];
                     }
+                    arr = str.toCharArray();
                     break;
             }
             System.out.println(str);
