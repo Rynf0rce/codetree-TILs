@@ -4,16 +4,10 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String str = sc.next();
-
-        // str = "dc";
-        // int[] taskarr = new int[]{3 ,3};
-
         char[] arr = str.toCharArray();
         char temp = ' ';
         int num = sc.nextInt(), task = 0;
-        // int task = 0 ; // num = 2;
         for(int i = 0 ; i < num ; i++){
-            // task = taskarr[i];// sc.nextInt();
             task = sc.nextInt();
             char[] workArr = new char[str.length()];
             switch(task){
