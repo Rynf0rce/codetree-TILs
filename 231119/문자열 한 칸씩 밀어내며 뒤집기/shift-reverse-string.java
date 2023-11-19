@@ -4,15 +4,27 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String str = sc.next();
+        char[] arr = str.toCharArray();
+        char temp = ' ';
         int num = sc.nextInt(), task = 0;
         for(int i = 0 ; i < num ; i++){
             task = sc.nextInt();
             switch(task){
                 case 1 :
-                    str = str.substring(1) + str.substring(0, 1);
+                    temp = arr[0]
+                    for(int j = 0 ;  j < arr.length-1 ; j++){
+                        arr[j] = arr[j+1];
+                    }
+                    arr[arr.legnth - 1] = temp;
+                    str = arr.toString();
                     break;
                 case 2 :
-                    str = str.substring(str.length()-1, str.length()) + str.substring(0, str.length()-1);
+                    temp = arr[arr.length -1]
+                    for(int j = arr.legnth - 1 ;  j > 0 ; j--){
+                        arr[j] = arr[j-1];
+                    }
+                    arr[0] = temp;
+                    str = arr.toString();
                     break;
                 case 3 :
                     char[] arr = str.toCharArray();
