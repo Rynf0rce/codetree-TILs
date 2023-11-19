@@ -13,8 +13,6 @@ public class Main {
                     if(!triger){
                         idx = j;
                         triger = true;
-                    }
-                    else if( (j - idx) == compareStr.length()){
                         break;
                     }
                 }
