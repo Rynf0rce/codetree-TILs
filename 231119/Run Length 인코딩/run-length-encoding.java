@@ -9,14 +9,15 @@ public class Main {
         for(int i = 0 ; i < A.length() - 1 ; i++){
             if(A.charAt(i) == A.charAt(i+1)){
                 cnt++;
-                if(i == A.length() -2){
-                    output = output + standard + cnt;
-                }
             }
             else{
                 output = output + standard + cnt;
                 standard = A.charAt(i+1);
                 cnt = 1;
+
+            }
+            if(i == A.length() -2){
+                    output = output + standard + cnt;
             }
         }
         System.out.printf("%d\n%s", output.length(), output);
