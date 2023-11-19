@@ -4,6 +4,9 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String str = sc.next();
+
+        str = "ba";
+
         char[] arr = str.toCharArray();
         char temp = ' ';
         int num = sc.nextInt(), task = 0;
