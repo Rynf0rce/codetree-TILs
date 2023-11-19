@@ -6,10 +6,6 @@ public class Main {
         String input = sc.next();
         String target = sc.next();
         boolean triger = false;
-
-        input = "water";
-        target = "water";
-
         for(int i = 0 ; i < input.length() ; i++){
             if(input.charAt(i) == target.charAt(0) && i + target.length() <= input.length()){
                 if(target.length() == 1){
