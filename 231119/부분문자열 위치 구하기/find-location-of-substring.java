@@ -7,15 +7,24 @@ public class Main {
         String target = sc.next();
         boolean triger = false;
 
+        input = "water";
+        target = "water";
+
         for(int i = 0 ; i < input.length() ; i++){
             if(input.charAt(i) == target.charAt(0) && i + target.length() <= input.length()){
-                for(int j = 1 ; j < target.length() ; j++){
-                    if(input.charAt(i+j) != target.charAt(j)){
-                        break;
+                if(target.length() == 1){
+                    triger = true;
+                }
+                else{
+                    for(int j = 1 ; j < target.length() ; j++){
+                        if(input.charAt(i+j) != target.charAt(j)){
+                            break;
+                        }
+                        else if(j == target.length() - 1){
+                            triger = true;
+                        }
                     }
-                    else if(j == target.length() - 1){
-                        triger = true;
-                    }
+
                 }
             }
             if(triger){
