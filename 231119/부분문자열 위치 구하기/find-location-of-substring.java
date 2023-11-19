@@ -7,6 +7,8 @@ public class Main {
         String target = sc.next();
         int idx = 0, first_idx = -1;
         boolean judge = false;
+        input = "aababaa";
+        target = "aba"
 
         for(int i = 0 ; i < input.length() ; i++){
             if(input.charAt(i) == target.charAt(idx)){
