@@ -15,7 +15,7 @@ public class Main {
         char[] str = String.valueOf(num).toCharArray();
         boolean output = false;
         for(int i = 0; i < str.length ; i++){
-            if( (str[i] - '0') % 3 == 0 ){
+            if( (str[i] - '0') % 3 == 0 && str[i] != '0' ){
                 output = true;
                 break;
             }
