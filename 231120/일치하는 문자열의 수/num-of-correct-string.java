@@ -7,7 +7,7 @@ public class Main {
         String str = sc.next();
         String target = "";
         for(int i = 0 ; i < num ; i++){
-            target = sc.nextLine();
+            target = sc.next();
             if(str.equals(target)){
                 cnt++;
             }
