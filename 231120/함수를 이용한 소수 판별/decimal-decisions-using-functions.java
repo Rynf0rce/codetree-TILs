@@ -5,6 +5,9 @@ public class Main {
         int sum = 0;
         boolean chack = false;
         for(int i = a ; i <= b ; i++){
+            if(i == 1){
+                continue;
+            }
             chack = true ;
             for(int j = 2 ; j < a ; j++){
                 if(i%j == 0){
