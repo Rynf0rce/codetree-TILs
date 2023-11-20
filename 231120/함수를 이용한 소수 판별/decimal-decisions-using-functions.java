@@ -2,20 +2,15 @@ import java.util.*;
 
 public class Main {
     public static int fucPrime(int a, int b){
-        int sum = 0;
-        boolean chack = false;
+        int sum = 0, cnt = 0;
         for(int i = a ; i <= b ; i++){
-            if(i == 1){
-                continue;
-            }
-            chack = true ;
-            for(int j = 2 ; j < a ; j++){
+            cnt = 0 ;
+            for(int j = 1 ; j <= i ; j++){
                 if(i%j == 0){
-                    chack = false;
-                    break;
+                    cnt++;
                 }
             }
-            if(chack){
+            if(cnt == 2){
                 sum += i;
             }
         }
