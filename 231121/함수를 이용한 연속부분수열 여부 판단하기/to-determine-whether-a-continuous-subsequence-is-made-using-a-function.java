@@ -28,6 +28,12 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int a = sc.nextInt(), b = sc.nextInt();
         int[] arrA = new int[a], arrB = new int[b];
+        for(int i = 0 ; i < arrA.length ; i++){
+            arrA[i] = sc.nextInt();
+        }
+        for(int i = 0 ; i < arrB.length ; i++){
+            arrB[i] = sc.nextInt();
+        }
         System.out.print(conFuc(arrA, arrB) ? "Yes" : "No");
     }
 }
