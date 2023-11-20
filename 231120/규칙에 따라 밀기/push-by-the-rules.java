@@ -16,6 +16,7 @@ public class Main {
         }
 
         char[] taskArr = new char[A.length()];
+        // push = 0;
         // R
         if(push > 0){
             for(int i = 0 ; i < taskArr.length - push ; i++){
@@ -26,7 +27,7 @@ public class Main {
             }
         }
         // L
-        else{
+        else if(push < 0){
             push = Math.abs(push);
             for(int i = 0 ; i < taskArr.length ; i++){
                 if(i >= push){
@@ -36,6 +37,9 @@ public class Main {
                     taskArr[taskArr.length - push + i] = a_Arr[i];
                 } 
             }
+        }
+        else{
+            taskArr = Arrays.copyOf(a_Arr, a_Arr.length);
         }
         A = String.valueOf(taskArr);
         System.out.print(A);
