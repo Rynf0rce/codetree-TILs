@@ -14,6 +14,7 @@ public class Main {
                 push++;
             }
         }
+        push = push % a_Arr.length;
 
         char[] taskArr = new char[A.length()];
         // push = 0;
