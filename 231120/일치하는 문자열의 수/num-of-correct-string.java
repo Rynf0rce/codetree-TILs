@@ -8,7 +8,7 @@ public class Main {
         String target = "";
         for(int i = 0 ; i < num ; i++){
             target = sc.nextLine();
-            if(str.compareTo(target) == 0){
+            if(str.equals(target)){
                 cnt++;
             }
         }
