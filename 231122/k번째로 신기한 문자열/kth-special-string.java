@@ -4,11 +4,13 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int num = sc.nextInt(), order = sc.nextInt(), idx = 0;
-        String target = sc.next(), input = "";
+        String target = sc.next(), input =" ";
+        char[] targetArr = target.toCharArray(), inputArr;
         String[] arr = new String[100];
         for(int i = 0 ; i < num ; i++){
             input = sc.next();
-            if(input.substring(0,target.length()).contains(target)){
+            inputArr = input.toCharArray();
+            if(Arrays.equals(Arrays.copyOf(inputArr, targetArr.length), targetArr)){
                 arr[idx] = new String(input);
                 idx++;
             }
