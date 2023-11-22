@@ -1,38 +1,30 @@
 import java.util.*;
 
 public class Main {
-    public static int conFnc(int[] arr, int n){
+    public static int conFnc(int[] arr){
+        int n = 2, product = 1;
         boolean triger = false;
-        boolean proTriger = false;
-        for(int i = 0 ; i < arr.length ; i++){
-            if(arr[i] >= n){
-                triger = true;
-                break;
-            }
-        }
-
-        if(triger){
+        boolean behaviour = true;
+        while(behaviour){
+            behaviour = false;
             for(int i = 0 ; i < arr.length ; i++){
                 if(arr[i] % n == 0){
                     arr[i] /= n;
-                    proTriger = true;
+                    triger = true;
+                }
+                if(arr[i] > n){
+                    behaviour = true;
                 }
             }
-
-            if(proTriger){
-                return conFnc(arr, n+1) * n;
+            if(triger){
+                return conFnc(arr) * n;
             }
-            else{
-                return conFnc(arr, n+1);
-            }  
+            n++;
         }
-        else{
-            int product = 1;
-            for(int i = 0; i < arr.length ; i++){
-                product *= arr[i];
-            }
-            return product;
+        for(int i = 0; i < arr.length ; i++){
+            product *= arr[i];
         }
+        return product;
     }
 
     public static void main(String[] args) {
@@ -42,6 +34,6 @@ public class Main {
         for(int i = 0 ; i < arr.length ; i++){
             arr[i] = sc.nextInt();
         }
-        System.out.print(conFnc(arr, 1));
+        System.out.print(conFnc(arr));
     }
 }
