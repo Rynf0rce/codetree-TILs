@@ -9,6 +9,6 @@ public class Main {
             arr[i] = sc.nextInt();
         }
         Arrays.sort(arr);
-        System.out.print(arr[num] + arr[num-1]);
+        System.out.print(arr[arr.length/2] + arr[(arr.length/2) - 1]);
     }
 }
