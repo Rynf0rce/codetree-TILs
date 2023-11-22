@@ -4,6 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int num = sc.nextInt();
+        boolean judge = true;
         int[] arr1 = new int[num], arr2 = new int[num];
         for(int i = 0 ; i < arr1.length ; i++){
             arr1[i] = sc.nextInt();
@@ -15,10 +16,10 @@ public class Main {
         Arrays.sort(arr2);
         for(int i = 0 ; i < arr1.length ; i++){
             if(arr1[i] != arr2[i]){
-                System.out.print("No");
+                judge = false;
                 break;
             }
         }
-        System.out.print("Yes");
+        System.out.print(judge ? "Yes" : "No");
     }
 }
