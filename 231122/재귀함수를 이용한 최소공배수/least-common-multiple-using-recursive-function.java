@@ -5,7 +5,7 @@ public class Main {
         boolean triger = false;
         boolean proTriger = false;
         for(int i = 0 ; i < arr.length ; i++){
-            if(arr[i] > n){
+            if(arr[i] >= n){
                 triger = true;
                 break;
             }
@@ -24,8 +24,7 @@ public class Main {
             }
             else{
                 return conFnc(arr, n+1);
-            }
-            
+            }  
         }
         else{
             int product = 1;
