@@ -8,7 +8,7 @@ public class Main {
         String[] arr = new String[100];
         for(int i = 0 ; i < num ; i++){
             input = sc.next();
-            if(input.substring(0,target.length()).equals(target)){
+            if(input.substring(0,target.length()).contains(target)){
                 arr[idx] = new String(input);
                 idx++;
             }
