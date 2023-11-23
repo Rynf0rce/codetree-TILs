@@ -14,13 +14,23 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String[] week = new String[]{"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
         int idx = 1, m1 = sc.nextInt(), d1 = sc.nextInt(), m2 = sc.nextInt(), d2 = sc.nextInt();
+        /*m1 = 12;
+        d1 = 25;
+        m2 = 7;
+        d2 = 19;*/
         int totalDay1 = conFnc(m1,d1), totalDay2 = conFnc(m2,d2);
-        int gap = Math.abs(totalDay1 - totalDay2);
+        int gap = Math.abs(totalDay1 - totalDay2) % 7;
         if(totalDay1 > totalDay2){
-            System.out.print(week[Math.abs(1 - gap)%7]);
+            if(gap == 1){
+                System.out.print(week[0]);
+            }
+            else{
+                System.out.print(week[6-(gap-2)]);
+            }
+            
         }
         else{
-            System.out.print(week[(gap + 1) % 7]);
+            System.out.print(week[(gap+1)%7]);
         }
         
     }
