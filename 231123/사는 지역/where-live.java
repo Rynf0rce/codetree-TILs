@@ -46,6 +46,19 @@ public class Main {
                 }
             }
         }
+        /*
+        // comparTo는 같은 위치의 문자만 비교하기 때문에, 
+        // 첫번째 문자부터 순서대로 비교해서 다를 경우 바로 아스키값을 기준으로 비교처리를 한다.
+        // 기준값에 비교대상이 포함될 경우 문자열의 길이 값을 리턴
+        // ex) abcd.compareTo(ab) -> 2 / abcd.compareTo(c) -> -2
+        int lastIdx = 0;
+        for(int i = 1; i < n; i++) {
+            if(people[i].name.compareTo(people[lastIdx].name) > 0)  
+                lastIdx = i;
+        }
+        */
+
+
 
         System.out.println("name " + arr[idx].name);
         System.out.println("addr " + arr[idx].address);
