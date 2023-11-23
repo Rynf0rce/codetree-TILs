@@ -8,7 +8,7 @@ public class Main {
         for(int i = 1 ; i < month ; i++){
             sum += monthToDay[i];
         }
-        return sum;
+        return sum ;
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -23,6 +23,7 @@ public class Main {
                 sum -= conFnc(month, day);
             }
         }
-        System.out.print(Math.abs(sum));
+        sum = Math.abs(sum);
+        System.out.print(sum > 0 ? sum : 1);
     }
 }
