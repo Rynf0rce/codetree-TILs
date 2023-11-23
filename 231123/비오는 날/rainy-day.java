@@ -29,6 +29,7 @@ public class Main {
                     idx = i;
                 }
                 else{
+                    // 이부분이 핵심
                     if(arr[idx].date.compareTo(arr[i].date) > 0 ){
                         idx = i;
                     }
