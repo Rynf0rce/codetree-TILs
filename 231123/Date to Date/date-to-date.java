@@ -3,7 +3,7 @@
 import java.util.*;
 public class Main {
     public static int conFnc(int month, int day){
-        int[] monthToDay = new int[]{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        int[] monthToDay = new int[]{0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         int sum = day;
         for(int i = 1 ; i < month ; i++){
             sum += monthToDay[i];
@@ -17,13 +17,13 @@ public class Main {
             int month = sc.nextInt();
             int day = sc.nextInt();
             if(i == 0){
-                sum += conFnc(month, day) + 1;
+                sum += conFnc(month, day);
             }
             else{
                 sum -= conFnc(month, day);
             }
         }
-        sum = Math.abs(sum);
+        sum = Math.abs(sum) + 1;
         System.out.print(sum);
     }
 }
