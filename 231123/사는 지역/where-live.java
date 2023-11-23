@@ -28,9 +28,18 @@ public class Main {
         
         for(int i = 1 ; i < arr.length ; i++){
             for(int j = 0 ; j < arr[i].name.length() ; j++){
-                if(arr[idx].name.charAt(j) < arr[i].name.charAt(j)){
+                try{
+                    if(arr[idx].name.charAt(j) < arr[i].name.charAt(j)){
                     idx = i;
                     break;
+                    } 
+                } catch(StringIndexOutOfBoundsException e) {
+                    if(arr[idx].name.length() < arr[i].name.length()){
+                        idx = i;
+                    }
+                    else{
+                        break;
+                    }
                 }
             }
         }
