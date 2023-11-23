@@ -15,6 +15,14 @@ public class Main {
         String[] weekArr = new String[]{"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
         int Mon = 1, idx = 0, m1 = sc.nextInt(), d1 = sc.nextInt(), m2 = sc.nextInt(), d2 = sc.nextInt();
         String week = sc.next();
+
+        /*m1 = 9;
+        d1 = 13;
+        m2 = 10;
+        d2 = 7;
+        week = "sun";*/
+
+
         int totalDay1 = conFnc(m1,d1), totalDay2 = conFnc(m2,d2);
         // System.out.println(Math.abs(totalDay1 - totalDay2));
         int gap = Math.abs(totalDay1 - totalDay2) % 7 , cnt = Math.abs(totalDay1 - totalDay2) / 7;
@@ -25,8 +33,11 @@ public class Main {
             }
         }
         int sum = cnt;
-        // System.out.println(gap);
-        if(idx <= 1 + gap){
+        //System.out.println(gap);
+        if(idx == 0 && gap == 6){
+            sum++;
+        }
+        else if(idx <= 1 + gap && idx >= 1){
             sum++;
         }
         System.out.print(sum);
