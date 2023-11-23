@@ -14,7 +14,7 @@ public class Main {
         int sum = conFnc(11,11,11,11);
         int a = sc.nextInt(), b = sc.nextInt(), c = sc.nextInt();
         sum -= conFnc(11,a,b,c);
-        sum = Math.abs(sum);
+        sum = sum > 0 ? -1 : Math.abs(sum);
         System.out.print(sum);
     }
 }
