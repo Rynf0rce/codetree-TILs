@@ -12,12 +12,12 @@ public class Main {
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int sum = 1;
+        int sum = 0;
         for(int i = 0 ; i < 2 ; i++){
             int month = sc.nextInt();
             int day = sc.nextInt();
             if(i == 0){
-                sum += conFnc(month, day);
+                sum += conFnc(month, day) + 1;
             }
             else{
                 sum -= conFnc(month, day);
