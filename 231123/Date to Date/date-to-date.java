@@ -12,7 +12,7 @@ public class Main {
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int sum = 0;
+        int sum = 1;
         for(int i = 0 ; i < 2 ; i++){
             int month = sc.nextInt();
             int day = sc.nextInt();
@@ -24,6 +24,6 @@ public class Main {
             }
         }
         sum = Math.abs(sum);
-        System.out.print(sum > 0 ? sum : 1);
+        System.out.print(sum);
     }
 }
