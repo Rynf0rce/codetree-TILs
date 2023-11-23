@@ -32,7 +32,10 @@ public class Main {
                     if(arr[idx].name.charAt(j) < arr[i].name.charAt(j)){
                     idx = i;
                     break;
-                    } 
+                    }
+                    else if(arr[idx].name.charAt(j) > arr[i].name.charAt(j)){
+                        break;
+                    }
                 } catch(StringIndexOutOfBoundsException e) {
                     if(arr[idx].name.length() < arr[i].name.length()){
                         idx = i;
