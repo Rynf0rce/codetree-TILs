@@ -15,6 +15,10 @@ public class Main {
         int[][] arr = new int[201][201];
         for(int i = 0 ; i < num ; i++){
             int x1 = sc.nextInt(), y1 = sc.nextInt(), x2 = sc.nextInt(), y2 = sc.nextInt();
+            x1 += 100;
+            y1 += 100;
+            x2 += 100;
+            y2 += 100;
             rectArea(x1, y1, x2, y2, arr);
         }
 
