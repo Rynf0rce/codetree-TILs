@@ -4,15 +4,18 @@ import java.util.*;
 
 class idxColor{
     char color;
-    int count;
+    int Lcount;
+    int Rcount;
 
     idxColor(){
         this.color = 'N';
-        this.count = 0;
+        this.Lcount = 0;
+        this.Rcount = 0;
     }
     idxColor(char color){
         this.color = color;
-        this.count = 0;
+        this.Lcount = 0;
+        this.Rcount = 0;
     }
     
 }
@@ -27,34 +30,34 @@ public class Main {
             arr[i] = new idxColor('N');
         }
 
+
+        //num = 5;
+        //int[] testarr = new int[]{1,1,1,2,1};
+        //char[] testdir = new char[]{'L','L','R', 'R','L'};
         for(int i = 0 ; i < num ; i++){
-            int step = sc.nextInt(); // testarr[i];//
+            int step = sc.nextInt();  //testarr[i];//
             char direct = sc.next().charAt(0);// testdir[i];//
             switch(direct){
                 case 'R' :
                     for(int j = current ; j < current + step ; j++){
-                        if(arr[j].color != 'B'){
-                            arr[j].count++;
-                            if(arr[j].count == 4){
-                                arr[j].color = 'A';
-                            }
-                            else{
-                                arr[j].color = 'B';
-                            }
+                        arr[j].Rcount++;
+                        if(arr[j].Rcount > 1 && arr[j].Lcount > 1){
+                            arr[j].color = 'A';
+                        }
+                        else{
+                             arr[j].color = 'B';
                         }
                     }
                     current += (step - 1);
                     break;
                 case 'L' :
                     for(int j = current ; j > current - step ; j--){
-                        if(arr[j].color != 'W'){
-                            arr[j].count++;
-                            if(arr[j].count == 4){
-                                arr[j].color = 'A';
-                            }
-                            else{
-                                arr[j].color = 'W';
-                            }
+                        arr[j].Lcount++;
+                        if(arr[j].Rcount > 1 && arr[j].Lcount > 1){
+                            arr[j].color = 'A';
+                        }
+                        else{
+                            arr[j].color = 'W';
                         }
                     }
                     current -= (step - 1);
