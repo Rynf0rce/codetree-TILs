@@ -7,9 +7,13 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int num = sc.nextInt(), current = 1000, cnt = 0;
         int[] arr = new int[2001];
+
+        // num = 2;
+        //int[] testarr = new int[]{1,1};
+        //char[] testdir = new char[]{'R','L'};
         for(int i = 0 ; i < num ; i++){
-            int step = sc.nextInt();
-            char direct = sc.next().charAt(0);
+            int step = sc.nextInt();// testarr[i];//
+            char direct = sc.next().charAt(0); // testdir[i];//
             switch(direct){
                 case 'R' :
                     for(int j = current ; j < current + step ; j++){
@@ -18,7 +22,7 @@ public class Main {
                     current += step;
                     break;
                 case 'L' :
-                    for(int j = current ; j > current - step ; j--){
+                    for(int j = current - 1; j >= current - step ; j--){
                         arr[j]++;
                     }
                     current -= step;
@@ -26,12 +30,12 @@ public class Main {
                 default :
                     break;
             }
-            System.out.println("current : " + current);
+            // System.out.println("current : " + current);
         }
         for(int i = 1 ; i < arr.length ; i++){
             if(arr[i] > 1){
                 cnt++;
-                System.out.println(i);
+                //System.out.println(i);
             }
         }
         System.out.print(cnt);
