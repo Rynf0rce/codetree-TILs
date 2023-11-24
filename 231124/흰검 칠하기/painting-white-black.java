@@ -1,23 +1,20 @@
-// 위치 0에서 시작하여 n번의 명령에 걸쳐 움직인 뒤, 2번 이상 지나간 영역의 크기를 출력하는 프로그램을 작성해보세요.
-// 단 명령은 “x L“, “x R” 형태로만 주어집니다. "x L" 의 경우 왼쪽으로 x만큼 이동해야 함을, "x R"의 경우 오른쪽으로 x만큼 이동해야 함을 뜻합니다.
-import java.util.*;
+// 일직선으로 무한히 나열된 타일이 있습니다. 아무 타일에서 시작하여 n번의 명령에 걸쳐 움직입니다.
+// 명령은 "x L", "x R" 형태로만 주어지며, "x L"의 경우 왼쪽으로 이동하면서 현재 위치 타일포함 총 x칸의 타일을 흰색으로 연속하게 칠하고, "x R"의 경우 오른쪽으로 이동하면서 현재 위치 타일포함 총 x칸의 타일을 검은색으로 연속하게 칠함을 뜻합니다.
+// 각 명령 이후에는 마지막으로 뒤집은 타일 위치에 서있는다고 가정합니다. 타일의 색은 덧칠해지면 마지막으로 칠해진 색으로 바뀌는데, 만약 타일 하나가 순서 상관없이 흰색과 검은색으로 각각 두 번 이상 칠해지면 회색으로 바뀌고 더 이상 바뀌지 않습니다.
+// 모든 명령을 실행한 뒤의 흰색, 검은색, 회색의 타일 수를 각각 출력하는 프로그램을 작성해보세요.
 
 class idxColor{
     char color;
     int Lcount;
     int Rcount;
 
-    idxColor(){
-        this.color = 'N';
-        this.Lcount = 0;
-        this.Rcount = 0;
-    }
+    idxColor(){}
+
     idxColor(char color){
         this.color = color;
         this.Lcount = 0;
         this.Rcount = 0;
     }
-    
 }
 
 public class Main {
@@ -30,13 +27,9 @@ public class Main {
             arr[i] = new idxColor('N');
         }
 
-
-        //num = 5;
-        //int[] testarr = new int[]{1,1,1,2,1};
-        //char[] testdir = new char[]{'L','L','R', 'R','L'};
         for(int i = 0 ; i < num ; i++){
-            int step = sc.nextInt();  //testarr[i];//
-            char direct = sc.next().charAt(0);// testdir[i];//
+            int step = sc.nextInt();
+            char direct = sc.next().charAt(0);
             switch(direct){
                 case 'R' :
                     for(int j = current ; j < current + step ; j++){
