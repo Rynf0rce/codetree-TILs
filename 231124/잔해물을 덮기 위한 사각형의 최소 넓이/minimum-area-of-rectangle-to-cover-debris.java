@@ -48,6 +48,12 @@ public class Main {
         System.out.println(minX);
         System.out.println(maxY);
         System.out.println(minY); */
-        System.out.print((maxX - minX + 1) * (maxY - minY + 1));
+        if(minX == Integer.MAX_VALUE){
+            System.out.print(0);
+        }
+        else{
+            System.out.print((maxX - minX + 1) * (maxY - minY + 1));
+        }
+        
     }
 }
