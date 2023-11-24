@@ -1,5 +1,5 @@
-// 1차원 직선 상에 n개의 선분이 놓여 있습니다. 가장 많이 겹치는 곳에서는,
-// 몇 개의 선분이 겹치는지를 구하는 프로그램을 작성해보세요. 단, 끝점에서 닿는 경우에도 겹치는 것으로 봅니다.
+// 위치 0에서 시작하여 n번의 명령에 걸쳐 움직인 뒤, 2번 이상 지나간 영역의 크기를 출력하는 프로그램을 작성해보세요.
+// 단 명령은 “x L“, “x R” 형태로만 주어집니다. "x L" 의 경우 왼쪽으로 x만큼 이동해야 함을, "x R"의 경우 오른쪽으로 x만큼 이동해야 함을 뜻합니다.
 import java.util.*;
 
 public class Main {
@@ -26,11 +26,12 @@ public class Main {
                 default :
                     break;
             }
+            System.out.println("current : " + current);
         }
         for(int i = 1 ; i < arr.length ; i++){
             if(arr[i] > 1){
                 cnt++;
-                //System.out.println(i);
+                System.out.println(i);
             }
         }
         System.out.print(cnt);
