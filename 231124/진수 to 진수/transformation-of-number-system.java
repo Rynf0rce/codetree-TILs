@@ -3,7 +3,7 @@ import java.util.*;
 public class Main {
     public static void systemChange(int a, int b, int n){
         int value = 0;
-        char[] arr = Integer.toString(a).toCharArray();
+        char[] arr = Integer.toString(n).toCharArray();
         for(int i = 0; i < arr.length ; i++){
             value = value * a + ( arr[i] - '0' );
         }
@@ -28,7 +28,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int a = sc.nextInt(), b = sc.nextInt(), n = nextInt();
+        int a = sc.nextInt(), b = sc.nextInt(), n = sc.nextInt();
         systemChange(a,b,n);
     }
 }
