@@ -13,11 +13,12 @@ public class Main {
         for(int i = 0 ; i < N ; i++){
             arr[i] = sc.nextInt();
         }
-        //arr = new int[]{5,7,10,8,5,8,8,5,5};
-        //N = 9;
-        //T = 4;
+        //arr = new int[]{2,1,10,3,2,7};
+        //N = 6;
+        //T = 8;
         for(int i = 0 ; i < N ; i++){
             if(arr[i] <= T){
+                System.out.println("chack i : "+ i);
                 judgeArr[i] = 0;
             }
             else{
@@ -38,7 +39,7 @@ public class Main {
 
         int cnt = 1, maxVal = Integer.MIN_VALUE;
         for(int i = 1 ; i < N ; i++){
-            if(judgeArr[i] == judgeArr[i-1]){
+            if(judgeArr[i] != 0 && judgeArr[i] == judgeArr[i-1]){
                 cnt++;
             }
             else{
