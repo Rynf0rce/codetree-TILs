@@ -17,19 +17,15 @@ public class Main {
             }
         }
 
-        for(int i = 1; i < N ; i++){
-            if(arr[i] == 1 && arr[i-1] == 0){
-                cnt = 1;
-            }
-            else if(arr[i] - arr[i-1] == 0){
+        for(int i = 0; i < N ; i++){
+            if(arr[i] == 1){
                 cnt++;
             }
             else{
+                if(maxVal < cnt){
+                    maxVal = cnt;
+                }
                 cnt = 0;
-            }
-
-            if(maxVal < cnt){
-                maxVal = cnt;
             }
         }
         System.out.print(maxVal);
