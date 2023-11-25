@@ -13,8 +13,9 @@ public class Main {
         for(int i = 0 ; i < N ; i++){
             arr[i] = sc.nextInt();
         }
-        //arr = new int[]{4,5,6};
+        //arr = new int[]{5,7,10,8,5,8,8,5,5};
         //N = 9;
+        //T = 4;
         for(int i = 0 ; i < N ; i++){
             if(arr[i] <= T){
                 judgeArr[i] = 0;
@@ -29,7 +30,6 @@ public class Main {
                     
                 }
                 else{
-                    System.out.println("check : " + i);
                     idx++;
                     judgeArr[i] = idx;
                 }
