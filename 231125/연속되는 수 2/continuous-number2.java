@@ -20,6 +20,11 @@ public class Main {
             }
             else{
                 cnt++;
+                if(i == N-1){
+                    if(maxVal < cnt){
+                        maxVal = cnt;
+                    }
+                }
             }
         }
         System.out.print(maxVal);
