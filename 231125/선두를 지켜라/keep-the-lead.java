@@ -6,7 +6,7 @@ public class Main {
     
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int[] A_Arr = new int[MAX_N], B_Arr = new int[MAX_M];
+        double[] A_Arr = new double[MAX_N], B_Arr = new double[MAX_M];
         int N = sc.nextInt(), M = sc.nextInt(), A_idx = 1, B_idx = 1;
         for(int i = 0 ; i < N ; i++){
             int velocity = sc.nextInt();
