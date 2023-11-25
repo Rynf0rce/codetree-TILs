@@ -18,7 +18,7 @@ public class Main {
         //T = 8;
         for(int i = 0 ; i < N ; i++){
             if(arr[i] <= T){
-                System.out.println("chack i : "+ i);
+                //System.out.println("chack i : "+ i);
                 judgeArr[i] = 0;
             }
             else{
