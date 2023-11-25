@@ -18,11 +18,14 @@ public class Main {
         }
 
         for(int i = 1; i < N ; i++){
-            if(arr[i] == 1 && arr[i]*arr[i-1] == 0){
+            if(arr[i] == 1 && arr[i-1] == 0){
                 cnt = 1;
             }
             else if(arr[i] - arr[i-1] == 0){
                 cnt++;
+            }
+            else{
+                cnt = 0;
             }
 
             if(maxVal < cnt){
