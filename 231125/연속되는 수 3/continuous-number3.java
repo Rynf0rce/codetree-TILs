@@ -21,9 +21,9 @@ public class Main {
             }
             else{
                 cnt++;
-                if(i == N-1 && maxVal < cnt){
-                    maxVal = cnt;
-                }
+            }
+            if(i == N-1 && maxVal < cnt){
+                maxVal = cnt;
             }
         }
         System.out.print(maxVal);
