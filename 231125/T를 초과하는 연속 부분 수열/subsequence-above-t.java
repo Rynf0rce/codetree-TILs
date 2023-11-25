@@ -22,6 +22,7 @@ public class Main {
                 cnt++;
             }
             else{
+                //ans = Math.max(ans, cnt);
                 if(maxVal < cnt){
                     maxVal = cnt;
                 }
