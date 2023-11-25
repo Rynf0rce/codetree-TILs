@@ -27,6 +27,9 @@ public class Main {
                     cnt = 1;
                 }
             }
+            if(i == N-1 && cnt > maxVal){
+                maxVal = cnt;
+            }
         }
         System.out.print(maxVal);
     }
