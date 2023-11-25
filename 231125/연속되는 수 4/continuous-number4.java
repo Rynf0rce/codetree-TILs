@@ -10,7 +10,7 @@ public class Main {
             arr[i] = sc.nextInt();
         }
         for(int i = 1 ; i < N ; i++){
-            curVal = arr[i] - arr[i-1];
+            curVal = Math.abs(arr[i] - arr[i-1]);
             if(curVal > maxVal){
                 maxVal = curVal;
             }
