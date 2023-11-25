@@ -19,7 +19,7 @@ public class Main {
                 judgeArr[i] = 0;
             }
             else{
-                if(judgeArr[i-1] == 0){
+                if(i == 0 || judgeArr[i-1] == 0){
                     idx++;
                     judgeArr[i] = idx;
                 }
