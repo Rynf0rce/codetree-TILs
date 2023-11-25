@@ -9,48 +9,26 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int[] arr = new int[MAX_INPUT];
         int[] judgeArr = new int[MAX_INPUT];
-        int N = sc.nextInt(), T = sc.nextInt(), idx = 0;   
+        int N = sc.nextInt(), T = sc.nextInt(), cnt = 0, maxVal = Integer.MIN_VALUE;   
         for(int i = 0 ; i < N ; i++){
-            arr[i] = sc.nextInt();
-        }
-        //arr = new int[]{2,1,10,3,2,7};
-        //N = 6;
-        //T = 8;
-        for(int i = 0 ; i < N ; i++){
-            if(arr[i] <= T){
-                //System.out.println("chack i : "+ i);
-                judgeArr[i] = 0;
-            }
-            else{
-                if(i == 0 || judgeArr[i-1] == 0){
-                    idx++;
-                    judgeArr[i] = idx;
-                }
-                else if(arr[i] - arr[i-1] > 0){
-                    judgeArr[i] = idx;
-                    
-                }
-                else{
-                    idx++;
-                    judgeArr[i] = idx;
-                }
+            int input = sc.nextInt();
+            if(input > T){
+                arr[i] = 1;
             }
         }
 
-        int cnt = 1, maxVal = Integer.MIN_VALUE;
-        for(int i = 1 ; i < N ; i++){
-            if(judgeArr[i] != 0 && judgeArr[i] == judgeArr[i-1]){
-                cnt++;
-            }
-            else{
+        for(int i = 1; i < N ; i++){
+            if(arr[i] == 1 && arr[i]*arr[i-1] == 0){
                 cnt = 1;
             }
+            else if(arr[i] - arr[i-1] == 0){
+                cnt++;
+            }
 
-            if(cnt > maxVal){
+            if(maxVal < cnt){
                 maxVal = cnt;
             }
         }
-    System.out.print(maxVal);
-        
+        System.out.print(maxVal);
     }
 }
