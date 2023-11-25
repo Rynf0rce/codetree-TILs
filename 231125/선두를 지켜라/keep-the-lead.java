@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class Main {
-    public static final int MAX_N = 1001;
-    public static final int MAX_M = 1001;
+    public static final int MAX_N = 1000 * 1000 * 1000;
+    public static final int MAX_M = 1000 * 1000 * 1000;
     
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
