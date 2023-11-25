@@ -31,7 +31,7 @@ public class Main {
         }
 
         int scope = Math.min(A_idx, B_idx);
-        int preVal = 0, currentVal = 0, cnt = 0;
+        double preVal = 0, currentVal = 0, cnt = 0;
         for(int i = 1 ; i < scope ; i++){
             currentVal = A_Arr[i] - B_Arr[i];
             if(i == 1){
@@ -48,6 +48,6 @@ public class Main {
             }
             //System.out.println("currentVal" + " " + currentVal + " " + "preVal" + preVal);
         }
-        System.out.print(cnt);
+        System.out.print((int)cnt);
     }
 }
