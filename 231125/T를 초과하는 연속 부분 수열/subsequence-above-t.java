@@ -13,9 +13,10 @@ public class Main {
         for(int i = 0 ; i < N ; i++){
             arr[i] = sc.nextInt();
         }
-
+        //arr = new int[]{4,5,6};
+        //N = 9;
         for(int i = 0 ; i < N ; i++){
-            if(arr[i] <= 3){
+            if(arr[i] <= T){
                 judgeArr[i] = 0;
             }
             else{
