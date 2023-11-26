@@ -35,16 +35,21 @@ public class Main {
             }
         }
 
+        // for(int i = 0 ; i < B_idx ; i++){
+        //     System.out.print(arrA[i] + " ");
+        // }
+        // System.out.print(arrA[A_idx - 1] + " ");
         int maxCnt = Math.max(A_idx, B_idx);
         int minCnt = Math.min(A_idx, B_idx);
         boolean triger = true;
         int cnt = 0;
-        for(int i = 1 ; i <= maxCnt ; i++){
+        for(int i = 1 ; i < maxCnt ; i++){
             if(i <= minCnt){
                 if(arrA[i] == arrB[i]){
                     if(triger){
                         cnt++;
                         triger = false;
+                        // System.out.println("이하" + i);
                     }
                 }
                 else{
@@ -52,10 +57,11 @@ public class Main {
                 }
             }
             else{
-                if(arrA[minCnt] == arrB[i]){
+                if(arrA[minCnt - 1] == arrB[i]){
                     if(triger){
                         cnt++;
                         triger = false;
+                        // System.out.println("이상" + i);
                     }
                 }
                 else{
