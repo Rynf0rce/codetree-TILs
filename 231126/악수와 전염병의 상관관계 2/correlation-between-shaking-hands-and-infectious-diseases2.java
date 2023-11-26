@@ -43,6 +43,12 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         // n k p t
         int peoples = sc.nextInt(), vaildHandshake = sc.nextInt(), infected = sc.nextInt(), numOfTask = sc.nextInt();
+        // test site
+        // peoples = 9;
+        // vaildHandshake = 1;
+        // infected = 3;
+        // numOfTask = 7;
+        // --
         developer[] devList = new developer[MAX_NUMOFDEVELOPER + 1];
         for(int i = 1 ; i <= peoples ; i++){
             if(i == infected){
@@ -59,10 +65,22 @@ public class Main {
             int y_dev = sc.nextInt();
             taskList[i] = new tasks(time, x_dev, y_dev);
         }
+        
+        // test
+        // taskList[0] = new tasks(9, 5, 3);
+        // taskList[1] = new tasks(5, 1 ,2);
+        // taskList[2] = new tasks(3, 2, 4);
+        // taskList[3] = new tasks(18, 9, 7);
+        // taskList[4] = new tasks(10, 9 , 3);
+        // taskList[5] = new tasks(14, 5, 2);
+        // taskList[6] = new tasks(20, 7, 2);
+
+        //--
 
         Arrays.sort(taskList, 0, numOfTask);
 
         for(int i = 0 ; i < numOfTask ; i++){
+            // System.out.println(taskList[i].time + " " + taskList[i].x_dev + " " + taskList[i].y_dev);
             int x_dev = taskList[i].x_dev;
             int y_dev = taskList[i].y_dev;
             boolean x_task = false, y_task = false;
@@ -76,13 +94,13 @@ public class Main {
             if(x_task){
                 devList[x_dev].vaildHandshake--;
                 devList[y_dev].infected = true;
-                devList[y_dev].vaildHandshake += vaildHandshake;
+                devList[y_dev].vaildHandshake = vaildHandshake;
             }
 
             if(y_task){
                 devList[y_dev].vaildHandshake--;
                 devList[x_dev].infected = true;
-                devList[x_dev].vaildHandshake += vaildHandshake;
+                devList[x_dev].vaildHandshake = vaildHandshake;
             }
         }
 
