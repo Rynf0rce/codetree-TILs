@@ -16,19 +16,24 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt(), M = sc.nextInt(), A_idx = 1, B_idx = 1;
+        // test
+        // N = 9;
+        // M = 6;
+        // int[] timeArr = new int[]{20,3,2,19,9,10,2,20,16,20,20,2,6,9,20};
+        // char[] directionArr = new char[]{'R', 'R', 'R', 'L','L','R','L','L','R','L','L','L','L','R','R'};
         double[] arrA = new double[distance], arrB = new double[distance];
-        for(int i = 0 ; i < N ; i++){
-            int time = sc.nextInt();
-            char direction = sc.next().charAt(0); 
+        for(int i = 0 ; i < N ; i++){ //int i = 0 ; i < N ; i++
+            int time = /* timeArr[i]; */ sc.nextInt();
+            char direction = /* directionArr[i]; */ sc.next().charAt(0); 
             for(int j = 0 ; j < time ; j++){
                 arrA[A_idx] = arrA[A_idx-1] + goFnc(direction, 1);
                 A_idx++;
             }
         }
 
-        for(int i = 0 ; i < M ; i++){
-            int time = sc.nextInt();
-            char direction = sc.next().charAt(0);
+        for(int i = 0 ; i < M ; i++){ // int i = 0 ; i < M ; i++
+            int time = /* timeArr[i]; */ sc.nextInt();
+            char direction = /* directionArr[i]; */ sc.next().charAt(0);
             for(int j = 0 ; j < time ; j++){
                 arrB[B_idx] = arrB[B_idx-1] + goFnc(direction, 1);
                 B_idx++;
