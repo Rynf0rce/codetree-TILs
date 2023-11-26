@@ -60,7 +60,7 @@ public class Main {
         //System.out.print(arrA[A_idx - 1] + " ");
 
         
-        boolean triger = true;
+        boolean triger = false;
         int cnt = 0;
         for(int i = 1 ; i < maxCnt ; i++){
             if(arrA[i] == arrB[i]){
