@@ -9,9 +9,11 @@ public class Main {
             return false;
         }
     }
-    public static void conFnc(int[][] arr2D, int x, int y, int time, char direction){
-        int[] arrX = new int[]{0,1,0,-1};
-        int[] arrY = new int[]{1,0,-1,0};
+    public static void conFnc(int[][] arr2D, int row, int column, int time, char direction){
+        int temRow = row;
+        int temColumn = column;
+        int[] arrRow = new int[]{1,0,-1,0};
+        int[] arrColumn = new int[]{0,1,0,-1};
         int idx = 0;
         switch(direction){
             case 'U':
@@ -27,20 +29,21 @@ public class Main {
                 idx = 3;
                 break;
         }
+
         for(int i = 0 ; i < time ; i++){
-            int dx = x + arrY[idx]; // x와 y 이 좌표값이 아닌 행렬이기 때문.
-            int dy = y + arrX[idx];
-            // System.out.println(dx + " " + dy);
-            if(judgeplay(arr2D.length, arr2D[0].length, dx,dy)){
-                x = dx;
-                y = dy;
+            temRow = row + arrRow[idx]; // x와 y 이 좌표값이 아닌 행렬이기 때문.
+            temColumn = column + arrColumn[idx];
+            // System.out.println("temp" + temRow + " " + temColumn);
+            if(judgeplay(arr2D.length, arr2D[0].length, temColumn,temRow)){
+                row = temRow;
+                column = temColumn;
             }
             else{
                 idx = (idx + 2) % 4;
             }
-            //System.out.println(x + " " + y);
+            // System.out.println("moto" + row + " " + column);
         }
-        System.out.println(x + " " + y);
+        System.out.println(row + " " + column);
     }
 
     public static void main(String[] args) {
