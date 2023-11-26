@@ -1,0 +1,53 @@
+import java.util.*;
+
+public class Main {
+    public static boolean judgeplay(int x_edge, int y_edge, int x, int y){
+        if(x >= 1 && x <= x_edge && y >= 1 && y <= y_edge){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public static void conFnc(int[][] arr2D, int x, int y, int time, char direction){
+        int[] arrX = new int[]{0,1,0,-1};
+        int[] arrY = new int[]{1,0,-1,0};
+        int idx = 0;
+        switch(direction){
+            case 'U':
+                idx = 0;
+                break;
+            case 'R' : 
+                idx = 1;
+                break;
+            case 'D' :
+                idx = 2;
+                break;
+            case 'L' :
+                idx = 3;
+                break;
+        }
+        for(int i = 0 ; i < time ; i++){
+            int dx = x + arrY[idx]; // x와 y 이 좌표값이 아닌 행렬이기 때문.
+            int dy = y + arrX[idx];
+            // System.out.println(dx + " " + dy);
+            if(judgeplay(arr2D.length, arr2D[0].length, dx,dy)){
+                x = dx;
+                y = dy;
+            }
+            else{
+                idx = (idx + 2) % 4;
+            }
+            //System.out.println(x + " " + y);
+        }
+        System.out.println(x + " " + y);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int edge = sc.nextInt(), time = sc.nextInt(), x = sc.nextInt(), y = sc.nextInt();
+        char direction = sc.next().charAt(0);
+        int[][] arr2D = new int[edge][edge];
+        conFnc(arr2D, x, y, time, direction);
+    }
+}
