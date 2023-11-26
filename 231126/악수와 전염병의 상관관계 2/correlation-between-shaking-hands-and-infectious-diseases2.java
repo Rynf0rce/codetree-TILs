@@ -76,13 +76,13 @@ public class Main {
             if(x_task){
                 devList[x_dev].vaildHandshake--;
                 devList[y_dev].infected = true;
-                devList[y_dev].vaildHandshake = vaildHandshake;
+                devList[y_dev].vaildHandshake += vaildHandshake;
             }
 
             if(y_task){
                 devList[y_dev].vaildHandshake--;
                 devList[x_dev].infected = true;
-                devList[x_dev].vaildHandshake = vaildHandshake;
+                devList[x_dev].vaildHandshake += vaildHandshake;
             }
         }
 
