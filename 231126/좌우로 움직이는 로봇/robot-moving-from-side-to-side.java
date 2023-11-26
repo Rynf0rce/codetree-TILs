@@ -57,15 +57,29 @@ public class Main {
                 }
             }
             else{
-                if(arrA[minCnt - 1] == arrB[i]){
-                    if(triger){
-                        cnt++;
-                        triger = false;
-                        // System.out.println("이상" + i);
+                if(A_idx > B_idx){
+                    if(arrB[minCnt - 1] == arrA[i]){
+                        if(triger){
+                            cnt++;
+                            triger = false;
+                            // System.out.println("이상" + i);
+                        }
+                    }
+                    else{
+                        triger = true;
                     }
                 }
                 else{
-                    triger = true;
+                    if(arrA[minCnt - 1] == arrB[i]){
+                        if(triger){
+                            cnt++;
+                            triger = false;
+                            // System.out.println("이상" + i);
+                        }
+                    }      
+                    else{
+                        triger = true;
+                    }
                 }
             }
         }
