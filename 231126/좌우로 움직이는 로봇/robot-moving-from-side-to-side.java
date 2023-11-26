@@ -35,53 +35,40 @@ public class Main {
             }
         }
 
-        // for(int i = 0 ; i < B_idx ; i++){
-        //     System.out.print(arrA[i] + " ");
-        // }
-        // System.out.print(arrA[A_idx - 1] + " ");
         int maxCnt = Math.max(A_idx, B_idx);
         int minCnt = Math.min(A_idx, B_idx);
+
+        if(maxCnt == A_idx){
+            Arrays.fill(arrB, minCnt, maxCnt, arrB[minCnt-1]);
+        }
+        else{
+            Arrays.fill(arrA, minCnt, maxCnt, arrA[minCnt-1]);
+        }
+
+        // for(int i = 1 ; i < maxCnt ; i++){
+        //     System.out.print(arrA[i] + " ");
+        // }
+        // System.out.println();
+        // for(int i = 1 ; i < maxCnt ; i++){
+        //     System.out.print(arrB[i] + " ");
+        // }
+        //System.out.print(arrA[A_idx - 1] + " ");
+
+        
         boolean triger = true;
         int cnt = 0;
         for(int i = 1 ; i < maxCnt ; i++){
-            if(i <= minCnt){
-                if(arrA[i] == arrB[i]){
-                    if(triger){
-                        cnt++;
-                        triger = false;
-                        // System.out.println("이하" + i);
-                    }
-                }
-                else{
-                    triger = true;
+            if(arrA[i] == arrB[i]){
+                if(triger){
+                    cnt++;
+                    triger = false;
+                    // System.out.println("이하" + i);
                 }
             }
             else{
-                if(A_idx > B_idx){
-                    if(arrB[minCnt - 1] == arrA[i]){
-                        if(triger){
-                            cnt++;
-                            triger = false;
-                            // System.out.println("이상" + i);
-                        }
-                    }
-                    else{
-                        triger = true;
-                    }
-                }
-                else{
-                    if(arrA[minCnt - 1] == arrB[i]){
-                        if(triger){
-                            cnt++;
-                            triger = false;
-                            // System.out.println("이상" + i);
-                        }
-                    }      
-                    else{
-                        triger = true;
-                    }
-                }
+                triger = true;
             }
+
         }
         System.out.print(cnt);
     }
