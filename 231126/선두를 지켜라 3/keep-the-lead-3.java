@@ -31,7 +31,8 @@ public class Main {
         }
 
         int scope = Math.min(A_idx, B_idx);
-        double preVal = 0, currentVal = 0, cnt = 0;
+        double preVal = 0, currentVal = 0, cnt = 1;
+        boolean triger = true;
         for(int i = 1 ; i < scope ; i++){
             currentVal = A_Arr[i] - B_Arr[i];
             if(i == 1){
@@ -39,12 +40,19 @@ public class Main {
             }
             else{
                 if(currentVal * preVal < 0){
+                    // System.out.println("A변화 발생 : " + i);
                     cnt++;
                 }
                 else if(currentVal * preVal == 0){
-                    cnt++;
+                    if(triger){
+                        // System.out.println("B변화 발생 : " + i);
+                        cnt++;
+                        triger = false;
+                    }
+                    continue;
                 }
                 preVal = currentVal;
+                triger = true;
             }
             //System.out.println("currentVal" + " " + currentVal + " " + "preVal" + preVal);
         }
