@@ -40,12 +40,10 @@ public class Main {
             }
             else{
                 if(currentVal * preVal < 0){
-                    // System.out.println("A변화 발생 : " + i);
                     cnt++;
                 }
                 else if(currentVal * preVal == 0){
                     if(triger){
-                        // System.out.println("B변화 발생 : " + i);
                         cnt++;
                         triger = false;
                     }
@@ -54,7 +52,6 @@ public class Main {
                 preVal = currentVal;
                 triger = true;
             }
-            //System.out.println("currentVal" + " " + currentVal + " " + "preVal" + preVal);
         }
         System.out.print((int)cnt);
     }
