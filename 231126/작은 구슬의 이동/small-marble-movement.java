@@ -31,9 +31,8 @@ public class Main {
         }
 
         for(int i = 0 ; i < time ; i++){
-            temRow = row + arrRow[idx]; // x와 y 이 좌표값이 아닌 행렬이기 때문.
+            temRow = row + arrRow[idx];
             temColumn = column + arrColumn[idx];
-            // System.out.println("temp" + temRow + " " + temColumn);
             if(judgeplay(arr2D.length, arr2D[0].length, temColumn,temRow)){
                 row = temRow;
                 column = temColumn;
@@ -41,7 +40,6 @@ public class Main {
             else{
                 idx = (idx + 2) % 4;
             }
-            // System.out.println("moto" + row + " " + column);
         }
         System.out.println(row + " " + column);
     }
@@ -50,14 +48,6 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int edge = sc.nextInt(), time = sc.nextInt(), row = sc.nextInt(), column = sc.nextInt();
         char direction = sc.next().charAt(0);
-
-        //test
-        // edge = 26;
-        // time = 41;
-        // row = 8;
-        // column = 3;
-        // direction = 'D';
-
         int[][] arr2D = new int[edge][edge];
         conFnc(arr2D, row, column, time, direction);
     }
