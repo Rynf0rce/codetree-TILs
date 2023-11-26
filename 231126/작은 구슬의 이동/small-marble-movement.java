@@ -12,7 +12,7 @@ public class Main {
     public static void conFnc(int[][] arr2D, int row, int column, int time, char direction){
         int temRow = row;
         int temColumn = column;
-        int[] arrRow = new int[]{1,0,-1,0};
+        int[] arrRow = new int[]{-1,0,1,0};
         int[] arrColumn = new int[]{0,1,0,-1};
         int idx = 0;
         switch(direction){
@@ -48,9 +48,17 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int edge = sc.nextInt(), time = sc.nextInt(), x = sc.nextInt(), y = sc.nextInt();
+        int edge = sc.nextInt(), time = sc.nextInt(), row = sc.nextInt(), column = sc.nextInt();
         char direction = sc.next().charAt(0);
+
+        //test
+        // edge = 26;
+        // time = 41;
+        // row = 8;
+        // column = 3;
+        // direction = 'D';
+
         int[][] arr2D = new int[edge][edge];
-        conFnc(arr2D, x, y, time, direction);
+        conFnc(arr2D, row, column, time, direction);
     }
 }
