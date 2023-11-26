@@ -24,7 +24,6 @@ public class Main {
             while(cnt < 4){
                 int tempRow = currentRow + arrRow[direction];
                 int tempColumn = currentColumn + arrColumn[direction];
-                // System.out.println("temp " + tempRow + " " + tempColumn);
                 if(inRange(arr2D, tempRow, tempColumn)){
                     currentRow = tempRow;
                     currentColumn = tempColumn;
@@ -40,11 +39,8 @@ public class Main {
                 break;
             }
             else{
-                //System.out.println("current " + currentRow + " " + currentColumn);
                 arr2D[currentRow][currentColumn] = i + 1;
             }
-            // System.out.println("temp " + tempRow + " " + tempColumn);
-            // System.out.println("current " + currentRow + " " + currentColumn);
         }
 
         for(int i = 0 ; i < arr2D.length ; i++){
@@ -59,8 +55,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int row = sc.nextInt(), column = sc.nextInt();
-        //row = 1;
-        //column = 6;
         int[][] arr2D = new int[row][column];
         conFnc(arr2D, 0, 0, 1);
     }
