@@ -90,6 +90,12 @@ public class Main {
             if(devList[y_dev].infected && devList[y_dev].vaildHandshake > 0){
                 y_task = true;
             }
+
+            if(x_task && y_task){
+                devList[x_dev].vaildHandshake = vaildHandshake;
+                devList[y_dev].vaildHandshake = vaildHandshake;
+                continue;
+            }
             
             if(x_task){
                 devList[x_dev].vaildHandshake--;
@@ -102,6 +108,11 @@ public class Main {
                 devList[x_dev].infected = true;
                 devList[x_dev].vaildHandshake = vaildHandshake;
             }
+
+            for(int j = 1 ; j <= peoples ; j++){
+                // System.out.println(devList[j].infected + " " + devList[j].vaildHandshake);
+            }
+            // System.out.println();
         }
 
         for(int i = 1 ; i <= peoples ; i++){
