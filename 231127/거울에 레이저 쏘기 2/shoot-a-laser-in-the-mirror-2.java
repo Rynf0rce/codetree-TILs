@@ -23,7 +23,6 @@ public class Main {
         int quotient = (num - 1) / edge;
         int remainder = (num - 1) % edge;
         coordinate output = new coordinate();
-        // System.out.println("q&r : " + quotient + " " + remainder);
         switch(quotient){
             case 0 :
                 output.row = 0;
@@ -53,20 +52,16 @@ public class Main {
         int[] arrRow = {-1, 0 , 1, 0};
         int[] arrColumn = {0, 1, 0 , -1};
         coordinate temp = new coordinate(currentPoint.row, currentPoint.column, currentPoint.direction);
-        // System.out.println("row : " + temp.row + " column : " + temp.column);
         // "/" 인 경우
         if(arr2D[temp.row][temp.column]){
-            // System.out.println("chack 0 " + temp.direction);
             temp.direction = Math.abs(3 - temp.direction); 
         }
         // "\"인 경우
         else{
             if(temp.direction == 0 || temp.direction == 2){
-                // System.out.println("chack a " + temp.direction);
                 temp.direction++;
             }
             else{
-                // System.out.println("chack b " + temp.direction);
                 temp.direction--;
             }
         }
@@ -74,8 +69,6 @@ public class Main {
         temp.row += arrRow[temp.direction];
         temp.column += arrColumn[temp.direction];
         temp.direction = (temp.direction + 2) % 4;
-
-        // System.out.println("final " + temp.row + " " + temp.column + " " + temp.direction);
 
         return temp;   
     }
@@ -110,7 +103,6 @@ public class Main {
         coordinate currentPoint = setPoint(num,edge);
         while(true){
             currentPoint = move(arr2D,  currentPoint);
-            // System.out.println(currentPoint.row + " " + currentPoint.column + " " + currentPoint.direction);
             if(!inRange(arr2D.length, currentPoint.row, currentPoint.column)){
                 break;
             }
@@ -118,9 +110,6 @@ public class Main {
                 cnt++;
             }
         }
-        System.out.println(cnt);
-        
-     
-        
+        System.out.println(cnt);       
     }
 }
