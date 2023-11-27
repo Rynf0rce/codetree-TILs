@@ -29,10 +29,6 @@ public class Main {
                 }
             }
         }
-        else{
-            System.out.print(-1);
-        }
-        System.out.print(cnt);
-        
+        System.out.print(cnt);   
     }
 }
