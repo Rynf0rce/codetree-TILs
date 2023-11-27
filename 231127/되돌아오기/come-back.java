@@ -64,6 +64,6 @@ public class Main {
                 break;
             }
         }
-        System.out.print(time);       
+        System.out.print(triger ? time : -1);       
     }
 }
