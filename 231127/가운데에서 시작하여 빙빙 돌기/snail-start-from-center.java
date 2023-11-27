@@ -8,9 +8,32 @@ public class Main {
     public static int[] arrRow = new int[]{-1, 0, 1, 0}; // 북동남서 (남 동 북 서 순.)
     public static int[] arrColumn = new int[]{0, 1, 0, -1}; 
 
-    public static void conFnc(int startRow, int startColumn, int direction){
-        
-       
+    public static boolean inRange(int row, int column){
+        if(row >= 0 && column >= 0 && row < arr2D.length && column < arr2D[0].length){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean chackCorner(int row, int column){
+        // 움직인 위치를 기준위로 3개가 비어있는지 체크, 범위를 초과하는 경우 있는것으로 계산한다.
+        int cnt = 0;
+        for(int i = 0 ; i < arrRow.length ; i++){
+            int tempRow = row + arrRow[i];
+            int tempColumn = column + arrColumn[i];
+            if( !inRange(tempRow,tempColumn) || (inRange(tempRow, tempColumn) && arr2D[tempRow][tempColumn] == 0 )){
+                cnt++;
+            }
+        }
+        if(cnt == 3){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public static void conFnc(int startRow, int startColumn, int direction){           
         arr2D[startRow][startColumn] = 1;
         cnt++;
         int chack = 0;
@@ -39,31 +62,6 @@ public class Main {
                 System.out.print(arr2D[i][j] + " ");
             }
             System.out.println();
-        }
-    }
-
-    
-    public static boolean inRange(int row, int column){
-        if(row >= 0 && column >= 0 && row < arr2D.length && column < arr2D[0].length){
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean chackCorner(int row, int column){
-        int cnt = 0;
-        for(int i = 0 ; i < arrRow.length ; i++){
-            int tempRow = row + arrRow[i];
-            int tempColumn = column + arrColumn[i];
-            if( !inRange(tempRow,tempColumn) || (inRange(tempRow, tempColumn) && arr2D[tempRow][tempColumn] == 0 )){
-                cnt++;
-            }
-        }
-        if(cnt == 3){
-            return true;
-        }
-        else{
-            return false;
         }
     }
 
