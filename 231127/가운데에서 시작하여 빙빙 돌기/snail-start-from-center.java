@@ -36,7 +36,6 @@ public class Main {
     public static void conFnc(int startRow, int startColumn, int direction){           
         arr2D[startRow][startColumn] = 1;
         cnt++;
-        int chack = 0;
 
         while(cnt <= arr2D.length * arr2D[0].length){
             int tempRow = startRow + arrRow[direction];
@@ -46,7 +45,6 @@ public class Main {
                 startRow = tempRow;
                 startColumn = tempColumn;
                 cnt++;
-                chack = 0;
             }
 
             if(chackCorner(tempRow, tempColumn)){
