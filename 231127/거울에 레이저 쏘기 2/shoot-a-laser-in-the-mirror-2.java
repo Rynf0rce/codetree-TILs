@@ -56,7 +56,7 @@ public class Main {
         // System.out.println("row : " + temp.row + " column : " + temp.column);
         // "/" 인 경우
         if(arr2D[temp.row][temp.column]){
-            System.out.println("chack 0 " + temp.direction);
+            // System.out.println("chack 0 " + temp.direction);
             temp.direction = Math.abs(3 - temp.direction); 
         }
         // "\"인 경우
