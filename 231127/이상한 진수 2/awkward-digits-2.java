@@ -14,11 +14,15 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String input = sc.next();
         char[] arr = input.toCharArray();
-        int maxVal = binaryToDecimal(arr);
+        int maxVal = Integer.MIN_VALUE;
         for(int i = arr.length -1 ; i >= 0 ; i--){
             char[] tempArr = arr.clone();
             if(tempArr[i] == '0'){
                 tempArr[i] = '1';
+                maxVal = Math.max(maxVal, binaryToDecimal(tempArr));
+            }
+            else{
+                tempArr[i] = '0';
                 maxVal = Math.max(maxVal, binaryToDecimal(tempArr));
             }
         }
