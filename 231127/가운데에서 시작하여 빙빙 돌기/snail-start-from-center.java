@@ -5,10 +5,11 @@ public class Main {
     public static int currentY;
     public static int cnt = 1;
     public static int[][] arr2D;
+    public static int[] arrRow = new int[]{-1, 0, 1, 0}; // 북동남서 (남 동 북 서 순.)
+    public static int[] arrColumn = new int[]{0, 1, 0, -1}; 
 
     public static void conFnc(int startRow, int startColumn, int direction){
-        int[] arrRow = new int[]{-1, 0, 1, 0}; // 북동남서 (남 동 북 서 순.)
-        int[] arrColumn = new int[]{0, 1, 0, -1}; 
+        
        
         arr2D[startRow][startColumn] = 1;
         cnt++;
@@ -24,14 +25,11 @@ public class Main {
                 cnt++;
                 chack = 0;
             }
-            else{
+
+            if(chackCorner(tempRow, tempColumn)){
                 direction--;
                 if(direction < 0){
                     direction = 3;
-                }
-                chack++;
-                if(chack ==4){
-                    break;
                 }
             }
         }
@@ -46,16 +44,34 @@ public class Main {
 
     
     public static boolean inRange(int row, int column){
-        if(row >= 0 && column >= 0 && row < arr2D.length && column < arr2D[0].length && arr2D[row][column] == 0){
+        if(row >= 0 && column >= 0 && row < arr2D.length && column < arr2D[0].length){
             return true;
         }
         return false;
     }
 
+    public static boolean chackCorner(int row, int column){
+        int cnt = 0;
+        for(int i = 0 ; i < arrRow.length ; i++){
+            int tempRow = row + arrRow[i];
+            int tempColumn = column + arrColumn[i];
+            if( !inRange(tempRow,tempColumn) || (inRange(tempRow, tempColumn) && arr2D[tempRow][tempColumn] == 0 )){
+                cnt++;
+            }
+        }
+        if(cnt == 3){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int edge = sc.nextInt();
+        // edge = 7;
         arr2D = new int[edge][edge];
-        conFnc((edge/2), (edge/2), 1);
+        conFnc((edge/2), (edge / 2), 1);
     }
 }
