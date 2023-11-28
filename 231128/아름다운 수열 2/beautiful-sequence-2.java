@@ -1,16 +1,30 @@
 import java.util.*;
 
 public class Main {
-    public static int factorial(int i){
-        if(i <= 1){
-            return 1;
+    public static int[] arrA;
+    public static int[] arrB;
+
+    public static boolean contain(int idx){
+        int[] tempArrB = arrB.clone();
+        int cnt = 0;
+        for(int i = 0 ; i < tempArrB.length ; i++){
+            if(arrA[idx] == tempArrB[i]){
+                tempArrB[i] = -1;
+                i = -1;
+                idx++;
+                cnt++;
+                if(cnt >= tempArrB.length){
+                    return true;
+                }
+            }
         }
-        return factorial(i-1) * i;
+        return false;
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt(), M = sc.nextInt();
-        int[] arrA = new int[N], arrB = new int[M];
+        arrA = new int[N];
+        arrB = new int[M];
         for(int i = 0 ; i < arrA.length ; i++){
             arrA[i] = sc.nextInt();
         }
@@ -18,27 +32,12 @@ public class Main {
             arrB[i] = sc.nextInt();
         }
         
-        int cnt = 0, output = 0;
-        boolean triger = true;
-        int[] tempArrB = arrB.clone();
-        for(int i = 0 ; i < arrA.length ; i++){
-            triger = true;
-            for(int j = 0 ; j < arrB.length ; j++){
-                if(arrA[i] == tempArrB[j]){
-                    tempArrB[j] = 0;
-                    triger = false;
-                    cnt++;
-                    break;
-                }
-            }
-            if(triger){
-                cnt = 0;
-                tempArrB = arrB.clone();
-            }
-            if(cnt == arrB.length){
+        int output = 0;
+        for(int i = 0 ; i < arrA.length - arrB.length + 1 ; i++){
+            if(contain(i)){
                 output++;
             }
         }
-        System.out.print(output);
+        System.out.println(output);
     }
 }
