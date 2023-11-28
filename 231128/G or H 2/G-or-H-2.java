@@ -27,7 +27,6 @@ public class Main {
                 }
                 if(cntG == cntH && sameGH < cntG){
                     sameGH = cntG;
-                    System.out.printf("current width : %d, cntG : %d, cntH : %d \n", width, cntG, cntH);   
                     maxVal = Math.max(maxVal, width);
                 }
             }
