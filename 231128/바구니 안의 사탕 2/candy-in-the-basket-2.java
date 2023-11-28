@@ -11,10 +11,10 @@ public class Main {
         for(int i = 0 ; i < N ; i++){
             int num = sc.nextInt();
             int location = sc.nextInt();
-            arr[location - 1] = num;
+            arr[location - 1] += num;
         }
 
-        for(int i = 0 ; i <= TOTAL_BASKET - 2 * K ; i++){
+        for(int i = 0 ; i < TOTAL_BASKET - 2 * K ; i++){
             currentVal = 0;
             for(int j = 0 ; j <= 2 * K ; j++){
                 currentVal += arr[j];
