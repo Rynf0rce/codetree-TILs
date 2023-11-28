@@ -6,7 +6,7 @@ public class Main {
     public static boolean chackWin(int side, int row, int column){
         int cnt = 0;
         // 범위 체크
-        if(row >= 2 && column >= 2 && row < arr2D.length -2 && column < arr2D.length -2){
+        if(row >= 0 && column >= 2 && row < arr2D.length && column < arr2D.length -2){
             // 행.
             for(int i = -2 ; i <= 2; i++){
                 if(arr2D[row][column+i] == side){
@@ -16,7 +16,9 @@ public class Main {
             if(cnt == 5){
                 return true;
             }
+        }
 
+        if(row >= 2 && column >= 0 && row < arr2D.length -2 && column < arr2D.length){
             cnt = 0;
             // 렬.
             for(int i = -2 ; i <= 2; i++){
@@ -27,6 +29,9 @@ public class Main {
             if(cnt == 5){
                 return true;
             }
+        }
+
+        if(row >= 2 && column >= 2 && row < arr2D.length -2 && column < arr2D.length -2){
 
             cnt = 0;
             // 우상향 대각.
