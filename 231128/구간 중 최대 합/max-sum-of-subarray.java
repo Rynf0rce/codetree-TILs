@@ -9,8 +9,11 @@ public class Main {
             arr[i] = sc.nextInt();
         }
 
-        for(int i = 0 ; i < arr.length - 2 ; i++){
-            int currentVal = arr[i] + arr[i+1] + arr[i+2];
+        for(int i = 0 ; i < arr.length - k + 1 ; i++){
+            int currentVal = 0;
+            for(int j = i ; j < i + k ; j++){
+                currentVal += arr[j];
+            }
             maxVal = Math.max(maxVal,currentVal);
         }
         System.out.print(maxVal);
