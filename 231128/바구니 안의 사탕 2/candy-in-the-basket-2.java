@@ -14,12 +14,19 @@ public class Main {
             arr[location - 1] += num;
         }
 
-        for(int i = 0 ; i < TOTAL_BASKET - 2 * K ; i++){
-            currentVal = 0;
-            for(int j = i ; j <= i + 2 * K ; j++){
-                currentVal += arr[j];
+        if(K < 50){
+            for(int i = 0 ; i < TOTAL_BASKET - 2 * K ; i++){
+                currentVal = 0;
+                for(int j = i ; j <= i + 2 * K ; j++){
+                    currentVal += arr[j];
+                }
+                maxVal = Math.max(maxVal, currentVal);
             }
-            maxVal = Math.max(maxVal, currentVal);
+        }
+        else{
+            for(int i = 0 ; i < TOTAL_BASKET ; i++){
+                maxVal += arr[j];
+            }
         }
         System.out.println(maxVal);
     }
