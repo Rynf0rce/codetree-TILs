@@ -6,7 +6,7 @@ public class Main {
         int remainder_A = 0, remainder_B = 0, remainder_C = 0;
         while(true){
             if(temp_A != 0 && temp_B != 0 && temp_C != 0){
-                if(temp_A % 10 + temp_B % 10 + temp_C % 10  >= 10){
+                if( ( (temp_A % 10) + (temp_B % 10) + (temp_C % 10) ) / 10 > 0){
                     return -1;
                 }
                 else{
