@@ -24,8 +24,9 @@ public class Main {
             }
         }
         else{
+            maxVal = 0;
             for(int i = 0 ; i < TOTAL_BASKET ; i++){
-                maxVal += arr[j];
+                maxVal += arr[i];
             }
         }
         System.out.println(maxVal);
