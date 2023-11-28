@@ -16,7 +16,7 @@ public class Main {
 
         for(int i = 0 ; i < TOTAL_BASKET - 2 * K ; i++){
             currentVal = 0;
-            for(int j = 0 ; j <= 2 * K ; j++){
+            for(int j = i ; j <= i + 2 * K ; j++){
                 currentVal += arr[j];
             }
             maxVal = Math.max(maxVal, currentVal);
