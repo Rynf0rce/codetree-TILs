@@ -4,7 +4,16 @@ public class Main {
     public static int[] arr;
 
     public static int outRange(int num, int N){
-        return N - (num + 2);
+        int output = 0;
+        for(int i = 1 ; i <= N ; i++){
+            if(i >= num - 2 && i <= num + 2){
+                continue;
+            }
+            else{
+                output++;
+            }
+        }
+        return output;
     }
     
     public static void main(String[] args) {
