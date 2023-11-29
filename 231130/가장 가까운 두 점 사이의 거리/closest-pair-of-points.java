@@ -11,15 +11,12 @@ public class Main {
         }
 
         double distance = 0, minDisance = Integer.MAX_VALUE;
-        for(int i = 0 ; i < arr.length ; i++){
+        for(int i = 0 ; i < arr.length - 1 ; i++){
             distance = Integer.MAX_VALUE;
-            for(int j = 0 ; j < arr.length ; j++){
-                if(i == j){
-                    continue;
-                }
+            for(int j = i + 1 ; j < arr.length ; j++){
                 distance = Math.pow(arr[i][0] - arr[j][0],2) + Math.pow(arr[i][1] - arr[j][1], 2);
-            }
-            minDisance = Math.min(minDisance, distance);
+                minDisance = Math.min(minDisance, distance);
+            }   
         }
         System.out.print((int)minDisance);
     }
