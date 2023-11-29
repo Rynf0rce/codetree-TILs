@@ -12,8 +12,6 @@ public class Main {
             arr[i] = sc.nextInt();
         }
 
-        Arrays.sort(arr, 1, N);
-
         int minVal = Integer.MAX_VALUE;
         for(int i = 1 ; i <= N - T + 1; i++){
             int curVal = 0;
@@ -22,6 +20,6 @@ public class Main {
             }
             minVal = Math.min(minVal, curVal);
         }
-        System.out.print(minVal);
+        System.out.println(minVal);
     }
 }
