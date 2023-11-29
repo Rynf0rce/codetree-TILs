@@ -14,19 +14,13 @@ public class Main {
 
         Arrays.sort(arr, 1, N);
 
-        int minVal = 0;
-        while(T > 0){
-            int curMinVal = Integer.MAX_VALUE;
-            int curIdx = 0;
-            for(int i = 1 ; i <= N ; i++){
-                if(arr[i] > 0 && curMinVal > Math.abs(H - arr[i])){
-                    curMinVal = Math.abs(H - arr[i]);
-                    curIdx = i;
-                }
+        int minVal = Integer.MAX_VALUE;
+        for(int i = 1 ; i <= N - T + 1; i++){
+            int curVal = 0;
+            for(int j = i ; j < i + T ; j++){
+                curVal += Math.abs(H - arr[j]);
             }
-            arr[curIdx] = -1;
-            minVal += curMinVal;
-            T--;
+            minVal = Math.min(minVal, curVal);
         }
         System.out.print(minVal);
     }
