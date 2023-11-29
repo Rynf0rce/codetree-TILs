@@ -11,6 +11,10 @@ public class Main {
                 if(temp <= 0){
                     temp = N + j;
                 }
+                else if(temp > N){
+                    temp -= N;
+                }
+
                 if(temp == inputArr[i]){
                     cnt++;
                     break;
