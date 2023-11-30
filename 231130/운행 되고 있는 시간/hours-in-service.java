@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Main {
-    public static final int TIME_LENGTH = 101;
+    public static final int TIME_LENGTH = 1001;
     public static boolean[] openArr = new boolean[TIME_LENGTH];
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
