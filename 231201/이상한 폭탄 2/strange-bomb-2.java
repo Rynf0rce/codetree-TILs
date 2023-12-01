@@ -11,7 +11,7 @@ public class Main {
 
         int maxVal = Integer.MIN_VALUE;
         for(int i = 0 ; i < arr.length ; i++){
-            for(int j = i - 3 ; j <= i + 3 ; j++){
+            for(int j = i - K ; j <= i + K ; j++){
                 if(j < 0 || j >= arr.length || i == j){
                     continue;
                 }
