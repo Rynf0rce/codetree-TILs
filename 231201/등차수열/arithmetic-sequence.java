@@ -12,16 +12,18 @@ public class Main {
         Arrays.sort(arr);
 
         
-        int cnt = 0;
-        for(int i = 0 ; i < arr.length - 1 ; i++){
-            for(int j = i + 1 ; j < arr.length ; j++){
-                for(int k = arr[i] + 1 ; k < arr[j] ; k++){
-                    if((k - arr[i]) == (arr[j] - k)){
+        int maxval = Integer.MIN_VALUE;
+        for(int i = 1 ; i <= 100 ; i++){
+            int cnt = 0;
+            for(int j = 0 ; j < arr.length - 1 ; j++){
+                for(int k = j + 1 ; k < arr.length ; k++){
+                    if( (i - arr[j]) == (arr[k] - i) ){
                         cnt++;
                     }
                 }
             }
+            maxval = Math.max(maxval, cnt);
         }
-        System.out.println(cnt);
+        System.out.println(maxval);
     }
 }
