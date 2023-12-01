@@ -32,7 +32,6 @@ public class Main {
         if( ( (x1Tox3 >= 0 && x1Tox4 <= 0) || (x1Tox3 <= 0 && x1Tox4 >= 0) ) && ( (x3Tox1 >= 0 && x3Tox2 <= 0) || (x3Tox1 <= 0 && x3Tox2 >= 0) ) ){
             return true;
         }
-
         return false;
     }
 
@@ -48,12 +47,10 @@ public class Main {
         }
         
         for(int i = 0 ; i < arr.length - 1 ; i++){
-            if(arr[i].isolated){
-                for(int j = i + 1 ; j < arr.length ; j++){
-                    if(chackCross(arr[i], arr[j])){
-                        arr[i].isolated = false;
-                        arr[j].isolated = false;
-                    }
+            for(int j = i + 1 ; j < arr.length ; j++){
+                if(chackCross(arr[i], arr[j])){
+                    arr[i].isolated = false;
+                    arr[j].isolated = false;
                 }
             }
         }
@@ -61,6 +58,7 @@ public class Main {
         int cnt = 0;
         for(int i = 0 ; i < arr.length ; i++){
             if(arr[i].isolated){
+                System.out.println(i);
                 cnt++;
             }
         }
