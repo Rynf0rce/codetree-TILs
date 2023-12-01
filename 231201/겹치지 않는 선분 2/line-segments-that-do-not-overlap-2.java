@@ -22,7 +22,7 @@ public class Main {
     public static int counterClockwise(int x1, int y1, int x2, int y2, int x3, int y3){
         return (x2 - x1) * (y3 - y1) - (x3 -x1) * (y2 - y1);
     }
-
+    // reference : https://gaussian37.github.io/math-algorithm-line_intersection/
     public static boolean chackCross(lineInfo L1, lineInfo L2){
         int x1Tox3 = counterClockwise(L1.x1, L1.y1, L1.x2 , L1.y2, L2.x1, L2.y1);
         int x1Tox4 = counterClockwise(L1.x1, L1.y1, L1.x2 , L1.y2, L2.x2, L2.y2);
