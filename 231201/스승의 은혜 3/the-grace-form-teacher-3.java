@@ -13,19 +13,21 @@ public class Main {
 
         int maxVal = Integer.MIN_VALUE;
         for(int i = 0 ; i < arr2D.length; i++){
-            int [][] tempArr2D = new int[arr2D.length][];
+            int [] tempArr = new int[arr2D.length];
             for(int j = 0; j < arr2D.length; j++){
-                tempArr2D[j] = arr2D[j].clone();
+                if(i == j){
+                    tempArr[j] = arr2D[j][0] / 2 + arr2D[j][1];
+                }
+                else{
+                    tempArr[j] = arr2D[j][0] + arr2D[j][1];
+                }
             }             
-            tempArr2D[i][0] /= 2;
-            Arrays.sort(tempArr2D, (a,b) -> (a[0] + a[1]) - (b[0] + b[1]));
-            
+            Arrays.sort(tempArr);
+
             int tempBudget = B;
             int cnt = 0;
-            for(int j = 0 ; j < tempArr2D.length ; j++){
-                for(int k = 0 ; k < tempArr2D[j].length ; k++){
-                    tempBudget -= tempArr2D[j][k];
-                }
+            for(int j = 0 ; j < tempArr.length ; j++){
+                tempBudget -= tempArr[j];
                 if(tempBudget < 0){
                     break;
                 }
