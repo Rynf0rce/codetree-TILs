@@ -40,9 +40,6 @@ public class Main {
         }
 
         Arrays.sort(timeArr);
-        // for(int i = 0 ; i < timeArr.length ; i++){
-        //     System.out.printf("%d %d %d\n", timeArr[i].time, timeArr[i].eater, timeArr[i].cheese);
-        // }
 
         for(int i = 0; i < sickArr.length ; i++){
             int eater = sc.nextInt();
@@ -53,9 +50,7 @@ public class Main {
 
         Arrays.sort(sickArr);
 
-        // for(int i = 0 ; i < sickArr.length ; i++){
-        //     System.out.printf("%d %d %d\n", sickArr[i].time, sickArr[i].eater, sickArr[i].cheese);
-        // }
+
         
         int targetCheese = 0;
         for(int i = 1 ; i < cheeseArr.length ; i++){
@@ -63,14 +58,14 @@ public class Main {
             for(int j = 0 ; j < timeArr.length ; j++){
                 if(timeArr[j].cheese == i){
                     for(int k = 0 ; k < sickArr.length ; k++){
-                        if(timeArr[j].eater == sickArr[k].eater && sickArr[k].time > timeArr[j].time + 1){
+                        if(timeArr[j].eater == sickArr[k].eater && sickArr[k].time >= timeArr[j].time + 1){
                             cnt++;
-                            //System.out.println("What cheese? : " + i);
+                            // System.out.println("What cheese? : " + i);
                             //cheeseArr[i] = true;
                         }
                     }
                     if(cnt == sickArr.length){
-                        // System.out.println("What cheese? : " + i);
+                        //System.out.println("What cheese? : " + i);
                         cheeseArr[i] = true;
                     }
                 }
