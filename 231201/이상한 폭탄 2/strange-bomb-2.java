@@ -9,7 +9,7 @@ public class Main {
             arr[i] = sc.nextInt();
         }
 
-        int maxVal = Integer.MIN_VALUE;
+        int maxVal = -1;
         for(int i = 0 ; i < arr.length ; i++){
             for(int j = i - K ; j <= i + K ; j++){
                 if(j < 0 || j >= arr.length || i == j){
