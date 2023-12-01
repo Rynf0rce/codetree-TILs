@@ -27,7 +27,7 @@ public class Main {
             int cnt = 0;
             for(int j = 0 ; j < arr2D.length ; j++){
                 swap(arr2D[j][0], arr2D[j][1]);
-                if(arr[arr2D[j][2]] == true){
+                if(arr[arr2D[j][2] - 1] == true){
                     cnt++;
                 }
             }
