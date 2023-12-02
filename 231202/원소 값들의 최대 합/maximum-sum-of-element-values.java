@@ -11,18 +11,16 @@ public class Main {
 
         int maxVal = Integer.MIN_VALUE;
         for(int i = 1 ; i < arr.length ; i++){
-            boolean[] chackArr = new boolean[n+1];
+            int[] chackArr = new int[n+1];
             int idx = i;
             int sum = 0;
             for(int j = 0 ; j < m ; j++){
-                chackArr[idx] = true;
+                chackArr[idx]++;
                 idx = arr[idx];
             }
 
             for(int j = 1 ; j < chackArr.length ; j++){
-                if(chackArr[j]){
-                    sum += arr[j];
-                }
+                sum += arr[j] * chackArr[j];
             }
             maxVal = Math.max(maxVal, sum);
         }
