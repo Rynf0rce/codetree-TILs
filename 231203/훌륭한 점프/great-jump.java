@@ -26,7 +26,7 @@ public class Main {
         for(int i = 0 ; i < arr.length ; i++){
             arr[i] = sc.nextInt();
         }
-        for(int i = arr[0] ; i <= MAX_RANGE ; i++){
+        for(int i = Math.max(arr[0],arr[arr.length - 1]) ; i <= MAX_RANGE ; i++){
             if(isPossible(i, k)){
                 System.out.print(i);
                 break;
