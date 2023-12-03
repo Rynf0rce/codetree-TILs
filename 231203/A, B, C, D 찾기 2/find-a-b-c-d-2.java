@@ -31,7 +31,16 @@ public class Main {
                             break;
                         }
                     }
+                    if(!triger){
+                        break;
+                    }
                 }
+                if(!triger){
+                    break;
+                }
+            }
+            if(!triger){
+                break;
             }
         }
     }
