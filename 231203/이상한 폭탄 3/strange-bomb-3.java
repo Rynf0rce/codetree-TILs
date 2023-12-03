@@ -12,16 +12,21 @@ public class Main {
                 idxArr[cnt++] = i;
             }
         }
-        
-        int bombCnt = 1;
+    
+        int bombCnt = 0;
         int maxVal = 0;
+        boolean triger = true;
         for(int i = 1 ; i < cnt ; i++){
-            if(idxArr[i] - idxArr[i-1] > range){
-                maxVal = Math.max(maxVal, bombCnt);
-                bombCnt = 1;
+            if(idxArr[i] - idxArr[i-1] <= range){
+                bombCnt++;
+                if(triger){
+                    bombCnt++;
+                    triger = false;
+                }
             }
             else{
-                bombCnt++;
+                bombCnt = 0;
+                triger = true;
             }
         }
         maxVal = Math.max(maxVal, bombCnt);
@@ -40,9 +45,12 @@ public class Main {
             int currentVal = numOfBomb(i, K);
             
             maxBomb = Math.max(maxBomb, currentVal);
-            if(currentVal == 0 && currentVal == maxBomb){
+            if(currentVal == maxBomb){
                 maxNum = i;
             }
+        }
+        if(maxBomb == 0){
+            maxNum = 0;
         }
         System.out.println(maxNum);
     }
