@@ -7,9 +7,6 @@ public class Main {
 
     public static boolean restoration(int idx, int value){
         boolean output = false;
-        // if(idx > sumArr.length){
-        //     return true;
-        // }
 
         if(value > 0 && value < chackArr.length && chackArr[value]){
             chackArr[value] = false;
@@ -19,7 +16,6 @@ public class Main {
         }
 
         outputArr[idx] = value;
-        // System.out.println("current idx : " + idx);
 
         if(idx >= sumArr.length){
             return true;
@@ -35,9 +31,6 @@ public class Main {
         for(int i = 0 ; i < sumArr.length ; i++){
             sumArr[i] = sc.nextInt();
         }
-
-        Arrays.fill(chackArr, true);
-        boolean tt = restoration(0, 3);
 
         for(int i = 1 ; i <= N ; i++){
             Arrays.fill(chackArr, true);
