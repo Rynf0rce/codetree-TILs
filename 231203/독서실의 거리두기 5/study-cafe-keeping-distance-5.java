@@ -18,9 +18,10 @@ public class Main {
             else if(!triger && spell == '1'){
                 currentVal++;
                 maxVal = Math.max(maxVal, currentVal);
-                currentVal = 0;
+                currentVal = 1;
             }
         }
+        maxVal = Math.max(maxVal, currentVal);
         System.out.println(maxVal / 2);
     }
 }
