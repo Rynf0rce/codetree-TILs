@@ -30,7 +30,7 @@ public class Main {
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt(), K = sc.nextInt(), maxNum = Integer.MIN_VALUE, maxBomb = Integer.MIN_VALUE;
+        int N = sc.nextInt(), K = sc.nextInt(), maxNum = 0, maxBomb = 0;
         arr = new int[N];
         for(int i = 0 ; i < arr.length ; i++){
             arr[i] = sc.nextInt();
@@ -40,7 +40,7 @@ public class Main {
             int currentVal = numOfBomb(i, K);
             
             maxBomb = Math.max(maxBomb, currentVal);
-            if(currentVal == maxBomb){
+            if(currentVal == 0 && currentVal == maxBomb){
                 maxNum = i;
             }
         }
