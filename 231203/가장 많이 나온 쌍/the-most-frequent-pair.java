@@ -13,8 +13,8 @@ public class Main {
 
         int maxVal = Integer.MIN_VALUE;
         for(int i = 1 ; i <= n ; i++){
-            int cnt = 0;
-            for(int j = 1 ; j <= n ; j++){
+            for(int j = i + 1 ; j <= n ; j++){
+                int cnt = 0;
                 for(int k = 0 ; k < arr2D.length ; k++){
                     if((arr2D[k][0] == i && arr2D[k][1] == j) || (arr2D[k][0] == j && arr2D[k][1] == i)){
                         cnt++;
@@ -24,6 +24,5 @@ public class Main {
             }
         }
         System.out.println(maxVal);
-
     }
 }
