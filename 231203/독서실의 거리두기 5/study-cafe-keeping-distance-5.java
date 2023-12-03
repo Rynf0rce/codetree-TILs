@@ -3,25 +3,31 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt(), maxVal = Integer.MIN_VALUE, currentVal = 0;
+        int N = sc.nextInt();
         char[] arr = sc.next().toCharArray();
-        boolean triger = true;
-        for(int i = 0 ; i < arr.length ; i++){
-            char spell = arr[i];
-            if(triger && spell == '1'){
-                triger = false;
-                currentVal++;
+        int maxVal = 0;
+        for(int k = 0 ; k < arr.length ; k++){
+            char temp = arr[k];
+            if(temp == '1'){
+                continue;
             }
-            else if(!triger && spell == '0'){
-                currentVal++;
+            arr[k] = '1';
+            int minVal = Integer.MAX_VALUE;
+            for(int i = 0 ; i < arr.length ; i++){
+                int distance = 0;
+                if(arr[i] == '1'){
+                    for(int j = i+1 ; j < arr.length ; j++){
+                        if(arr[j] == '1'){
+                            distance += (j - i);
+                            minVal = Math.min(minVal, distance);
+                            break;
+                        }
+                    }
+                }
             }
-            else if(!triger && spell == '1'){
-                currentVal++;
-                maxVal = Math.max(maxVal, currentVal);
-                currentVal = 1;
-            }
+            maxVal = Math.max(maxVal, minVal);
+            arr[k] = temp;
         }
-        maxVal = Math.max(maxVal, currentVal);
-        System.out.println(maxVal / 2);
+        System.out.println(maxVal);
     }
 }
