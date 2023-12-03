@@ -29,7 +29,7 @@ public class Main {
             if(arr[i] == '1'){
                 continue;
             }
-            for(int j = 0 ; j < arr.length ; j++){
+            for(int j = i+1 ; j < arr.length ; j++){
                 if(arr[j] == '1'){
                     continue;
                 }
