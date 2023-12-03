@@ -11,7 +11,7 @@ public class Main {
         //     return true;
         // }
 
-        if(value < chackArr.length && chackArr[value]){
+        if(value > 0 && value < chackArr.length && chackArr[value]){
             chackArr[value] = false;
         }
         else{
