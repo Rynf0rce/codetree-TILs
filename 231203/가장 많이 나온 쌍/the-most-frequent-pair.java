@@ -16,7 +16,7 @@ public class Main {
             int cnt = 0;
             for(int j = 1 ; j <= n ; j++){
                 for(int k = 0 ; k < arr2D.length ; k++){
-                    if(arr2D[k][0] == i && arr2D[k][1] == j){
+                    if((arr2D[k][0] == i && arr2D[k][1] == j) || (arr2D[k][0] == j && arr2D[k][1] == i)){
                         cnt++;
                     }
                 }
