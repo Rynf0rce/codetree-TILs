@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Main {
-    public static final int MAX_RANGE = 10;
+    public static final int MAX_RANGE = 10000;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
