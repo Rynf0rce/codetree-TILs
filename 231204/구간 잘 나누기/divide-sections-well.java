@@ -1,33 +1,37 @@
 import java.util.*;
 
 public class Main {
+    public static final int MAX_RANGE = 100;
     public static int[] arr;
-    public static int rangeSum(int start, int end){
-        int sumVal = 0;
-        for(int i = start ; i < end ; i++){
-            sumVal += arr[i];
+    public static boolean conFnc(int maxVal, int boundaryNum){
+        int cnt = 0;
+        int currentVal = 0;
+        for(int i = 0 ; i < arr.length ; i++){
+            if(arr[i] > maxVal || cnt > boundaryNum){
+                return false;
+            }
+            currentVal += arr[i];
+
+            if(currentVal > maxVal){
+                currentVal = arr[i];
+                cnt++;
+            }
         }
-        return sumVal;
-    }
-    public static int conFnc(int start, int dividedCnt){
-        int minVal = Integer.MAX_VALUE;
-        if(dividedCnt <= 0){
-            return rangeSum(start, arr.length);
-        }
-        for(int i = start + 1 ; i <= arr.length - dividedCnt ; i++){
-            int currentVal = Math.max(rangeSum(start, i), conFnc(i, dividedCnt - 1));
-            minVal = Math.min(minVal, currentVal);
-        }
-        return minVal;
+        return (cnt == boundaryNum);
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt(), m = sc.nextInt(), minVal = Integer.MAX_VALUE;
+        int n = sc.nextInt(), m = sc.nextInt();
         arr = new int[n];
-        for(int i = 0 ; i < arr.length ; i++){
+        for(int i = 0; i < arr.length ; i++){
             arr[i] = sc.nextInt();
         }
 
-        System.out.print(conFnc(0,m-1));
+        for(int i = 1 ; i <= MAX_RANGE ; i++){
+            if(conFnc(i,m-1)){
+                System.out.println(i);
+                break;
+            }
+        }
     }
 }
