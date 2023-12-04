@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int x1 = sc.nextInt(), x2 = sc.nextInt(), x3 = sc.nextInt(), x4 = sc.nextInt();
-        if(x4 > x1 || x3 < x2){
+        if( ( (x1 <= x3) && (x2 >= x3) ) || ( (x3 <= x1) && (x4 >= x1) )){
             System.out.println("intersecting");
         }
         else{
