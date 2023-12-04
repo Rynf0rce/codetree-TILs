@@ -15,10 +15,10 @@ public class Main {
         }
 
         for(int i = 0 ; i < arr2D.length ; i++){
-            if(arr2D[i][1] == 0){
+            if(arr2D[i][1] == 0 && leftArr[arr2D[i][0]] < rightArr[arr2D[i][0]] + 1){
                 leftArr[arr2D[i][0]]++;
             }
-            else{
+            else if(arr2D[i][1] == 1 && rightArr[arr2D[i][0]] < leftArr[arr2D[i][0]] + 1){
                 rightArr[arr2D[i][0]]++;
             }
         }
