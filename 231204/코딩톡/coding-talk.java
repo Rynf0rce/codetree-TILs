@@ -20,7 +20,7 @@ public class Main {
 
         // 0이면 다 읽었다는 뜻.
         if(arr2D[p-1][1] == '0'){
-            Arrays.fill(arr2D, true);
+            Arrays.fill(developer, true);
         }
         else{
             // 읽지 않다는 사람이 같다는건 위에 보낸 사람이 나가지 않았다는 뜻.
