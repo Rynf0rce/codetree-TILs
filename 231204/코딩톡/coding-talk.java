@@ -14,7 +14,7 @@ public class Main {
         }
 
         // 이후에 글 작성한 사람들은 위에 있는 글을 볼 수가 있음.
-        for(int i = n - 1 ; i >= p - 1; i--){
+        for(int i = m - 1 ; i >= p - 1; i--){
             developer[arr2D[i][0] - 'A'] = true;
         }
 
