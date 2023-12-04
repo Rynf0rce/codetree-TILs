@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Main {
-    public static final int MAX_RANGE = 100;
+    public static final int MAX_RANGE = 100 * 100;
     public static int[] arr;
     public static boolean conFnc(int maxVal, int boundaryNum){
         int cnt = 0;
