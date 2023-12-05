@@ -28,17 +28,21 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int a = 0, b = 0, c = 0, cnt = 0, N = sc.nextInt();
-        int winner = 1;
+        int winner = -1;
         for(int i = 0 ; i < N ; i++){
             char text = sc.next().charAt(0);
+            int point = sc.nextInt();
+            if(point == 0){
+                continue;
+            }
             if(text == 'A'){
-                a += sc.nextInt();
+                a += point;
             }
             else if(text == 'B'){
-                b += sc.nextInt();
+                b += point;
             }
             else{
-                c += sc.nextInt();
+                c += point;
             }
             int currentWinner = findWinner(a, b, c);
             if(winner != currentWinner){
