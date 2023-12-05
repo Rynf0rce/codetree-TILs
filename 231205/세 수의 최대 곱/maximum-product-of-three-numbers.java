@@ -9,13 +9,8 @@ public class Main {
             arr[i] = sc.nextInt();
         }
 
-        for(int i = 0 ; i < arr.length - 2 ; i++){
-            for(int j = i + 1 ; j < arr.length - 1 ; j++){
-                for(int k = j + 1 ; k < arr.length ; k++){
-                    maxVal = Math.max(maxVal, arr[i]*arr[j]*arr[k]);
-                }
-            }
-        }
+        Arrays.sort(arr);
+        maxVal = Math.max(arr[n-1] * arr[n-2] * arr[n-3], arr[n-1] * arr[0] * arr[1]);
         System.out.println(maxVal);
     }
 }
