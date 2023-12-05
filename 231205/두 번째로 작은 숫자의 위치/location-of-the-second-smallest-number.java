@@ -31,10 +31,10 @@ public class Main {
         if(output != -1){
             for(int i = 0 ; i < N ; i++){
                 if(arr[i] == output){
-                    output = i;
+                    output = i + 1;
                 }
             }
         }
-        System.out.println(output + 1);
+        System.out.println(output);
     }
 }
