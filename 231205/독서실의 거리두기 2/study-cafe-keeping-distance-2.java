@@ -18,7 +18,7 @@ public class Main {
             cnt++;
         }
 
-        int start = 0, end = 0, maxVal = Integer.MIN_VALUE;
+        int maxVal = Integer.MIN_VALUE;
         for(int i = 0 ; i < idx ; i++){
             int minVal = Integer.MAX_VALUE;
             if(i == 0 || i == idx - 1){
