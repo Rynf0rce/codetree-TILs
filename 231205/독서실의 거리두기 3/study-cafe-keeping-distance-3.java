@@ -3,41 +3,29 @@
 import java.util.*;
 
 public class Main {
-    public static final int MAX_SEAT = 1000;
-    public static int[] arr = new int[MAX_SEAT];
-    public static int[] gapArr = new int[MAX_SEAT];
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
+        int N = sc.nextInt(), idx = 0;
+        int[] arr = new int[N];
         String str = sc.next();
         for(int i = 0 ; i < N ; i++){
-            arr[i] = str.charAt(i) - '0';
-        }
-
-        int cnt = 0, idx = 0;
-        boolean triger = true;
-        for(int i = 0 ; i < N ; i++){
-            cnt++;
-            if(triger && arr[i] == 1){
-                triger = false;
-            }
-            else if(!triger && arr[i] == 1){
-                gapArr[idx++] = cnt;
-                cnt = 1;
+            if(str.charAt(i) == '1'){
+                arr[idx++] = i;
             }
         }
-
-        int minVal = Integer.MAX_VALUE;
-        int output = Integer.MIN_VALUE;
-
-        for(int i = 0 ; i < idx ; i++){
-            int currentVal = gapArr[i] / 2;
-            if(gapArr[i] > 2 && gapArr[i] % 2 == 0){
-                currentVal = (gapArr[i] - 1) / 2;
+        
+        int maxVal = Integer.MIN_VALUE;
+        for(int i = 1 ; i < idx ; i++){
+            int minVal = Integer.MAX_VALUE;
+            for(int j = 1 ; j < idx ; j++){
+                int currentVal = arr[j] - arr[j-1];
+                if(i == j && currentVal > 1){
+                    currentVal /= 2;
+                } 
+                minVal = Math.min(minVal, currentVal);
             }
-            minVal = Math.min(minVal, currentVal);
-            output = Math.max(output, minVal);
+            maxVal = Math.max(maxVal, minVal);
         }
-        System.out.println(output);     
+        System.out.println(maxVal);
     }
 }
