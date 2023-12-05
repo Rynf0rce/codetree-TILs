@@ -32,6 +32,7 @@ public class Main {
             for(int i = 0 ; i < N ; i++){
                 if(arr[i] == output){
                     output = i + 1;
+                    break;
                 }
             }
         }
