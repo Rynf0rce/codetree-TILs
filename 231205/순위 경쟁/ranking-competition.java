@@ -1,25 +1,25 @@
 import java.util.*;
 public class Main {
     public static int findWinner(int a, int b, int c){
-        if(a == b && b == c){
+        if(a > b && a > c){
             return 0;
         }
-        else if(a == b){
+        else if(b > a && b > c){
             return 1;
         }
-        else if(b == c){
+        else if(c > a && c > b){
             return 2;
         }
-        else if(a == c){
+        else if(a == b && b == c){
             return 3;
         }
-        else if(a > b && a > c){
+        else if(a == b && b > c){
             return 4;
         }
-        else if(b > a && b > c){
+        else if(b == c && c > a){
             return 5;
         }
-        else if(c > a && c > b){
+        else if(a == c && c > b){
             return 6;
         }
         return -1;
