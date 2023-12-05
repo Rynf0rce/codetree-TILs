@@ -22,19 +22,22 @@ public class Main {
                 triger = false;
             }
             else if(!triger && arr[i] == 1){
-                gapArr[idx++] = cnt - 1;
+                gapArr[idx++] = cnt;
                 cnt = 1;
             }
         }
 
-        int minVal = Integer.MIN_VALUE;
+        int minVal = Integer.MAX_VALUE;
+        int output = Integer.MIN_VALUE;
 
         for(int i = 0 ; i < idx ; i++){
-            minVal = Math.max(minVal, gapArr[i] / 2);
+            int currentVal = gapArr[i] / 2;
+            if(gapArr[i] > 2 && gapArr[i] % 2 == 0){
+                currentVal = (gapArr[i] - 1) / 2;
+            }
+            minVal = Math.min(minVal, currentVal);
+            output = Math.max(output, minVal);
         }
-
-        System.out.println(minVal);
-
-        
+        System.out.println(output);     
     }
 }
