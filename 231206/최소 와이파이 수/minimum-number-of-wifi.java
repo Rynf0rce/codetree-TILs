@@ -1,37 +1,33 @@
 import java.util.*;
 
 public class Main {
+    public static final int MAX_RANGE = 100;
+    public static int[] arr = new int[MAX_RANGE];
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt(), m = sc.nextInt(), totalWiFi = n / (2*m + 1);
-        int[] arr = new int[n];
-        int[] aroundArr = new int[n];
-        boolean[] connnectArr = new boolean[n];
-        for(int i = 0 ; i < arr.length ; i++){
+        int n = sc.nextInt(), m = sc.nextInt(), minVal = 0, output = Integer.MAX_VALUE;
+        for(int i = 0 ; i < n ; i++){
             arr[i] = sc.nextInt();
         }
-
-        if(n % (2*m + 1) != 0){
-            totalWiFi++;
-        }
-
         
-        int cnt = 0;
-        boolean triger = true;
-        for(int i = 0 ; i < arr.length ; i++){
-            cnt++;
-            if(arr[i] == 1){
-                triger = false;
-            }
-
-            if(cnt == 2*m + 1 || i == arr.length - 1){
-                if(triger){
-                    totalWiFi--;
+        for(int i = 0 ; i < 2 * m + 1 ; i++){
+            minVal = 0;
+            int cnt = 0;
+            boolean triger = false;
+            for(int j = 0 ; j < n ; j++){
+                cnt++;
+                if(arr[j] == 1){
+                    triger = true;
                 }
-                triger = true;
-                cnt = 0;
-            }      
+                if(triger && ( cnt >= 2 * m + 1 || j == n - 1 || ( j < i && cnt == i ))){
+                    minVal++;
+                    triger = false;
+                    cnt = 0;
+                }
+            }
+            output = Math.min(output, minVal);
         }
-        System.out.print(totalWiFi);
+        System.out.println(output);
     }
 }
