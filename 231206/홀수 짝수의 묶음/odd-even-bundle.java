@@ -8,7 +8,7 @@ public class Main {
             return 0;
         }
 
-        if(order == 1 && (evenCnt > 0 || oddCnt > 2)){
+        if(order == 1 && (evenCnt > 0 || oddCnt != 2)){
             oddCnt--;
         }
         else if(order == 2 && evenCnt > 0) {
@@ -27,6 +27,8 @@ public class Main {
         else{
             order = 1;
         }
+
+        // System.out.println(evenCnt + " " + oddCnt + " " + order);
         return maxGroup(evenCnt, oddCnt, order) + 1;
     }
     public static void main(String[] args) {
@@ -41,6 +43,7 @@ public class Main {
                 oddCnt++;
             }
         }
+        // System.out.println(evenCnt + " " + oddCnt);
         System.out.print(maxGroup(evenCnt, oddCnt, 2));
     }
 }
