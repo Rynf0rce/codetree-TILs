@@ -10,18 +10,14 @@ public class Main {
         for(int i = 0 ; i < arr.length ; i++){
             arr[i] = sc.nextInt();
         }
-        
-        if(m == 0){
-            System.out.println(0);
-            System.exit(0);
-        }
-        else if(n % (2*m + 1) != 0){
+
+        if(n % (2*m + 1) != 0){
             totalWiFi++;
         }
 
         
         int cnt = 0;
-        boolean triger = false;
+        boolean triger = true;
         for(int i = 0 ; i < arr.length ; i++){
             cnt++;
             if(arr[i] == 1){
