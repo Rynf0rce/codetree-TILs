@@ -9,20 +9,13 @@ public class Main {
         Arrays.sort(arr);
         int a = arr[0], b = arr[1], Plus_C_D = arr[14] - a - b;
         int c = 0, d = 0;
-        for(int i = arr.length - 2; i >= 0 ; i--){
-            if(arr[i] != (Plus_C_D + a) && arr[i] != (Plus_C_D + b)){
-                int temp = arr[i] - a - b;
-                if(temp <= a + b){
-                    c = temp;
-                }
-                else{
-                    d = temp;
-                }
-            }
-            if(a + b + c + d == arr[14]){
-                System.out.print(a + " " + b + " " + c + " " + d);
-                System.exit(0);
+        for(int i = 2 ; i < arr.length ; i++){
+            if(arr[i] <= a+b && Plus_C_D - arr[i] >= arr[i]){
+                c = arr[i];
+                d = Plus_C_D - c;
+                break;
             }
         }
+        System.out.print(a + " " + b + " " + c + " " + d);
     }
 }
