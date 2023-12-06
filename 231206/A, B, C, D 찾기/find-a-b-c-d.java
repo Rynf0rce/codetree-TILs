@@ -19,3 +19,6 @@ public class Main {
         System.out.print(a + " " + b + " " + c + " " + d);
     }
 }
+
+// C <= A + B 라는 조건 때문에 세번째로 작은 숫자는 항상 C임.. int c = arr[2];
+// int d = arr[n-1] - a - b - c;
