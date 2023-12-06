@@ -2,11 +2,11 @@ import java.util.*;
 
 public class Main {
     public static final int INPUT_RANGE = 100000;
-    public static double[] arr = new double[INPUT_RANGE];
+    public static double[] arr = new double[INPUT_RANGE * 2];
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        for(int i = 0 ; i < 2* n ; i++){
+        for(int i = 0 ; i < 2 * n ; i++){
             arr[i] = sc.nextInt();
         }
         Arrays.sort(arr, 0 , 2 * n);
