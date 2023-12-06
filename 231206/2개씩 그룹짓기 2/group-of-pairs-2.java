@@ -6,16 +6,16 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        for(int i = 0 ; i < n ; i++){
+        for(int i = 0 ; i < 2* n ; i++){
             arr[i] = sc.nextInt();
         }
-        Arrays.sort(arr, 0 , n);
+        Arrays.sort(arr, 0 , 2 * n);
     
-        double maxVal = Integer.MIN_VALUE;
-        for(int i = 0 ; i < n / 2 ; i++){
-            maxVal = Math.max(maxVal,(arr[n/2 + i] - arr[i]));
+        double minVal = Integer.MAX_VALUE;
+        for(int i = 0 ; i < n ; i++){
+            minVal = Math.min(minVal,(arr[n + i] - arr[i]));
         }
-        System.out.println((int)maxVal);
+        System.out.println((int)minVal);
         
     }
 }
