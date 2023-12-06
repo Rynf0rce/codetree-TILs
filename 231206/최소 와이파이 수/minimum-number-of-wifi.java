@@ -12,21 +12,33 @@ public class Main {
         }
         
         for(int i = 0 ; i < 2 * m + 1 ; i++){
-            minVal = 0;
+            int WiFi = 0;
             int cnt = 0;
             boolean triger = false;
-            for(int j = 0 ; j < n ; j++){
-                cnt++;
+            for(int j = 0 ; j < n ; ){
                 if(arr[j] == 1){
                     triger = true;
                 }
-                if(triger && ( cnt >= 2 * m + 1 || j == n - 1 || ( j < i && cnt == i ))){
-                    minVal++;
-                    triger = false;
-                    cnt = 0;
+
+                if(triger && i>j && j == i - 1){
+                    //System.out.println("A");
+                    WiFi++;
+                    j = i;
                 }
+                else if(triger){
+                    //System.out.println("B");
+                    WiFi++;
+                    j += (2*m + 1);
+                }
+                else{
+                    //System.out.println("C");
+                    j++;
+                }
+                triger = false;
+                // System.out.print("current I : " + i + " current J : " + j +  " current WIFI : " + WiFi + "\n");
             }
-            output = Math.min(output, minVal);
+            //System.out.println();
+            output = Math.min(output, WiFi);
         }
         System.out.println(output);
     }
