@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Main {
-    public static final int MAX_RANGE = 10000;
+    public static final int MAX_RANGE = 100000;
     public static int[] arr = new int[MAX_RANGE];
     public static void mergeSort(int start, int end){
         if(start < end){
