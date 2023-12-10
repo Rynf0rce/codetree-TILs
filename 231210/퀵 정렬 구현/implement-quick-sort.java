@@ -5,21 +5,23 @@ public class Main {
     public static int[] arr = new int[INPUT_RANGE];
     public static int n;
     public static int setPivot(int start, int end){
+        int answer = 0;
         int mid = ( end + start ) / 2;
         if(end - start <= 3){
-            return end;
+            answer = end;
         }
         else{
              if( (arr[start] >= arr[mid] && arr[mid] >= arr[end]) || (arr[end] >= arr[mid] && arr[mid] >= arr[start]) ){
-                return mid;
+                answer = mid;
              }
              else if( (arr[start] >= arr[end] && arr[end] >= arr[mid]) || (arr[mid] >= arr[end] && arr[end] >= arr[start]) ){
-                return end;
+                answer = end;
              }
              else{
-                return start;
+                answer = start;
              }
         }
+        return answer;
     }
     
     public static int partitionFnc(int start, int end){
@@ -28,7 +30,7 @@ public class Main {
         arr[end] = arr[pivotIdx];
         arr[pivotIdx] = temp;
 
-        int partition = -1;
+        int partition = start -1; // 파티션  시작 부분 정의를 제대로 안해서...
 
         for(int i = start ; i < end ; i++){
             if(arr[i] < arr[end]){
@@ -38,7 +40,7 @@ public class Main {
                 arr[i] = temp;
             }
         }
-
+        
         temp = arr[partition + 1];
         arr[partition + 1] = arr[end];
         arr[end] = temp;
@@ -48,7 +50,7 @@ public class Main {
 
     public static void quick_sort(int start, int end){
         if(start < end){
-            int partition = partitionFnc(start, end);
+            int partition = partitionFnc(start, end);  
             quick_sort(start, partition - 1);
             quick_sort(partition + 1, end);
         }
