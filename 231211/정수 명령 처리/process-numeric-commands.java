@@ -5,7 +5,7 @@ public class Main {
     public static void conFnc(String str, int data){
         switch(str){
             case "push" :
-                vector.push(3);
+                vector.push(data);
                 break;
             case "pop" :
                 if(!vector.isEmpty()){
