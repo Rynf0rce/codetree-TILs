@@ -35,11 +35,19 @@ public class Main {
                 int calRow = row, calColumn = column;
 
                 for(int k = 0 ; k < 4 ; k++){
+                    boolean triger = false;
                     if(k % 2 == 0){
                         for(int h = 1 ; h <= cnt_1 ; h++){
                             calRow += arrRow[k];
                             calColumn += arrColumn[k];
-                            output += arr2D[calRow][calColumn];
+                            if(inRange(calRow, calColumn, range)){
+                                output += arr2D[calRow][calColumn];
+                            }
+                            else{
+                                triger = true;
+                                break;
+                            }
+                            
                         }
                     }
                     else{
@@ -47,11 +55,22 @@ public class Main {
                             calRow += arrRow[k];
                             calColumn += arrColumn[k];
                             output += arr2D[calRow][calColumn];
+                            if(inRange(calRow, calColumn, range)){
+                                output += arr2D[calRow][calColumn];
+                            }
+                            else{
+                                triger = true;
+                                break;
+                            }
                         }  
+                    }
+                    if(triger){
+                        output = 0;
+                        break;
                     }
                 }
                 maxVal = Math.max(maxVal, output);
-                // System.out.println(output);
+                System.out.println(row + " " + column + " " + cnt_1 + " " + cnt_2 + " " + output);
             }
         }
         return maxVal;
