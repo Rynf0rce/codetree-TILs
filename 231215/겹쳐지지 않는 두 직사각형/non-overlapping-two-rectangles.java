@@ -15,21 +15,23 @@ public class Main {
         }
         return output;
     }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt(), m = sc.nextInt(), maxVal = Integer.MIN_VALUE, output = 0;
+        int n = sc.nextInt(), m = sc.nextInt(), maxVal = Integer.MIN_VALUE, output = 0, total = 0;
         int[] selectArea = new int[4];
         for(int i = 0 ; i < n ; i++){
             for(int j = 0 ; j < m ; j++){
                 arr2D[i][j] = sc.nextInt();
+                total += arr2D[i][j];
             }
         }
 
         for(int i = 0 ; i < n ; i++){
             for(int j = 0 ; j < m ; j++){
-                for(int k = 1 ; k < n ; k++){
-                    for(int h = 1 ; h < m ; h++){
-                        if(maxVal <= areaValue(i,j,k,h)){
+                for(int k = 1 ; k <= n ; k++){
+                    for(int h = 1 ; h <= m ; h++){
+                        if(maxVal <= areaValue(i,j,k,h) && areaValue(i,j,k,h) != total){
                             maxVal = areaValue(i,j,k,h);
                             selectArea[0] = i;
                             selectArea[1] = j;
@@ -61,6 +63,7 @@ public class Main {
                 }
             }
         }
+        
         output += maxVal;
         System.out.println(output);
     }
