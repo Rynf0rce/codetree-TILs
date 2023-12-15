@@ -54,7 +54,6 @@ public class Main {
                         for(int h = 1 ; h <= cnt_2 ; h++){
                             calRow += arrRow[k];
                             calColumn += arrColumn[k];
-                            output += arr2D[calRow][calColumn];
                             if(inRange(calRow, calColumn, range)){
                                 output += arr2D[calRow][calColumn];
                             }
@@ -70,7 +69,7 @@ public class Main {
                     }
                 }
                 maxVal = Math.max(maxVal, output);
-                System.out.println(row + " " + column + " " + cnt_1 + " " + cnt_2 + " " + output);
+                // System.out.println(row + " " + column + " " + cnt_1 + " " + cnt_2 + " " + output +"\n");
             }
         }
         return maxVal;
