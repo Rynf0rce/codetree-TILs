@@ -30,7 +30,7 @@ public class Main {
     }
 
     public static boolean inRange(int row, int column){
-        if(row < 0 || column < 0 || row >= N + 1 || column >= M + 1){
+        if(row < 1 || column < 1 || row >= N + 1 || column >= M + 1){
             return false;
         }
         return true;
