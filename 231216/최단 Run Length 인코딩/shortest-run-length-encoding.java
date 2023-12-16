@@ -11,18 +11,16 @@ public class Main {
                 cnt = 1;
             }
             else if(curChar == arr[i]){
-                cnt++;
-                if(i == arr.length - 1){
-                    str += curChar + Integer.toString(cnt);
-                }
+                cnt++;   
             }
             else{
                 str += curChar + Integer.toString(cnt);
                 curChar = arr[i];
                 cnt = 1;
-                if(i == arr.length - 1){
-                    str += curChar + Integer.toString(cnt);
-                }
+            }
+
+            if(i == arr.length - 1){
+                str += curChar + Integer.toString(cnt);
             }
         }
         return str.length();
