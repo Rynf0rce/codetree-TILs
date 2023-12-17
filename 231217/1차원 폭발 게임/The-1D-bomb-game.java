@@ -23,13 +23,13 @@ public class Main {
         boolean output = true;
         while(output){
             output = false;
-            for(int i = 1 ; i < MAX_RANGE ; i++){
+            for(int i = 1 ; i <= MAX_RANGE ; i++){
                 int basis = arr[i], cnt = 0;
                 if(basis == 0){
                     continue;
                 }
 
-                for(int j = i ; j < MAX_RANGE ; j++){
+                for(int j = i ; j <= MAX_RANGE ; j++){
                     if(basis == arr[j]){
                         cnt++;
                     }
@@ -63,7 +63,7 @@ public class Main {
                 cnt++;
             }
         }
-        
+
         System.out.println(cnt);
         for(int i = 1 ; i <= cnt ; i++){
             System.out.println(arr[i]);
