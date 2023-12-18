@@ -3,7 +3,7 @@ import java.util.*;
 public class Main {
     public static final int MAX_RANGE = 100;
     public static int[][] arr2D = new int[MAX_RANGE][MAX_RANGE];
-    public static int[] arrR = new int[]{1, 1, 0, 0};
+    public static int[] arrR = new int[]{-1, 1, 0, 0};
     public static int[] arrC = new int[]{0, 0, -1, 1};
     public static boolean inRange(int row, int column, int size){
         return (row >= 0 && row < size && column >= 0 && column < size);
