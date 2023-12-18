@@ -12,7 +12,7 @@ public class Main {
             }
         }
 
-        int idx = 0;
+        int idx = -1;
         for(int i = 0 ; i < n ; i++){
             int cnt = width;
             for(int j = column ; j < column + width; j++){
@@ -30,6 +30,12 @@ public class Main {
                     arr2D[idx][j]++;
                 }
                 break;
+            }
+        }
+
+        if(idx == -1){
+            for(int j = column ; j < column + width ; j++){
+                arr2D[n - 1][j]++;
             }
         }
 
