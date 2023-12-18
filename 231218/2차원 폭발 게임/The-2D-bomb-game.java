@@ -25,12 +25,11 @@ public class Main {
                         value = area[j][i];
                         cnt = 1;
                     }
-                }
-
-                if(j == 0 && cnt < M){
-                    for(int k = 0 ; k < cnt ; k++){
-                        temp[idx--][i] = value;
-                    }
+                } 
+            }
+            if(cnt < M){
+                for(int k = 0 ; k < cnt ; k++){
+                    temp[idx--][i] = value;
                 }
             }
         }
