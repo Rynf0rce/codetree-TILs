@@ -67,7 +67,7 @@ public class Main {
 
         int maxVal = 0;
         for(int i = 0 ; i < n * 4 ; i++){
-            maxVal = Math.max(maxVal, conFnc(i/5, i%5));
+            maxVal = Math.max(maxVal, conFnc(i / n, i % n));
         }
 
         System.out.print(maxVal);
