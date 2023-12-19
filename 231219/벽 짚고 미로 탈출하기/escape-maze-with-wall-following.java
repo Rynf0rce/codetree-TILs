@@ -42,10 +42,9 @@ public class Main {
             }
         }
 
-        int tempR = r, tempC = c, cnt = 0;
+        int tempR = r, tempC = c, dir = direction, cnt = 0;
         boolean hold = false;
         while(true){
-
             if(!chackWall(tempR, tempC)){
                 direction = (direction + 1) % 4;
             }
@@ -70,7 +69,7 @@ public class Main {
             tempR += arrR[direction];
             tempC += arrC[direction];
             cnt++;
-            if(tempR == r && tempC == c){
+            if(tempR == r && tempC == c && dir == direction){
                 System.out.println(-1);
                 break;
             }
