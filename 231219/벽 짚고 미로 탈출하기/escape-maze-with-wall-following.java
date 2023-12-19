@@ -43,18 +43,29 @@ public class Main {
         }
 
         int tempR = r, tempC = c, cnt = 0;
+        boolean hold = false;
         while(true){
-            if(frontwall(tempR, tempC)){
-                direction--;
-                if(direction < 0){
-                    direction = 3;
-                }
-                continue;
-            }
 
             if(!chackWall(tempR, tempC)){
                 direction = (direction + 1) % 4;
             }
+
+            if(frontwall(tempR, tempC)){
+                direction--;
+                if(direction < 0){
+                    direction = 3;
+                    if(!hold){
+                        hold = true;
+                    }
+                    else{
+                        System.out.println(-1);
+                        break;
+                    }
+                }
+                continue;
+            }
+            
+            hold = false;
 
             tempR += arrR[direction];
             tempC += arrC[direction];
