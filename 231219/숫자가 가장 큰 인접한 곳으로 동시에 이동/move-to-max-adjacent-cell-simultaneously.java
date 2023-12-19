@@ -28,18 +28,19 @@ public class Main {
                             c = j + arrC[k];
                         }
                     }
-
                     temp[r][c]++;
-                    if(temp[r][c] > 1){
-                        temp[r][c] = 0;
-                    }
                 }
             }
         }
 
         for(int i = 0 ; i < n ; i++){
             for(int j = 0 ; j < n ; j++){
-                ball2D[i][j] = temp[i][j];
+                if(temp[i][j] > 1){
+                    ball2D[i][j] = 0;
+                }
+                else{
+                    ball2D[i][j] = temp[i][j];
+                }
             }
         }
     }
