@@ -13,7 +13,7 @@ public class Main {
     }
 
     public static void changeMax(int row, int column){
-        int maxVal = 0;
+        int maxVal = Integer.MIN_VALUE;
         int r = row;
         int c = column;
         for(int i = 0 ; i < arrR.length ; i++){
@@ -26,8 +26,8 @@ public class Main {
 
         arr2D[r][c] = arr2D[row][column];
         arr2D[row][column] = maxVal;
-        arrIdx[arr2D[r][c]] = r * 4 + c;
-        arrIdx[arr2D[row][column]] = row * 4 + column;
+        arrIdx[arr2D[r][c]] = r * n + c;
+        arrIdx[arr2D[row][column]] = row * n + column;
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -36,14 +36,14 @@ public class Main {
         for(int i = 0 ; i < n ; i++){
             for(int j = 0 ; j < n ; j++){
                 arr2D[i][j] = sc.nextInt();
-                arrIdx[arr2D[i][j]] = i * 4 + j;
+                arrIdx[arr2D[i][j]] = i * n + j;
             }
         }
 
         for(int i = 0 ; i < m ; i++){
             for(int j = 1 ; j <= n * n ; j++){
-                int row = arrIdx[j] / 4;
-                int column = arrIdx[j] % 4;
+                int row = arrIdx[j] / n;
+                int column = arrIdx[j] % n;
                 changeMax(row, column);
             }
         }
