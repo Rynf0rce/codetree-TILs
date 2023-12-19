@@ -55,18 +55,6 @@ public class Main {
             char spell = sc.next().charAt(0);
             if(inRange(r + arrR[dirMapper[spell]], c + arrC[dirMapper[spell]], n)){
                 rollDice(spell);
-
-                // for(int j = 0 ; j < 3 ; j++){
-                //     for(int k = 0 ; k < 3 ; k++){
-                //         System.out.print(dice[j][k] + " ");
-                //     }
-                //     System.out.println();
-                // }
-                // System.out.println();
-
-
-
-
                 r += arrR[dirMapper[spell]];
                 c += arrC[dirMapper[spell]];
                 arr2D[r][c] = 7 - dice[1][1];
@@ -76,10 +64,8 @@ public class Main {
         int output = 0;
         for(int i = 0 ; i < n ; i++){
             for(int j = 0 ; j < n ; j++){
-                // System.out.print(arr2D[i][j] + " ");
                 output += arr2D[i][j];
             }
-            // System.out.println();
         }
         System.out.println(output);
     }
