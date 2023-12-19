@@ -69,7 +69,7 @@ public class Main {
             tempR += arrR[direction];
             tempC += arrC[direction];
             cnt++;
-            if(tempR == r && tempC == c && dir == direction){
+            if(cnt >= n * n){
                 System.out.println(-1);
                 break;
             }
