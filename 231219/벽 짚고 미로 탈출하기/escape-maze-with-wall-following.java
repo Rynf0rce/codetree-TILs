@@ -3,6 +3,7 @@ import java.util.*;
 public class Main {
     public static final int MAX_RANGE = 100;
     public static char[][] arr2D = new char[MAX_RANGE][MAX_RANGE];
+    public static int[][][] footprint3D = new int[MAX_RANGE][MAX_RANGE][4];
     public static int[] arrR = new int[]{0, 1, 0, -1};
     public static int[] arrC = new int[]{1, 0, -1, 0};
     public static int[] handOrder = new int[]{1, 2, 3, 0};
@@ -43,8 +44,14 @@ public class Main {
         }
 
         int tempR = r, tempC = c, dir = direction, cnt = 0;
-        boolean hold = false;
         while(true){
+            footprint3D[tempR][tempC][direction]++;
+
+            if(footprint3D[tempR][tempC][direction] > 1){
+                System.out.println(-1);
+                break;
+            }
+
             if(!chackWall(tempR, tempC)){
                 direction = (direction + 1) % 4;
             }
@@ -53,27 +60,15 @@ public class Main {
                 direction--;
                 if(direction < 0){
                     direction = 3;
-                    if(!hold){
-                        hold = true;
-                    }
-                    else{
-                        System.out.println(-1);
-                        break;
-                    }
                 }
                 continue;
             }
             
-            hold = false;
-
             tempR += arrR[direction];
             tempC += arrC[direction];
             cnt++;
-            if(cnt >= n * n){
-                System.out.println(-1);
-                break;
-            }
-            else if(!inRange(tempR, tempC)){
+
+            if(!inRange(tempR, tempC)){
                 System.out.println(cnt);
                 break;
             }
