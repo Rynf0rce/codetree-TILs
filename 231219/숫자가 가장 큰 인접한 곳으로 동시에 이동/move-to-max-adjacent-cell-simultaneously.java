@@ -4,8 +4,8 @@ public class Main {
     public static final int MAX_RANGE = 20;
     public static int[][] arr2D = new int[MAX_RANGE][MAX_RANGE]; 
     public static int[][] ball2D = new int[MAX_RANGE][MAX_RANGE];
-    public static int[] arrR = new int[]{-1, 0, 1, 0};
-    public static int[] arrC = new int[]{0, 1, 0, -1};   
+    public static int[] arrR = new int[]{-1, 1, 0, 0};
+    public static int[] arrC = new int[]{0, 0, -1, 1};   
     public static int n;
 
     public static boolean inRange(int row, int column){
