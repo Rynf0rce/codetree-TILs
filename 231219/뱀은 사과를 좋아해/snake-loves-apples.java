@@ -17,18 +17,12 @@ public class Main {
     }
 
     public static boolean move(int row, int column, int idx){
-        if(!inRange(row + arrR[idx], column + arrC[idx]) || current2D[row + arrR[idx]][column + arrC[idx]] > 0){
-            return false;
-        }
 
-        if(apple2D[row + arrR[idx]][column + arrC[idx]]){
+        if(inRange(row + arrR[idx], column + arrC[idx]) && apple2D[row + arrR[idx]][column + arrC[idx]]){
+            apple2D[row + arrR[idx]][column + arrC[idx]] = false;
             length ++;
-            current2D[row][column] = length;
-            current2D[row + arrR[idx]][column + arrC[idx]] = MAX_TIME;
         }
         else{
-            current2D[row][column] = length;
-            current2D[row + arrR[idx]][column + arrC[idx]] = MAX_TIME;
             for(int i = 0 ; i < range ; i++){
                 for(int j = 0 ; j < range ; j++){
                     if(current2D[i][j] > 0){
@@ -37,6 +31,29 @@ public class Main {
                 }
             }
         }
+
+        current2D[row][column] = length - 1;
+
+        if(!inRange(row + arrR[idx], column + arrC[idx]) || current2D[row + arrR[idx]][column + arrC[idx]] > 0){
+            return false;
+        }
+        else{
+            current2D[row + arrR[idx]][column + arrC[idx]] = MAX_TIME;
+        }
+
+        
+
+        
+
+        // System.out.println(length);
+
+        // for(int i = 0 ; i < range ; i++){
+        //     for(int j = 0 ; j < range ; j++){
+        //         System.out.print(current2D[i][j] + " ");
+        //     }
+        //     System.out.println();
+        // }
+        // System.out.println();
 
         return true;
     }
