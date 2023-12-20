@@ -47,6 +47,8 @@ public class Main {
 
         for(int i = 0 ; i < vector.size() ; i++){
             unit input = vector.get(i);
+            System.out.println(input.row + " " + input.col);
+            System.out.println();
             int preRow = input.row + arrR[input.dir];
             int preColumn = input.col + arrC[input.dir];
 
@@ -59,11 +61,13 @@ public class Main {
             }
 
             if(!beadPos.contains(input)){
+                System.out.println("chackA");
                 beadPos.add(input);
                 vector.get(i).setPos(input.row, input.col);
                 vector.get(i).setDir(input.dir);
             }
             else{
+                System.out.println("chackB");
                 vector.remove(i);
                 for(int j = 0 ; j < vector.size() ; j++){
                     if(input.row == vector.get(j).row && input.col == vector.get(j).col){
