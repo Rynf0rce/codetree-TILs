@@ -99,17 +99,23 @@ public class Main {
                 vector.add(bead);
             }
 
-            // conFnc();
+            conFnc();
+            for(int k = 0 ; k < vector.size() ; k++){
+                System.out.println(vector.get(k).row + " " + vector.get(k).col + " " +  vector.get(k).dir);
+            }
+            System.out.println();
             // beadPos.clear();
             // conFnc();
 
-            // for(int j = 0 ; j < vector.size() ; j++){
-            //     System.out.println(vector.get(j).row + " " + vector.get(j).col + " " +  vector.get(j).dir);
+            
+            // for(int j = 0 ; j < n * n ; j++){
+            //     beadPos.clear();
+            //     conFnc();
+            //     for(int k = 0 ; k < vector.size() ; k++){
+            //         System.out.println(vector.get(k).row + " " + vector.get(k).col + " " +  vector.get(k).dir);
+            //     }
+            //     System.out.println();
             // }
-            for(int j = 0 ; j < n * n ; j++){
-                beadPos.clear();
-                conFnc();
-            }
             
             System.out.println(vector.size());
         }
