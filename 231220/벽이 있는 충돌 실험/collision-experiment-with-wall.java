@@ -111,10 +111,15 @@ public class Main {
         for(int i = 0 ; i < T ; i++){
             range = arrN[i];
             M = arrM[i];
+            int duple = 0;
             for(int j = range * range ; j >= 0 ; j--){
                 int ballnum = conFnc(M, i);
-                if(ballnum == M){
-                    j /= 2;
+                if(j >= 10 && ballnum == M){
+                    duple++;
+                    j /= duple;
+                }
+                else{
+                    duple = 0;
                 }
                 M = ballnum;
             }
