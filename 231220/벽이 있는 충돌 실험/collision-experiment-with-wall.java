@@ -111,11 +111,12 @@ public class Main {
         for(int i = 0 ; i < T ; i++){
             range = arrN[i];
             M = arrM[i];
-            if(range == 50){
-                range = 1;
-            }
-            for(int j = 0 ; j < range * 2 ; j++){
-                M = conFnc(M, i);
+            for(int j = range * range ; j >= 0 ; j--){
+                int ballnum = conFnc(M, i);
+                if(ballnum == M){
+                    j /= 2;
+                }
+                M = ballnum;
             }
             System.out.println(M);
         }
