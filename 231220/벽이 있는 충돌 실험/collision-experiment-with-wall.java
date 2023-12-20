@@ -11,11 +11,9 @@ class unit{
         this.dir = dir;
     }
 
-    public void setPos(int row, int col){
+    public void setUnit(int row, int col, int dir){
         this.row = row;
         this.col = col;
-    }
-    public void setDir(int dir){
         this.dir = dir;
     }
 
@@ -24,60 +22,55 @@ class unit{
         unit u = (unit) o;
         return (u.row == this.row && u.col == this.col);
     }
-
-    @Override
-    public int hashCode(){
-        return Integer.valueOf(row + col).hashCode();
-    }
 }
 
 public class Main {
+    public static final int MAX_RANGE = 50;
     public static final int ASCII_NUM = 128;
-    public static ArrayList<unit> vector = new ArrayList<>();
-    public static HashSet<unit> beadPos = new HashSet<>();
+    public static unit[] beadArr = new unit[MAX_RANGE * MAX_RANGE];
     public static int[] arrR = new int[]{-1, 0, 1, 0};
     public static int[] arrC = new int[]{0, 1, 0, -1};
-    public static int n;
+    public static int range;
 
     public static boolean inRange(int row, int column){
-        return (row >= 0 && column >= 0 && row < n && column < n);
+        return (row >= 0 && column >= 0 && row < range && column < range);
     }
-
-    public static void conFnc(){
-
-        for(int i = 0 ; i < vector.size() ; i++){
-            unit input = vector.get(i);
-            System.out.println(input.row + " " + input.col);
-            System.out.println();
-            int preRow = input.row + arrR[input.dir];
-            int preColumn = input.col + arrC[input.dir];
-
-            if(inRange(preRow, preColumn)){
-                input.row = preRow;
-                input.col = preColumn;
+    
+    public static int conFnc(int cnt){
+        unit[] tempArr = new unit[MAX_RANGE * MAX_RANGE];
+        for(int i = 0 ; i < cnt ; i++){
+            unit bean = beadArr[i];
+            int preRow = bean.row + arrR[bean.dir];
+            int preCol = bean.col + arrC[bean.dir];
+            if(inRange(preRow, preCol)){
+                beadArr[i].setUnit(preRow, preCol, bean.dir);
             }
             else{
-                input.dir = (input.dir + 2) % 4;
+                beadArr[i].setUnit(bean.row, bean.col, (bean.dir + 2) % 4);
             }
-
-            if(!beadPos.contains(input)){
-                System.out.println("chackA");
-                beadPos.add(input);
-                vector.get(i).setPos(input.row, input.col);
-                vector.get(i).setDir(input.dir);
-            }
-            else{
-                System.out.println("chackB");
-                vector.remove(i);
-                for(int j = 0 ; j < vector.size() ; j++){
-                    if(input.row == vector.get(j).row && input.col == vector.get(j).col){
-                        vector.remove(j);
-                    }
-                }
-            }
-
         }
 
+        int tempIdx = 0;
+        for(int i = 0 ; i < cnt ; i++){
+            if(inRange(beadArr[i].row, beadArr[i].col)){
+                boolean isSame = false;
+                for(int j = i + 1 ; j < cnt ; j++){
+                    if(beadArr[i].equals(beadArr[j])){
+                        beadArr[j].setUnit(-1, -1, -1);
+                        isSame = true;
+                    }
+                }
+                if(!isSame){
+                    tempArr[tempIdx++] = new unit(beadArr[i].row, beadArr[i].col, beadArr[i].dir);
+                }
+            }
+        }
+
+        for(int i = 0 ; i < tempIdx ; i++){
+            beadArr[i] = new unit(tempArr[i].row, tempArr[i].col, tempArr[i].dir);
+        }
+
+        return tempIdx;
     }
 
     public static void main(String[] args) {
@@ -91,37 +84,22 @@ public class Main {
         int T = sc.nextInt();
 
         for(int i = 0 ; i < T ; i++){
-            n = sc.nextInt();
+            int N = sc.nextInt();
             int M = sc.nextInt();
-            vector.clear();
+            range = N;
             for(int j = 0 ; j < M ; j++){
                 int r = sc.nextInt() - 1;
                 int c = sc.nextInt() - 1;
                 char spell = sc.next().charAt(0);
-                int dir = dirMapper[spell];
-                unit bead = new unit(r, c, dir);
-                vector.add(bead);
+                beadArr[j] = new unit(r, c, dirMapper[spell]);
             }
 
-            conFnc();
-            for(int k = 0 ; k < vector.size() ; k++){
-                System.out.println(vector.get(k).row + " " + vector.get(k).col + " " +  vector.get(k).dir);
+            for(int j = 0 ; j < 2 * N ; j++){
+                M = conFnc(M);
             }
-            System.out.println();
-            // beadPos.clear();
-            // conFnc();
 
-            
-            // for(int j = 0 ; j < n * n ; j++){
-            //     beadPos.clear();
-            //     conFnc();
-            //     for(int k = 0 ; k < vector.size() ; k++){
-            //         System.out.println(vector.get(k).row + " " + vector.get(k).col + " " +  vector.get(k).dir);
-            //     }
-            //     System.out.println();
-            // }
-            
-            System.out.println(vector.size());
+            System.out.println(M);
+
         }
     }
 }
