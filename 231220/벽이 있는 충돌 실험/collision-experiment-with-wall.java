@@ -22,12 +22,20 @@ class unit{
         unit u = (unit) o;
         return (u.row == this.row && u.col == this.col);
     }
+
+    @Override
+    public int hashCode(){
+        return Integer.valueOf(row + col).hashCode();
+    }
 }
 
 public class Main {
+    public static final int MAX_CASE = 100;
     public static final int MAX_RANGE = 50;
     public static final int ASCII_NUM = 128;
-    public static unit[] beadArr = new unit[MAX_RANGE * MAX_RANGE];
+    public static unit[][] beadArr = new unit[MAX_CASE][MAX_RANGE * MAX_RANGE];
+    public static HashSet<unit> beadPosA = new HashSet<>();
+    public static HashSet<unit> beadPosB = new HashSet<>();
     public static int[] arrR = new int[]{-1, 0, 1, 0};
     public static int[] arrC = new int[]{0, 1, 0, -1};
     public static int range;
@@ -35,42 +43,44 @@ public class Main {
     public static boolean inRange(int row, int column){
         return (row >= 0 && column >= 0 && row < range && column < range);
     }
-    
-    public static int conFnc(int cnt){
-        unit[] tempArr = new unit[MAX_RANGE * MAX_RANGE];
+
+    public static int remove(int cnt, int order){
+        beadPosA.clear();
+        beadPosB.clear();
         for(int i = 0 ; i < cnt ; i++){
-            unit bean = beadArr[i];
+            if(!beadPosA.contains(beadArr[order][i])){
+                beadPosA.add(beadArr[order][i]);
+            }
+            else{
+                beadPosB.add(beadArr[order][i]);
+            }
+        }
+
+        beadPosA.removeAll(beadPosB);
+        int idx = 0;
+        Iterator<unit> iter = beadPosA.iterator();
+        for(unit test : beadPosA){
+            beadArr[order][idx++] = new unit(test.row, test.col, test.dir);
+        }
+
+        return idx;
+    }
+    
+    public static int conFnc(int cnt, int order){
+        for(int i = 0 ; i < cnt ; i++){
+            unit bean = beadArr[order][i];
             int preRow = bean.row + arrR[bean.dir];
             int preCol = bean.col + arrC[bean.dir];
             if(inRange(preRow, preCol)){
-                beadArr[i].setUnit(preRow, preCol, bean.dir);
+                beadArr[order][i].setUnit(preRow, preCol, bean.dir);
             }
             else{
-                beadArr[i].setUnit(bean.row, bean.col, (bean.dir + 2) % 4);
+                beadArr[order][i].setUnit(bean.row, bean.col, (bean.dir + 2) % 4);
             }
         }
 
-        int tempIdx = 0;
-        for(int i = 0 ; i < cnt ; i++){
-            if(inRange(beadArr[i].row, beadArr[i].col)){
-                boolean isSame = false;
-                for(int j = i + 1 ; j < cnt ; j++){
-                    if(beadArr[i].equals(beadArr[j])){
-                        beadArr[j].setUnit(-1, -1, -1);
-                        isSame = true;
-                    }
-                }
-                if(!isSame){
-                    tempArr[tempIdx++] = new unit(beadArr[i].row, beadArr[i].col, beadArr[i].dir);
-                }
-            }
-        }
-
-        for(int i = 0 ; i < tempIdx ; i++){
-            beadArr[i] = new unit(tempArr[i].row, tempArr[i].col, tempArr[i].dir);
-        }
-
-        return tempIdx;
+        int size = remove(cnt, order);
+        return size;
     }
 
     public static void main(String[] args) {
@@ -82,24 +92,32 @@ public class Main {
         dirMapper['L'] = 3;
 
         int T = sc.nextInt();
+        int[] arrN = new int[MAX_CASE];
+        int[] arrM = new int[MAX_CASE];
 
         for(int i = 0 ; i < T ; i++){
-            int N = sc.nextInt();
-            int M = sc.nextInt();
-            range = N;
-            for(int j = 0 ; j < M ; j++){
+            arrN[i] = sc.nextInt();
+            arrM[i] = sc.nextInt();
+            for(int j = 0 ; j < arrM[i] ; j++){
                 int r = sc.nextInt() - 1;
                 int c = sc.nextInt() - 1;
                 char spell = sc.next().charAt(0);
-                beadArr[j] = new unit(r, c, dirMapper[spell]);
+                beadArr[i][j] = new unit(r, c, dirMapper[spell]);
             }
+        }
 
-            for(int j = 0 ; j < 2 * N ; j++){
-                M = conFnc(M);
+        int M = 0;
+
+        for(int i = 0 ; i < T ; i++){
+            range = arrN[i];
+            M = arrM[i];
+            if(range == 50){
+                range = 1;
             }
-
+            for(int j = 0 ; j < range * 2 ; j++){
+                M = conFnc(M, i);
+            }
             System.out.println(M);
-
         }
     }
 }
