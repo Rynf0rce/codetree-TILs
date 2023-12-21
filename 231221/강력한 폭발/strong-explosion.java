@@ -32,14 +32,11 @@ public class Main {
         int cnt = 0;
         for(int i = 0 ; i < n ; i++){
             for(int j = 0 ; j < n ; j++){
-                // System.out.print(list.get(list.size() -1)[i][j] + " ");
                 if(list.get(list.size() -1)[i][j]){
                     cnt++;
                 }
             }
-            //System.out.println();
         }
-        //System.out.println();
         return cnt;
     }
 
@@ -137,14 +134,3 @@ public class Main {
         System.out.println(conFnc(0,0));
     }
 }
-
-// for(int i = 0 ; i < list.size() ; i++){
-//             System.out.println("size : " + list.size() + " i : " + i );
-//             for(int j = 0 ; j < n ; j++){
-//                 for(int k = 0 ; k < n ; k++){
-//                     System.out.print(list.get(i)[j][k] + " ");
-//                 }
-//                 System.out.println();
-//             }
-//             System.out.println();
-//         }
