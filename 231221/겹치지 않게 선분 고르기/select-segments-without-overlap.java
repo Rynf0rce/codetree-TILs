@@ -35,7 +35,7 @@ public class Main {
                     x2 = vector.get(i).x2;
                 }
                 else{
-                    if(x2 > vector.get(i).x1){
+                    if(x2 >= vector.get(i).x1){
                         return -1;
                     }
                 }
