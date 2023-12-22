@@ -5,14 +5,14 @@ public class Main {
     public static final int MAX_LINE = 15;
     public static int[] peopleArr = new int[MAX_PEOPLE];
     public static int[] answer = new int[MAX_PEOPLE];
-    public static int[][] area = new int[MAX_PEOPLE][MAX_LINE];
+    public static int[][] area = new int[MAX_LINE][MAX_PEOPLE];
     public static ArrayList<Integer> vector = new ArrayList<>();
     public static int n;
     public static int m;
     public static int minVal = Integer.MAX_VALUE;
 
     public static void printArea(){
-        for(int i = 0 ; i < m ; i++){
+        for(int i = 0 ; i < MAX_LINE ; i++){
             for(int j = 0 ; j < n ; j++){
                 System.out.print(area[i][j] + " ");
             }
@@ -34,7 +34,7 @@ public class Main {
     }
 
     public static void areaReset(){
-        for(int i = 0; i < m ; i++){
+        for(int i = 0; i < MAX_LINE ; i++){
             for(int j = 0 ; j < n ; j++){
                 area[i][j] = 0;
             }
@@ -42,10 +42,13 @@ public class Main {
     }
 
     public static boolean inRange(int row, int col){
-        return (row >= 0 && col >= 0 && row < m && col < n);
+        return (row >= 0 && col >= 0 && row < MAX_LINE && col < n);
     }
 
     public static int go(int row, int col){
+        //System.out.println(row + " " + col);
+        //printArea();
+        //System.out.println();
         if(area[row][col] > 0){
             if(inRange(row, col - 1) && area[row][col - 1] == area[row][col]){
                 return col - 1;
@@ -54,14 +57,13 @@ public class Main {
                 return col + 1;
             }
         }
-        
         return col;
     }
  
     public static void play(){
         for(int i = 0 ; i < n ; i++){
             int peopleIdx = peopleArr[i];
-            for(int j = 0 ; j < m ; j++){
+            for(int j = 0 ; j < MAX_LINE ; j++){
                 peopleIdx = go(j, peopleIdx);
             }
             peopleArr[i] = peopleIdx;
@@ -74,7 +76,7 @@ public class Main {
         for(int i = 0 ; i < vector.size() ; i++){
             int num = vector.get(i);
             int row = num / n;
-            int col = num % m;
+            int col = num % n;
             if((inRange(row, col) && area[row][col] == 0) && ( (inRange(row, col + 1) && area[row][col] == 0) )){
                 area[row][col] = cnt;
                 area[row][col+1] = cnt++;
@@ -89,7 +91,6 @@ public class Main {
     public static boolean matchAnswer(){
         peopleArrReset();
         play();
-        // printPeople();
         for(int i = 0 ; i < n ; i++){
             if(answer[i] != peopleArr[i]){
                 return false;
@@ -99,8 +100,7 @@ public class Main {
     }
 
     public static void conFnc(int num, int cross){
-        // System.out.println("chack num : " + num + " " + cross);
-        if(num > cross * n || cross >= m){
+        if(num > cross * n || cross > m){
             return;
         }
 
@@ -138,9 +138,7 @@ public class Main {
             answer[i] = peopleArr[i];
         }
 
-        // printPeople();
-
-        for(int i = 0 ; i < m ; i++){
+        for(int i = 0 ; i <= m ; i++){
             conFnc(0, i);
         }
 
