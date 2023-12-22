@@ -5,6 +5,7 @@ public class Main {
     public static final int MAX_ROW_RANGE = 5;
     public static int[][] room = new int[MAX_RANGE][MAX_RANGE];
     public static ArrayList<Integer> posList = new ArrayList<>();
+    public static ArrayList<Integer> inBag = new ArrayList<>();
     public static int N; // 변 길이.
     public static int M; // 훔칠 수 있는 길이.
     public static int C; // 무게량.
@@ -26,22 +27,37 @@ public class Main {
 
     public static int calculationValue(int r1, int c1, int r2, int c2){
         int value = 0;
-        int robberA = 0;
+
+        inBag.clear();
         for(int i = c1 ; i < c1 + M ; i++){
-            if(robberA + room[r1][i] > C){
+            inBag.add(room[r1][i]);
+        }
+        
+        Collections.sort(inBag);
+
+        int robberA = 0;
+        for(int i = inBag.size() - 1 ; i >= 0 ; i--){
+            if(robberA + inBag.get(i) > C){
                 continue;
             }
-            robberA += room[r1][i];
-            value += (int)Math.pow(room[r1][i], 2);
+            robberA += inBag.get(i);
+            value += (int)Math.pow(inBag.get(i), 2);
         }
 
-        int robberB = 0;
+        inBag.clear();
         for(int i = c2 ; i < c2 + M ; i++){
-            if(robberB + room[r2][i]> C){
+            inBag.add(room[r2][i]);
+        }
+        
+        Collections.sort(inBag);
+
+        int robberB = 0;
+        for(int i = inBag.size() - 1 ; i >= 0 ; i--){
+            if(robberB + inBag.get(i) > C){
                 continue;
             }
-            robberB += room[r2][i];
-            value += (int)Math.pow(room[r2][i], 2);
+            robberB += inBag.get(i);
+            value += (int)Math.pow(inBag.get(i), 2);
         }
 
         return value;
