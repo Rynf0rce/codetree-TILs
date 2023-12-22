@@ -1,24 +1,29 @@
 import java.util.*;
 
+class bridge implements Comparable<bridge>{
+    int a;
+    int b;
+    public bridge(int a, int b){
+        this.a = a;
+        this.b = b;
+    }
+
+    @Override
+    public int compareTo(bridge input){
+        return this.b - input.b;
+    }
+}
+
 public class Main {
     public static final int MAX_PEOPLE = 11;
     public static final int MAX_LINE = 15;
     public static int[] peopleArr = new int[MAX_PEOPLE];
     public static int[] answer = new int[MAX_PEOPLE];
-    public static int[][] area = new int[MAX_LINE][MAX_PEOPLE];
-    public static ArrayList<Integer> vector = new ArrayList<>();
+    public static ArrayList<bridge> bridgeList = new ArrayList<>();
+    public static ArrayList<bridge> tempList = new ArrayList<>();
     public static int n;
     public static int m;
-    public static int minVal = Integer.MAX_VALUE;
 
-    public static void printArea(){
-        for(int i = 0 ; i < MAX_LINE ; i++){
-            for(int j = 0 ; j < n ; j++){
-                System.out.print(area[i][j] + " ");
-            }
-            System.out.println();
-        }
-    }
 
     public static void printPeople(){
         for(int i = 0 ; i < n ; i++){
@@ -33,59 +38,18 @@ public class Main {
         }
     }
 
-    public static void areaReset(){
-        for(int i = 0; i < MAX_LINE ; i++){
-            for(int j = 0 ; j < n ; j++){
-                area[i][j] = 0;
-            }
-        }
+    public static void swap(int idxA, int idxB){
+        int temp = peopleArr[idxA];
+        peopleArr[idxA] = peopleArr[idxB];
+        peopleArr[idxB] = temp;
     }
 
-    public static boolean inRange(int row, int col){
-        return (row >= 0 && col >= 0 && row < MAX_LINE && col < n);
-    }
-
-    public static int go(int row, int col){
-        //System.out.println(row + " " + col);
-        //printArea();
-        //System.out.println();
-        if(area[row][col] > 0){
-            if(inRange(row, col - 1) && area[row][col - 1] == area[row][col]){
-                return col - 1;
-            }
-            else if(inRange(row, col + 1)){
-                return col + 1;
-            }
-        }
-        return col;
-    }
- 
     public static void play(){
-        for(int i = 0 ; i < n ; i++){
-            int peopleIdx = peopleArr[i];
-            for(int j = 0 ; j < MAX_LINE ; j++){
-                peopleIdx = go(j, peopleIdx);
-            }
-            peopleArr[i] = peopleIdx;
+        peopleArrReset();
+        for(int i = 0 ; i < tempList.size() ; i++){
+            bridge branch = tempList.get(i);
+            swap(branch.a, branch.a + 1);
         }
-    }
-
-    public static boolean isPossible(){
-        areaReset();
-        int cnt = 1;
-        for(int i = 0 ; i < vector.size() ; i++){
-            int num = vector.get(i);
-            int row = num / n;
-            int col = num % n;
-            if((inRange(row, col) && area[row][col] == 0) && ( (inRange(row, col + 1) && area[row][col] == 0) )){
-                area[row][col] = cnt;
-                area[row][col+1] = cnt++;
-            }
-            else{
-                return false;
-            }
-        }
-        return true;
     }
 
     public static boolean matchAnswer(){
@@ -99,25 +63,22 @@ public class Main {
         return true;        
     }
 
-    public static void conFnc(int num, int cross){
-        if(num > cross * n || cross > m){
+    public static void conFnc(int num, int range){
+        // System.out.println(num);
+        if(num > range){
             return;
         }
 
-        if(vector.size() >= cross){
-            if(isPossible() && matchAnswer()){
-                minVal = Math.min(minVal, cross);
-                System.out.println(minVal);
-                System.exit(0);
-            }
-            return;
+        if(tempList.size() >= range && matchAnswer()){
+            System.out.print(num);
+            System.exit(0);
         }
 
-        vector.add(num);
-        conFnc(num + 2, cross);
-        vector.remove(vector.size() - 1);
-
-        conFnc(num + 1, cross);
+        for(int i = num ; i < bridgeList.size() ; i++){
+            tempList.add(bridgeList.get(i));
+            conFnc(num + 1, range);
+            tempList.remove(tempList.size() - 1);
+        }
     }
 
     public static void main(String[] args) {
@@ -125,24 +86,28 @@ public class Main {
         n = sc.nextInt();
         m = sc.nextInt();
         int cnt = 1;
-        peopleArrReset();
+        
         for(int i = 0 ; i < m ; i++){
-            int c = sc.nextInt() - 1;
-            int r = sc.nextInt() - 1;
-            area[r][c] = cnt;
-            area[r][c+1] = cnt++;
+            int a = sc.nextInt() - 1;
+            int b = sc.nextInt() - 1;
+            bridgeList.add(new bridge(a, b));
         }
+        
+        Collections.sort(bridgeList);
+        tempList = new ArrayList<>(bridgeList);
 
         play();
         for(int i = 0 ; i < n ; i++){
             answer[i] = peopleArr[i];
         }
+        
+        // printPeople();
 
-        for(int i = 0 ; i <= m ; i++){
+        tempList.clear();
+
+        for(int i = 0 ; i <= bridgeList.size() ; i++){
             conFnc(0, i);
+            tempList.clear();
         }
-
-        // conFnc(0, 1);
-        // System.out.println(minVal);       
     }
 }
