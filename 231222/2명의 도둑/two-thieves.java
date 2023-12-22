@@ -17,7 +17,7 @@ public class Main {
 
     public static boolean possible(int r1, int c1, int r2, int c2){
         if(inRange(r1, c1) && inRange(r1, c1 + M - 1) && inRange(r2, c2) && inRange(r2, c2 + M - 1)){
-            if((r1 == r2) && (c1 + M - 1 > c2 || c2 + M - 1 > c1)){
+            if((r1 == r2) && (c1 + M - 1 >= c2)){
                 return false;
             }
             return true;
@@ -26,6 +26,7 @@ public class Main {
     }
 
     public static int calculationValue(int r1, int c1, int r2, int c2){
+        // System.out.println(r1 + " " + c1 + " " + r2 + " " + c2);
         int value = 0;
 
         inBag.clear();
@@ -47,6 +48,7 @@ public class Main {
         inBag.clear();
         for(int i = c2 ; i < c2 + M ; i++){
             inBag.add(room[r2][i]);
+            // System.out.println("cur i : " + i + " room[r2][i] : " + room[r2][i]);
         }
         
         Collections.sort(inBag);
@@ -59,6 +61,10 @@ public class Main {
             robberB += inBag.get(i);
             value += (int)Math.pow(inBag.get(i), 2);
         }
+
+        // System.out.println("size : " + inBag.size());
+
+        // System.out.println(robberA + " " + robberB);
 
         return value;
     }
