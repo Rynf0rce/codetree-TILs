@@ -45,12 +45,13 @@ public class Main {
     }
 
     public static void setValue(int num){
-        if(num > 4){
+        
+        if(valueVector.size() >= spell.size()){
+            maxVal = Math.max(maxVal, calculation());
             return;
         }
 
-        if(valueVector.size() >= spell.size()){
-            maxVal = Math.max(maxVal, calculation());
+        if(num > 4){
             return;
         }
 
