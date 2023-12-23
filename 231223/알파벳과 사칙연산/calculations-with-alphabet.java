@@ -51,7 +51,7 @@ public class Main {
             return;
         }
 
-        if(num > 4){
+        if(num > spell.size()){
             return;
         }
 
@@ -71,6 +71,7 @@ public class Main {
             }
         }
         Collections.sort(spell);
+
 
         setValue(1);
 
