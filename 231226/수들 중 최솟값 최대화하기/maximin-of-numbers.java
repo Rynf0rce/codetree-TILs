@@ -8,7 +8,7 @@ public class Main {
     public static int n;
 
     public static void maxOfMin(int row, int value){
-        if(row >= 3){
+        if(row >= n){
             maxVal = Math.max(maxVal, value);
             return;
         }
@@ -36,7 +36,5 @@ public class Main {
         maxOfMin(0, Integer.MAX_VALUE);
 
         System.out.println(maxVal);
-
-
     }
 }
