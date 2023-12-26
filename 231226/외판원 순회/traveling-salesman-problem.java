@@ -12,7 +12,9 @@ public class Main {
 
     public static void TSP(int curIdx, int distance){
         if(vector.size() >= n){
-            minVal = Math.min(minVal, distance + table[curIdx][0]);
+            if(table[curIdx][0] != 0){
+                minVal = Math.min(minVal, distance + table[curIdx][0]);
+            }
             return;
         }
 
