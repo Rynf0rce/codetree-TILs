@@ -37,7 +37,7 @@ public class Main {
     }
 }
 
-/* 처음
+/* 처음 - ^ 이게 XOR 연산자인걸 모르고 문제를 풀었음.
 
 import java.util.*;
 
