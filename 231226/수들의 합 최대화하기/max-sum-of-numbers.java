@@ -14,30 +14,26 @@ public class Main {
         for(int i = 0 ; i < vector.size() ; i++){
             output += vector.get(i);
         }
-        
+
         return output;
     }
     
-    public static void findValue(){
+    public static void findValue(int row){
         if(vector.size() >= n){
             maxVal = Math.max(maxVal, calculate());
             return;
         }
 
         for(int i = 0 ; i < n ; i++){
-            for(int j = 0 ; j < n ; j++){
-                if(arrRow[i] || arrCol[j]){
-                    continue;
-                }
-
-                arrRow[i] = true;
-                arrCol[j] = true;
-                vector.add(table[i][j]);
-                findValue();
-                vector.remove(vector.size() - 1);
-                arrRow[i] = false;
-                arrCol[j] = false;
+            if(arrCol[i]){
+                continue;
             }
+
+            arrCol[i] = true;
+            vector.add(table[row][i]);
+            findValue(row + 1);
+            vector.remove(vector.size() - 1);
+            arrCol[i] = false;
         }
     }
 
@@ -50,7 +46,7 @@ public class Main {
             }
         }
 
-        findValue();
+        findValue(0);
 
         System.out.print(maxVal);
     }
