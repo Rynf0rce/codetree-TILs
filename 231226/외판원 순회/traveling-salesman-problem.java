@@ -17,7 +17,7 @@ public class Main {
         }
 
         for(int i = 1 ; i < n ; i++){
-            if(visited[i]){
+            if(visited[i] || table[curIdx][i] == 0){
                 continue;
             }
 
