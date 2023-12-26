@@ -60,10 +60,6 @@ public class Main {
 
         Collections.sort(input);
 
-        // for(int i = 0 ; i < input.size() ; i++){
-        //     System.out.println(input.get(i).row + " " + input.get(i).col + " " + input.get(i).idx);
-        // }
-
         getCoin(0, 0, 0);
 
         System.out.print(minVal == Integer.MAX_VALUE ? -1 : minVal);
