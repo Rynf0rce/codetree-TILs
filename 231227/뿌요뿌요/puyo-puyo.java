@@ -56,27 +56,30 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
+        int maxInput = 0;
         for(int i = 0 ; i < n ; i++){
             for(int j = 0 ; j < n ; j++){
                 table[i][j] = sc.nextInt();
+                maxInput = Math.max(table[i][j], maxInput);
             }
         }
 
         int bombcnt = 0;
 
-        for(int i = 1 ; i < INPUT_RANGE ; i++){
-            bombNum = 0;
+        for(int i = 1 ; i <= maxInput ; i++){
             clearVisited();
             for(int j = 0 ; j < n ; j++){
                 for(int k = 0 ; k < n ; k++){
+                    bombNum = 0;
+
                     puyopuyo(j,k,i);
+
+                    if(bombNum >= MIN_NUM_OF_BOMB){
+                        bombcnt++;
+                    }
+                    maxBombNum = Math.max(maxBombNum, bombNum);
                 }
             }
-
-            if(bombNum >= MIN_NUM_OF_BOMB){
-                bombcnt++;
-            }
-            maxBombNum = Math.max(maxBombNum, bombNum);
         }
 
         System.out.print(bombcnt + " " + maxBombNum);
