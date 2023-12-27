@@ -5,32 +5,41 @@ public class Main {
     public static final int GO_METHOD = 4;
     public static int[][] table = new int[MAX_RANGE][MAX_RANGE];
     public static boolean[][] visited = new boolean[MAX_RANGE][MAX_RANGE];
-    public static int[] cntArr = new int[MAX_RANGE * MAX_RANGE];
+    public static ArrayList<Integer> vector = new ArrayList<>();
     public static int[] arrR = new int[]{-1, 0, 1, 0};
     public static int[] arrC = new int[]{0, 1, 0, -1};
     public static int n;
+    public static int peopleNums = 0;
 
     public static boolean inRange(int row, int col){
         return (row >= 0 && col >= 0 && row < n && col < n);
     }
 
-    public static boolean seperate(int row, int col, int idx){
-        if(!inRange(row, col) || visited[row][col]){
+    public static boolean canGo(int row, int col){
+        if(!inRange(row, col)){
             return false;
         }
 
+        if(table[row][col] == 0 || visited[row][col]){
+            return false;
+        }
+
+        return true;
+    }
+
+    public static void seperate(int row, int col){
+        if(!canGo(row, col)){
+            return;
+        }
+
         visited[row][col] = true;
-        cntArr[idx]++;
+        peopleNums++;
         
         for(int i = 0 ; i < GO_METHOD ; i++){
             int postRow = row + arrR[i];
             int postCol = col + arrC[i];
-            if(inRange(postRow, postCol) && !visited[postRow][postCol]){
-                seperate(postRow, postCol, idx);
-            }
+            seperate(postRow, postCol);
         }
-
-        return true;
     }
 
     public static void main(String[] args) {
@@ -40,28 +49,25 @@ public class Main {
         for(int i = 0 ; i < n ; i++){
             for(int j = 0 ; j < n ; j++){
                 table[i][j] = sc.nextInt();
-                if(table[i][j] == 0){
-                    visited[i][j] = true;
-                }
             }
         }
 
         for(int i = 0 ; i < n ; i++){
             for(int j = 0 ; j < n ; j++){
-                if(seperate(i, j, cnt)){
-                    cnt++;
+                peopleNums = 0;
+                seperate(i,j);
+                if(peopleNums != 0){
+                    vector.add(peopleNums);
                 }
             }
         }
 
-        System.out.println(cnt);
+        Collections.sort(vector);
 
-        Arrays.sort(cntArr, 0, cnt);
+        System.out.println(vector.size());
 
-        for(int i = 0 ; i < cnt ; i++){
-            System.out.println(cntArr[i]);
-        }
-
-        
+        for(int i = 0 ; i < vector.size() ; i++){
+            System.out.println(vector.get(i));
+        } 
     }
 }
