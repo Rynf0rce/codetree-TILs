@@ -24,14 +24,6 @@ public class Main {
 
     public static int N;
     public static int M;
-
-    public static void clearVisited(){
-        for(int i = 0 ; i < N ; i++){
-            for(int j = 0 ; j < M ; j++){
-                visited[i][j] = false;
-            }
-        }
-    }
     
     public static boolean inRange(int row, int col){
         return (row >= 0 && col >= 0 && row < N && col < M);
@@ -67,7 +59,6 @@ public class Main {
     }
 
     public static void BFS(){
-        clearVisited();
         glacier.clear();
         while(!water.isEmpty()){
             point curPoint = water.poll();
@@ -100,7 +91,7 @@ public class Main {
         int time = 0;
 
         while(true){
-            push(0, 0, water);
+            push(time, time, water);
             BFS();
             if(glacier.isEmpty()){
                 break;
@@ -112,6 +103,7 @@ public class Main {
             while(!glacier.isEmpty()){
                 point delPoint = glacier.poll();
                 table[delPoint.row][delPoint.col] = 0;
+                visited[delPoint.row][delPoint.col] = false;
             }
         }
 
