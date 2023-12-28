@@ -89,9 +89,11 @@ public class Main {
         
         int numOfMelt = 0;
         int time = 0;
+        int startRow = 0;
+        int startCol = 0;
 
         while(true){
-            push(time, time, water);
+            push(startRow, startCol, water);
             BFS();
             if(glacier.isEmpty()){
                 break;
@@ -99,6 +101,9 @@ public class Main {
 
             time++;
             numOfMelt = glacier.size();
+
+            startRow = glacier.peek().row;
+            startCol = glacier.peek().col;
 
             while(!glacier.isEmpty()){
                 point delPoint = glacier.poll();
