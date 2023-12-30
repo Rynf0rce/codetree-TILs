@@ -29,12 +29,16 @@ public class Main {
         }
         return num;
     }
+    
+    public static boolean inRange(int row, int col){
+        return (row >= 0 && col >= 0 && row < EDGE && col < EDGE);
+    }
 
     public static boolean canGo(int num){
         int row = (num - 1) / EDGE;
         int col = (num - 1) % EDGE;
 
-        if(num < 1 || num > input * 3 || visited[row][col] > 0){
+        if(num < 1 || num > input * 3 || !inRange(row, col) || visited[row][col] > 0){
             return false;
         }
 
