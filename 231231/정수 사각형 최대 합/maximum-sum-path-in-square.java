@@ -3,8 +3,6 @@ import java.util.*;
 public class Main {
     public static final int MAX_RANGE = 100;
     public static int[][] table = new int[MAX_RANGE][MAX_RANGE];
-    public static int[] arrRow = new int[]{0, 1};
-    public static int[] arrCol = new int[]{1, 0};
     public static int[][] DP = new int[MAX_RANGE][MAX_RANGE];
     public static int N;
 
