@@ -47,7 +47,7 @@ public class Main {
             point curPoint = q.poll();
             for(int i = curPoint.row + 1; i < n ; i++){
                 for(int j = curPoint.col + 1 ; j < m ; j++){
-                    if(table[curPoint.row][curPoint.col] >= table[i][j]){
+                    if(table[curPoint.row][curPoint.col] >= table[i][j] || DP[i][j] >= DP[curPoint.row][curPoint.col] + 1){
                         continue;
                     }
 
