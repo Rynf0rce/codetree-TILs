@@ -35,7 +35,7 @@ public class Main {
                 else{
                     DP[i][j] = DP[i - 1][j];
 
-                    for(int k = arr[i] ; k <= MAX_INPUT ; k++){
+                    for(int k = arr[i] + 1 ; k <= MAX_INPUT ; k++){
                         if(DP[i - 1][k] != INT_MIN){
                             DP[i][j] = Math.max(DP[i][j], DP[i - 1][k] + 1);
                         }
