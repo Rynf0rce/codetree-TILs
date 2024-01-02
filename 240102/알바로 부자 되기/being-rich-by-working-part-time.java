@@ -11,11 +11,11 @@ class shift implements Comparable<shift>{
 
     @Override
     public int compareTo(shift s){
-        if(this.end == s.end){
-            return this.start - s.start;
+        if(this.start == s.start){
+            return this.end - s.end;
         }
         else{
-            return this.end - s.end;
+            return this.start - s.start;
         }
     }
 }
@@ -50,7 +50,7 @@ public class Main {
         for(int i = 1 ; i <= n ; i++){
             int curPay = DP[i];
             for(int j = 0 ; j < i ; j++){
-                if(notFold(arr[j], arr[i])){
+                if(notFold(arr[i], arr[j])){
                     DP[i] = Math.max(DP[i], DP[j] + curPay);
                 }
             }
