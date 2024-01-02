@@ -34,7 +34,7 @@ public class Main {
                 }
 
                 if((arr[i] > arr[j]) && upDown[j] == false){
-                    DP[i] = 2;
+                    DP[i] = Math.max(DP[i], 2);
                     upDown[i] = true;
                     continue;
                 }
