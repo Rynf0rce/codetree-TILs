@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int maxVal = 1;
+        int maxVal = Integer.MIN_VALUE;
 
         for(int i = 0 ; i < n ; i++){
             arr[i] = sc.nextInt();
@@ -33,6 +33,11 @@ public class Main {
                     DP[i] = Math.max(DP[i], DP[j] + 1);
                 }
             }
+
+            if(DP[i] == Integer.MIN_VALUE){
+                DP[i] = 1;
+            }
+            
             maxVal = Math.max(maxVal, DP[i]);
         }
 
