@@ -4,7 +4,7 @@ public class Main {
     public static final int MAX_RANGE = 1000;
     public static final int MAX_INPUT = 10000;
     public static final int INT_MIN = Integer.MIN_VALUE;
-    public static int[] arr = new int[MAX_RANGE];
+    public static int[] arr = new int[MAX_RANGE + 1];
     public static int[][] DP = new int[MAX_RANGE + 1][MAX_INPUT + 1];
 
     public static void initialize(){
