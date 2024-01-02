@@ -25,15 +25,14 @@ public class Main {
         initalize();
 
         for(int i = 1 ; i < n ; i++){
-            boolean triger = true;
             for(int j = 0 ; j < i ; j++){
+                if(DP[j] == INVALID){
+                    continue;
+                }
+
                 if(i <= arr[j] + j){
                     DP[i] = Math.max(DP[i], DP[j] + 1);
-                    triger = false;
                 }
-            }
-            if(triger){
-                break;
             }
         }
 
