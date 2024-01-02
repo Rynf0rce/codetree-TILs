@@ -29,7 +29,13 @@ public class Main {
 
         for(int i = 1 ; i <= n ; i++){
             for(int j = 0 ; j < i ; j++){
-                if(arr[j] == INVAILED || arr[i] == arr[j] || ( (arr[i] > arr[j]) && upDown[j] == false) ){
+                if(arr[j] == INVAILED || arr[i] == arr[j] ){
+                    continue;
+                }
+
+                if((arr[i] > arr[j]) && upDown[j] == false){
+                    DP[i] = 2;
+                    upDown[i] = true;
                     continue;
                 }
 
