@@ -5,7 +5,7 @@ public class Main {
     public static final int MAX_INPUT = 10000;
     public static final int INVALUED = MAX_INPUT + 1;
     public static int[] arr = new int[MAX_RANGE + 1];
-    public static int[] DP = new int[MAX_RANGE + 1];
+    public static int[] DP = new int[MAX_INPUT + 1];
     public static int n, m;
 
     public static void initialize(){
