@@ -9,6 +9,7 @@ public class Main {
     public static int N, M;
 
     public static void initialize(){
+        changeArr[0] = 0;
         for(int i = 1 ; i <= M ; i++){
             changeArr[i] = INVALUED;
         }
@@ -26,7 +27,7 @@ public class Main {
 
         for(int i = 1 ; i <= M ; i++){
             for(int j = 0 ; j < N ; j++){
-                if(i < coinArr[j] || changeArr[j] == INVALUED){
+                if(i < coinArr[j] || changeArr[i - coinArr[j]] == INVALUED){
                     continue;
                 }
                 changeArr[i] = Math.min(changeArr[i], changeArr[i - coinArr[j]] + 1);
