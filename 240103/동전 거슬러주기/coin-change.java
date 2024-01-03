@@ -36,7 +36,7 @@ public class Main {
         }
         // System.out.println();
 
-        System.out.println(changeArr[M]);
+        System.out.println(changeArr[M] == INVALUED ? -1 : changeArr[M]);
 
     }
 }
