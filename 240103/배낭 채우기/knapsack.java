@@ -31,7 +31,7 @@ public class Main {
         for(int i = 1; i <= N ; i++){
             for(int j = 1 ; j <= M ; j++){
                 if(j >= weightArr[i] && DP[i - 1][j - weightArr[i]] != INVALUED){
-                    DP[i][j] = Math.max(DP[i][j], DP[i - 1][j - weightArr[i]] + valueArr[i]);
+                    DP[i][j] = Math.max(DP[i - 1][j], DP[i - 1][j - weightArr[i]] + valueArr[i]);
                 }
                 else{
                     DP[i][j] = DP[i - 1][j];
