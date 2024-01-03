@@ -67,12 +67,12 @@ public class Main {
             maxVal = Math.max(maxVal, DP[N][i]);
         }
 
-        for(int i = 0 ; i <= N ; i++){
-            for(int j = 0 ; j <= M ; j++){
-                System.out.print(DP[i][j] + " ");
-            }
-            System.out.println();
-        }
+        // for(int i = 0 ; i <= N ; i++){
+        //     for(int j = 0 ; j <= M ; j++){
+        //         System.out.print(DP[i][j] + " ");
+        //     }
+        //     System.out.println();
+        // }
 
         System.out.print(maxVal);
     }
