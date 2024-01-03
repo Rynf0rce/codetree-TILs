@@ -44,7 +44,7 @@ public class Main {
         //     System.out.println();
         // }
 
-        int maxVal = INVALUED;
+        int maxVal = 0;
         for(int i = 1 ; i <= M ; i++){
             maxVal = Math.max(maxVal, DP[N][i]);
         }
