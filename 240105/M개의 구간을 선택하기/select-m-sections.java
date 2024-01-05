@@ -6,6 +6,7 @@ public class Main {
     public static final int MIN_INT = -1000;
     public static final int INVALUED = MAX_INPUT * MIN_INT - 1;
     public static int[][] DP = new int[MAX_INPUT + 1][MAX_SECTION + 1];
+    public static boolean[][] visited = new boolean[MAX_INPUT + 1][MAX_SECTION + 1];
     public static int[] arr = new int[MAX_INPUT + 1];
     public static int[] sumArr = new int[MAX_INPUT + 1];
     public static int N, M;
@@ -19,12 +20,13 @@ public class Main {
             return INVALUED;
         }
 
-        if(DP[idx][section] != INVALUED){
+        if(visited[idx][section]){
             return DP[idx][section];
         }
 
+        visited[idx][section] = true;
         DP[idx][section] = topDown(idx - 1, section);
-                
+             
         for(int i = idx ; i > 0 ; i--){
             DP[idx][section] = Math.max(DP[idx][section], topDown(i - 2, section - 1) + sumArr[idx] - sumArr[i - 1]);
         }
