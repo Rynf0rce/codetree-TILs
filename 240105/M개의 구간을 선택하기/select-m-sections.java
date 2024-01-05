@@ -11,70 +11,29 @@ public class Main {
     public static void greedy(){
         int sum = 0;
         int temp = 0;
-        int lineMax = 0;
+        int lineMax = Integer.MIN_VALUE;
 
         for(int i = 0 ; i < N ; i++){
             if(selectedList.get(i)){
+                lineMax = Math.max(lineMax, temp); // 이거.
                 sum += lineMax;
-                lineMax = 0;
+                lineMax = Integer.MIN_VALUE;
+                temp = 0;
                 continue;
             }
-            
-            if(arr[i] < 0){
+
+            temp += arr[i];
+
+            if(arr[i] < 0 || i == N - 1){
                 lineMax = Math.max(lineMax, temp);
-                temp = 0;
-            }
-            else{
-                temp += arr[i];
+                temp = Math.max(temp, arr[i]);
             }
         }
 
-        if(temp > 0){
-            sum += temp;
-        }
+        sum += lineMax;
 
         maxVal = Math.max(maxVal, sum);
-
-        if(sum == 23){
-            for(int i = 0 ; i < selectedList.size() ; i++){
-                System.out.print(selectedList.get(i) + " ");
-            } 
-        }
     }
-
-    // public static int greedy(int start, int end){
-    //     int output = 0;
-    //     int temp = 0;
-    //     for(int i = start ; i < end ; i++){
-    //         if(arr[i] < 0){
-    //             output = Math.max(output, temp);
-    //             temp = 0;
-    //         }
-    //         else{
-    //             temp += arr[i];
-    //         }
-    //     }
-
-    //     return output;
-    // }
-
-    // public static void findMax(){
-    //     int start = 0;
-    //     int end = 0;
-    //     int output = 0;
-
-    //     for(int i = 0 ; i < selectedList.size() ; i++){
-    //         System.out.print(selectedList.get(i)+ " ");
-    //         if(!selectedList.get(i)){
-    //             end++;
-    //         }
-    //         else{
-    //             maxVal = Math.max(maxVal, greedy(start, end));
-    //             start = end + 1;
-    //             end = start;
-    //         }
-    //     }
-    // }
 
     public static void backtracking(int num, int stick, boolean triger){
         if(stick >= M){
@@ -107,11 +66,11 @@ public class Main {
         M = sc.nextInt();
 
         for(int i = 0 ; i < N ; i++){
-            arr[i] = sc.nextInt() + 1000;
+            arr[i] = sc.nextInt();
         }
 
         backtracking(0, 0, false);
 
-        System.out.print(maxVal - 1000 * (N - M + 1));
+        System.out.print(maxVal);
     }
 }
