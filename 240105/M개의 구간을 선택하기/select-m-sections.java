@@ -5,7 +5,7 @@ public class Main {
     public static final int MIN_INT = -1000;
     public static final int INVALUED = MAX_INPUT * (MIN_INT + 1);
     public static int[][] DP = new int[MAX_INPUT][(MAX_INPUT + 1) / 2];
-    public static int[] arr = new int[MAX_INPUT];
+    public static int[] arr = new int[MAX_INPUT + 1];
     public static int[] sumArr = new int[MAX_INPUT];
     public static int N, M;
 
