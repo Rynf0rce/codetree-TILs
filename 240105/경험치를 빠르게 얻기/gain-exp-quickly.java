@@ -5,16 +5,16 @@ public class Main {
     public static final int MAX_TIME = 100;
     public static final int INVALUED = -1;
 
-    public static int[][] DP = new int[MAX_INPUT + 1][MAX_TIME + 1];
+    public static int[][] DP = new int[MAX_INPUT + 1][MAX_INPUT * MAX_TIME + 1];
 
     public static int[] expArr = new int[MAX_INPUT + 1];
-    public static int[] timeArr = new int[MAX_INPUT + 1];
+    public static int[] timeArr = new int[MAX_INPUT+ 1];
 
-    public static int n, m, totalExp; // 입력 수, 목표 경험치.
+    public static int n, m, totalTime; // 입력 수, 목표 경험치.
 
     public static void initialize(){
         for(int i = 0 ; i <= n ; i++){
-            for(int j = 0 ; j <= totalExp ; j++){
+            for(int j = 0 ; j <= totalTime ; j++){
                 DP[i][j] = INVALUED;
             }
         }
@@ -30,13 +30,13 @@ public class Main {
         for(int i = 1 ; i <= n ; i++){
             expArr[i] = sc.nextInt();
             timeArr[i] = sc.nextInt();
-            totalExp += expArr[i];
+            totalTime += timeArr[i];
         }
 
         initialize();
 
         for(int i = 1 ; i <= n ; i++){
-            for(int j = totalExp ; j >= 0 ; j--){
+            for(int j = totalTime ; j >= 0 ; j--){
                 if(DP[i - 1][j] != INVALUED){
                     DP[i][j] = DP[i - 1][j];
                 }
@@ -56,7 +56,7 @@ public class Main {
 
         int output = INVALUED;
 
-        for(int i = 0 ; i <= totalExp ; i++){
+        for(int i = 0 ; i <= totalTime ; i++){
             if(DP[n][i] != INVALUED && DP[n][i] >= m){
                 output = i;
                 break;
