@@ -2,62 +2,41 @@ import java.util.*;
 
 public class Main {
     public static final int MAX_INPUT = 500;
+    public static final int MIN_INT = -1000;
+    public static final int INVALUED = MAX_INPUT * (MIN_INT + 1);
+    public static int[][] DP = new int[MAX_INPUT][(MAX_INPUT + 1) / 2];
     public static int[] arr = new int[MAX_INPUT];
-    public static ArrayList<Boolean> selectedList = new ArrayList<>();
-    
-    public static int maxVal = Integer.MIN_VALUE;
+    public static int[] sumArr = new int[MAX_INPUT];
     public static int N, M;
 
-    public static void greedy(){
-        int sum = 0;
-        int temp = 0;
-        int lineMax = Integer.MIN_VALUE;
-
-        for(int i = 0 ; i < N ; i++){
-            if(selectedList.get(i)){
-                lineMax = Math.max(lineMax, temp); // 이거.
-                sum += lineMax;
-                lineMax = Integer.MIN_VALUE;
-                temp = 0;
-                continue;
-            }
-
-            temp += arr[i];
-
-            if(arr[i] < 0 || i == N - 1){
-                lineMax = Math.max(lineMax, temp);
-                temp = Math.max(temp, arr[i]);
-            }
+    public static int topDown(int idx, int section){
+        if(section == 0){
+            return 0;
         }
 
-        sum += lineMax;
+        if(idx < 0){
+            return INVALUED;
+        }
 
-        maxVal = Math.max(maxVal, sum);
+        if(DP[idx][section] != INVALUED){
+            return DP[idx][section];
+        }
+
+        DP[idx][section] = topDown(idx - 1, section);
+                
+        for(int i = idx ; i > 0 ; i--){
+            DP[idx][section] = Math.max(DP[idx][section], topDown(i - 2, section - 1) + sumArr[idx] - sumArr[i - 1]);
+        }
+
+        return DP[idx][section];
     }
 
-    public static void backtracking(int num, int stick, boolean triger){
-        if(stick >= M){
-            return;
-        }
-
-        if(num >= N){
-            if(selectedList.size() == N && stick == M - 1){
-                greedy();
-                // findMax();
+    public static void initialize(){
+        for(int i = 0 ; i <= N ; i++){
+            for(int j = 0 ; j <= M ; j++){
+                DP[i][j] = INVALUED;
             }
-            return;
         }
-
-        if(triger && num != N - 1){
-            selectedList.add(true);
-            backtracking(num + 1, stick + 1, false);
-            selectedList.remove(selectedList.size() - 1);
-        }
-
-        selectedList.add(false);
-        backtracking(num + 1, stick, true);
-        selectedList.remove(selectedList.size() - 1);
-
     }
 
     public static void main(String[] args) {
@@ -65,12 +44,16 @@ public class Main {
         N = sc.nextInt();
         M = sc.nextInt();
 
-        for(int i = 0 ; i < N ; i++){
+        for(int i = 1 ; i <= N ; i++){
             arr[i] = sc.nextInt();
         }
 
-        backtracking(0, 0, false);
+        initialize();
 
-        System.out.print(maxVal);
+        for(int i = 1 ; i <= N ; i++){
+            sumArr[i] = sumArr[i - 1] + arr[i];
+        }
+
+        System.out.println(topDown(N, M));
     }
 }
