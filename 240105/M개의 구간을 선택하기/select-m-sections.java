@@ -4,7 +4,7 @@ public class Main {
     public static final int MAX_INPUT = 500;
     public static final int MAX_SECTION = (MAX_INPUT + 1) / 2;
     public static final int MIN_INT = -1000;
-    public static final int INVALUED = Integer.MIN_VALUE - MAX_INPUT * (MIN_INT + 1);
+    public static final int INVALUED = Integer.MIN_VALUE;
     public static int[][] DP = new int[MAX_INPUT + 1][MAX_SECTION + 1];
     public static int[] arr = new int[MAX_INPUT + 1];
     public static int[] sumArr = new int[MAX_INPUT + 1];
