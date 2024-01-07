@@ -20,6 +20,22 @@ public class Main {
         visited[0][0] = true;
     }
 
+    public static void setZero(){
+        int curVal = arr[0];
+        int cnt = 1;
+        for(int i = 1 ; i <= N ; i++){
+            if(curVal == arr[i]){
+                cnt++;
+            }
+            else{
+                cnt = 1;
+                curVal = arr[i];
+            }
+            DP[i][0] = Math.max(DP[i - 1][0], cnt);
+            visited[i][0] = true;
+        }
+    }
+
     public static int findSimilar(int idx, int condition){
         // System.out.println(idx + " " + condition + " " + arr[idx]);
 
@@ -37,6 +53,10 @@ public class Main {
 
         visited[idx][condition] = true;
         DP[idx][condition] = Math.max(DP[idx][condition], DP[idx - 1][condition]);
+        if(condition > 0){
+            DP[idx][condition] = Math.max(DP[idx][condition], DP[idx - 1][condition - 1]);
+        }
+        
 
         for(int i = idx ; i > 0 ; i--){
             if(arr[idx] == arr[i - 1]){
@@ -62,16 +82,18 @@ public class Main {
 
         initilize();
 
-        // System.out.println(findSimilar(N, M));
+        setZero();
 
-        int maxVal = INVALUED;
+        System.out.println(findSimilar(N, M));
 
-        for(int i = N ; i >= 0 ; i--){
-            initilize();
-            maxVal = Math.max(maxVal, findSimilar(i, M));
-        }
+        // int maxVal = INVALUED;
 
-        System.out.println(maxVal);
+        // for(int i = N ; i >= 0 ; i--){
+        //     // initilize();
+        //     maxVal = Math.max(maxVal, findSimilar(i, M));
+        // }
+
+        // System.out.println(maxVal);
 
 
         // for(int i = 1 ; i <= N ; i++){
