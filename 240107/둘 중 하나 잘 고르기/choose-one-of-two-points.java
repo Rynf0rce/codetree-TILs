@@ -22,7 +22,7 @@ public class Main {
     }
 
     public static int findMax(int idx, int red){
-        if(red < 0){
+        if(red < 0 || (idx == 0 && red > 0)){
             return INVALUED;
         }
 
@@ -36,7 +36,9 @@ public class Main {
 
         visited[idx][red] = true;
 
-        DP[idx][red] = Math.max(findMax(idx - 1, red - 1) + redArr[idx], findMax(idx - 1, red) + blueArr[idx]);
+        DP[idx][red] = findMax(idx - 1, red) + blueArr[idx];
+
+        DP[idx][red] = Math.max(DP[idx][red], findMax(idx - 1, red - 1) + redArr[idx]);
 
         return DP[idx][red];
     }
@@ -51,10 +53,13 @@ public class Main {
 
         initilize();
 
-        System.out.print(findMax(2 * N, N));
+        System.out.println(findMax(2 * N, N));
 
         // for(int i = 0 ; i <= 2 * N ; i++){
-        //     System.out.println(DP[i] + " ");
+        //     for(int j = 0 ; j <= N ; j++){
+        //         System.out.print(DP[i][j] + " ");
+        //     }
+        //     System.out.println();
         // }
     }
 }
