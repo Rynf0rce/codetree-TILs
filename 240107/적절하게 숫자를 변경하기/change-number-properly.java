@@ -16,8 +16,8 @@ public class Main {
                 visited[i][j] = false;
             }
         }
-        // DP[0][0] = 0;
-        // visited[0][0] = true;
+        DP[0][0] = 0;
+        visited[0][0] = true;
     }
 
     public static int findSimilar(int idx, int condition){
@@ -62,12 +62,24 @@ public class Main {
 
         initilize();
 
+        // System.out.println(findSimilar(N, M));
+
         int maxVal = INVALUED;
 
         for(int i = N ; i >= 0 ; i--){
+            initilize();
             maxVal = Math.max(maxVal, findSimilar(i, M));
         }
 
         System.out.println(maxVal);
+
+
+        // for(int i = 1 ; i <= N ; i++){
+        //     for(int j = 0 ; j <= M ; j++){
+        //         System.out.print(DP[i][j] + " ");
+        //     }
+        //     System.out.println();
+        // }
+        // System.out.println();
     }
 }
