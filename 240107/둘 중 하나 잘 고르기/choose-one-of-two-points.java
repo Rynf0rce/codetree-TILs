@@ -36,9 +36,7 @@ public class Main {
 
         visited[idx][red] = true;
 
-        DP[idx][red] = findMax(idx - 1, red) + blueArr[idx];
-
-        DP[idx][red] = Math.max(DP[idx][red], findMax(idx - 1, red - 1) + redArr[idx]);
+        DP[idx][red] = Math.max(findMax(idx - 1, red) + blueArr[idx], findMax(idx - 1, red - 1) + redArr[idx]);
 
         return DP[idx][red];
     }
@@ -46,6 +44,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         N = sc.nextInt();
+
         for(int i = 1 ; i <= 2 * N ; i++){
             redArr[i] = sc.nextInt();
             blueArr[i] = sc.nextInt();
@@ -54,12 +53,5 @@ public class Main {
         initilize();
 
         System.out.println(findMax(2 * N, N));
-
-        // for(int i = 0 ; i <= 2 * N ; i++){
-        //     for(int j = 0 ; j <= N ; j++){
-        //         System.out.print(DP[i][j] + " ");
-        //     }
-        //     System.out.println();
-        // }
     }
 }
