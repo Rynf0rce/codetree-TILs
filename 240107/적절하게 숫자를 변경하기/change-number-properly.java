@@ -60,12 +60,11 @@ public class Main {
             arr[i] = sc.nextInt();
         }
 
-        // initilize();
+        initilize();
 
         int maxVal = INVALUED;
 
-        for(int i = N ; i > 0 ; i--){
-            initilize();
+        for(int i = N ; i >= 0 ; i--){
             maxVal = Math.max(maxVal, findSimilar(i, M));
         }
 
