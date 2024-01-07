@@ -61,6 +61,12 @@ public class Main {
 
         initilize();
 
-        System.out.println(findSimilar(N, M));
+        int maxVal = INVALUED;
+
+        for(int i = N ; i > 0 ; i--){
+            maxVal = Math.max(maxVal, findSimilar(i, M));
+        }
+
+        System.out.println(maxVal);
     }
 }
