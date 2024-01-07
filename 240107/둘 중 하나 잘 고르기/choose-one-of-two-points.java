@@ -1,37 +1,28 @@
 import java.util.*;
 
-class card{
-    int red;
-    int blue;
-
-    public card(int red, int blue){
-        this.red = red;
-        this.blue = blue;
-    }
-}
-
 public class Main {
     public static final int MAX_SELECT = 100;
+    public static final int MAX_CARD = 2 * MAX_SELECT;
     public static final int INVALUED = Integer.MIN_VALUE;
 
-    public static card[] cardArr = new card[MAX_SELECT + 1];
+    public static int[] redArr = new int[MAX_CARD + 1];
+    public static int[] blueArr = new int[MAX_CARD + 1];
 
-    public static int[] DP = new int[MAX_SELECT + 1];
-    public static boolean[] visited = new boolean[MAX_SELECT + 1];
+    public static int[][] DP = new int[MAX_CARD + 1][MAX_SELECT + 1];
+    public static boolean[][] visited = new boolean[MAX_CARD + 1][MAX_SELECT + 1];
 
     public static int N;
 
     public static void initilize(){
-        for(int i = 0 ; i <= N ; i++){
+        for(int i = 0 ; i <= 2 * N ; i++){
             for(int j = 0 ; j <= N ; j++){
-                DP[i]= INVALUED;
+                DP[i][j] = INVALUED;
             }
         }
-        DP[0] = 0;
     }
 
-    public static int findMax(int idx, int red, int blue){
-        if(red < 0 || blue < 0){
+    public static int findMax(int idx, int red){
+        if(red < 0){
             return INVALUED;
         }
 
@@ -39,31 +30,28 @@ public class Main {
             return 0;
         }
 
-        // if(visited[idx]){
-        //     return DP[idx];
-        // }
+        if(visited[idx][red]){
+            return DP[idx][red];
+        }
 
-        // visited[idx] = true;
+        visited[idx][red] = true;
 
-        DP[idx] = Math.max(findMax(idx - 1, red - 1, blue) + cardArr[idx].red, findMax(idx - 1, red, blue - 1) + cardArr[idx].blue);
+        DP[idx][red] = Math.max(findMax(idx - 1, red - 1) + redArr[idx], findMax(idx - 1, red) + blueArr[idx]);
 
-        return DP[idx];
+        return DP[idx][red];
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         N = sc.nextInt();
         for(int i = 1 ; i <= 2 * N ; i++){
-            int red = sc.nextInt();
-            int blue = sc.nextInt();
-            cardArr[i] = new card(red, blue);
+            redArr[i] = sc.nextInt();
+            blueArr[i] = sc.nextInt();
         }
 
         initilize();
 
-        // int output = findMax(2 * N , N, N);
-
-        System.out.print(findMax(2 * N, N, N));
+        System.out.print(findMax(2 * N, N));
 
         // for(int i = 0 ; i <= 2 * N ; i++){
         //     System.out.println(DP[i] + " ");
