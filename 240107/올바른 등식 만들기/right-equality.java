@@ -39,7 +39,7 @@ public class Main {
                 }
 
 
-                if(!(j - arr[i] < 0)){
+                if(!(j - arr[i] < 0) && !(j - arr[i] > MAX_INT - MIN_INT)){
                     if(DP[i][j - arr[i]] == INVALUED){
                         DP[i][j - arr[i]] = DP[i - 1][j];
                     }
@@ -48,7 +48,7 @@ public class Main {
                     }
                 }
 
-                if(!(j + arr[i] > MAX_INT - MIN_INT)){
+                if(!(j + arr[i] > MAX_INT - MIN_INT) && !(j + arr[i] < 0)){
                     if(DP[i][j + arr[i]] == INVALUED){
                         DP[i][j + arr[i]] = DP[i - 1][j];
                     }
