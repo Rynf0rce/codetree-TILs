@@ -13,6 +13,7 @@ public class Main {
         for(int i = 0 ; i <= N ; i++){
             for(int j = 0 ; j <= M ; j++){
                 DP[i][j] = INVALUED;
+                visited[i][j] = false;
             }
         }
         // DP[0][0] = 0;
@@ -59,11 +60,12 @@ public class Main {
             arr[i] = sc.nextInt();
         }
 
-        initilize();
+        // initilize();
 
         int maxVal = INVALUED;
 
         for(int i = N ; i > 0 ; i--){
+            initilize();
             maxVal = Math.max(maxVal, findSimilar(i, M));
         }
 
