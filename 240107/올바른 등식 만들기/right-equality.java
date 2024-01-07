@@ -14,43 +14,17 @@ public class Main {
 
     public static void initilize(){
         for(int i = 0 ; i <= N ; i++){
-            for(int j = 0 ; j <= MAX_INT - MAX_INT ; j++){
+            for(int j = 0 ; j <= MAX_INT - MIN_INT ; j++){
                 DP[i][j] = INVALUED;
             }
         }
-        DP[0][0] = 0;
-    }
-
-    public static int findOutcome(int idx, int sum){
-        // System.out.println(sum);
-        if(sum < MIN_INT || sum > MAX_INT){
-            return 0;
-        }
-
-        if(idx == 0){
-            if(sum == M){
-                return 1;
-            }
-            else{
-                return 0;
-            }
-        }
-
-        // if(visited[idx][sum]){
-        //     return DP[idx][sum];
-        // }
-
-        // visited[idx][sum] = true;
-
-        // DP[idx][sum - MIN_INT]++;
-
-        return findOutcome(idx - 1, sum - arr[idx]) + findOutcome(idx - 1, sum + arr[idx]);
+        DP[0][20] = 1;
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         N = sc.nextInt();
-        M = sc.nextInt();
+        M = sc.nextInt() + MAX_INT;
 
         for(int i = 1 ; i <= N ; i++){
             arr[i] = sc.nextInt();
@@ -58,6 +32,35 @@ public class Main {
 
         initilize();
 
-        System.out.println(findOutcome(N, 0));
+        for(int i = 1 ; i <= N ; i++){
+            for(int j = 0 ; j <= MAX_INT - MIN_INT ; j++){
+                if(DP[i - 1][j] == INVALUED){
+                    continue;
+                }
+
+
+                if(j - arr[i] > 0){
+                    if(DP[i][j - arr[i]] == INVALUED){
+                        DP[i][j - arr[i]] = DP[i - 1][j];
+                    }
+                    else{
+                        DP[i][j - arr[i]] += DP[i - 1][j];
+                    }
+                }
+
+                if(j + arr[i] < MAX_INT - MIN_INT){
+                    if(DP[i][j + arr[i]] == INVALUED){
+                        DP[i][j + arr[i]] = DP[i - 1][j];
+                    }
+                    else{
+                        DP[i][j + arr[i]] += DP[i - 1][j];
+                    }
+                }
+
+            }
+        }
+
+        System.out.print(DP[N][M]);
     }
+
 }
