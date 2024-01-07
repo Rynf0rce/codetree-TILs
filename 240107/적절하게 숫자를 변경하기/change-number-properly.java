@@ -21,16 +21,15 @@ public class Main {
     }
 
     public static void setZero(){
-        int curVal = arr[0];
-        int cnt = 1;
         for(int i = 1 ; i <= N ; i++){
-            if(curVal == arr[i]){
-                cnt++;
+            int curVal = arr[i];
+            int cnt = 1;
+            for(int j = 0 ; j < i ; j++){
+                if(curVal == arr[j]){
+                    cnt++;
+                }
             }
-            else{
-                cnt = 1;
-                curVal = arr[i];
-            }
+
             DP[i][0] = Math.max(DP[i - 1][0], cnt);
             visited[i][0] = true;
         }
