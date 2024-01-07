@@ -7,7 +7,7 @@ public class Main {
     public static final int INVALUED = MAX_INPUT * MIN_INT - 1;
     
     public static int[] arr = new int[MAX_INPUT + 1];
-    public static int[][] DP = new int[MAX_INPUT + 1][MAX_INT - MIN_INT + 1];
+    public static long[][] DP = new long[MAX_INPUT + 1][MAX_INT - MIN_INT + 1];
     public static boolean[][] visited = new boolean[MAX_INPUT + 1][MAX_INT - MIN_INT + 1];
     
     public static int N, M;
