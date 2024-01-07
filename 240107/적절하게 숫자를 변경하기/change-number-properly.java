@@ -15,8 +15,8 @@ public class Main {
                 DP[i][j] = INVALUED;
             }
         }
-        DP[0][0] = 0;
-        visited[0][0] = true;
+        // DP[0][0] = 0;
+        // visited[0][0] = true;
     }
 
     public static int findSimilar(int idx, int condition){
