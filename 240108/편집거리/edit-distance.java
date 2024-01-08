@@ -40,7 +40,7 @@ public class Main {
                     DP[i][j] = DP[i - 1][j - 1];
                 }
                 else{
-                    // add, remove, subtitution
+                    // subtitution, remove, add
                     DP[i][j] = Math.min(DP[i - 1][j - 1], Math.min(DP[i - 1][j], DP[i][j - 1])) + 1;
                 }
             }
