@@ -1,18 +1,19 @@
 import java.util.*;
 
 public class Main {
+    public static final int MAX_INPUT = 100000;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        HashMap<String, String> intMap = new HashMap<>();
-        HashMap<String, String> engMap = new HashMap<>();
+        String[] wordArr = new String[MAX_INPUT + 1];
+        HashMap<String, Integer> engMap = new HashMap<>();
 
         int n = sc.nextInt();
         int m = sc.nextInt();
 
-        for(int i = 0 ; i < n ; i++){
-            String str = sc.next();
-            engMap.put(str, Integer.toString(i + 1));
-            intMap.put(Integer.toString(i + 1), str);
+        for(int i = 1 ; i <= n ; i++){
+            wordArr[i] = sc.next();
+            engMap.put(wordArr[i], i);
         }
 
         for(int i = 0 ; i < m ; i++){
@@ -21,7 +22,7 @@ public class Main {
                 System.out.println(engMap.get(input));
             }
             else{
-                System.out.println(intMap.get(input));
+                System.out.println(wordArr[Integer.parseInt(input)]);
             }
         }
     }
