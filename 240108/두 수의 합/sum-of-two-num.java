@@ -3,13 +3,12 @@ import java.util.*;
 public class Main {
     public static int MAX_INPUT = 100000;
     public static int[] arr = new int[MAX_INPUT];
-    public static ArrayList<Integer> selectedValue= new ArrayList<>();
 
     public static int n, k;
     public static int cnt = 0;
 
-    public static void BFS(int idx, int sum){
-        if(selectedValue.size() == 2){
+    public static void BFS(int idx, int selected, int sum){
+        if(selected == 2){
             if(sum == k){
                 cnt++;
             }
@@ -17,9 +16,7 @@ public class Main {
         }
 
         for(int i = idx ; i < n ; i++){
-            selectedValue.add(arr[i]);
-            BFS(i + 1, sum + arr[i]);
-            selectedValue.remove(selectedValue.size() - 1);
+            BFS(i + 1, selected + 1, sum + arr[i]);
         }
     }
 
@@ -32,7 +29,7 @@ public class Main {
             arr[i] = sc.nextInt();
         }
 
-        BFS(0, 0);
+        BFS(0, 0, 0);
 
         System.out.print(cnt);
     }
