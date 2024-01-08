@@ -25,12 +25,15 @@ public class Main {
             if(map.get(arr[i]) == 0){
                 map.remove(arr[i]);
             }
-            
+
             int condition = k - arr[i];
             int cnt = 0;
             for(int j = i + 1; j < n ; j++){
                 if(map.containsKey(condition - arr[j])){
-                    cnt++;
+                    cnt += map.get(condition - arr[j]);
+                    if(condition - arr[j] == arr[j]){
+                        cnt--;
+                    }
                 }
             }
             output += cnt / 2;
