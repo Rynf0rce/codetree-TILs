@@ -19,24 +19,27 @@ public class Main {
 
         int maxCnt = Integer.MIN_VALUE;
 
-        ArrayList<Integer> keyList = new ArrayList<>(map.keySet());
-        Collections.sort(keyList, Comparator.reverseOrder());
+        List<HashMap.Entry<Integer, Integer>> entryList = new LinkedList<>(map.entrySet());
 
-        for(int i = 0 ; i < keyList.size() ; i++) {
-            int key = keyList.get(i);
-			Integer cnt = map.get(key);
-            if(maxCnt < cnt){
-                numList.clear();
-                numList.add(key);
-                maxCnt = cnt;
+        entryList.sort(new Comparator<Map.Entry<Integer, Integer>>(){
+            @Override
+            public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2){
+                if(o2.getValue() == o1.getValue()){
+                    return o2.getKey() - o1.getKey();
+                }
+                else{
+                    return o2.getValue() - o1.getValue();
+                }
             }
-            else if(maxCnt == cnt){
-                numList.add(key);
-            }
-		}
+        });
 
-        for(int i = 0 ; i < numList.size() ; i++){
-            System.out.print(numList.get(i) + " ");
+        for(int i = 0 ; i < k ; i++){
+            System.out.print(entryList.get(i).getKey() + " ");
+            // System.out.println("key : " + entryList.get(i).getKey() + ", value : " + entryList.get(i).getValue());
         }
+        
+        // for(Map.Entry<Integer, Integer> entry : entryList){
+        //     System.out.println("key : " + entry.getKey() + ", value : " + entry.getValue());
+        // }
     }
 }
