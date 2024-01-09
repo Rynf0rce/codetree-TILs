@@ -12,10 +12,10 @@ public class Main {
             map.put(x, minY);
         }
 
-        int output = 0;
+        long output = 0;
 
         for(Integer key : map.keySet()){
-            output += map.get(key);
+            output = output + map.get(key);
         }
 
         System.out.print(output);
