@@ -8,14 +8,8 @@ public class Main {
         for(int i = 0 ; i < n ; i++){
             int x = sc.nextInt();
             int y = sc.nextInt();
-            if(map.containsKey(x)){
-                if(map.get(x) > y){
-                    map.put(x, y);
-                }
-            }
-            else{
-                map.put(x, y);
-            }
+            int minY = Math.min(map.getOrDefault(x, Integer.MAX_VALUE), y);
+            map.put(x, minY);
         }
 
         int output = 0;
