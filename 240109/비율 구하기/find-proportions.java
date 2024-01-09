@@ -14,7 +14,7 @@ public class Main {
         Iterator<Map.Entry<String, Integer>> iter = m.entrySet().iterator();
         while(iter.hasNext()){
             Map.Entry<String, Integer> entry = iter.next();
-            System.out.printf("%s %.4f\n", entry.getKey(), (float)(entry.getValue() * 100 / n));
+            System.out.printf("%s %.4f\n", entry.getKey(), (float) (entry.getValue() * 100) / n);
         }
     }
 }
