@@ -23,9 +23,11 @@ public class Main {
             }
         }
 
+        int start = 0;
+
         while(true){
             ArrayList<Integer> curInvited = new ArrayList<>(invited);
-            for(int i = 0 ; i < curInvited.size() ; i++){
+            for(int i = start ; i < curInvited.size() ; i++){
                 for(int j = 0 ; j < G ; j++){
                     peopleSet[j].remove(curInvited.get(i));
 
@@ -36,13 +38,14 @@ public class Main {
                     }
                 }
             }
-            
+
+            start = curInvited.size();
+
             if(curInvited.size() == invited.size()){
                 break;
             }
         }
 
         System.out.println(invited.size());
-        
     }
 }
