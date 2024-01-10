@@ -12,8 +12,6 @@ public class Main {
         int N = sc.nextInt();
         int G = sc.nextInt();
 
-        invited.add(1);
-
         for(int i = 0 ; i < G ; i++){
             peopleSet[i] = new HashSet<Integer>();
             int fixedNum = sc.nextInt();
@@ -23,11 +21,12 @@ public class Main {
             }
         }
 
-        int start = 0;
+        invited.add(1);
+        int output = 0;
 
         while(true){
             ArrayList<Integer> curInvited = new ArrayList<>(invited);
-            for(int i = start ; i < curInvited.size() ; i++){
+            for(int i = 0 ; i < curInvited.size() ; i++){
                 for(int j = 0 ; j < G ; j++){
                     peopleSet[j].remove(curInvited.get(i));
 
@@ -39,13 +38,17 @@ public class Main {
                 }
             }
 
-            start = curInvited.size();
+            output += curInvited.size();
 
             if(curInvited.size() == invited.size()){
                 break;
             }
+
+            for(int i = 0 ; i < curInvited.size() ; i++){
+                invited.remove(curInvited.get(i));
+            }
         }
 
-        System.out.println(invited.size());
+        System.out.println(output);
     }
 }
