@@ -3,32 +3,29 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
-        TreeSet<Integer> s = new TreeSet<>();
         int n = sc.nextInt();
         int m = sc.nextInt();
 
+        TreeSet<Integer> s = new TreeSet<>();
+        for(int i = 1 ; i <= m ; i++){
+            s.add(i);
+        }
+
         for(int i = 0 ; i < n ; i++){
-            if(s.size() == m + 1){
-                break;
-            }
-
             int num = sc.nextInt();
-            boolean chack = true;
-            for(int j = num ; j > 0 ; j--){
-                if(!s.contains(j)){
-                    s.add(j);
-                    chack = false;
-                    break;
-                }
-            }
 
-            if(chack){
+            if(s.contains(num)){
+                s.remove(num);
+            }
+            else if(s.lower(num) != null){
+                s.remove(s.lower(num));
+            }
+            else{
                 break;
             }
         }
 
-        System.out.println(s.size());
+        System.out.println(m - s.size());
         
     }
 }
