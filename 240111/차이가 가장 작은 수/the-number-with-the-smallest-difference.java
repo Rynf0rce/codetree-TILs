@@ -18,6 +18,9 @@ public class Main {
         for(int i = 0 ; i < n - 1 ; i++){
             int end = start;
             for(int j = i + 1 ; j < n ; j++){
+                if(s.higher(end) == null){
+                    break;
+                }
                 end = s.higher(end);
                 int gap = end - start;
                 if(gap >= m){
@@ -25,8 +28,14 @@ public class Main {
                     break;
                 }
             }
+
+            if(s.higher(start) == null){
+                break;
+            }
+
             start = s.higher(start);
-            if(start == m){
+
+            if(output == m){
                 break;
             }
         }
