@@ -16,15 +16,11 @@ public class Main {
         int output = Integer.MAX_VALUE;
         int start = s.first();
         for(int i = 0 ; i < n - 1 ; i++){
-            int end = start;
-            for(int j = i + 1 ; j < n ; j++){
-                if(s.higher(end) == null){
-                    break;
-                }
-                end = s.higher(end);
-                int gap = end - start;
-                if(gap >= m){
-                    output = Math.min(output, gap);
+            int target = start + m;
+            if(s.ceiling(target) != null){
+                int gap = s.ceiling(target) - start;
+                output = Math.min(output, gap);
+                if(output == m){
                     break;
                 }
             }
@@ -34,10 +30,6 @@ public class Main {
             }
 
             start = s.higher(start);
-
-            if(output == m){
-                break;
-            }
         }
         System.out.println(output == Integer.MAX_VALUE ? -1 : output);
     }
