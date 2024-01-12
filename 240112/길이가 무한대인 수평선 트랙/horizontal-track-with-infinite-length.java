@@ -41,18 +41,20 @@ public class Main {
             for(info i : preSet){
                 info addInfo = new info(i.pos + i.speed, i.speed);
                 postSet.add(addInfo);
-                if(!postSet.last().isSame(addInfo)){
-                    postSet.remove(postSet.higher(addInfo));
+                while(!postSet.last().isSame(addInfo)){
+                    postSet.remove(postSet.last());
                 }
             }
 
             preSet = (TreeSet<info>)postSet.clone();
             postSet.clear();
+
+            // for(info i : preSet){
+            //     System.out.println(i.pos + " " + i.speed);
+            // }
+            // System.out.println();
         }
 
-        // for(info i : preSet){
-        //     System.out.println(i.pos + " " + i.speed);
-        // }
         System.out.println(preSet.size());
     }
 }
