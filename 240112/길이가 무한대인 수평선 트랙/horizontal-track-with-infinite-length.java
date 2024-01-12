@@ -1,10 +1,10 @@
 import java.util.*;
 
 class info implements Comparable<info>{
-    int pos;
-    int speed;
+    long pos;
+    long speed;
 
-    public info(int pos, int speed){
+    public info(long pos, long speed){
         this.pos = pos;
         this.speed = speed;
     }
@@ -16,9 +16,9 @@ class info implements Comparable<info>{
     @Override
     public int compareTo(info i){
         if(this.pos == i.pos){
-            return this.speed - i.speed;
+            return (int)(this.speed - i.speed);
         }
-        return this.pos - i.pos;
+        return (int)(this.pos - i.pos);
     }
 }
 
@@ -32,8 +32,8 @@ public class Main {
         int T = sc.nextInt();
 
         for(int i = 0 ; i < N ; i++){
-            int pos = sc.nextInt();
-            int speed = sc.nextInt();
+            long pos = sc.nextInt();
+            long speed = sc.nextInt();
             preSet.add(new info(pos, speed));
         }
 
@@ -48,13 +48,7 @@ public class Main {
 
             preSet = (TreeSet<info>)postSet.clone();
             postSet.clear();
-
-            // for(info i : preSet){
-            //     System.out.println(i.pos + " " + i.speed);
-            // }
-            // System.out.println();
         }
-
         System.out.println(preSet.size());
     }
 }
