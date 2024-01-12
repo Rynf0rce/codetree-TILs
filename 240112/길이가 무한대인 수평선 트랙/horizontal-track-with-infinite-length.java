@@ -42,13 +42,17 @@ public class Main {
                 info addInfo = new info(i.pos + i.speed, i.speed);
                 postSet.add(addInfo);
                 if(!postSet.last().isSame(addInfo)){
-                    postSet.remove(addInfo);
+                    postSet.remove(postSet.higher(addInfo));
                 }
             }
 
             preSet = (TreeSet<info>)postSet.clone();
             postSet.clear();
         }
+
+        // for(info i : preSet){
+        //     System.out.println(i.pos + " " + i.speed);
+        // }
         System.out.println(preSet.size());
     }
 }
