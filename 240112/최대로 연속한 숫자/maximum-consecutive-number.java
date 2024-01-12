@@ -28,7 +28,12 @@ class length implements Comparable<length>{
 
     @Override
     public int compareTo(length r){
-        return this.length - r.length;
+        if(this.length == r.length){
+            return this.start - r.start;
+        }
+        else{
+            return this.length - r.length;
+        }
     }
 }
 
