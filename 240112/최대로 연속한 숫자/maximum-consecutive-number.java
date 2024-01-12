@@ -3,26 +3,32 @@ import java.util.*;
 class range implements Comparable<range>{
     int start;
     int end;
-    int length;
 
     public range(int start, int end){
+        this.start = start;
+        this.end = end;
+    }
+
+    @Override
+    public int compareTo(range r){
+        return this.start - r.start;
+    }
+}
+
+class length implements Comparable<length>{
+    int start;
+    int end;
+    int length;
+
+    public length(int start, int end){
         this.start = start;
         this.end = end;
         this.length = end - start + 1;
     }
 
-    public boolean inRange(int point){
-        return point >= start && point <= end;
-    }
-
     @Override
-    public int compareTo(range r){
-        if(this.length == r.length){
-            return this.start - r.start;
-        }
-        else{
-            return this.length - r.length;
-        }
+    public int compareTo(length r){
+        return this.length - r.length;
     }
 }
 
@@ -30,30 +36,32 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        TreeSet<range> s = new TreeSet<>();
-        // TreeSet<Integer> inputSet = new TreeSet<>();
+        TreeSet<range> rangeSet = new TreeSet<>();
+        TreeSet<length> lengthSet = new TreeSet<>();
 
         int n = sc.nextInt();
         int m = sc.nextInt();
 
-        s.add(new range(0, n));
-
+        rangeSet.add(new range(0, n));
+        lengthSet.add(new length(0, n));
+        
         for(int i = 0 ; i < m ; i++){
             int num = sc.nextInt();
-            for(range r : s){
-                if(r.inRange(num)){
-                    if(r.start <= num - 1){
-                        s.add(new range(r.start, num - 1));
-                    }
+            if(rangeSet.floor(new range(num, 0)) != null){
+                range temp = rangeSet.floor(new range(num, 0));
+                rangeSet.remove(temp);
+                lengthSet.remove(new length(temp.start, temp.end));
+                if(num - 1 >= temp.start){
+                    rangeSet.add(new range(temp.start, num - 1));
+                    lengthSet.add(new length(temp.start, num - 1));
+                }
 
-                    if(r.end >= num + 1){
-                        s.add(new range(num + 1, r.end));
-                    }
-                    s.remove(r);
-                    break;
+                if(num + 1 <= temp.end){
+                    rangeSet.add(new range(num + 1, temp.end));
+                    lengthSet.add(new length(num + 1, temp.end));
                 }
             }
-            System.out.println(s.last().length);
-        }      
+            System.out.println(lengthSet.last().length);
+        }     
     }
 }
