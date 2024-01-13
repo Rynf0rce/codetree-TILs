@@ -10,25 +10,25 @@ public class Main {
 
         int N = sc.nextInt();
         float output = 0;
+        float average = 0;
+        float sum = 0;
 
         for(int i = 0 ; i < N ; i++){
             arr[i] = sc.nextInt();
         }
 
-        for(int i = 1 ; i <= N - 2 ; i++){
-            pq.clear();
-            float average = 0;
-            for(int j = i ; j < N ; j++){
-                average += arr[j];
-                pq.add(arr[j]);
-            }
-            average -= pq.poll();
-            average /= pq.size();
-            if(output < average){
+        pq.add(arr[N - 1]);
+        sum = arr[N - 1];
+
+        for(int i = N - 2 ; i >= 0 ; i--){
+            pq.add(arr[i]);
+            sum += arr[i];
+            average = (sum - pq.peek()) / (pq.size() - 1);
+            if(average > output){
                 output = average;
             }
         }
 
-        System.out.printf("%.2f", output);
+        System.out.printf("%.2f", output); 
     }
 }
