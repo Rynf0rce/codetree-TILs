@@ -3,10 +3,10 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        PriorityQueue<Long> pq = new PriorityQueue<>(Collections.reverseOrder());
         int n = sc.nextInt();
         for(int i = 0 ; i < n ; i++){
-            int num = sc.nextInt();
+            Long num = sc.nextLong();
             pq.add(num);
 
             if(pq.size() < 3){
@@ -17,8 +17,8 @@ public class Main {
                 pq.poll();
             }
 
-            int output = 1;
-            for(Integer minVal : pq){
+            long output = 1;
+            for(Long minVal : pq){
                 output *= minVal;
             }
             System.out.println(output);
