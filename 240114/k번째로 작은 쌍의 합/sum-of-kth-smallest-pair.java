@@ -47,5 +47,11 @@ public class Main {
                 calculated.add(val_A + val_B);
             }
         }
+
+        while(k-- > 1){
+            calculated.poll();
+        }
+
+        System.out.println(calculated.poll());
     }
 }
