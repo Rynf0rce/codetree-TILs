@@ -25,28 +25,27 @@ public class Main {
             pq_B.add(num);
         }
 
-        while(k > 0){
-            int minVal = 0;
-            if(pq_A.peek() <= pq_B.peek()){
-                minVal = pq_A.poll();
-                for(int val_B : pq_B){
-                    calculated.add(minVal + val_B);
+
+        int minVal = 0;
+        while(!pq_B.isEmpty()){
+            int val_B = pq_B.poll();
+            minVal = val_B * pq_A.peek();
+
+            while(calculated.peek() != null && calculated.peek() <= minVal){
+                if(k == 1){
+                    System.out.println(calculated.poll());
+                    System.exit(0);
+                    break;
                 }
-            }
-            else{
-                minVal = pq_B.poll();
-                for(int val_A : pq_A){
-                    calculated.add(minVal + val_A);
+                else{
+                    calculated.poll();
                 }
+                k--;
             }
 
-            if(k == 1){
-                System.out.println(calculated.poll());
+            for(int val_A : pq_A){
+                calculated.add(val_A + val_B);
             }
-            else{
-                calculated.poll();
-            } 
-            k--;
         }
     }
 }
