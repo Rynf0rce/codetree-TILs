@@ -65,27 +65,23 @@ public class Main {
         }
 
         int Q = sc.nextInt();
+        Node head = nodeMap.get(1);
         for(int i = 0 ; i < Q ; i++){
             int a = sc.nextInt();
             int b = sc.nextInt();
             int c = sc.nextInt();
             int d = sc.nextInt();
             popAndInterchange(nodeMap.get(a), nodeMap.get(b), nodeMap.get(c), nodeMap.get(d));
-        }
-
-        // 출력부
-        Node test = new Node(0);
-        for(int i = 1 ; i <= N ; i++){
-            if(nodeMap.get(i).left == null){
-                test = nodeMap.get(i);
-                break;
+            if(nodeMap.get(c).left == null){
+                head = nodeMap.get(c);
             }
         }
 
-        while(test.right != null){
-            System.out.print(test.idx + " ");
-            test = test.right;
+        // 출력부
+        while(head.right != null){
+            System.out.print(head.idx + " ");
+            head = head.right;
         }
-        System.out.print(test.idx);
+        System.out.print(head.idx);
     }
 }
