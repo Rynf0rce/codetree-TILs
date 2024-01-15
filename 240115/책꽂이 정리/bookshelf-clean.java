@@ -62,7 +62,7 @@ public class Main {
 
         int Q = sc.nextInt();
 
-        for(int i = 0 ; i < 5 ; i++){
+        for(int f = 0 ; f < Q ; f++){
             int order = sc.nextInt();
             int shelf_A = sc.nextInt();
             int shelf_B = sc.nextInt();
