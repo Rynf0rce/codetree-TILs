@@ -62,7 +62,8 @@ public class Main {
 
         int Q = sc.nextInt();
 
-        for(int f = 0 ; f < Q ; f++){
+        for(int f = 1 ; f <= Q ; f++){
+
             int order = sc.nextInt();
             int shelf_A = sc.nextInt();
             int shelf_B = sc.nextInt();
@@ -83,7 +84,7 @@ public class Main {
                         tailArr[shelf_A] = 0;
                     }
                     else if(shelfMap[shelf_A].size() == 1){
-                        tailArr[shelf_A] = topArr[shelf_A];
+                        topArr[shelf_A] = tailArr[shelf_A];
                     }
                     else{
                         topArr[shelf_A] = selectedNode.right.idx;
@@ -109,7 +110,7 @@ public class Main {
                         tailArr[shelf_A] = 0;
                     }
                     else if(shelfMap[shelf_A].size() == 1){
-                        tailArr[shelf_A] = topArr[shelf_A];
+                        tailArr[shelf_A] = topArr[shelf_A] ;
                     }
                     else {
                         tailArr[shelf_A] = selectedNode.left.idx;
@@ -133,7 +134,7 @@ public class Main {
                     selectedNode = shelfMap[shelf_A].get(tailArr[shelf_A]);
                     connect(selectedNode, shelfMap[shelf_B].get(topArr[shelf_B]));
                     selectedNode = shelfMap[shelf_A].get(topArr[shelf_A]);
-                    while(selectedNode != shelfMap[shelf_B].get(topArr[shelf_B])){
+                    while(selectedNode != null && selectedNode != shelfMap[shelf_B].get(topArr[shelf_B])){
                         shelfMap[shelf_B].put(selectedNode.idx, selectedNode);
                         selectedNode = selectedNode.right;
                     }
