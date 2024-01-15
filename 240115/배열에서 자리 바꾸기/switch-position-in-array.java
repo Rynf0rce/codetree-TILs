@@ -75,6 +75,9 @@ public class Main {
             if(nodeMap.get(c).left == null){
                 head = nodeMap.get(c);
             }
+            else if(nodeMap.get(a).left == null){
+                head= nodeMap.get(a);
+            }
         }
 
         // 출력부
