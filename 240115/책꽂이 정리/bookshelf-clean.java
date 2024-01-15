@@ -82,6 +82,9 @@ public class Main {
                         topArr[shelf_A] = 0;
                         tailArr[shelf_A] = 0;
                     }
+                    else if(shelfMap[shelf_A].size() == 1){
+                        tailArr[shelf_A] = topArr[shelf_A];
+                    }
                     else{
                         topArr[shelf_A] = selectedNode.right.idx;
                     }
@@ -105,7 +108,10 @@ public class Main {
                         topArr[shelf_A] = 0;
                         tailArr[shelf_A] = 0;
                     }
-                    else{
+                    else if(shelfMap[shelf_A].size() == 1){
+                        tailArr[shelf_A] = topArr[shelf_A];
+                    }
+                    else {
                         tailArr[shelf_A] = selectedNode.left.idx;
                     }
 
