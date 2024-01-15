@@ -24,14 +24,18 @@ public class Main {
     }
 
     public static void popAndInterchange(Node n1, Node n2, Node n3, Node n4){
-        boolean chack = false;
+        boolean adjustWith_n2_n3 = false;
+        boolean adjustWith_n4_n1 = false;
         Node n1Left = n1.left;
         Node n2Right = n2.right;
         Node n3Left = n3.left;
         Node n4Right = n4.right;
 
         if(n2.right == n3){
-            chack = true;
+            adjustWith_n2_n3 = true;
+        }
+        else if(n4.right == n1){
+            adjustWith_n4_n1 = true;
         }
 
         connect(n1.left, n2.right);
@@ -39,10 +43,15 @@ public class Main {
         connect(n3.left, n4.right);
         n3.left = n4.right = null;
 
-        if(chack){
+        if(adjustWith_n2_n3){
             connect(n1Left, n3);
             connect(n2, n4Right);
             connect(n4, n1);
+        }
+        else if(adjustWith_n4_n1){
+            connect(n3Left, n1);
+            connect(n4, n2Right);
+            connect(n2, n3);
         }
         else{
             connect(n4, n2Right);
@@ -76,7 +85,7 @@ public class Main {
                 head = nodeMap.get(c);
             }
             else if(nodeMap.get(a).left == null){
-                head= nodeMap.get(a);
+                head = nodeMap.get(a);
             }
         }
 
