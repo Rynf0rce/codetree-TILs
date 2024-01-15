@@ -94,7 +94,7 @@ public class Main {
         // }
 
         for(int i = 1 ; i <= N ; i++){
-            System.out.print(nodeMap.get(i).right == null ? 0 + " " : nodeMap.get(i).right);
+            System.out.print(nodeMap.get(i).right == null ? 0 + " " : nodeMap.get(i).right.num + " ");
         }
     }
 }
