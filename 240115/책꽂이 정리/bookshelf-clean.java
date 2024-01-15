@@ -133,11 +133,8 @@ public class Main {
                     }
                     selectedNode = shelfMap[shelf_A].get(tailArr[shelf_A]);
                     connect(selectedNode, shelfMap[shelf_B].get(topArr[shelf_B]));
-                    selectedNode = shelfMap[shelf_A].get(topArr[shelf_A]);
-                    while(selectedNode != null && selectedNode != shelfMap[shelf_B].get(topArr[shelf_B])){
-                        shelfMap[shelf_B].put(selectedNode.idx, selectedNode);
-                        selectedNode = selectedNode.right;
-                    }
+
+                    shelfMap[shelf_B].putAll(shelfMap[shelf_A]);
                     shelfMap[shelf_A].clear();
                     topArr[shelf_B] = topArr[shelf_A];
                     if(tailArr[shelf_B] == 0){
@@ -152,10 +149,8 @@ public class Main {
                     }
                     selectedNode = shelfMap[shelf_A].get(topArr[shelf_A]);
                     connect(shelfMap[shelf_B].get(tailArr[shelf_B]), selectedNode);
-                    while(selectedNode != null){
-                        shelfMap[shelf_B].put(selectedNode.idx, selectedNode);
-                        selectedNode = selectedNode.right;
-                    }
+                    
+                    shelfMap[shelf_B].putAll(shelfMap[shelf_A]);
                     shelfMap[shelf_A].clear();
                     tailArr[shelf_B] = tailArr[shelf_A];
                     if(topArr[shelf_B] == 0){
@@ -168,7 +163,6 @@ public class Main {
         }
 
         for(int i = 1 ; i <= K ; i++){
-            // System.out.print(shelfMap[i].size() + " " + topArr[i] + " " + tailArr[i] + " / ");
             System.out.print(shelfMap[i].size() + " " );
             Node curNode = shelfMap[i].get(topArr[i]);
             while(curNode != null){
@@ -177,19 +171,5 @@ public class Main {
             }
             System.out.println();
         }
-
-
-
-        // System.out.println(shelfMap[2].size());
-        // for(Integer i : shelfMap[2].keySet()){
-        //     System.out.println(shelfMap[2].get(i).idx);
-        // }
-
-        // Node curNode = shelfMap[1].get(topArr[1]);
-
-        // while(curNode != null){
-        //     System.out.println(curNode.idx);
-        //     curNode = curNode.right;
-        // }
     }
 }
