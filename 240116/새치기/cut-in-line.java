@@ -1,149 +1,143 @@
 import java.util.*;
 
 class Node{
-    Node right;
-    int idx;
-    int line;
     Node left;
+    int idx;
+    Node right;
 
-    public Node(int idx, int line){
-        this.right = null;
-        this.idx = idx;
-        this.line = line;
+    public Node(int idx){
         this.left = null;
+        this.idx = idx;
+        this.right = null;
     }
 }
 
+
 public class Main {
-    public static final int MAX_PEOPLE = 100000;
     public static final int MAX_LINE = 10;
+    public static final int EMPTY = -1;
+    public static HashMap<Integer, Node> nodeMap = new HashMap<>();
+    public static int[] topArr = new int[MAX_LINE + 1];
+    public static int M;
 
-    public static Node[] nodeArr = new Node[MAX_PEOPLE + 1];
-    public static ArrayList<Integer>[] peopleList = new ArrayList[MAX_LINE + 1];
-    public static int[] headArr = new int[MAX_LINE + 1];
-
-    public static void connect(Node n1, Node n2){
-        if(n1 != null){
-            n1.right = n2;
+    public static void connect(Node a, Node b){
+        if(a != null){
+            a.right = b;
         }
 
-        if(n2 != null){
-            n2.left = n1;
+        if(b != null){
+            b.left = a;
         }
     }
 
-    public static void pop(Node n1){
-        connect(n1.left, n1.right);
-
-        n1.left = n1.right = null;
+    public static void pop(Node a){
+        connect(a.left, a.right);
+        a.left = a.right = null;
     }
 
-    public static void task1(Node a, Node b){
-        pop(a);
-        connect(b.left, a);
-        connect(a, b);
-    }
-
-    public static void task2(Node a){
-        pop(a);
-    }
-
-    public static void task3(Node a, Node b, Node c){
-        connect(a.left, b.right);
-        a.left = b.right = null;
-        connect(c.left, a);
-        connect(b, c);
-
-        Node curNode = a;
-        while(curNode != null){
-            curNode.line = c.line;
-            curNode = curNode.right;
+    public static void chackTopIdx(int idx){
+        for(int i = 1 ; i <= M ; i++){
+            if(topArr[i] == idx){
+                if(nodeMap.get(idx).right != null){
+                    topArr[i] = nodeMap.get(idx).right.idx;
+                }
+                else{
+                    topArr[i] = -1;
+                }
+                return;
+            }
         }
     }
+
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
-        int M = sc.nextInt();
+        for(int i = 1 ; i <= N ; i++){
+            nodeMap.put(i, new Node(i));
+        }
+
+        M = sc.nextInt();
+
+        for(int i = 1 ; i <= MAX_LINE ; i++){
+            topArr[i] = EMPTY;
+        }
+        
         int Q = sc.nextInt();
 
         for(int i = 1 ; i <= M ; i++){
-            peopleList[i] = new ArrayList<Integer>();
-            int curLength = sc.nextInt();
-            for(int j = 0 ; j < curLength ; j++){
-                int idx = sc.nextInt();
-                peopleList[i].add(idx);
-                nodeArr[idx] = new Node(idx, i);
-                if(peopleList[i].size() > 1){
-                    connect(nodeArr[peopleList[i].get(j - 1)], nodeArr[peopleList[i].get(j)]);
+            int length = sc.nextInt();
+            int preVal = -1;
+            int postVal = -1;
+            for(int j = 0 ; j < length ; j++){
+                if(j == 0){
+                    preVal = sc.nextInt();
+                    topArr[i] = preVal;
+                    continue;
                 }
-                else{
-                    headArr[i] = idx;
+
+                if(preVal != -1){
+                    postVal = sc.nextInt();
+                    connect(nodeMap.get(preVal), nodeMap.get(postVal));
+                    preVal = postVal;
                 }
+                
             }
         }
 
         for(int i = 0 ; i < Q ; i++){
             int order = sc.nextInt();
-            int a = 0;
-            int b = 0;
-            int c = 0;
+            int a, b, c;
             switch(order){
                 case 1 :
                     a = sc.nextInt();
                     b = sc.nextInt();
-
-                    if(nodeArr[a].left == null && nodeArr[a].right == null){
-                        headArr[nodeArr[a].line] = -1;
+                    chackTopIdx(a);
+                    pop(nodeMap.get(a));
+                    for(int j = 1 ; j <= M ; j++){
+                        if(topArr[j] == b){
+                            topArr[j] = a;
+                            break;
+                        }
                     }
-
-                    task1(nodeArr[a], nodeArr[b]);
-
-                    if(nodeArr[a].left == null){
-                        headArr[nodeArr[b].line] = nodeArr[a].idx;
-                    }
-                    nodeArr[a].line = nodeArr[b].line;
+                    connect(nodeMap.get(b).left, nodeMap.get(a));
+                    connect(nodeMap.get(a), nodeMap.get(b));
+                
                     break;
                 case 2 :
                     a = sc.nextInt();
-                    if(nodeArr[a].left == null){
-                        if(nodeArr[a].right == null){
-                            headArr[nodeArr[a].line] = -1;
-                        }
-                        else{
-                            headArr[nodeArr[a].line] = nodeArr[a].right.idx;
-                        }
-                    }
-                    task2(nodeArr[a]);
-                    nodeArr[a].line = 0;
+                    chackTopIdx(a);
+                    pop(nodeMap.get(a));
                     break;
                 case 3 :
                     a = sc.nextInt();
                     b = sc.nextInt();
                     c = sc.nextInt();
-                    task3(nodeArr[a], nodeArr[b], nodeArr[c]);
-                    if(nodeArr[a].left == null){
-                        headArr[nodeArr[c].line] = nodeArr[a].idx;
+                    chackTopIdx(a);
+                    connect(nodeMap.get(c).left, nodeMap.get(a));
+                    connect(nodeMap.get(b), nodeMap.get(c));
+                    for(int j = 1 ; j <= M ; j++){
+                        if(topArr[j] == c){
+                            topArr[j] = a;
+                            break;
+                        }
                     }
                     break;
+            
             }
         }
 
-
-
         for(int i = 1 ; i <= M ; i++){
-            if(headArr[i] == -1){
+            if(topArr[i] == -1){
                 System.out.println(-1);
                 continue;
             }
-            Node curNode = nodeArr[headArr[i]];
+            Node curNode = nodeMap.get(topArr[i]);
             while(curNode != null){
                 System.out.print(curNode.idx + " ");
                 curNode = curNode.right;
             }
             System.out.println();
-        }
-
-        
+        }        
     }
 }
