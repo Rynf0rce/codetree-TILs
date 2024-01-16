@@ -114,6 +114,7 @@ public class Main {
                     b = sc.nextInt();
                     c = sc.nextInt();
                     chackTopIdx(a);
+                    connect(nodeMap.get(a).left, nodeMap.get(b).right);
                     connect(nodeMap.get(c).left, nodeMap.get(a));
                     connect(nodeMap.get(b), nodeMap.get(c));
                     for(int j = 1 ; j <= M ; j++){
