@@ -24,7 +24,7 @@ public class Main {
         for(int i = 0 ; i < m ; i++){
             for(int j = 0 ; j < n ; j++){
                 int num = arrB[i] + arrA[j];
-                if(pq.size() >= k && !pq.isEmpty() && num > pq.peek()){
+                if(pq.size() >= k && num > pq.peek()){
                     break;
                 }
                 pq.add(num);
