@@ -127,9 +127,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
-        for(int i = 1 ; i <= N ; i++){
-            nodeMap.put(i, new Node(i));
-        }
         M = sc.nextInt();
         Q = sc.nextInt();
         for(int i = 1 ; i <= M + Q * 2 ; i++){
@@ -141,6 +138,7 @@ public class Main {
             int pre = -1, post = -1, start = -1;
             for(int j = 0 ; j < size ; j++){
                 int num = sc.nextInt();
+                nodeMap.put(num, new Node(num));
                 lineSet[i].add(nodeMap.get(num));
                 if(j == 0){
                     start = num;
