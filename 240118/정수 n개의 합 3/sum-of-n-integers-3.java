@@ -20,10 +20,17 @@ public class Main {
             }
         }
 
+        // for(int i = 0 ; i <= n ; i++){
+        //     for(int j = 0 ; j <= n ; j++){
+        //         System.out.print(sumTable[i][j] + " ");
+        //     }
+        //     System.out.println();
+        // }
+
         int maxVal = 0;
         for(int i = k ; i <= n ; i++){
             for(int j = k ; j <= n ; j++){
-                maxVal = Math.max(maxVal, sumTable[i][j] + sumTable[i - k][j - k] - sumTable[i - 1][j] - sumTable[i][j - 1]);
+                maxVal = Math.max(maxVal, sumTable[i][j] + sumTable[i - k][j - k] - sumTable[i][j - k] - sumTable[i - k][j]);
             }
         }
 
