@@ -75,10 +75,10 @@ public class Main {
     public static void cutInLineBygroup(Node n1, Node n2, Node n3){
         if(n1.left == null){
             for(int i = 0 ; i < M ; i++){
-                if(topArr[i] == n1 && n1.right != null){
-                    topArr[i] = n1.right;
+                if(topArr[i] == n1 && n2.right != null){
+                    topArr[i] = n2.right;
                 }
-                else if(topArr[i] == n1 && n1.right == null){
+                else if(topArr[i] == n1 && n2.right == null){
                     topArr[i] = null;
                     tailArr[i] = null;
                 }
@@ -87,10 +87,10 @@ public class Main {
 
         if(n2.right == null){
             for(int i = 0 ; i < M ; i++){
-                if(tailArr[i] == n2 && n2.left != null){
-                    tailArr[i] = n2.left;
+                if(tailArr[i] == n2 && n1.left != null){
+                    tailArr[i] = n1.left;
                 }
-                else if(tailArr[i] == n2 && n2.left == null){
+                else if(tailArr[i] == n2 && n1.left == null){
                     topArr[i] = null;
                     tailArr[i] = null;
                 }
