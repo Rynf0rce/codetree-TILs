@@ -17,7 +17,15 @@ public class Main {
 
         for(int i = 1 ; i <= n ; i++){
             for(int j = 1 ; j <= n ; j++){
-                prefixSum[i][j] = table[i][j] - prefixSum[i - 1][j - 1] + prefixSum[i - 1][j] + prefixSum[i][j - 1];
+                if(prefixSum[i - 1][j - 1] == 0){
+                    prefixSum[i][j] = Math.max(prefixSum[i - 1][j] + table[i][j], prefixSum[i][j - 1] + table[i][j]);
+                }
+                else{
+                    prefixSum[i][j] = table[i][j] - prefixSum[i - 1][j - 1] + prefixSum[i - 1][j] + prefixSum[i][j - 1];
+                }
+                if(prefixSum[i][j] < 0){
+                    prefixSum[i][j] = 0;
+                }
             }
         }
 
