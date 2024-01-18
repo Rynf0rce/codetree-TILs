@@ -21,7 +21,13 @@ public class Main {
         for(int i = 0 ; i < Q ; i++){
             int A = sc.nextInt();
             int B = sc.nextInt();
-            System.out.println(prefixSum[B] - prefixSum[A - 1]);
+            if(A == 0){
+                System.out.println(prefixSum[B]);
+            }
+            else{
+                System.out.println(prefixSum[B] - prefixSum[A - 1]);
+            }
+            
         }
     }
 }
