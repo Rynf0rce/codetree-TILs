@@ -8,11 +8,18 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
+        int maxVal = MIN_VALUE * MAX_EDGE * MAX_EDGE;
 
         for(int i = 1 ; i <= n ; i++){
             for(int j = 1 ; j <= n ; j++){
                 table[i][j] = sc.nextInt();
+                maxVal = Math.max(maxVal, table[i][j]);
             }
+        }
+
+        if(maxVal <= 0){
+            System.out.print(maxVal);
+            System.exit(0);
         }
 
         for(int i = 1 ; i <= n ; i++){
@@ -36,7 +43,7 @@ public class Main {
         //     System.out.println();
         // }
 
-        int maxVal = MIN_VALUE * MAX_EDGE * MAX_EDGE;
+        
         for(int i = 1 ; i <= n ; i++){
             for(int j = 1 ; j <= n ; j++){
                 for(int k = i ; k <= n ; k++){
