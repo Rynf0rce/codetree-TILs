@@ -9,7 +9,9 @@ public class Main {
 
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        
        
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
@@ -45,11 +47,12 @@ public class Main {
             int r2 = Integer.parseInt(st.nextToken());
             int c2 = Integer.parseInt(st.nextToken());
 
-            System.out.print(preSum[r2][c2][0] + preSum[r1 - 1][c1 - 1][0] - preSum[r2][c1 - 1][0] - preSum[r1 - 1][c2][0] + " ");
-            System.out.print(preSum[r2][c2][1] + preSum[r1 - 1][c1 - 1][1] - preSum[r2][c1 - 1][1] - preSum[r1 - 1][c2][1] + " ");
-            System.out.print(preSum[r2][c2][2] + preSum[r1 - 1][c1 - 1][2] - preSum[r2][c1 - 1][2] - preSum[r1 - 1][c2][2] + "\n");
+            bw.write(preSum[r2][c2][0] + preSum[r1 - 1][c1 - 1][0] - preSum[r2][c1 - 1][0] - preSum[r1 - 1][c2][0] + " ");
+            bw.write(preSum[r2][c2][1] + preSum[r1 - 1][c1 - 1][1] - preSum[r2][c1 - 1][1] - preSum[r1 - 1][c2][1] + " ");
+            bw.write(preSum[r2][c2][2] + preSum[r1 - 1][c1 - 1][2] - preSum[r2][c1 - 1][2] - preSum[r1 - 1][c2][2] + "\n");
         }
 
         br.close();
+        bw.close();
     }
 }
