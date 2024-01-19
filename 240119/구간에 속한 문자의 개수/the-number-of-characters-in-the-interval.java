@@ -4,23 +4,16 @@ import java.io.*;
 public class Main {
     public static final int MAX_EDGE = 1000;
     public static char[][] table = new char[MAX_EDGE + 1][MAX_EDGE + 1];
-    public static int[][][] preSum = new int[MAX_EDGE + 1][MAX_EDGE + 1][3];
+    public static int[][][] preSum = new int[MAX_EDGE + 1][MAX_EDGE + 1][3]; // a, b, c
     public static int n, m;
 
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-
-		int arr[] = new int[st.countTokens()];
-        int count=0;
-
-		while(st.hasMoreTokens()) {
-			arr[count++] = Integer.parseInt(st.nextToken());
-		}
        
-        n = arr[0];
-        m = arr[1];
-        int k = arr[2];
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
+        int k = Integer.parseInt(st.nextToken());
 
         for(int i = 1 ; i <= n ; i++){
             String str = br.readLine();
@@ -45,23 +38,18 @@ public class Main {
         }
         
         for(int i = 0 ; i < k ; i++){
-            StringTokenizer st1 = new StringTokenizer(br.readLine());
-		    int[] condition = new int[st1.countTokens()];
+            st = new StringTokenizer(br.readLine(), " ");
 
-            int idx = 0;
-
-            while(st1.hasMoreTokens()) {
-                condition[idx++] = Integer.parseInt(st1.nextToken());
-            }
-
-            int r1 = condition[0];
-            int c1 = condition[1];
-            int r2 = condition[2];
-            int c2 = condition[3];
+            int r1 = Integer.parseInt(st.nextToken());
+            int c1 = Integer.parseInt(st.nextToken());
+            int r2 = Integer.parseInt(st.nextToken());
+            int c2 = Integer.parseInt(st.nextToken());
 
             System.out.print(preSum[r2][c2][0] + preSum[r1 - 1][c1 - 1][0] - preSum[r2][c1 - 1][0] - preSum[r1 - 1][c2][0] + " ");
             System.out.print(preSum[r2][c2][1] + preSum[r1 - 1][c1 - 1][1] - preSum[r2][c1 - 1][1] - preSum[r1 - 1][c2][1] + " ");
             System.out.print(preSum[r2][c2][2] + preSum[r1 - 1][c1 - 1][2] - preSum[r2][c1 - 1][2] - preSum[r1 - 1][c2][2] + "\n");
         }
+
+        br.close();
     }
 }
