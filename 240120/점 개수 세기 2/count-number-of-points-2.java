@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 class point implements Comparable<point>{
     int x;
@@ -17,8 +18,11 @@ class point implements Comparable<point>{
 }
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+
         HashSet<point> containSet = new HashSet<>();
         TreeSet<point> pointSet_X = new TreeSet<>();
         TreeSet<point> pointSet_Y = new TreeSet<>(new Comparator<point>() {
@@ -27,12 +31,13 @@ public class Main {
             return p1.y - p2.y;
         }
     });
-        int n = sc.nextInt();
-        int q = sc.nextInt();
+        int n = Integer.parseInt(st.nextToken());
+        int q = Integer.parseInt(st.nextToken());
 
         for(int i = 0 ; i < n ; i++){
-            int x = sc.nextInt();
-            int y = sc.nextInt();
+            st = new StringTokenizer(br.readLine(), " ");
+            int x = Integer.parseInt(st.nextToken());
+            int y = Integer.parseInt(st.nextToken());
 
             point inPoint = new point(x, y);
             
@@ -43,10 +48,11 @@ public class Main {
 
         for(int i = 0 ; i < q ; i++){
             containSet.clear();
-            int x1 = sc.nextInt();
-            int y1 = sc.nextInt();
-            int x2 = sc.nextInt();
-            int y2 = sc.nextInt();
+            st = new StringTokenizer(br.readLine(), " ");
+            int x1 = Integer.parseInt(st.nextToken());
+            int y1 = Integer.parseInt(st.nextToken());
+            int x2 = Integer.parseInt(st.nextToken());
+            int y2 = Integer.parseInt(st.nextToken());
             int cnt = 0;
 
             point startPoint = new point(x1, y1);
@@ -65,7 +71,9 @@ public class Main {
                 }
                 curPoint = pointSet_Y.higher(curPoint);
             }
-            System.out.println(cnt);
+            bw.write(cnt + "\n");
         }
+        br.close();
+        bw.close();
     }
 }
