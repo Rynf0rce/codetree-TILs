@@ -43,14 +43,12 @@ public class Main {
             numMap.put(num, idx);
             // System.out.println(num + " " + idx);
         }
+        
+        numSet.add((int)(1e9 * - 1 - 1));
+        numMap.put((int)(1e9 * -1 - 1), 0);
 
         for(int i = 0 ; i < q ; i++){
-            if(numMap.get(start[i]) == 0){
-                bw.write(numMap.get(end[i]) + "\n");
-            }
-            else{
-                bw.write(numMap.get(end[i]) - numMap.get(numSet.lower(start[i])) + "\n");
-            }
+            bw.write(numMap.get(end[i]) - numMap.get(numSet.lower(start[i])) + "\n");
         }
 
         br.close();
