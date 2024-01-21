@@ -15,17 +15,21 @@ public class Main {
         
         DP[1][1] = arr[1];
         for(int i = 1 ; i <= NUM_SELECT ; i++){
-            for(int j = 2 ; j <= n ; j++){
+            for(int j = 2 * i - 1 ; j <= n ; j++){
+                if(j < 2){
+                    DP[i][j] = arr[j];
+                    continue;
+                }
                 DP[i][j] = Math.max(DP[i][j - 1], DP[i - 1][j - 2] + arr[j]);
             }
         }
 
-        // for(int i = 0 ; i <= NUM_SELECT ; i++){
-        //     for(int j = 0 ; j <= n ; j++){
-        //         System.out.print(DP[i][j] + " ");
-        //     }
-        //     System.out.println();
-        // }
+        for(int i = 0 ; i <= NUM_SELECT ; i++){
+            for(int j = 0 ; j <= n ; j++){
+                System.out.print(DP[i][j] + " ");
+            }
+            System.out.println();
+        }
 
         System.out.println(DP[NUM_SELECT][n]);
     }
