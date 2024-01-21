@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 public class Main {
     public static final int MAX_LENGTH = 100000;
@@ -10,11 +11,17 @@ public class Main {
         return ( i * (i - 1) * (i - 2) ) / ( 3 * 2 * 1);
     }
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        for(int i = 0 ; i < n ; i++){
-            arr[i] = sc.nextInt();
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+
+        int n = Integer.parseInt(st.nextToken());
+
+        int idx = 0;
+        st = new StringTokenizer(br.readLine(), " ");
+        while(st.hasMoreTokens()){
+            arr[idx++] = Integer.parseInt(st.nextToken());
         }
 
         leftArr[0] = arr[0];
@@ -43,6 +50,9 @@ public class Main {
             }
         }
 
-        System.out.println(output);
+        bw.write(output + "");
+
+        br.close();
+        bw.close();
     }
 }
