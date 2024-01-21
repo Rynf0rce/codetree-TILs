@@ -30,7 +30,7 @@ public class Main {
             leftArr_W[i] = wNum;
         }
 
-        int output = 0;
+        long output = 0;
         for(int i = 1 ; i < n - 1 ; i++){
             if(centerArr_O[i]){
                 output += rightArr_C[i - 1] * leftArr_W[i + 1];
