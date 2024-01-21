@@ -11,10 +11,6 @@ public class Main {
     public static int[] conLeftArr = new int[MAX_LENGTH];
     public static int[] conRightArr = new int[MAX_LENGTH];
 
-    public static int combination(int i){
-        return ( i * (i - 1) * (i - 2) ) / ( 3 * 2 * 1);
-    }
-
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -38,6 +34,7 @@ public class Main {
             cnt++;
             conLeftArr[0] = cnt;
         }
+
         for(int i = 1 ; i < n ; i++){
             leftArr[i] = arr[i] + leftArr[i - 1];
             conLeftArr[i] = cnt;
@@ -54,9 +51,9 @@ public class Main {
             cnt++;
             conRightArr[n - 1] = cnt;
         }
+
         for(int i = n - 2; i >= 0 ; i--){
             rightArr[i] = rightArr[i + 1] + arr[i];
-
             conRightArr[i] = cnt;
 
             if(rightArr[i] == sum / 4){
@@ -64,17 +61,6 @@ public class Main {
                 conRightArr[i] = cnt;
             }
         }
-
-        // for(int i = 0 ; i < n ; i++){
-        //     System.out.print(conLeftArr[i] + " ");
-        // }
-        // System.out.println();
-
-        // for(int i = 0 ; i < n ; i++){
-        //     System.out.print(conRightArr[i] + " ");
-        // }
-        // System.out.println();
-
 
         long output = 0;
         for(int i = 1 ; i < n - 2 ; i++){
