@@ -29,7 +29,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         N = sc.nextInt();
-        int minVal = MAX_VALUE * MAX_LENGTH + 1;
+        int minVal = MAX_VALUE * MAX_LENGTH * 2 + 1;
         for(int i = 0 ; i < N ; i++){
             int x = sc.nextInt();
             int y = sc.nextInt();
