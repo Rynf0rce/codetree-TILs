@@ -24,12 +24,12 @@ public class Main {
             }
         }
 
-        for(int i = 0 ; i <= NUM_SELECT ; i++){
-            for(int j = 0 ; j <= n ; j++){
-                System.out.print(DP[i][j] + " ");
-            }
-            System.out.println();
-        }
+        // for(int i = 0 ; i <= NUM_SELECT ; i++){
+        //     for(int j = 0 ; j <= n ; j++){
+        //         System.out.print(DP[i][j] + " ");
+        //     }
+        //     System.out.println();
+        // }
 
         System.out.println(DP[NUM_SELECT][n]);
     }
