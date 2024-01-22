@@ -63,7 +63,7 @@ public class Main {
                 }
             }
             else{
-                if(colorSet.higher(y) != null){
+                if(colorSet.first() == y && colorSet.higher(y) != null){
                     output++;
                 }
                 colorSet.remove(y);
