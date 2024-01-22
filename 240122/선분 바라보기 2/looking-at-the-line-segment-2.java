@@ -47,6 +47,7 @@ public class Main {
         Collections.sort(pointList);
         TreeSet<Integer> colorSet = new TreeSet<>();
         HashSet<Integer> seenColorSet = new HashSet<>();
+        HashMap<Integer, Integer> colorMap = new HashMap<>();
         int output = 0;
 
         for(int i = 0 ; i < pointList.size() ; i++){
@@ -57,13 +58,14 @@ public class Main {
 
             if(val == 1){
                 colorSet.add(y);
+                colorMap.put(y, idx);
                 if(colorSet.first() == y){
                     seenColorSet.add(idx);
                 }
             }
             else{
                 if(colorSet.first() == y && colorSet.higher(y) != null){
-                    seenColorSet.add(idx);
+                    seenColorSet.add(colorMap.get(colorSet.higher(y)));
                 }
                 colorSet.remove(y);
             }
