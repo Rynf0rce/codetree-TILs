@@ -22,7 +22,10 @@ public class Main {
         int maxIdx = -1;
         HashMap<Integer, Integer> bombMap = new HashMap<>();
         for(int i = 0 ; i < K ; i++){
-            bombMap.put(bombArr[i], bombMap.getOrDefault(bombMap, 0) + 1);
+            bombMap.put(bombArr[i], bombMap.getOrDefault(bombArr[i], 0) + 1);
+            if(bombMap.get(bombArr[i]) >= 2){
+                maxIdx = Math.max(maxIdx, bombArr[i]);
+            }
         }
 
         for(int i = 0 ; i < N - K; i++){
