@@ -15,7 +15,7 @@ public class Main {
             }
         }
 
-        int output = 0;
+        long output = 0;
         for(int i = 1 ; i < stringArr.length ; i++){
             if(stringArr[i] == '(' && stringArr[i] == stringArr[i - 1]){
                 output += rightArr[i];
