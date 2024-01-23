@@ -23,8 +23,8 @@ public class Main {
         HashMap<Integer, Integer> bombMap = new HashMap<>();
         for(int i = 0 ; i < N ; i++){
             int bombIdx = bombArr[i];
-            if(i > 2 * K + 1){
-                bombMap.put(bombIdx, bombMap.get(bombIdx) - 1);
+            if(i > K){
+                bombMap.put(bombArr[i - K], bombMap.get(bombArr[i - K]) - 1);
             }
             bombMap.put(bombIdx, bombMap.getOrDefault(bombIdx, 0) + 1);
             if(bombMap.get(bombIdx) >= 2){
