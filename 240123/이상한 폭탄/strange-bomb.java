@@ -21,26 +21,17 @@ public class Main {
 
         int maxIdx = -1;
         HashMap<Integer, Integer> bombMap = new HashMap<>();
-        for(int i = 0 ; i < K ; i++){
-            bombMap.put(bombArr[i], bombMap.getOrDefault(bombArr[i], 0) + 1);
-            if(bombMap.get(bombArr[i]) >= 2){
-                maxIdx = Math.max(maxIdx, bombArr[i]);
-            }
-        }
 
-        for(int i = 0 ; i < N - K; i++){
-            int delIdx = i - K - 1;
-            int addIdx = i + K;
-            if(delIdx >= 0){
-                bombMap.put(bombArr[delIdx], bombMap.get(bombArr[delIdx]) - 1);
+        for(int i = 0 ; i < N; i++){
+            if(!bombMap.containsKey(bombArr[i])){
+                bombMap.put(bombArr[i], i);
             }
+            else{
+                if(i - bombMap.get(bombArr[i]) <= K){
+                    maxIdx = Math.max(bombArr[i], maxIdx);
+                }
 
-            if(addIdx < N){
-                bombMap.put(bombArr[addIdx], bombMap.getOrDefault(bombArr[addIdx], 0) + 1);
-            }
-
-            if(bombMap.get(bombArr[i]) >= 2){
-                maxIdx = Math.max(maxIdx, bombArr[i]);
+                bombMap.put(bombArr[i], i);
             }
         }
         
