@@ -15,7 +15,12 @@ class stay implements Comparable<stay>{
     @Override
     public int compareTo(stay s){
         if(this.time == s.time){
-            return this.idx - s.idx;
+            if(this.val == s.val){
+                return this.idx - s.idx;
+            }
+            else{
+                return s.val - this.val;
+            }
         }
         else{
             return this.time - s.time;
