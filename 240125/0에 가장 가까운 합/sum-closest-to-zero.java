@@ -17,18 +17,33 @@ public class Main {
 
         Arrays.sort(arr, 0, n);
 
+        // for(int i = 0 ; i < n ; i++){
+        //     System.out.print(arr[i] + " ");
+        // }
+        // System.out.println();
+
         int j = n - 1;
         long minVal = MAX_INT * 2;
+        long curVal = 0;
         for(int i = 0 ; i < n ; i++){
+            curVal = MAX_INT * 2;
             while(i < j){
-                // System.out.println(arr[i] + " " + arr[j]);
-                if(Math.abs(arr[i] + arr[j]) <= minVal){
-                    minVal = Math.abs(arr[i] + arr[j]);
-                    j--;
+                if(Math.abs(arr[i] + arr[j]) < curVal){
+                    curVal = Math.abs(arr[i] + arr[j]);
+                    if(i + 1 < j && Math.abs(arr[i + 1] + arr[j]) < curVal){
+                        break;
+                    }
+                    else{
+                        j--;
+                    }
                 }
                 else{
                     break;
                 }
+            }
+
+            if(minVal > curVal){
+                minVal = curVal;
             }
         }
 
