@@ -17,9 +17,12 @@ public class Main {
         int j = n - 1;
         long minVal = MAX_LENGTH * MAX_INT + 1;
         for(int i = 0 ; i < n ; i++){
-            while(j > i && Math.abs(arr[i] + arr[j]) < minVal){
-                minVal = Math.abs(arr[i] + arr[j]);
+            while(j > i && Math.abs(arr[i] + arr[j]) > minVal){
                 j--;
+            }
+
+            if(minVal > Math.abs(arr[i] + arr[j])){
+                minVal = arr[i] + arr[j];
             }
         }
 
