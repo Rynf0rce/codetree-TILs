@@ -5,7 +5,7 @@ public class Main {
     public static final int MUTIPLE_VALUE = 7;
 
     public static int[] arr = new int[MAX_LENGTH + 1];
-    public static int[] prefixSum = new int[MAX_LENGTH + 1];
+    public static long[] prefixSum = new long[MAX_LENGTH + 1];
     public static TreeSet<Integer>[] remainIdxSet = new TreeSet[MUTIPLE_VALUE];
 
     public static void main(String[] args) {
@@ -26,7 +26,7 @@ public class Main {
         }
 
         for(int i = 0 ; i <= N ; i++){
-            remainIdxSet[prefixSum[i]].add(i);
+            remainIdxSet[(int)prefixSum[i]].add(i);
         }
 
         int maxVal = 0;
