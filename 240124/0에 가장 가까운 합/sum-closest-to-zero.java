@@ -20,7 +20,7 @@ public class Main {
         int j = n;
         long minVal = MAX_INT * 2 + 1;
         for(int i = 0 ; i < n; i++){
-            while(j > i && Math.abs(arr[i] + arr[j - 1]) < minVal){
+            while(j > i + 1 && Math.abs(arr[i] + arr[j - 1]) < minVal){
                 minVal = Math.abs(arr[i] + arr[j - 1]);
                 j--;
             }
