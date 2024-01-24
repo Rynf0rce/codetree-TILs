@@ -10,13 +10,15 @@ public class Main {
         int i = 0;
         for(int j = 0 ; j < m ; j++){
             while(i < n && arrA[i] != arrB[j]){
-                i++;
-
-                if(i > n){
-                    return false;
-                }   
+                i++; 
             }
-            i++;
+
+            if(i >= n){
+                return false;
+            }
+            else{
+                i++;
+            }
         }
         return true;
     }
