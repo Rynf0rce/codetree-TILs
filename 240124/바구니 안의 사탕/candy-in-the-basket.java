@@ -21,8 +21,8 @@ public class Main {
             arr[idx] += candy;
         }
 
-        int maxCandy = 0;
-        int curCandy = 0;
+        long maxCandy = 0;
+        long curCandy = 0;
         int j = -1;
         for(int i = 0 ; i < N ; i++){
             while(j + 1 <= maxIdx && j + 1 <= i + 2 * K ){
@@ -30,7 +30,9 @@ public class Main {
                 j++;
             }
 
-            maxCandy = Math.max(maxCandy, curCandy);
+            if(maxCandy < curCandy){
+                maxCandy = curCandy;
+            }
 
             curCandy -= arr[i];
         }
