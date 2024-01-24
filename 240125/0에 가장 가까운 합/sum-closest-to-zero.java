@@ -18,7 +18,7 @@ public class Main {
         Arrays.sort(arr, 0, n);
 
         int j = n - 1;
-        long minVal = MAX_INT * MAX_LENGTH;
+        long minVal = MAX_INT * 2;
         for(int i = 0 ; i < n ; i++){
             while(i < j){
                 // System.out.println(arr[i] + " " + arr[j]);
