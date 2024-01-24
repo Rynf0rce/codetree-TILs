@@ -36,7 +36,7 @@ public class Main {
             sum -= arr[i];
         }
 
-        bw.write(minLength + "");
+        bw.write( (minLength == MAX_ELEMENTS + 1 ? -1 : minLength) + "");
 
         br.close();
         bw.close();
