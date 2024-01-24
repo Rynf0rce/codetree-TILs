@@ -29,7 +29,7 @@ public class Main {
             // System.out.print(prefixArr[i] + " ");
             remainIdxSet[prefixArr[i]].add(i);
         }
-        System.out.println();
+        //System.out.println();
 
         int maxVal = 0;
         for(int i = 0 ; i < MULTIPLE_VAL ; i++){
