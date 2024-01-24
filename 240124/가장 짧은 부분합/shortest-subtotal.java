@@ -22,17 +22,17 @@ public class Main {
         int j = -1;
         int minLength = MAX_ELEMENTS + 1;
         for(int i = 0 ; i < n ; i++){
-            while(j + 1 < n && sum + arr[j + 1] < s){
+            while(j + 1 < n){
+                if(sum >= s){
+                    break;
+                }
                 sum += arr[j + 1];
                 j++;
             }
 
-            if(sum < s){
-                sum += arr[j + 1];
-                j++;
+            if(sum >= s){
+                minLength = Math.min(minLength, j - i + 1);
             }
-
-            minLength = Math.min(minLength, j - i + 1);
             sum -= arr[i];
         }
 
