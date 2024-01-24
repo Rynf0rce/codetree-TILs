@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Main {
     public static final int MAX_POSITION = 1000000;
-    public static int[] arr = new int[MAX_POSITION + 1];
+    public static long[] arr = new long[MAX_POSITION + 1];
 
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -12,7 +12,7 @@ public class Main {
         int N = Integer.parseInt(st.nextToken());
         int K = Integer.parseInt(st.nextToken());
         
-        int maxIdx = 0;
+        long maxIdx = 0;
         for(int i = 0 ; i < N ; i++){
             st = new StringTokenizer(br.readLine(), " ");
             int candy = Integer.parseInt(st.nextToken());;
@@ -24,7 +24,7 @@ public class Main {
         long maxCandy = 0;
         long curCandy = 0;
         int j = -1;
-        for(int i = 0 ; i < N ; i++){
+        for(int i = 0 ; i <= maxIdx ; i++){
             while(j + 1 <= maxIdx && j + 1 <= i + 2 * K ){
                 curCandy += arr[j + 1];
                 j++;
