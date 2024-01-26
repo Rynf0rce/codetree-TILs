@@ -22,7 +22,7 @@ public class Main {
         int j = -1;
         int output = 0;
         for(int i = 0 ; i < n ; i++){
-            while(j + 1 < n && elementMap.getOrDefault(arr[j + 1], 0) < 2){
+            while(j + 1 < n && elementMap.getOrDefault(arr[j + 1], 0) < k){
                 elementMap.put(arr[j + 1], elementMap.getOrDefault(arr[j + 1], 0) + 1);
                 j++;
             }
