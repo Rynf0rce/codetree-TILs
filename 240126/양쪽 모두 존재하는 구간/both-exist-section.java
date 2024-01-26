@@ -30,7 +30,7 @@ public class Main {
             }
 
             numMap.put(arr[i], numMap.getOrDefault(arr[i], 0) + 1);
-            if(insideMap.get(arr[i]) <= 1){
+            if(insideMap.getOrDefault(arr[i], 0) <= 1){
                 insideMap.remove(arr[i]);
             }
             else{
@@ -38,6 +38,6 @@ public class Main {
             }    
         }
 
-        System.out.print(output);     
+        System.out.print(output == MAX_LENGTH + 1 ? -1 : output);     
     }
 }
