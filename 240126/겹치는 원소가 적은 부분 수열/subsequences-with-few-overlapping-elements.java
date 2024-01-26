@@ -4,7 +4,7 @@ import java.io.*;
 public class Main {
     public static final int MAX_LENGTH = 100000;
     public static long[] arr = new long[MAX_LENGTH];
-    public static HashMap<long, Integer> elementMap = new HashMap<>();
+    public static HashMap<Long, Integer> elementMap = new HashMap<>();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
