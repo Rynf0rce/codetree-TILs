@@ -59,7 +59,7 @@ public class Main {
                     // System.out.println("alse : " + curMaxVal);
                 }
                 // System.out.println(i + " " + j + " " + curMaxVal);
-                maxVal = Math.max(maxVal, curMaxVal);
+                maxVal = Math.max(maxVal, Math.abs(curMaxVal));
                 j++;
             }
         }
