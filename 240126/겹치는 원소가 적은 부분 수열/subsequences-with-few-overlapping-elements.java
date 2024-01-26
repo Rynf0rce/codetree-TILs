@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Main {
     public static final int MAX_LENGTH = 100000;
-    public static int[] arr = new int[MAX_LENGTH];
+    public static long[] arr = new long[MAX_LENGTH];
     public static HashMap<Integer, Integer> elementMap = new HashMap<>();
 
     public static void main(String[] args) throws IOException {
@@ -16,7 +16,7 @@ public class Main {
 
         st = new StringTokenizer(br.readLine(), " ");
         for(int i = 0 ; i < n ; i++){
-            arr[i] = Integer.parseInt(st.nextToken());
+            arr[i] = Long.parseLong(st.nextToken());
         }
 
         int j = -1;
