@@ -25,7 +25,7 @@ public class Main {
     public static final int MAX_LENGTH = 100000;
     public static final int MAX_INT = 1000000;
     
-    public static ArrayList<point>[] pointList = new ArrayList[MAX_LENGTH];
+    public static ArrayList<point>[] pointList = new ArrayList[MAX_INT + 1];
     public static TreeSet<point> pointSet = new TreeSet<>();
 
     public static TreeSet<Integer> xSet = new TreeSet<>();
