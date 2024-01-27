@@ -76,22 +76,27 @@ public class Main {
         Arrays.sort(arr, 0, N);
 
         int j = -1;
+        int curMaxVal = 0;
         for(int i = 0 ; i < N ; i++){
             while(j + 1 < N && inRange(arr[j + 1].num, K)){
                 containSet.add(arr[j + 1]);
                 j++;
             }
 
-            updateAnswer(containSet.size());
+            curMaxVal = Math.max(curMaxVal, containSet.size());
+
+            containSet.remove(arr[i]);
+
+            if(containSet.isEmpty()){
+                updateAnswer(curMaxVal);
+            }
 
             // System.out.println(i + " " + j + " " + containSet.size());
             // for(tuple t : containSet){
             //     System.out.print(t.num + " ");
             // }
             // System.out.println();
-            // System.out.println();
-
-            containSet.remove(arr[i]);
+            // System.out.println();  
         }
 
         bw.write( answerArr[0] + answerArr[1] + "");
