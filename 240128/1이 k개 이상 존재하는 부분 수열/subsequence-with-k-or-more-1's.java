@@ -41,7 +41,7 @@ public class Main {
             }
         }
 
-        bw.write(minVal + "");
+        bw.write( (minVal == MAX_LENGTH + 1 ? -1 : minVal) + "");
 
         br.close();
         bw.close();
