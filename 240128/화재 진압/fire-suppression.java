@@ -3,8 +3,19 @@ import java.io.*;
 
 public class Main {
     public static final int MAX_LENGTH = 100000;
-    public static int[] placeArr = new int[MAX_LENGTH];
-    public static TreeSet<Integer> stationSet = new TreeSet<>();
+    public static long[] placeArr = new long[MAX_LENGTH];
+    public static TreeSet<Long> stationSet = new TreeSet<>();
+
+    public static long max(long num1, long num2){
+        if(num1 >= num2){
+            return num1;
+        }
+        else{
+            return num2;
+        }
+    }
+
+
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -15,22 +26,22 @@ public class Main {
 
         st = new StringTokenizer(br.readLine(), " ");
         for(int i = 0 ; i < n ; i++){
-            placeArr[i] = Integer.parseInt(st.nextToken());
+            placeArr[i] = Long.parseLong(st.nextToken());
         }
 
         st = new StringTokenizer(br.readLine(), " ");
         for(int i = 0 ; i < m ; i++){
-            stationSet.add(Integer.parseInt(st.nextToken()));
+            stationSet.add(Long.parseLong(st.nextToken()));
         }
 
-        int answer = 0;
+        long answer = 0;
         for(int i = 0 ; i < n ; i++){
             if(stationSet.ceiling(placeArr[i]) != null){
-                answer = Math.max(answer, stationSet.ceiling(placeArr[i]) - placeArr[i]);
+                answer = max(answer, stationSet.ceiling(placeArr[i]) - placeArr[i] );
             }
 
             if(stationSet.floor(placeArr[i]) != null){
-                answer = Math.max(answer, placeArr[i] - stationSet.floor(placeArr[i]));
+                answer = max(answer, placeArr[i] - stationSet.floor(placeArr[i]));
             }
         }
 
