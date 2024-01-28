@@ -56,6 +56,8 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
+        Arrays.sort(arr, 0, n);
+
         for(int i = 0 ; i < m ; i++){
             st = new StringTokenizer(br.readLine(), " ");
             int x1 = Integer.parseInt(st.nextToken());
