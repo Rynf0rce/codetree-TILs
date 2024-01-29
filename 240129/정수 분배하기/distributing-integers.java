@@ -21,7 +21,7 @@ public class Main {
             arr[i] = sc.nextInt();
         }
 
-        int start = 0;
+        int start = 1;
         int end = MAX_INT;
         int ans = 0;
         while(start <= end){
