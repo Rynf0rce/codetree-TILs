@@ -6,7 +6,7 @@ public class Main {
         long s = sc.nextLong();
 
         long start = 1;
-        long end = 100000;
+        long end = 1500000000;
         long ans = 0;
         while(start <= end){
             long mid = (start + end) / 2;
