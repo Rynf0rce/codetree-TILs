@@ -10,6 +10,11 @@ public class Main {
 
         return num - (mutipleOfThree + mutipleOfFive - commonMutiple);
     }
+
+    public static boolean sayMoo(long num){
+        return num % 3 == 0 || num % 5 == 0;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         long N = sc.nextLong();
@@ -19,10 +24,10 @@ public class Main {
 
         while(start <= end){
             mid = (end + start) / 2;
-            if(findNum(mid) == N){
+            if(!sayMoo(mid) && findNum(mid) == N){
                 break;
             }
-            else if(findNum(mid) > N){
+            else if(findNum(mid) >= N){
                 end = mid - 1;
             }
             else{
