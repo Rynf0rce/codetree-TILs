@@ -26,17 +26,15 @@ public class Main {
     public static line[] arr = new line[MAX_LINE];
 
     public static boolean isPossible(int length, int lineNum){
-        int x1 = arr[0].start;
-        int x2 = arr[0].end;
+        int pos = arr[0].start;
         for(int i = 1 ; i < lineNum ; i++){
-            x1 += length;
-            x2 += length;
-
-            x1 = Math.max(x1, arr[i].start);
-            x2 = Math.min(x2, arr[i].end);
-
-            if(x2 < x1){
+            pos += length;
+            if(arr[i].start < pos && arr[i].end < pos){
                 return false;
+            }
+
+            if(pos <= arr[i].start){
+                pos = arr[i].start;
             }
         }
         return true;
