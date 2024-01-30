@@ -3,11 +3,11 @@ import java.io.*;
 
 public class Main {
     public static int MAX_LENGTH = 100000;
-    public static int MAX_TIME = 1000000000;
+    public static long MAX_TIME = Long.MAX_VALUE;
     public static int[] gate = new int[MAX_LENGTH];
 
-    public static boolean isPossible(int productNum, int gateNum, int time){
-        int cnt = 0;
+    public static boolean isPossible(int productNum, int gateNum, long time){
+        long cnt = 0;
         for(int i = 0 ; i < gateNum ; i++){
             cnt += time / gate[i];
         }
@@ -26,11 +26,11 @@ public class Main {
             gate[i] = Integer.parseInt(br.readLine());
         }
 
-        int start = 0;
-        int end = MAX_TIME;
-        int ans = MAX_TIME + 1;
+        long start = 0;
+        long end = MAX_TIME;
+        long ans = MAX_TIME;
         while(start <= end){
-            int mid = (start + end) / 2;
+            long mid = (start + end) / 2;
             if(isPossible(n, m, mid)){
                 end = mid - 1;
                 ans = Math.min(ans, mid);
@@ -40,6 +40,9 @@ public class Main {
             }
         }
 
-        System.out.print(ans);
+        bw.write(ans + "");
+
+        br.close();
+        bw.close();
     }
 }
