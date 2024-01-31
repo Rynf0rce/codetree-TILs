@@ -39,17 +39,19 @@ public class Main {
     public static boolean BFS(int row, int col, int length){
         q.clear();
         // initialize();
-        int cnt = 1;
+        int cnt = 0;
         q.add(new point(row, col));
         int postRow, postCol;
         while(!q.isEmpty()){
             point curPoint = q.poll();
+            
 
             if(visited[curPoint.row][curPoint.col]){
                 continue;
             }
 
             visited[curPoint.row][curPoint.col] = true;
+            // System.out.println(curPoint.row + " " + curPoint.col);
             cnt++;
 
             for(int i = 0 ; i < NUM_DIRECTION ; i++){
@@ -61,6 +63,7 @@ public class Main {
             }
         }
 
+        // System.out.println(row + " " + col + " cnt : " + cnt);
         if(N % 2 == 1){
             return cnt >= (N * N) / 2 + 1;
         }
@@ -78,6 +81,7 @@ public class Main {
                 }
 
                 if(BFS(i, j, length)){
+                    // System.out.println("pass : " + i + " " + j + " " + length);
                     return true;
                 }
             }
@@ -99,6 +103,8 @@ public class Main {
                 table[i][j] = Integer.parseInt(st.nextToken());
             }
         }
+
+        // System.out.println(BFS(0, 0, 23));
 
         int start = 0;
         int end = MAX_INT;
