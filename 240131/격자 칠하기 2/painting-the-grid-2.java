@@ -38,7 +38,7 @@ public class Main {
 
     public static boolean BFS(int row, int col, int length){
         q.clear();
-        initialize();
+        // initialize();
         int cnt = 1;
         q.add(new point(row, col));
         int postRow, postCol;
