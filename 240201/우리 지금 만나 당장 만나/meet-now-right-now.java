@@ -29,9 +29,12 @@ public class Main {
             float left = Math.max(0, arr[i].pos - arr[i].speed * time);
             float right = Math.min(MAX_POSITION, arr[i].pos + arr[i].speed * time);
 
-            // System.out.println(boundaryLeft + " " + boundaryRight + " " + left + " " + right);
+            // System.out.println("time : " + time + " i : " + i + " " + boundaryLeft + " " + boundaryRight + " " + left + " " + right);
 
-            if(boundaryLeft <= left && right <= boundaryRight){
+            if(left <= boundaryLeft && boundaryRight <= right){
+                continue;
+            }
+            else if(boundaryLeft <= left && right <= boundaryRight){
                 boundaryLeft = left;
                 boundaryRight = right;
             }
@@ -70,15 +73,20 @@ public class Main {
         float start = 0;
         float end = MAX_POSITION;
         float ans = MAX_POSITION;
-        int cnt = 50;
+
+        start = 0;
+        end = 1;
+        ans = 1;
+
+        int cnt = 100;
         while(start <= end && cnt-- > 0){
             float mid = (end + start) / 2;
             if(inTime(mid)){
-                end = mid - (float)0.00001;
+                end = mid;
                 ans = Math.min(ans, mid);
             }
             else{
-                start = mid + (float)0.00001;
+                start = mid;
             }
             // System.out.println(mid);
         }
