@@ -21,13 +21,13 @@ public class Main {
     public static people[] arr = new people[MAX_PEOPLE];
     public static int n;
 
-    public static boolean inTime(float time){
-        float boundaryLeft = Math.max(0, arr[0].pos - arr[0].speed * time);
-        float boundaryRight = Math.min(MAX_POSITION, arr[0].pos + arr[0].speed * time);
+    public static boolean inTime(double time){
+        double boundaryLeft = Math.max(0, arr[0].pos - arr[0].speed * time);
+        double boundaryRight = Math.min(MAX_POSITION, arr[0].pos + arr[0].speed * time);
 
         for(int i = 1 ; i < n ; i++){
-            float left = Math.max(0, arr[i].pos - arr[i].speed * time);
-            float right = Math.min(MAX_POSITION, arr[i].pos + arr[i].speed * time);
+            double left = Math.max(0, arr[i].pos - arr[i].speed * time);
+            double right = Math.min(MAX_POSITION, arr[i].pos + arr[i].speed * time);
 
             // System.out.println("time : " + time + " i : " + i + " " + boundaryLeft + " " + boundaryRight + " " + left + " " + right);
 
@@ -70,17 +70,17 @@ public class Main {
             arr[i].setSpeed(speed);
         }
 
-        float start = 0;
-        float end = MAX_POSITION;
-        float ans = MAX_POSITION;
+        double start = 0;
+        double end = MAX_POSITION;
+        double ans = MAX_POSITION;
 
-        start = 0;
-        end = 1;
-        ans = 1;
+        // start = 0;
+        // end = 1;
+        // ans = 1;
 
-        int cnt = 100;
+        int cnt = 1000;
         while(start <= end && cnt-- > 0){
-            float mid = (end + start) / 2;
+            double mid = (end + start) / 2;
             if(inTime(mid)){
                 end = mid;
                 ans = Math.min(ans, mid);
