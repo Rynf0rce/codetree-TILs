@@ -12,6 +12,7 @@ class point{
 
 public class Main {
     public static final int MAX_LENGTH = 100;
+    public static final int MAX_HEIGHT = 500;
     public static int[][] table = new int[MAX_LENGTH][MAX_LENGTH];
 
     public static int[] arrRow = new int[]{1, 0};
@@ -37,7 +38,7 @@ public class Main {
     public static boolean canReach(int range){
         q.clear();
         q.add(new point(0, 0));
-        int low = 500;
+        int low = MAX_HEIGHT;
         int high = 0;
         while(!q.isEmpty()){
             point curPoint = q.poll();
@@ -73,8 +74,8 @@ public class Main {
         }
 
         int start = 0;
-        int end = MAX_LENGTH;
-        int ans = MAX_LENGTH;
+        int end = MAX_HEIGHT;
+        int ans = MAX_HEIGHT;
         while(start <= end){
             int mid = (end + start) / 2;
             if(canReach(mid)){
