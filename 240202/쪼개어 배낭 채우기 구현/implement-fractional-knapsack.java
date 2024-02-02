@@ -52,8 +52,9 @@ public class Main {
 
         double ans = 0;
         while(M >= 0){
+            jewel curJewel = new jewel(0, 0, 0);
             if(!jewelSet.isEmpty()){
-                jewel curJewel = jewelSet.last();
+                curJewel = jewelSet.last();
             }
             else{
                 break;
