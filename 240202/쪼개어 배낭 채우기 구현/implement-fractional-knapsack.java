@@ -52,7 +52,13 @@ public class Main {
 
         double ans = 0;
         while(M >= 0){
-            jewel curJewel = jewelSet.last();
+            if(!jewelSet.isEmpty()){
+                jewel curJewel = jewelSet.last();
+            }
+            else{
+                break;
+            }
+            
             // System.out.println(curJewel.price);
             
             if(M - curJewel.weight >= 0){
