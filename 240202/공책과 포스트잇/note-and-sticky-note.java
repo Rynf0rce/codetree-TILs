@@ -7,32 +7,33 @@ public class Main {
     public static int N, K, L; // 공책의 수, 추가로 만들 포스트 잇의 수, 하나의 포스트 잇에 적을 수 있는 공책의 번호 개수
 
     public static boolean satisfied(int h_idx){
+        PriorityQueue<Integer> scopeEndQ = new PriorityQueue<>(Collections.reverseOrder());
+        
         int cnt = 0;
         int post_it = K;
-        int writtenNum = L;
         for(int i = N - 1 ; i >= 0 ; i--){
-            // System.out.println("arr[i] : " + arr[i]);
+            while(!scopeEndQ.isEmpty() && scopeEndQ.peek() > i){
+                scopeEndQ.poll();
+            }
+
             if(arr[i] >= h_idx){
                 cnt++;
                 continue;
             }
 
-            int addIdx = 0;
-            while(true){
-                if(arr[i] + addIdx >= h_idx){
-                    cnt++;
-                    break;
-                }
-                
-                if(post_it <= 0){
-                    break;
-                }
+            int desire = h_idx - arr[i];
 
-                addIdx += writtenNum;
+            while(desire > scopeEndQ.size()){
+                scopeEndQ.add(arr[i] - L + 1);
                 post_it--;
             }
 
-            // System.out.println("cnt : " + cnt);
+            if(post_it >= 0){
+                cnt++;
+            }
+            else{
+                break;
+            }
         }
 
         return cnt >= h_idx;
@@ -45,7 +46,7 @@ public class Main {
 
         N = Integer.parseInt(st.nextToken()); // 공책의 수.
         K = Integer.parseInt(st.nextToken()); // 추가로 만들 포스트 잇의 수.
-        L = Integer.parseInt(st.nextToken()); // 하나의 포스트 잇에 적을 수 있는 공책의 번호 개수.
+        L = Integer.parseInt(st.nextToken()); // 하나의 포스트 잇에 적을 수 있는 서로 다른 공책의 번호 개수.
         
         st = new StringTokenizer(br.readLine(), " ");
         for(int i = 0 ; i < N ; i++){
