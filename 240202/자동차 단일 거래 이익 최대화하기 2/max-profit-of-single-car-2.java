@@ -42,6 +42,39 @@ public class Main{
         }
 
         long ans = 0;
+        long minVal = arr[0];
+        for(int i = 1 ; i < n ; i++){
+            long profit = arr[i] - minVal;
+            if(ans < profit){
+                ans = profit;
+            }
+
+            if(minVal > arr[i]){
+                minVal = arr[i];
+            }
+        }
+
+        bw.write(ans + "");
+        
+        bw.close();
+        br.close();
+        
+    }
+}
+
+/*
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        int n = Integer.parseInt(br.readLine());
+
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        for(int i = 0 ; i < n ; i++){
+            arr[i] = Long.parseLong(st.nextToken());
+            timeSet.add(new time(arr[i], i));
+        }
+
+        long ans = 0;
 
         for(int i = 0 ; i < n - 1 ; i++){
             timeSet.remove(new time(arr[i], i));
@@ -53,5 +86,4 @@ public class Main{
         bw.close();
         br.close();
         
-    }
-}
+*/
