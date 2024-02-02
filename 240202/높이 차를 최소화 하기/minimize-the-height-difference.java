@@ -90,22 +90,31 @@ public class Main {
             }
         }
 
-        // System.out.println(canReach(5));
+        // System.out.println(canReach(307));
 
         int start = 0;
         int end = MAX_HEIGHT;
         int ans = MAX_HEIGHT;
-        while(start <= end){
-            int mid = (end + start) / 2;
-            if(canReach(mid)){
-                end = mid - 1;
-                ans = Math.min(ans, mid);
-            }
-            else{
-                start = mid + 1;
+
+        for(int i = 1 ; i <= 500 ; i++){
+            if(canReach(i)){
+                System.out.print(i);
+                System.exit(0);
             }
         }
 
-        System.out.print(ans);
+        // while(start <= end){
+        //     int mid = (end + start) / 2;
+        //     if(canReach(mid)){
+        //         end = mid - 1;
+        //         ans = Math.min(ans, mid);
+        //     }
+        //     else{
+        //         start = mid + 1;
+        //     }
+        //     System.out.println(start + " " + end);
+        // }
+
+        // System.out.print(ans);
     }
 }
