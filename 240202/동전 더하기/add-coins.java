@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-    public static final int MAX_LENGTH = 5;
+    public static final int MAX_LENGTH = 10;
     public static int[] arr = new int[MAX_LENGTH];
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
