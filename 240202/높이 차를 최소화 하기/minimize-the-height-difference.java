@@ -96,7 +96,7 @@ public class Main {
         int end = MAX_HEIGHT;
         int ans = MAX_HEIGHT;
 
-        for(int i = 1 ; i <= 500 ; i++){
+        for(int i = 0 ; i <= 500 ; i++){
             if(canReach(i)){
                 System.out.print(i);
                 System.exit(0);
