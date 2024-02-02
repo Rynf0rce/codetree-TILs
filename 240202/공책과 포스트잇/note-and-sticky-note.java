@@ -12,13 +12,17 @@ public class Main {
         int cnt = 0;
         int post_it = K;
         for(int i = N - 1 ; i >= 0 ; i--){
-            while(!scopeEndQ.isEmpty() && scopeEndQ.peek() > i){
-                scopeEndQ.poll();
-            }
-
             if(arr[i] >= h_idx){
                 cnt++;
                 continue;
+            }
+
+            if(L <= 0 || post_it < 0){
+                break;
+            }
+
+            while(!scopeEndQ.isEmpty() && scopeEndQ.peek() > i){
+                scopeEndQ.poll();
             }
 
             int desire = h_idx - arr[i];
@@ -31,10 +35,9 @@ public class Main {
             if(post_it >= 0){
                 cnt++;
             }
-            else{
-                break;
-            }
         }
+
+        
 
         return cnt >= h_idx;
     }
