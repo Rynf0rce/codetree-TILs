@@ -18,8 +18,8 @@ public class Main {
         Collections.sort(inputList, new Comparator<String>(){
             @Override
             public int compare(String a, String b){
-                long n1 = Integer.parseInt(a.concat(b));
-                long n2 = Integer.parseInt(b.concat(a));
+                long n1 = Long.parseLong(a.concat(b));
+                long n2 = Long.parseLong(b.concat(a));
 
                 if(n1 > n2){
                     return 1;
