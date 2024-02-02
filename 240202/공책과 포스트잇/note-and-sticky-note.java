@@ -11,6 +11,7 @@ public class Main {
         int post_it = K;
         int writtenNum = L;
         for(int i = N - 1 ; i >= 0 ; i--){
+            // System.out.println("arr[i] : " + arr[i]);
             if(arr[i] >= h_idx){
                 cnt++;
                 continue;
@@ -23,13 +24,15 @@ public class Main {
                     break;
                 }
                 
-                if(post_it < 0){
+                if(post_it <= 0){
                     break;
                 }
 
                 addIdx += writtenNum;
                 post_it--;
             }
+
+            // System.out.println("cnt : " + cnt);
         }
 
         return cnt >= h_idx;
@@ -51,7 +54,7 @@ public class Main {
 
         Arrays.sort(arr, 0, N);
 
-        // System.out.println(satisfied(2));
+        // System.out.println(satisfied(4));
 
         int start = 0;
         int end = MAX_BOOKS;
@@ -65,6 +68,7 @@ public class Main {
             else{
                 end = mid - 1;
             }
+            // System.out.println(start + " " + end);
         }
 
         bw.write(ans + "");
