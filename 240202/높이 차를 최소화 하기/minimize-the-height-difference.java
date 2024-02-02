@@ -4,10 +4,12 @@ import java.io.*;
 class point{
     int row;
     int col;
+    int min;
     
-    public point(int row, int col){
+    public point(int row, int col, int min){
         this.row = row;
         this.col = col;
+        this.min = min;
     }
 }
 
@@ -21,8 +23,6 @@ public class Main {
     public static int[] arrCol = new int[]{0, 1, 0, -1};
 
     public static int n, m;
-    public static int inMin = MAX_HEIGHT;
-    public static int inMax = 0;
 
     public static void initialize(){
         q.clear();
@@ -37,42 +37,41 @@ public class Main {
         return row >= 0 && col >= 0 && row < n && col < m;
     }
 
-    public static boolean canGo(int row, int col, int min, int max){
+    public static boolean canGo(point curPoint, int row, int col, int length){
         if(!inRange(row, col)){
             return false;
         }
 
-        if(table[row][col] < min || table[row][col] > max){
-            return false;
+        int min = Math.min(curPoint.min, table[row][col]);
+        if(min <= table[row][col] && table[row][col] <= min + length){
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     public static boolean BFS(int length){
-        for(int j = inMin ; j <= inMax ; j++){
-            initialize();
-            q.add(new point(0, 0));
-            while(!q.isEmpty()){
-                point curPoint = q.poll();
-                
-                if(vistied[curPoint.row][curPoint.col]){
-                    continue;
-                }
+        initialize();
+        q.add(new point(0, 0, table[0][0]));
+        while(!q.isEmpty()){
+            point curPoint = q.poll();
+            
+            if(vistied[curPoint.row][curPoint.col]){
+                continue;
+            }
 
-                if(curPoint.row == n - 1 && curPoint.col == m - 1){
-                    return true;
-                }
+            if(curPoint.row == n - 1 && curPoint.col == m - 1){
+                return true;
+            }
 
-                vistied[curPoint.row][curPoint.col] = true;
+            vistied[curPoint.row][curPoint.col] = true;
 
-                for(int i = 0 ; i < 4 ; i++){
-                    int postRow = curPoint.row + arrRow[i];
-                    int postCol = curPoint.col + arrCol[i];
+            for(int i = 0 ; i < 4 ; i++){
+                int postRow = curPoint.row + arrRow[i];
+                int postCol = curPoint.col + arrCol[i];
 
-                    if(canGo(postRow, postCol, j, j + length)){
-                        q.add(new point(postRow, postCol));
-                    }
+                if(canGo(curPoint, postRow, postCol, length)){
+                    q.add(new point(postRow, postCol, Math.min(curPoint.min, table[postRow][postCol])));
                 }
             }
         }
@@ -92,8 +91,6 @@ public class Main {
             st = new StringTokenizer(br.readLine(), " ");
             for(int j = 0 ; j < m ; j++){
                 table[i][j] = Integer.parseInt(st.nextToken());
-                inMin = Math.min(inMin, table[i][j]);
-                inMax = Math.max(inMax, table[i][j]);
             }
         }
 
