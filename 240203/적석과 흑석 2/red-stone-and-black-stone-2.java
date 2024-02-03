@@ -47,20 +47,20 @@ public class Main {
         Arrays.sort(redArr, 0, C);
         Arrays.sort(blackArr, 0, N);
 
-        int j = -1;
+        int j = N;
         int cnt = 0;
-        for(int i = 0 ; i < C ; i++){
-            while(j + 1 < N){
-                if(blackArr[j + 1].A <= redArr[i] && redArr[i] <= blackArr[j + 1].B){
-                    j++;
+        for(int i = C - 1 ; i >= 0 ; i--){
+            while(j >= 0){
+                if(blackArr[j - 1].A <= redArr[i] && redArr[i] <= blackArr[j - 1].B){
+                    j--;
                     cnt++;
                     break;
                 }
-                else if(blackArr[j + 1].B < redArr[i]){
-                    j++;
+                else if(blackArr[j - 1].B < redArr[i]){
+                    break;
                 }
                 else{
-                    break;
+                    j--;
                 }
             }
         }
@@ -69,7 +69,5 @@ public class Main {
 
         bw.close();
         br.close();
-
-
     }
 }
