@@ -16,36 +16,41 @@ class bomb implements Comparable<bomb>{
             return b.point - this.point;
         }
         else{
-            return this.time - b.time;
+            return b.time - this.time;
         }
     }
 }
 
 public class Main {
+    public static PriorityQueue<bomb> bombQueue = new PriorityQueue<>();
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st;
-
-        PriorityQueue<bomb> pq = new PriorityQueue<>();
         
         int n = Integer.parseInt(br.readLine());
-
+        int maxTime = 0;
         for(int i = 0 ; i < n ; i++){
             st = new StringTokenizer(br.readLine() , " ");
             int point = Integer.parseInt(st.nextToken());
             int time = Integer.parseInt(st.nextToken());
-            pq.add(new bomb(point, time));
-        }
 
+            bombQueue.add(new bomb(point, time));
+        }
+        
+        int time = bombQueue.peek().time;
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
         int ans = 0;
-        while(!pq.isEmpty()){
-            bomb highPointBomb = pq.poll();
-            while(!pq.isEmpty() && pq.peek().time == highPointBomb.time){
-                pq.poll();
+
+        for(int i = time ; i >= 1 ; i--){
+            while(!bombQueue.isEmpty() && bombQueue.peek().time == i){
+                pq.add(bombQueue.poll().point);
+                // System.out.println("time : " + i);
             }
-            // System.out.println(highPointBomb.point + " " + highPointBomb.time);
-            ans += highPointBomb.point;
+            
+            if(!pq.isEmpty()){
+                ans += pq.poll();
+            }
         }
 
         bw.write(ans + "");
