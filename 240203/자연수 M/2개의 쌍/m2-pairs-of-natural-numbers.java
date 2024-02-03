@@ -18,37 +18,27 @@ public class Main {
             ts.add(num);
         }
 
-        // System.out.print(hm.get(ts.first()) + " " + hm.get(ts.last()));
-
-        int ans = 0;
-        if(hm.get(ts.first()) == hm.get(ts.last())){
-            ans = ts.first() + ts.last();
-        }
-        else if(hm.get(ts.first()) > hm.get(ts.last())){
-            int cnt = hm.get(ts.first());
-            while(true){
-                cnt -= hm.get(ts.last());
-                if(cnt < 0){
-                    ans = ts.first() + ts.last();
-                    break;
-                }
+        long maxOfMin = 0;
+        while(!ts.isEmpty()){
+            maxOfMin = Math.max(ts.first() + ts.last(), maxOfMin);
+            if(hm.get(ts.first()) > hm.get(ts.last())){
+                hm.put(ts.first(), hm.get(ts.first()) - hm.get(ts.last()));
                 ts.remove(ts.last());
             }
-        }
-        else{
-            int cnt = hm.get(ts.last());
-            while(true){
-                cnt -= hm.get(ts.first());
-                if(cnt < 0){
-                    ans = ts.first() + ts.last();
+            else if(hm.get(ts.first()) < hm.get(ts.last())){
+                hm.put(ts.last(), hm.get(ts.last()) - hm.get(ts.first()));
+                ts.remove(ts.first());
+            }
+            else{
+                ts.remove(ts.last());
+                if(ts.isEmpty()){
                     break;
                 }
                 ts.remove(ts.first());
             }
         }
 
-
-        bw.write( ans + "");
+        bw.write(maxOfMin + "");
 
         br.close();
         bw.close();
