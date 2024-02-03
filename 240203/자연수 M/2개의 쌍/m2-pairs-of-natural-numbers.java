@@ -18,19 +18,40 @@ public class Main {
             ts.add(num);
         }
 
-        System.out.print(ts.first() + ts.last());
+        // System.out.print(hm.get(ts.first()) + " " + hm.get(ts.last()));
 
-        // long minVal = Long.MAX_VALUE;
-        // while(!hm.isEmpty()){
-        //     hm.put(ts.first(), hm.get(ts.first()) - 1);
-        //     hm.put(ts.last(), hm.get(ts.last()) - 1);
+        int ans = 0;
+        if(hm.get(ts.first()) == hm.get(ts.last())){
+            ans = ts.first() + ts.last();
+        }
+        else if(hm.get(ts.first()) > hm.get(ts.last())){
+            int cnt = hm.get(ts.first());
+            while(true){
+                cnt -= hm.get(ts.last());
+                if(cnt < 0){
+                    ans = ts.first() + ts.last();
+                    break;
+                }
+                ts.remove(ts.last());
+            }
+        }
+        else{
+            int cnt = hm.get(ts.last());
+            while(true){
+                cnt -= hm.get(ts.first());
+                if(cnt < 0){
+                    ans = ts.first() + ts.last();
+                    break;
+                }
+                ts.remove(ts.first());
+            }
+        }
 
-        //     if(hm.get(ts.first()) == 0){
-        //         hm.remove(ts.first());
-        //         br.remove(ts.first());
-        //     }
-        //     if()
-        // }
+
+        bw.write( ans + "");
+
+        br.close();
+        bw.close();
         
     }
 }
