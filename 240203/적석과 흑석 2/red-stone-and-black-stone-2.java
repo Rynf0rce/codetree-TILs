@@ -13,7 +13,7 @@ class black implements Comparable<black>{
     @Override
     public int compareTo(black b){
         if(this.B == b.B){
-            return this.A - b.A;
+            return b.A - this.A;
         }
         else{
             return this.B - b.B;
