@@ -8,7 +8,6 @@ public class Main {
     public static long matching(String str){
         long output = 0;
         char[] inputArr = str.toCharArray();
-        long[] leftArr = new long[inputArr.length + 1];
         int cnt = 0;
 
         for(int i = 0 ; i < inputArr.length ; i++){
