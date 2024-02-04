@@ -5,21 +5,18 @@ public class Main {
     public static final int MAX_LENGTH = 100000;
     public static ArrayList<String> strList = new ArrayList<>();
 
-    public static int matching(String str){
-        int output = 0;
+    public static long matching(String str){
+        long output = 0;
         char[] inputArr = str.toCharArray();
-        int[] leftArr = new int[inputArr.length + 1];
-
-        for(int i = inputArr.length - 1; i >= 0 ; i--){
-            leftArr[i] = leftArr[i + 1];
-            if(inputArr[i] == ')'){
-                leftArr[i]++;
-            }
-        }
+        long[] leftArr = new long[inputArr.length + 1];
+        int cnt = 0;
 
         for(int i = 0 ; i < inputArr.length ; i++){
             if(inputArr[i] == '('){
-                output += leftArr[i + 1];
+                cnt++;
+            }
+            else{
+                output += cnt;
             }
         }
 
@@ -52,14 +49,13 @@ public class Main {
         });
 
         // System.out.println();
-        String ans = "";
+        StringBuilder ans = new StringBuilder();
         for(int i = n - 1 ; i >= 0 ; i--){
-            ans += strList.get(i);
-            // System.out.println(strList.get(i));
+            ans.append(strList.get(i));
         }
 
         // System.out.println(ans);
-        System.out.println(matching(ans));
+        System.out.println(matching(ans.toString()));
 
     }
 }
