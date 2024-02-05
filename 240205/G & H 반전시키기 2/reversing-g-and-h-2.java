@@ -9,17 +9,16 @@ public class Main {
         char[] targetArr = br.readLine().toCharArray();
 
         int cnt = 0;
+        boolean triger = false;
         for(int i = n - 1; i >= 0 ; i--){
-            if(targetArr[i] != inArr[i]){
-                for(int j = i ; j >= 0 ; j--){
-                    if(inArr[j] == 'H'){
-                        inArr[j] = 'G';
-                    }
-                    else{
-                        inArr[j] = 'H';
-                    }
-                }
+            if( (targetArr[i] != inArr[i] && !triger) || (targetArr[i] == inArr[i]) && triger ){
                 cnt++;
+                if(triger){
+                    triger = false;
+                }
+                else{
+                    triger = true;
+                }
             }
         }
 
