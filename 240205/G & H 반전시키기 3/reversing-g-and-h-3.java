@@ -30,6 +30,10 @@ public class Main {
             }
         }
 
+        if(cnt > 0){
+            ans++;
+        }
+
         System.out.print(ans);
     }
 }
