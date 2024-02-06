@@ -20,7 +20,6 @@ public class Main {
     public static final int MAX_VERTEX = 20000;
     public static final int MAX_WEIGHT = Integer.MAX_VALUE;
     public static ArrayList<vertex>[] vertexList = new ArrayList[MAX_VERTEX + 1];
-    public static boolean[] visited = new boolean[MAX_VERTEX + 1];
     public static int[] dist = new int[MAX_VERTEX + 1];
     public static PriorityQueue<vertex> pq = new PriorityQueue<>();
 
@@ -50,16 +49,16 @@ public class Main {
 
         while(!pq.isEmpty()){
             vertex curVertex = pq.poll();
-            if(curVertex.weight != dist[curVertex.idx] || visited[curVertex.idx]){
+            if(curVertex.weight != dist[curVertex.idx]){
                 continue;
             }
-            
-            visited[curVertex.idx] = true;
 
             for(int i = 0 ; i < vertexList[curVertex.idx].size() ; i++){
                 vertex postVertex = vertexList[curVertex.idx].get(i);
-                dist[postVertex.idx] = Math.min(dist[postVertex.idx], curVertex.weight + postVertex.weight);
-                pq.add(new vertex(postVertex.idx, dist[postVertex.idx]));
+                if(dist[postVertex.idx] > curVertex.weight + postVertex.weight){
+                    dist[postVertex.idx] = curVertex.weight + postVertex.weight;
+                    pq.add(new vertex(postVertex.idx, dist[postVertex.idx]));
+                }
             }
         }
 
