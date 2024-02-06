@@ -40,6 +40,7 @@ public class Main {
             int end = Integer.parseInt(st.nextToken());
             int weight = Integer.parseInt(st.nextToken());
             vertexList[start].add(new vertex(end, weight));
+            vertexList[end].add(new vertex(start, weight));
         }
 
         st = new StringTokenizer(br.readLine(), " ");
@@ -64,7 +65,6 @@ public class Main {
             }
         }
 
-        System.out.println(dist[B]);
         ArrayList<Integer> ans = new ArrayList<>();
         int path = B;
         ans.add(path);
@@ -74,6 +74,7 @@ public class Main {
             ans.add(path);
         }
 
+        System.out.println(ans.size() - 1);
         for(int i = ans.size() - 1 ; i >= 0 ; i--){
             System.out.print(ans.get(i) + " ");
         }
