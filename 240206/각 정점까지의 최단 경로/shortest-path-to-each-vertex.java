@@ -64,7 +64,7 @@ public class Main {
         }
 
         for(int i = 1 ; i <= n ; i++){
-            System.out.println(dist[i]);
+            System.out.println(dist[i] == MAX_WEIGHT ? -1 : dist[i]);
         }   
     }
 }
