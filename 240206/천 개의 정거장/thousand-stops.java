@@ -18,7 +18,7 @@ class vertex implements Comparable<vertex>{
 
 public class Main{
     public static final int MAX_VERTEX = 1000;
-    public static final int MAX_COST = (int)1e9;
+    public static final int MAX_COST = (int)1e9 + 1;
     public static ArrayList<vertex>[] vertexList = new ArrayList[MAX_VERTEX + 1];
     public static PriorityQueue<vertex> pq = new PriorityQueue<>();
     public static int[] pathArr = new int[MAX_VERTEX + 1];
@@ -85,6 +85,11 @@ public class Main{
             //     System.out.print(pathArr[i] + " ");
             // }
             // System.out.println();
+        }
+
+        if(dist[B] == MAX_COST){
+            System.out.println("-1 -1");
+            System.exit(0);
         }
         
         int time = 1;
