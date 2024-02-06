@@ -74,7 +74,7 @@ public class Main {
             ans.add(path);
         }
 
-        System.out.println(ans.size() - 1);
+        System.out.println(dist[B]);
         for(int i = ans.size() - 1 ; i >= 0 ; i--){
             System.out.print(ans.get(i) + " ");
         }
