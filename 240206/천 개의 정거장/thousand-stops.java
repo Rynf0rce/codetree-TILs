@@ -18,13 +18,13 @@ class vertex implements Comparable<vertex>{
     @Override
     public int compareTo(vertex v){
         if(this.weight > v.weight){
-            return 1;
+            return -1;
         }
         else if(this.weight == v.weight){
             return 0;
         }
         else{
-            return -1;
+            return 1;
         }
     }
 
@@ -63,7 +63,7 @@ public class Main {
                 }
                 else{
                     int curIdx = Integer.parseInt(st.nextToken());
-                    vertexList[preIdx].add(new vertex(curIdx, 1, cost));
+                    vertexList[preIdx].add(new vertex(curIdx, i, cost));
                     preIdx = curIdx;
                 }
             }
