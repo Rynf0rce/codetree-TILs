@@ -51,7 +51,7 @@ public class Main{
                     continue;
                 }
                     
-                if(minIndex == -1 || cost[minIndex] < cost[j] ){
+                if(minIndex == -1 || cost[minIndex] > cost[j] ){
                     minIndex = j;
                 }
             }
