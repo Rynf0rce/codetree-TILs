@@ -24,11 +24,41 @@ public class Main {
     public static int[] arrCol = new int[]{0, 1, 0, -1};
     public static ArrayList<node>[] nodeList = new ArrayList[MAX_EDGE * MAX_EDGE];
     public static PriorityQueue<node> pq = new PriorityQueue<>();
+    public static int N;
+
+    public static int dijkstra(int startIdx){
+        for(int i = 0 ; i < N * N ; i++){
+            weightArr[i] = MAX_WEIGHT;
+        }
+        weightArr[startIdx] = 0;
+        pq.add(new node(startIdx, weightArr[startIdx]));
+        while(!pq.isEmpty()){
+            node curNode = pq.poll();
+            if(curNode.weight != weightArr[curNode.idx]){
+                continue;
+            }
+
+            for(int i = 0 ; i < nodeList[curNode.idx].size() ; i++){
+                node preNode = nodeList[curNode.idx].get(i);
+                if(weightArr[preNode.idx] > curNode.weight + preNode.weight){
+                    weightArr[preNode.idx] = curNode.weight + preNode.weight;
+                    pq.add(new node(preNode.idx, weightArr[preNode.idx]));
+                }
+            }
+        }
+
+        int ans = 0;
+        for(int i = 0 ; i < N * N ; i++){
+            ans = Math.max(ans, weightArr[i]);
+        }
+
+        return ans;
+    }
 
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        int N = Integer.parseInt(st.nextToken());
+        N = Integer.parseInt(st.nextToken());
         int A = Integer.parseInt(st.nextToken());
         int B = Integer.parseInt(st.nextToken());
         for(int i = 0 ; i < N ; i++){
@@ -58,31 +88,19 @@ public class Main {
                     int weight = table[curRow][curCol] == table[postRow][postCol] ? A : B;
 
                     nodeList[curRow * N + curCol].add(new node(postRow * N + postCol, weight));
-                }
-            }
-        }
-
-        weightArr[0] = 0;
-        pq.add(new node(0, weightArr[0]));
-        while(!pq.isEmpty()){
-            node curNode = pq.poll();
-            if(curNode.weight != weightArr[curNode.idx]){
-                continue;
-            }
-
-            for(int i = 0 ; i < nodeList[curNode.idx].size() ; i++){
-                node preNode = nodeList[curNode.idx].get(i);
-                if(weightArr[preNode.idx] > curNode.weight + preNode.weight){
-                    weightArr[preNode.idx] = curNode.weight + preNode.weight;
-                    pq.add(new node(preNode.idx, weightArr[preNode.idx]));
+                    nodeList[postRow * N + postCol].add(new node(curRow * N + curCol, weight));
                 }
             }
         }
 
         int ans = 0;
         for(int i = 0 ; i < N * N ; i++){
-            ans = Math.max(ans, weightArr[i]);
+            ans = Math.max(ans, dijkstra(i));
         }
+        // dijkstra(1);
+        // for(int i = 0 ; i < N * N ; i++){
+        //     System.out.print(weightArr[i] + " ");
+        // }
 
         System.out.print(ans);
     }
