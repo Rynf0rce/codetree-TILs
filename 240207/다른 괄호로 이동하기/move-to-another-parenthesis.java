@@ -17,7 +17,7 @@ class node implements Comparable<node>{
 
 public class Main { 
     public static final int MAX_EDGE = 30;
-    public static final int MAX_WEIGHT = (int) 1e6;
+    public static final int MAX_WEIGHT = MAX_EDGE * MAX_EDGE * 1000000;
     public static char[][] table = new char[MAX_EDGE][MAX_EDGE];
     public static int[] weightArr = new int[MAX_EDGE * MAX_EDGE];
     public static int[] arrRow = new int[]{-1, 0, 1, 0};
