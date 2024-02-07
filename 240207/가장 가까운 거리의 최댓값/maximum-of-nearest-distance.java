@@ -81,7 +81,7 @@ public class Main {
 
         int maxOfMin = 0;
         for(int j = 1 ; j <= n ; j++){
-            int min = 10000;
+            int min = MAX_VAL;
             for(int i = 1 ; i <= TARGET_VERTEX ; i++){
                 min = Math.min(min, dist[i][j]);
             }
