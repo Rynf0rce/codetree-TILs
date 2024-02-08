@@ -102,8 +102,8 @@ public class Main {
             }
 
             //검 -> 빨 -> 검 -> 빨
-            long cal_1 = (dist_A[i] + dist_B[i]) * 2;
-            curVal = Math.min(curVal, cal_1);
+            // long cal_1 = (dist_A[i] + dist_B[i]) * 2;
+            // curVal = Math.min(curVal, cal_1);
             
             // 검 -> A빨 -> B빨 -> 검
             long cal_2 = dist_A[i] + dist_A[J] + dist_B[i];
