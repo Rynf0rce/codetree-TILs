@@ -76,19 +76,7 @@ public class Main {
 
         dijkstra(I, dist_A);
         dijkstra(J, dist_B);
-        
-        // for(int i = 1 ; i <= N ; i++){
-        //     System.out.print(dist_A[i] + " ");
-        // }
-        
-        // System.out.println();
-
-        // for(int i = 1 ; i <= N ; i++){
-        //     System.out.print(dist_B[i] + " ");
-        // }
-
-        // System.out.println();
-
+    
         if(dist_A[J] == INVALID || dist_B[I] == INVALID){
             System.out.print(-1);
             System.exit(0);
@@ -101,25 +89,18 @@ public class Main {
                 continue;
             }
 
-            //검 -> 빨 -> 검 -> 빨
-            // long cal_1 = (dist_A[i] + dist_B[i]) * 2;
-            // curVal = Math.min(curVal, cal_1);
-            
             // 검 -> A빨 -> B빨 -> 검
-            long cal_2 = dist_A[i] + dist_A[J] + dist_B[i];
-            curVal = Math.min(curVal, cal_2);
+            long cal_1 = dist_A[i] + dist_A[J] + dist_B[i];
+            curVal = Math.min(curVal, cal_1);
 
             // 검 -> B빨 -> A빨 -> 검
-            long cal_3 = dist_B[i] + dist_B[I] + dist_A[i];
-            curVal = Math.min(curVal, cal_3);
+            long cal_2 = dist_B[i] + dist_B[I] + dist_A[i];
+            curVal = Math.min(curVal, cal_2);
 
             ans = Math.min(curVal, ans);
             
-            // System.out.println("i : " + i + " cal_1 : " + cal_1 + " cal_2 : " + cal_2 + " cal_3 : " + cal_3);
         }
 
         System.out.print(ans);
-
-
     }
 }
