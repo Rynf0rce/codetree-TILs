@@ -2,110 +2,50 @@ import java.util.*;
 import java.io.*;
 
 class vertex implements Comparable<vertex>{
-    int idx, weight;
+    int idx;
+    long weight;
 
-    public vertex(int idx, int weight){
+    public vertex(int idx, long weight){
         this.idx = idx;
         this.weight = weight;
     }
 
     @Override
     public int compareTo(vertex v){
-        return this.weight - v.weight;
+        if(this.weight > v.weight){
+            return 1;
+        }
+        else if(this.weight == v.weight){
+            return 0;
+        }
+        else {
+            return -1;
+        }
     }
-}
-
-class path{
-    int start;
-    int end;
-    
-    public path(int start, int end){
-        this.start = start;
-        this.end = end;
-    }
-
-    @Override
-	public int hashCode() {
-		// int hash(Object ... values); // 가변인자
-		return Objects.hash(start, end); //iv들을 다 적으면 된다
- 	}
-	@Override
-	public boolean equals(Object obj) {
-		if(!(obj instanceof path)) return false;
-		
-		path p = (path)obj; //obj에는 name과 age가 없기 때문에 형변환 필요
-		
-		// 나 자신(this)의 이름과 나이를 p와 비교
-		return this.start == p.start && this.end == p.end;
-	}
-    
 }
 
 public class Main {
     public static final int MAX_VERTEX = 100000;
-    public static final int INVALUED = (int)1e10;
-    public static ArrayList<vertex>[] vertexList = new ArrayList[MAX_VERTEX + 1];
+    public static final long INVALID = (long)1e10 + 1;
+    public static ArrayList<vertex>[] vertexList = new ArrayList[MAX_VERTEX];
+    public static long[] dist_A = new long[MAX_VERTEX + 1];
+    public static long[] dist_B = new long[MAX_VERTEX + 1];
     public static PriorityQueue<vertex> pq = new PriorityQueue<>();
-    public static HashSet<path> hs = new HashSet<>();
-    public static HashMap<path, Integer> hm = new HashMap<>();
-    public static int[] dist = new int[MAX_VERTEX + 1];
-    public static int[] pathArr = new int[MAX_VERTEX + 1];
-    public static int N, M;
-    public static int[] redVertex = new int[2];
 
-    public static void initialize(){
-        for(int i = 1 ; i <= N ; i++){
-            dist[i] = INVALUED;
-            pathArr[i] = INVALUED;
-        }
-    }
-
-    public static int shortestPath(int startIdx){
-        hs.clear();
-        hm.clear();
-        if(dist[redVertex[0]] == INVALUED || dist[redVertex[1]] == INVALUED){
-            return -1;
-        }
-        
-        for(int i = 0 ; i < redVertex.length ; i++){
-            int curIdx = redVertex[i];
-            while(curIdx != startIdx){
-                path goPath = new path(curIdx, pathArr[curIdx]);
-                path backPath = new path(pathArr[curIdx], curIdx);
-                hs.add(goPath);
-                hs.add(backPath);
-                hm.put(goPath, dist[curIdx] - dist[pathArr[curIdx]]);
-                hm.put(backPath, dist[curIdx] - dist[pathArr[curIdx]]);
-                curIdx = pathArr[curIdx];
-            }
-        }
-        
-        int ans = 0;
-        for(path curPath : hs){
-            // System.out.println(curPath.start + " " + curPath.end + " " + hm.get(curPath));
-            ans += hm.get(curPath);
-        }
-        return ans;
-    }
-
-    public static void dijkstra(int startIdx){
-        initialize();
+    public static void dijkstra(int startIdx, long[] dist){
         dist[startIdx] = 0;
-        pathArr[startIdx] = startIdx;
         pq.add(new vertex(startIdx, dist[startIdx]));
         while(!pq.isEmpty()){
-            vertex curVertex = pq.poll();
-            if(dist[curVertex.idx] != curVertex.weight){
+            vertex curVer = pq.poll();
+            if(curVer.weight != dist[curVer.idx]){
                 continue;
             }
 
-            for(int i = 0 ; i < vertexList[curVertex.idx].size() ; i++){
-                vertex postVertex = vertexList[curVertex.idx].get(i);
-
-                if(dist[postVertex.idx] > postVertex.weight + curVertex.weight){
-                    dist[postVertex.idx] = postVertex.weight + curVertex.weight;
-                    pq.add(new vertex(postVertex.idx, dist[postVertex.idx]));
-                    pathArr[postVertex.idx] = curVertex.idx;
+            for(int i = 0 ; i < vertexList[curVer.idx].size() ; i++){
+                vertex postVer = vertexList[curVer.idx].get(i);
+                if(dist[postVer.idx] > curVer.weight + postVer.weight){
+                    dist[postVer.idx] = curVer.weight + postVer.weight;
+                    pq.add(new vertex(postVer.idx, dist[postVer.idx]));
                 }
             }
         }
@@ -114,50 +54,72 @@ public class Main {
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
-
-        st = new StringTokenizer(br.readLine(), " ");
-        redVertex[0] = Integer.parseInt(st.nextToken());
-        redVertex[1] = Integer.parseInt(st.nextToken());
-
+        int N = Integer.parseInt(st.nextToken());
         for(int i = 1 ; i <= N ; i++){
-            vertexList[i] = new ArrayList<vertex>();
+            vertexList[i] = new ArrayList<>();
+            dist_A[i] = INVALID;
+            dist_B[i] = INVALID;
         }
 
+        int M = Integer.parseInt(st.nextToken());
+        st = new StringTokenizer(br.readLine(), " ");
+        int I = Integer.parseInt(st.nextToken());
+        int J = Integer.parseInt(st.nextToken());
         for(int i = 0 ; i < M ; i++){
-            st = new StringTokenizer(br.readLine(), " ");
+            st =  new StringTokenizer(br.readLine(), " ");
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
-            int weight = Integer.parseInt(st.nextToken());
+            long weight = Long.parseLong(st.nextToken());
             vertexList[start].add(new vertex(end, weight));
             vertexList[end].add(new vertex(start, weight));
         }
 
-        int ans = 0 ;
+        dijkstra(I, dist_A);
+        dijkstra(J, dist_B);
+        
+        // for(int i = 1 ; i <= N ; i++){
+        //     System.out.print(dist_A[i] + " ");
+        // }
+        
+        // System.out.println();
 
+        // for(int i = 1 ; i <= N ; i++){
+        //     System.out.print(dist_B[i] + " ");
+        // }
+
+        // System.out.println();
+
+        if(dist_A[J] == INVALID || dist_B[I] == INVALID){
+            System.out.print(-1);
+            System.exit(0);
+        }
+
+        long ans = INVALID;
         for(int i = 1 ; i <= N ; i++){
-            if(i == redVertex[1] || i == redVertex[1]){
+            long curVal = INVALID;
+            if(i == I || i == J){
                 continue;
             }
-            dijkstra(i);
-            ans = Math.max(shortestPath(i), ans);
+
+            //검 -> 빨 -> 검 -> 빨
+            long cal_1 = (dist_A[i] + dist_B[i]) * 2;
+            curVal = Math.min(curVal, cal_1);
+            
+            // 검 -> A빨 -> B빨 -> 검
+            long cal_2 = dist_A[i] + dist_A[J] + dist_B[i];
+            curVal = Math.min(curVal, cal_2);
+
+            // 검 -> B빨 -> A빨 -> 검
+            long cal_3 = dist_B[i] + dist_B[I] + dist_A[i];
+            curVal = Math.min(curVal, cal_3);
+
+            ans = Math.min(curVal, ans);
+            
+            // System.out.println("i : " + i + " cal_1 : " + cal_1 + " cal_2 : " + cal_2 + " cal_3 : " + cal_3);
         }
 
         System.out.print(ans);
 
-        //dijkstra(1);
 
-        // for(int i = 1 ; i <= N ; i++){
-        //     System.out.print(dist[i] + " ");
-        // }
-        // System.out.println();
-        // for(int i = 1 ; i <= N ; i++){
-        //     System.out.print(pathArr[i] + " ");
-        // }
-
-        // System.out.println();
-
-        //System.out.println(shortestPath(1));
     }
 }
