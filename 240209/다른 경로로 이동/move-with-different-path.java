@@ -78,6 +78,15 @@ public class Main {
             nodeList[end].add(new node(start, weight));
         }
 
+        for(int i = 1 ; i <= n ; i++){
+            Collections.sort(nodeList[i], new Comparator<node>(){
+                @Override
+                public int compare(node n1, node n2){
+                    return n1.idx - n2.idx;
+                }
+            });
+        }
+
         dijkstra();
 
         int curIdx = n;
