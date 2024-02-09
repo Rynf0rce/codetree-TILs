@@ -78,6 +78,8 @@ public class Main {
             nodeList[end].add(new node(start, weight));
         }
 
+
+        // 이 부분을 하지 않아도 코테가 통과 됩니다.
         for(int i = 1 ; i <= n ; i++){
             Collections.sort(nodeList[i], new Comparator<node>(){
                 @Override
