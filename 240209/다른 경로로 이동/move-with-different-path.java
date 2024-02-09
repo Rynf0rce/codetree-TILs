@@ -81,10 +81,26 @@ public class Main {
         dijkstra();
 
         int curIdx = n;
-        while(path[curIdx] != 1){
-            curIdx = path[curIdx];
-            pathSet_A.add(curIdx);
+        while(curIdx != 1){
+            int preIdx = path[curIdx];
+            for(int i = 0 ; i < nodeList[preIdx].size() ; i++){
+                node preNode = nodeList[preIdx].get(i);
+                if(preNode.idx == curIdx && dist[preIdx] == dist[curIdx] - preNode.weight){
+                    nodeList[preIdx].remove(preNode);
+                    break;
+                }
+            }
+
+            for(int i = 0 ; i < nodeList[curIdx].size() ; i++){
+                node curNode = nodeList[curIdx].get(i);
+                if(curNode.idx == preIdx && dist[curIdx] == dist[preIdx] + curNode.weight){
+                    nodeList[curIdx].remove(curNode);
+                    break;
+                }
+            }
+            curIdx = preIdx;
         }
+        
 
         dijkstra();
 
