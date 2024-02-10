@@ -36,7 +36,7 @@ public class Main {
 
         for(int i = 1 ; i <= N ; i++){
             for(int j = 1 ; j <= N ; j++){
-                System.out.print(graph[i][j] + " ");
+                System.out.print( (graph[i][j] == INVAILD ? -1 : graph[i][j]) + " ");
             }
             System.out.println();
         }
