@@ -21,7 +21,7 @@ public class Main {
             dist[i][i] = 0;
         }
 
-        for(int i = 0 ; i < N ; i++){
+        for(int i = 0 ; i < M ; i++){
             st = new StringTokenizer(br.readLine(), " ");
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
