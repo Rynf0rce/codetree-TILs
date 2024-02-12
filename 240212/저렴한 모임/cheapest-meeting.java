@@ -54,6 +54,6 @@ public class Main {
         for(int i = 1 ; i <= n ; i++){
             ans = Math.min(ans, graph[v1][i] + graph[v2][i] + graph[i][e]);
         }
-        System.out.print(ans);
+        System.out.print(ans == MAX_INT ? -1 : ans);
     }
 }
