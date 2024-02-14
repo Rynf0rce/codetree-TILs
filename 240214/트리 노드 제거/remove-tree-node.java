@@ -12,7 +12,7 @@ public class Main {
         if(nodeList[idx].isEmpty()){
             return;
         }
-        
+
         boolean isLeaf = true;
         for(int i = 0 ; i < nodeList[idx].size() ; i++){
             int curIdx = nodeList[idx].get(i);
@@ -24,6 +24,7 @@ public class Main {
         }
 
         if(isLeaf){
+            // System.out.println(idx);
             ans++;
         }
     }
@@ -53,9 +54,7 @@ public class Main {
         int removeIdx = Integer.parseInt(br.readLine());
         nodeList[removeIdx].clear();
         for(int i = 0 ; i < n ; i++){
-            if(parents[i] == removeIdx){
-                nodeList[i].remove(Integer.valueOf(removeIdx));
-            }
+            nodeList[i].remove(Integer.valueOf(removeIdx));
         }
 
         visited[root] = true;
