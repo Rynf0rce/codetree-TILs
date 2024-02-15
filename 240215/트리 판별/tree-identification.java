@@ -33,6 +33,12 @@ public class Main {
             }
             
         }
+
+        for(Integer num : nodeNumSet){
+            if(!visited[num]){
+                return false;
+            }
+        }
         return true;
     }
 
