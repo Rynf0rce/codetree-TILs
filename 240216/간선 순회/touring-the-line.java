@@ -13,12 +13,14 @@ public class Main {
     public static final int MAX_NODE = 50000;
     public static ArrayList<node>[] nodeList = new ArrayList[MAX_NODE + 1];
     public static int[] dist = new int[MAX_NODE + 1];
+    public static int[] depth = new int[MAX_NODE + 1];
     public static boolean[] visited = new boolean[MAX_NODE + 1];
     public static int n = -1;
 
     public static void initialize(){
         for(int i = 1 ; i <= n ; i++){
             dist[i] = 0;
+            depth[i] = 0;
             visited[i] = false;
         }
     }
@@ -28,6 +30,7 @@ public class Main {
             node curNode = nodeList[idx].get(i);
             if(!visited[curNode.idx]){
                 visited[curNode.idx] = true;
+                depth[curNode.idx] = depth[idx] + 1;
                 dist[curNode.idx] = curNode.weight + dist[idx];
                 treversal(curNode.idx);
             }
@@ -58,7 +61,10 @@ public class Main {
 
         int maxIdx = 0;
         for(int i = 1 ; i <= n ; i++){
-            if(dist[maxIdx] < dist[i]){
+            if(depth[maxIdx] < depth[i]){
+                maxIdx = i;
+            }
+            else if(depth[maxIdx] == depth[i] && dist[maxIdx] > dist[i]){
                 maxIdx = i;
             }
         }
@@ -69,8 +75,15 @@ public class Main {
 
         int ans = 0;
         for(int i = 1 ; i <= n ; i++){
-            ans = Math.max(ans, dist[i]);
+            if(depth[ans] < depth[i]){
+                ans = i;
+            }
+            else if(depth[ans] == depth[i] && dist[ans] > dist[i]){
+                ans = i;
+            }
         }
+
+        ans = dist[ans];
 
         if(ans % d == 0){
             ans /= d;
