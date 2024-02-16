@@ -60,7 +60,6 @@ public class Main {
             }
 
             if(traversal(i)){
-                System.out.println(i);
                 ans++;
             }
         }
