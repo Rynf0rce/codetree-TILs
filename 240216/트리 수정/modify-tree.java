@@ -52,6 +52,7 @@ public class Main {
             parents[i] = 0;
             visited[i] = false;
         }
+        // System.out.println("maxIdx : " + maxIdx);
 
         visited[maxIdx] = true;
         traversal(maxIdx);
@@ -62,12 +63,20 @@ public class Main {
                 tip = i;
             }
             ans = Math.max(ans, dist[i]);
+            // System.out.println(dist[i]);
         }
 
         removed[maxIdx] = true;
         while(tip != maxIdx){
             removed[tip] = true;
             tip = parents[tip];
+        }
+
+        for(int i = 0 ; i < n ; i++){
+            if(removed[i]){
+                continue;
+            }
+            dist[i] -= dist[parents[i]];
         }
 
         return ans;
@@ -92,9 +101,16 @@ public class Main {
         }
 
         int longestLength = findMaxLength();
-        int nextLength = findMaxLength();
+        for(int i = 0 ; i < n ; i++){
+            if(removed[i]){
+                continue;
+            }
+            System.out.print(dist[i] + " ");
+        }
+        // int nextLength = findMaxLength();
 
-        System.out.println(longestLength + nextLength);
+        System.out.println(longestLength);
+        // System.out.println(nextLength);
 
     }
 }
