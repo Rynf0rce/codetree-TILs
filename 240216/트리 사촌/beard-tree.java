@@ -8,6 +8,7 @@ public class Main {
     public static int[] arr = new int[MAX_NODE + 1];
     public static boolean[] visited = new boolean[MAX_IDX + 1];
     public static int[] depthArr = new int[MAX_IDX + 1];
+    public static int[] parentArr = new int[MAX_IDX + 1];
     
     public static void traversal(int idx){
         for(int i = 0 ; i < nodeList[idx].size() ; i++){
@@ -16,6 +17,7 @@ public class Main {
                 visited[curIdx] = true;
                 depthArr[curIdx] = depthArr[idx] + 1;
                 traversal(curIdx);
+                parentArr[curIdx] = idx;
             }
         }
     }
@@ -49,7 +51,7 @@ public class Main {
 
         int ans = 0;
         for(int i = 1 ; i <= MAX_IDX ; i++){
-            if(m != i && depthArr[m] == depthArr[i]){
+            if(m != i && parentArr[parentArr[m]] == parentArr[parentArr[i]] && parentArr[m] != parentArr[i] && depthArr[m] == depthArr[i]){
                 ans++;
             }
         }
