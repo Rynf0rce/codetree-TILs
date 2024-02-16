@@ -67,23 +67,16 @@ public class Main {
         visited[maxIdx] = true;
         traversal(maxIdx);
 
-        int highestIdx = 0;
+        int[] ans = new int[2];
         for(int i = 1 ; i <= n ; i++){
-            if(dist[highestIdx] < dist[i]){
-                highestIdx = i;
+            if(ans[1] <= dist[i]){
+                ans[0] = ans[1];
+                ans[1] = dist[i];
+            }
+            else if(ans[0] < dist[i]){
+                ans[0] = dist[i];
             }
         }
-
-        initialize();
-
-        visited[maxIdx] = true;
-        visited[highestIdx] = true;
-        traversal(maxIdx);
-
-        int ans = 0;
-        for(int i = 1 ; i <= n ; i++){
-            ans = Math.max(ans, dist[i]);
-        }
-        System.out.print(ans);
+        System.out.print(ans[0]);
     }
 }
