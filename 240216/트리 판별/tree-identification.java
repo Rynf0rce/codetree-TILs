@@ -3,68 +3,67 @@ import java.io.*;
 
 public class Main {
     public static final int MAX_NODE = 10000;
-    public static HashSet<Integer> nodeSet = new HashSet<>();
     public static ArrayList<Integer>[] nodeList = new ArrayList[MAX_NODE + 1];
-    public static int[] fan_in = new int[MAX_NODE + 1];
     public static boolean[] visited = new boolean[MAX_NODE + 1];
+    public static Queue<Integer> q = new LinkedList<>();
+    public static HashSet<Integer> nodeNumSet = new HashSet<>();
 
-    public static void traversal(int idx){
-        if(nodeList[idx] == null){
-            return;
+    public static boolean BFS(int startIdx){
+        q.clear();
+        q.add(startIdx);
+        while(!q.isEmpty()){
+            int curIdx = q.poll();
+            if(visited[curIdx]){
+                continue;
+            }
+
+            visited[curIdx] = true;
+
+            for(int i = 0 ; i < nodeList[curIdx].size() ; i++){
+                int postIdx = nodeList[curIdx].get(i);
+                if(visited[postIdx]){
+                    continue;
+                }
+
+                if(q.contains(postIdx)){
+                    return false;
+                }
+
+                q.add(postIdx);
+            }
+            
         }
 
-        for(int i = 0 ; i < nodeList[idx].size() ; i++){
-            int postIdx = nodeList[idx].get(i);
-            if(!visited[postIdx]){
-                visited[postIdx] = true;
-                traversal(postIdx);
+        for(Integer num : nodeNumSet){
+            if(!visited[num]){
+                return false;
             }
         }
+        return true;
     }
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
+        for(int i = 1 ; i <= MAX_NODE ; i++){
+            nodeList[i] = new ArrayList<>();
+        }
         int m = Integer.parseInt(br.readLine());
+        int startIdx = -1;
         for(int i = 0 ; i < m ; i++){
             st = new StringTokenizer(br.readLine(), " ");
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
-            if(nodeList[start] == null){
-                nodeList[start] = new ArrayList<>();
+            if(startIdx == -1){
+                startIdx = start;
             }
             nodeList[start].add(end);
-            nodeSet.add(start);
-            nodeSet.add(end);
-            fan_in[end]++;
+            nodeList[end].add(start);
+            nodeNumSet.add(start);
+            nodeNumSet.add(end);
         }
 
-        int root = 0;
-        int cnt = nodeSet.size();
-        for(Integer nodeNum : nodeSet){
-            if(fan_in[nodeNum] == 1){
-                cnt--;
-            }
-            else if(fan_in[nodeNum] == 0){
-                root = nodeNum;
-            }
-        }
-
-        if(cnt != 1){
-            System.out.print(0);
-            System.exit(0);
-        }
-
-        visited[root] = true;
-        traversal(root);
-
-        for(Integer nodeNum : nodeSet){
-            if(!visited[nodeNum]){
-                System.out.print(0);
-                System.exit(0);
-            }
-        }
-
-        System.out.print(1);
+        
+        System.out.print(BFS(startIdx) ? 1 : 0);
     }
 }
