@@ -6,8 +6,9 @@ public class Main {
     public static int[] parent = new int[MAX_NODE + 1];
     public static boolean[] visited = new boolean[MAX_NODE + 1];
     public static ArrayList<Integer> leafList = new ArrayList<>();
+    public static int total_depth = 0;
 
-    public static void traversal(int idx){
+    public static void traversal(int idx, int depth){
         boolean isLeaf = true;
         for(int i = 0 ; i < nodeList[idx].size() ; i++){
             int curIdx = nodeList[idx].get(i);
@@ -15,11 +16,12 @@ public class Main {
                 isLeaf = false;
                 visited[curIdx] = true;
                 parent[curIdx] = idx;
-                traversal(curIdx);
+                traversal(curIdx, depth + 1);
             }
         }
         if(isLeaf){
             leafList.add(idx);
+            total_depth += depth;
         }
     }
     public static void main(String[] args) {
@@ -37,21 +39,9 @@ public class Main {
         }
 
         visited[1] = true;
-        traversal(1);
-        boolean canWinA = false;
-        for(int i = 0 ; i < leafList.size() ; i++){
-            int curIdx = leafList.get(0);
-            while(curIdx != 1){
-                curIdx = parent[curIdx];
-                if(!canWinA){
-                    canWinA = true;
-                }
-                else{
-                    canWinA = false;
-                }
-            }
-        }
+        parent[1] = 1;
+        traversal(1, 0);
 
-        System.out.print(canWinA ? 1 : 0);
+        System.out.println(total_depth % 2);
     }
 }
