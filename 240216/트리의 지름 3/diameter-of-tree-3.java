@@ -55,28 +55,45 @@ public class Main {
         visited[1] = true;
         traversal(1);
 
-        int maxIdx = 0;
+        int right = 0;
         for(int i = 1 ; i <= n ; i++){
-            if(dist[maxIdx] < dist[i]){
-                maxIdx = i;
+            if(dist[right] < dist[i]){
+                right = i;
             }
         }
 
         initialize();
 
-        visited[maxIdx] = true;
-        traversal(maxIdx);
+        visited[right] = true;
+        traversal(right);
 
-        long[] ans = new long[2];
+        int left = 0;
         for(int i = 1 ; i <= n ; i++){
-            if(ans[1] <= dist[i]){
-                ans[0] = ans[1];
-                ans[1] = dist[i];
-            }
-            else if(ans[0] < dist[i]){
-                ans[0] = dist[i];
+            if(dist[left] < dist[i]){
+                left = i;
             }
         }
-        System.out.print(ans[0]);
+
+        long ans = 0;
+
+        initialize();
+        visited[right] = true;
+        visited[left] = true;
+        traversal(left);
+        
+        for(int i = 1 ; i <= n ; i++){
+            ans = Math.max(ans, dist[i]);
+        }
+
+        initialize();
+        visited[right] = true;
+        visited[left] = true;
+        traversal(right);
+        
+        for(int i = 1 ; i <= n ; i++){
+            ans = Math.max(ans, dist[i]);
+        }
+
+        System.out.println(ans);
     }
 }
