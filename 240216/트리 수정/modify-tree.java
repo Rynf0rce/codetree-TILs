@@ -12,29 +12,65 @@ class node{
 public class Main {
     public static final int MAX_NODE = 2000;
     public static ArrayList<node>[] nodeList = new ArrayList[MAX_NODE];
-    public static int[] dist = new int[MAX_NODE];
-    public static int[] parents = new int[MAX_NODE];
     public static boolean[] visited = new boolean[MAX_NODE];
+    public static boolean[] removed = new boolean[MAX_NODE];
+    public static int[] parents = new int[MAX_NODE];
+    public static int[] dist = new int[MAX_NODE];
     public static int n = -1;
-
-    public static void initialize(){
-        for(int i = 0 ; i < n ; i++){
-            dist[i] = 0;
-            visited[i] = false;
-            parents[i] = 0;
-        }
-    }
 
     public static void traversal(int idx){
         for(int i = 0 ; i < nodeList[idx].size() ; i++){
             node curNode = nodeList[idx].get(i);
-            if(!visited[curNode.idx]){
-                visited[curNode.idx] = true;
-                parents[curNode.idx] = idx;
-                dist[curNode.idx] = dist[idx] + curNode.weight;
-                traversal(curNode.idx);
+            if(visited[curNode.idx] || removed[curNode.idx]){
+                continue;
             }
+
+            visited[curNode.idx] = true;
+            parents[curNode.idx] = idx;
+            dist[curNode.idx] = dist[idx] + curNode.weight;
+            traversal(curNode.idx);
         }
+    }
+
+    public static int findMaxLength(){
+        for(int i = 0 ; i < n ; i++){
+            dist[i] = 0;
+            parents[i] = 0;
+            visited[i] = false;
+        }
+
+        visited[1] = true;
+        traversal(1);
+
+        int maxIdx = 0;
+        for(int i = 0 ; i < n ; i++){
+            if(dist[maxIdx] < dist[i]){
+                maxIdx = i;
+            }
+
+            dist[i] = 0;
+            parents[i] = 0;
+            visited[i] = false;
+        }
+
+        visited[maxIdx] = true;
+        traversal(maxIdx);
+        int ans = 0;
+        int tip = 0;
+        for(int i = 0 ; i < n ; i++){
+            if(dist[tip] < dist[i]){
+                tip = i;
+            }
+            ans = Math.max(ans, dist[i]);
+        }
+
+        removed[maxIdx] = true;
+        while(tip != maxIdx){
+            removed[tip] = true;
+            tip = parents[tip];
+        }
+
+        return ans;
     }
 
 
@@ -42,7 +78,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         n = Integer.parseInt(br.readLine());
         for(int i = 0 ; i < n ; i++){
-            nodeList[i] = new ArrayList<>();
+            nodeList[i] = new ArrayList<node>();
         }
 
         StringTokenizer st;
@@ -55,45 +91,10 @@ public class Main {
             nodeList[end].add(new node(start, weight));
         }
 
-        visited[0] = true;
-        traversal(0);
+        int longestLength = findMaxLength();
+        int nextLength = findMaxLength();
 
-        int maxIdx = 0;
-        for(int i = 0 ; i < n ; i++){
-            if(dist[maxIdx] < dist[i]){
-                maxIdx = i;
-            }
-        }
+        System.out.println(longestLength + nextLength);
 
-        initialize();
-        visited[maxIdx] = true;
-        traversal(maxIdx);
-
-        int ans = 0;
-        int finalIdx = 0;
-        for(int i = 0 ; i < n ; i++){
-            if(dist[finalIdx] < dist[i]){
-                finalIdx = i;
-            }
-            ans = Math.max(ans, dist[i]);
-        }
-
-        visited[maxIdx] = false;
-        while(finalIdx != maxIdx){
-            visited[finalIdx] = false;
-            finalIdx = parents[finalIdx];
-        }
-
-        int addEdge = 0;
-        for(int i = 0 ; i < n ; i++){
-            if(!visited[i]){
-                continue;
-            }
-            for(int j = 0 ; j < nodeList[i].size() ; j++){
-                node curNode = nodeList[i].get(j);
-                addEdge = Math.max(addEdge, curNode.weight);
-            }
-        }
-        System.out.print(addEdge + ans);  
     }
 }
