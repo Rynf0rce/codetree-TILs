@@ -14,7 +14,7 @@ public class Main {
     public static final int MAX_NODE = 100000;
     public static ArrayList<node>[] nodeList = new ArrayList[MAX_NODE + 1];
     public static boolean[] visited = new boolean[MAX_NODE + 1];
-    public static int[] dist = new int[MAX_NODE + 1];
+    public static long[] dist = new long[MAX_NODE + 1];
     public static int n = -1;
 
     public static void initialize(){
@@ -67,7 +67,7 @@ public class Main {
         visited[maxIdx] = true;
         traversal(maxIdx);
 
-        int[] ans = new int[2];
+        long[] ans = new long[2];
         for(int i = 1 ; i <= n ; i++){
             if(ans[1] <= dist[i]){
                 ans[0] = ans[1];
