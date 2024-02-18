@@ -5,7 +5,6 @@ public class Main {
     public static final int MAX_NODE = 200000;
     public static int[] left = new int[MAX_NODE + 1];
     public static int[] right = new int[MAX_NODE + 1];
-    public static int[] ball = new int[MAX_NODE + 1];
 
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -20,33 +19,34 @@ public class Main {
         }
 
         long K = Long.parseLong(br.readLine());
-        while(K-- > 0){
-            int curIdx = 1;
-            while(true){
-                ball[curIdx]++;
-                if(left[curIdx] == -1 && right[curIdx] == -1){
-                    break;
-                }
-                else if(left[curIdx] == -1){
-                    curIdx = right[curIdx];
-                    continue;
-                }
-                else if(right[curIdx] == -1){
-                    curIdx = left[curIdx];
-                    continue;
-                }
-                else if(ball[left[curIdx]] <= ball[right[curIdx]]){
-                    curIdx = left[curIdx];
-                }
-                else{
-                    curIdx = right[curIdx];
-                }
+        int curIdx = 1;
+        // 짝, 홀
+        while(K > 0){
+            if(left[curIdx] == -1 && right[curIdx] == -1){
+                curIdx = curIdx;
+                System.out.print(curIdx);
+                break;
+            }
+            else if(left[curIdx] == -1){
+                curIdx = right[curIdx];
+            }
+            else if(right[curIdx] == -1){
+                curIdx = left[curIdx];
+            }
+            else if(K % 2 == 1){
+                curIdx = left[curIdx];
+                K = (K / 2) + 1;
+            }
+            else{
+                curIdx = right[curIdx];
+                K /= 2;
             }
 
             if(K == 0){
                 System.out.print(curIdx);
             }
         }
+        
 
     }
 }
