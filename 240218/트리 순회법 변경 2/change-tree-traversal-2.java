@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-    public static final int MAX_NODE = 1000;
+    public static final int MAX_NODE = 100000;
     public static int[] preArr = new int[MAX_NODE + 1];
     public static int[] inArr = new int[MAX_NODE + 1];
     public static int[] left = new int[MAX_NODE + 1];
