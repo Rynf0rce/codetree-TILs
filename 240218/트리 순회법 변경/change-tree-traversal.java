@@ -39,9 +39,12 @@ public class Main {
 
         bfs(1, n);
 
+        StringBuilder sb = new StringBuilder();
         for(int i = 1 ; i <= n ; i++){
-            System.out.println(postArr[i]);
+            sb.append(postArr[i] + "\n");
         }
+
+        System.out.print(sb.toString());
         
     }
 }
