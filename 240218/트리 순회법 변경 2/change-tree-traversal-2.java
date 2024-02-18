@@ -5,39 +5,32 @@ public class Main {
     public static final int MAX_NODE = 100000;
     public static int[] preArr = new int[MAX_NODE + 1];
     public static int[] inArr = new int[MAX_NODE + 1];
-    public static int[] left = new int[MAX_NODE + 1];
-    public static int[] right = new int[MAX_NODE + 1];
-    public static int point = 1;
+    public static int[] postArr = new int[MAX_NODE + 1];
+    public static int postIdx = 1;
     public static int n = -1;
 
-    public static int findroot(int start, int end){
-        if(start > end || start < 1 || end > n){
-            return -1;
+    public static void dfs(int preStart, int preEnd, int inStart, int inEnd){
+        if(preStart > preEnd){
+            return;
         }
 
-        int inIdx = -1;
-        for(int i = start ; i <= end ; i++){
-            if(inArr[i] == preArr[point]){
-                inIdx = i;
-                point++;
+        if(preStart == preEnd){
+            postArr[postIdx++] = preArr[preStart];
+            return;
+        }
+
+        int rootIdx = -1;
+        for(int i = inStart ; i <= inEnd ; i++){
+            if(preArr[preStart] == inArr[i]){
+                rootIdx = i;
                 break;
             }
         }
 
-        left[inArr[inIdx]] = findroot(start, inIdx - 1);
-        right[inArr[inIdx]] = findroot(inIdx + 1, end);
+        dfs(preStart + 1, preStart + (rootIdx - inStart), inStart, rootIdx - 1);
+        dfs(preStart + (rootIdx - inStart) + 1, preEnd, rootIdx + 1, inEnd);
+        postArr[postIdx++] = preArr[preStart];
 
-        return inArr[inIdx];
-    }
-
-    public static void postOrder(int num){
-        if(num == -1){
-            return;
-        }
-
-        postOrder(left[num]);
-        postOrder(right[num]);
-        System.out.print(num + " ");
     }
 
     public static void main(String[] args) throws IOException{
@@ -53,9 +46,11 @@ public class Main {
             inArr[i] = Integer.parseInt(st.nextToken());
         }
 
-        int root = findroot(1, n);
+        dfs(1, n, 1, n);
 
-        postOrder(root);
+        for(int i = 1 ; i <= n ; i++){
+            System.out.print(postArr[i] + " ");
+        }
 
     }
 }
