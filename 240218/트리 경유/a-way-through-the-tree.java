@@ -14,11 +14,12 @@ public class Main {
         for(int i = 0 ; i < q ; i++){
             int num = Integer.parseInt(br.readLine());
             int point = num;
+            int visitedPoint = -1;
             boolean canGo = true;
             while(point > 0){
                 if(visited[point]){
                     canGo = false;
-                    break;
+                    visitedPoint = point;
                 }
                 point /= 2;
             }
@@ -28,7 +29,7 @@ public class Main {
                 visited[num] = true;
             }
             else{
-                System.out.println(point);
+                System.out.println(visitedPoint);
             }
         }
     }
