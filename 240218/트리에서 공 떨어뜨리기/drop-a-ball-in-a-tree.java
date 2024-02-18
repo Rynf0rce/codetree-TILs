@@ -19,7 +19,7 @@ public class Main {
             right[i] = r;
         }
 
-        int K = Integer.parseInt(br.readLine());
+        long K = Long.parseLong(br.readLine());
         while(K-- > 0){
             int curIdx = 1;
             while(true){
