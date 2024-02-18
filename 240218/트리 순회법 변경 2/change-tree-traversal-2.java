@@ -48,9 +48,11 @@ public class Main {
 
         dfs(1, n, 1, n);
 
+        StringBuilder sb = new StringBuilder();
         for(int i = 1 ; i <= n ; i++){
-            System.out.print(postArr[i] + " ");
+            sb.append(postArr[i] + " ");
         }
+        System.out.print(sb.toString());
 
     }
 }
