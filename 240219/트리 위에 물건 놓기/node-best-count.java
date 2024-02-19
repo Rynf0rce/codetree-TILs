@@ -26,7 +26,7 @@ public class Main {
                 continue;
             }
             DP[idx][0] += DP[connectedIdx][1];
-            DP[idx][1] += DP[connectedIdx][0];
+            DP[idx][1] += Math.min(DP[connectedIdx][0], DP[connectedIdx][1]);
         }
     }
 
