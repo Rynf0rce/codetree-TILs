@@ -43,8 +43,10 @@ public class Main {
         }
 
         DFS(root);
+        StringBuilder sb = new StringBuilder();
         for(int i = 1 ; i <= n ; i++){
-            System.out.print(DP[i] + " ");
+            sb.append(DP[i] + " ");
         }
+        System.out.print(sb.toString());
     }
 }
