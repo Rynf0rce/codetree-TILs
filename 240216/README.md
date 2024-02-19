@@ -4,11 +4,11 @@
 24년 02월 16일 목표(240px)를 달성했어요🥳.
 
 ![420xp](https://img.shields.io/badge/EXP-420xp-%235cb85c.svg?for-the-badge)
-![0일째](https://img.shields.io/badge/연속학습-0일째-%23E34F26.svg?for-the-badge)
+![96일째](https://img.shields.io/badge/연속학습-96일째-%23E34F26.svg?for-the-badge)
 
 |총 문제수|획득 경험치|연속 학습|
 |---:|---:|---|
-10|420xp|0일째❄️|
+10|420xp|96일째🔥|
 
 |교재|이름|난이도|상태|최근 제출 코드|
 |---|---|:---:|:---:|---|
@@ -19,7 +19,7 @@
 |[Intermediate High / Tree / 트리](https://www.codetree.ai/missions?missionId=9)|[[연습]트리 간선의 길이](https://www.codetree.ai/missions/9/problems/length-of-tree-trunk)|![쉬움][easy]|![Passed][passed]|[링크](https://github.com/Rynf0rce/codetree-TILs/blob/main/240216/%ED%8A%B8%EB%A6%AC%20%EA%B0%84%EC%84%A0%EC%9D%98%20%EA%B8%B8%EC%9D%B4/length-of-tree-trunk.java)|
 |[Intermediate High / Tree / 트리](https://www.codetree.ai/missions?missionId=9)|[[연습]트리 최적의 노드](https://www.codetree.ai/missions/9/problems/tree-optimal-node)|![보통][medium]|![Passed][passed]|[링크](https://github.com/Rynf0rce/codetree-TILs/blob/main/240216/%ED%8A%B8%EB%A6%AC%20%EC%B5%9C%EC%A0%81%EC%9D%98%20%EB%85%B8%EB%93%9C/tree-optimal-node.java)|
 |[Intermediate High / Tree / 트리](https://www.codetree.ai/missions?missionId=9)|[[연습]간선 순회](https://www.codetree.ai/missions/9/problems/touring-the-line)|![어려움][hard]|![Passed][passed]|[링크](https://github.com/Rynf0rce/codetree-TILs/blob/main/240216/%EA%B0%84%EC%84%A0%20%EC%88%9C%ED%9A%8C/touring-the-line.java)|
-|[Intermediate High / Tree / 트리](https://www.codetree.ai/missions?missionId=9)|[[연습]트리 수정](https://www.codetree.ai/missions/9/problems/modify-tree)|![어려움][hard]|![Failed][failed]|[링크](https://github.com/Rynf0rce/codetree-TILs/blob/main/240216/%ED%8A%B8%EB%A6%AC%20%EC%88%98%EC%A0%95/modify-tree.java)|
+|[Intermediate High / Tree / 트리](https://www.codetree.ai/missions?missionId=9)|[[연습]트리 수정](https://www.codetree.ai/missions/9/problems/modify-tree)|![어려움][hard]|![Passed][passed]|[링크](https://github.com/Rynf0rce/codetree-TILs/blob/main/240216/%ED%8A%B8%EB%A6%AC%20%EC%88%98%EC%A0%95/modify-tree.java)|
 |[Intermediate High / Tree / 트리](https://www.codetree.ai/missions?missionId=9)|[[연습]트리의 지름 3](https://www.codetree.ai/missions/9/problems/diameter-of-tree-3)|![어려움][hard]|![Passed][passed]|[링크](https://github.com/Rynf0rce/codetree-TILs/blob/main/240216/%ED%8A%B8%EB%A6%AC%EC%9D%98%20%EC%A7%80%EB%A6%84%203/diameter-of-tree-3.java)|
 |[Intermediate High / Tree / 트리](https://www.codetree.ai/missions?missionId=9)|[[테스트]그래프와 트리](https://www.codetree.ai/missions/9/problems/graphs-and-trees)|![보통][medium]|![Passed][passed]|[링크](https://github.com/Rynf0rce/codetree-TILs/blob/main/240216/%EA%B7%B8%EB%9E%98%ED%94%84%EC%99%80%20%ED%8A%B8%EB%A6%AC/graphs-and-trees.java)|
 
