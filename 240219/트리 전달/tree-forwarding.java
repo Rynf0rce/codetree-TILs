@@ -39,7 +39,7 @@ public class Main {
             st = new StringTokenizer(br.readLine(), " ");
             int idx = Integer.parseInt(st.nextToken());
             int weight = Integer.parseInt(st.nextToken());
-            DP[idx] = weight;
+            DP[idx] += weight;
         }
 
         DFS(root);
