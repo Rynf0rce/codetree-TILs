@@ -65,12 +65,20 @@ public class Main {
         visited[r] = true;
         BFS(r);
 
+        for(int i = 1 ; i <= n ; i++){
+            visited[i] = false;
+            parents[i] = 0;
+        }
+
+        visited[r] = true;
+        BFS(r);
+
         int maxVal = 0;
         int minVal = MAX_NODE;
         for(int i = 0 ; i < nodeList[r].size() ; i++){
             int connectedIdx = nodeList[r].get(i);
-            maxVal = Math.max(maxVal, Math.abs(DP[r] - DP[connectedIdx]));
-            minVal = Math.min(minVal, Math.abs(DP[r] - DP[connectedIdx]));
+            maxVal = Math.max(maxVal, DP[connectedIdx]);
+            minVal = Math.min(minVal, DP[connectedIdx]);
         }
         System.out.print(maxVal - minVal);
         
