@@ -34,23 +34,22 @@ public class Main {
         }
     }
 
-    public static void traversal(int idx, int value){
-        if(DP[idx][0] != value){
+    public static void traversal(int idx, boolean selelcted){
+        if(selelcted){
             pq.add(idx);
         }
 
-        for(int i = 0 ; i < nodeList[idx].size(); i++){
+        for(int i = 0 ; i < nodeList[idx].size() ; i++){
             int postIdx = nodeList[idx].get(i);
             if(visited[postIdx]){
                 continue;
             }
-
             visited[postIdx] = true;
-            if(DP[idx][0] != value){
-                traversal(postIdx, DP[postIdx][0]);
+            if(DP[idx][1] > DP[idx][0]){
+                traversal(postIdx, false);
             }
             else{
-                traversal(postIdx, Math.max(DP[postIdx][0], DP[postIdx][1]));
+                traversal(postIdx, DP[postIdx][1] > DP[postIdx][0]);
             }
         }
     }
@@ -85,7 +84,7 @@ public class Main {
         for(int i = 2 ; i <= n ; i++){
             visited[i] = false;
         }
-        traversal(1, ans);
+        traversal(1, DP[1][1] > DP[1][0]);
 
         while(!pq.isEmpty()){
             System.out.print(pq.poll() + " ");
