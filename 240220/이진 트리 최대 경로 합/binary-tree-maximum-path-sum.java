@@ -35,25 +35,34 @@ public class Main {
             nodeList[start].add(end);
             nodeList[end].add(start);
         }
+        
+        int root = 1;
         for(int i = 1 ; i <= n ; i++){
             cost[i] = Integer.parseInt(br.readLine());
+            if(cost[root] < cost[i]){
+                root = i;
+            }
         }
 
-        visited[1] = true;
-        dist[1] = cost[1];
-        BFS(1);
+        visited[root] = true;
+        dist[root] = cost[root];
+        BFS(root);
 
-        int maxIdx = 1;
+        int maxIdx = root;
         for(int i = 1 ; i <= n ; i++){
+            // System.out.print(dist[i] + " ");
             if(dist[maxIdx] < dist[i]){
                 maxIdx = i;
             }
         }
 
+        // System.out.println();
+
         for(int i = 1 ; i <= n ; i++){
             visited[i] = false;
             dist[i] = 0;
         }
+        // System.out.println(maxIdx);
         visited[maxIdx] = true;
         dist[maxIdx] = cost[maxIdx];
         BFS(maxIdx);
