@@ -6,7 +6,8 @@ public class Main {
     public static final int MIN_INT = -1000;
     public static ArrayList<Integer>[] nodeList = new ArrayList[MAX_NODE + 1];
     public static int[] cost = new int[MAX_NODE + 1];
-    public static int[] dist = new int[MAX_NODE + 1];
+    public static int[] parent = new int[MAX_NODE + 1];
+    public static int[][] DP = new int[MAX_NODE + 1][2]; // 0 자기 값이 root, 1 위로 올려주는 값
     public static boolean[] visited = new boolean[MAX_NODE + 1];
 
     public static void BFS(int idx){
@@ -16,9 +17,23 @@ public class Main {
                 continue;
             }
             visited[postIdx] = true;
-            dist[postIdx] += cost[postIdx] + dist[idx];
+            parent[postIdx] = idx;
             BFS(postIdx);
         }
+
+        DP[idx][0] = cost[idx];
+        DP[idx][1] = cost[idx];
+        
+        int maxVal = 0;
+        for(int i = 0 ; i < nodeList[idx].size() ; i++){
+            int postIdx = nodeList[idx].get(i);
+            if(parent[postIdx] != idx || DP[postIdx][1] < 0){
+                continue;
+            }
+            maxVal = Math.max(maxVal, DP[postIdx][1]);
+            DP[idx][0] += DP[postIdx][1];
+        }
+        DP[idx][1] += maxVal;
     }
 
     public static void main(String[] args) throws IOException{
@@ -36,41 +51,18 @@ public class Main {
             nodeList[end].add(start);
         }
         
-        int root = 1;
         for(int i = 1 ; i <= n ; i++){
             cost[i] = Integer.parseInt(br.readLine());
-            if(cost[root] < cost[i]){
-                root = i;
-            }
         }
 
-        visited[root] = true;
-        dist[root] = cost[root];
-        BFS(root);
-
-        int maxIdx = root;
-        for(int i = 1 ; i <= n ; i++){
-            // System.out.print(dist[i] + " ");
-            if(dist[maxIdx] < dist[i]){
-                maxIdx = i;
-            }
-        }
-
-        // System.out.println();
-
-        for(int i = 1 ; i <= n ; i++){
-            visited[i] = false;
-            dist[i] = 0;
-        }
-        // System.out.println(maxIdx);
-        visited[maxIdx] = true;
-        dist[maxIdx] = cost[maxIdx];
-        BFS(maxIdx);
+        visited[1] = true;
+        BFS(1);
 
         int ans = MAX_NODE * MIN_INT;
         for(int i = 1 ; i <= n ; i++){
-            ans = Math.max(ans, dist[i]);
+            ans = Math.max(ans, DP[i][0]);
         }
         System.out.print(ans);
+
     }
 }
