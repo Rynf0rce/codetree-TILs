@@ -45,7 +45,7 @@ public class Main {
                 continue;
             }
             visited[postIdx] = true;
-            if(DP[idx][1] > DP[idx][0]){
+            if(selelcted){
                 traversal(postIdx, false);
             }
             else{
@@ -77,9 +77,6 @@ public class Main {
         dfs(1);
         int ans = Math.max(DP[1][0], DP[1][1]);
         System.out.println(ans);
-        // for(int i = 1 ; i <= n ; i++){
-        //     System.out.println(DP[i][0] + " " + DP[i][1]);
-        // }
 
         for(int i = 2 ; i <= n ; i++){
             visited[i] = false;
