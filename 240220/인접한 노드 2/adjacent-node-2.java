@@ -34,8 +34,8 @@ public class Main {
         }
     }
 
-    public static void traversal(int idx, boolean selelcted){
-        if(selelcted){
+    public static void traversal(int idx, int value){
+        if(DP[idx][1] == value){
             pq.add(idx);
         }
 
@@ -46,7 +46,12 @@ public class Main {
             }
 
             visited[postIdx] = true;
-            traversal(postIdx, !selelcted);
+            if(DP[idx][1] == value){
+                traversal(postIdx, DP[postIdx][0]);
+            }
+            else{
+                traversal(postIdx, Math.max(DP[postIdx][0], DP[postIdx][1]));
+            }
         }
     }
 
@@ -71,25 +76,17 @@ public class Main {
 
         visited[1] = true;
         dfs(1);
-        int ans = 0;
-        boolean selelcted = false;
-        if(DP[1][0] < DP[1][1]){
-            selelcted = true;
-            ans = DP[1][1];
-        }
-        else{
-            selelcted = false;
-            ans = DP[1][0];
-        }
-
+        int ans = Math.max(DP[1][0], DP[1][1]);
         System.out.println(ans);
+        // for(int i = 1 ; i <= n ; i++){
+        //     System.out.println(DP[i][0] + " " + DP[i][1]);
+        // }
 
-        for(int i = 1 ; i <= n ; i++){
+        for(int i = 2 ; i <= n ; i++){
             visited[i] = false;
         }
+        traversal(1, ans);
 
-        visited[1] = true;
-        traversal(1, selelcted);
         while(!pq.isEmpty()){
             System.out.print(pq.poll() + " ");
         }
