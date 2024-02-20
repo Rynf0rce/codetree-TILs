@@ -12,7 +12,7 @@ public class Main {
     public static int[] cost = new int[MAX_NODE + 1];
     public static boolean[] visited = new boolean[MAX_NODE + 1];
     public static int[] parents = new int[MAX_NODE + 1];
-    public static PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+    public static PriorityQueue<Long> pq = new PriorityQueue<>(Collections.reverseOrder());
     public static int k = -1;
 
     public static void DFS(int idx){
@@ -40,7 +40,7 @@ public class Main {
 
     public static void traversal(int idx, boolean selected){
         if(selected){
-            pq.add(cost[idx]);
+            pq.add((long)cost[idx]);
         }
 
         for(int i = 0 ; i < nodeList[idx].size() ; i++){
@@ -56,7 +56,7 @@ public class Main {
                 traversal(postIdx, false);
             }
             else{
-                traversal(postIdx, DP[postIdx][1] >= DP[postIdx][0]);
+                traversal(postIdx, DP[postIdx][1] > DP[postIdx][0]);
             }
         }
     }
@@ -93,8 +93,8 @@ public class Main {
         
         traversal(1, DP[1][1] >= DP[1][0]);
 
-        int ans = 0;
-        while(k-- > 0){
+        long ans = 0;
+        while(k-- > 0 && !pq.isEmpty()){
             ans += pq.poll();
         }
         System.out.print(ans);
