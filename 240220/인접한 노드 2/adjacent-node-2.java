@@ -35,7 +35,7 @@ public class Main {
     }
 
     public static void traversal(int idx, int value){
-        if(DP[idx][1] == value){
+        if(DP[idx][0] != value){
             pq.add(idx);
         }
 
@@ -46,7 +46,7 @@ public class Main {
             }
 
             visited[postIdx] = true;
-            if(DP[idx][1] == value){
+            if(DP[idx][0] != value){
                 traversal(postIdx, DP[postIdx][0]);
             }
             else{
