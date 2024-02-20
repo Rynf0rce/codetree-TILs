@@ -7,7 +7,7 @@ public class Main {
 
     public static ArrayList<Integer>[] nodeList = new ArrayList[MAX_NODE + 1];
 
-    public static int[][][] DP = new int[MAX_NODE + 1][MAX_SELECT][2];
+    public static int[][][] DP = new int[MAX_NODE + 1][MAX_SELECT + 1][2];
     public static int[] cost = new int[MAX_NODE + 1];
     public static boolean[] visited = new boolean[MAX_NODE + 1];
     public static int[] parents = new int[MAX_NODE + 1];
@@ -37,7 +37,7 @@ public class Main {
                     DP[idx][j][0] = Math.max(DP[idx][j][0], DP[idx][j - h][0] + Math.max(DP[postIdx][h][0], DP[postIdx][h][1]));
                 }
             }
-            
+
         }
     }
 
