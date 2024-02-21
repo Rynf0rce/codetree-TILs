@@ -25,9 +25,9 @@ public class Main {
     }
 
     public static void makeTable(){
-        for(int i = 1 ; i <= MAX_NODE ; i++){
-            for(int j = 1 ; j <= MAX_DEPTH ; j++){
-                sparseTable[j][i] = sparseTable[j - 1][sparseTable[j - 1][i]];
+        for(int i = 1; i <= d ; i++){
+            for(int j = 1 ; j <= n ; j++){
+                sparseTable[i][j] = sparseTable[i - 1][sparseTable[i - 1][j]];
             }
         }
     }
