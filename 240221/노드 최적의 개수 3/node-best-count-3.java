@@ -27,7 +27,8 @@ public class Main {
             return;
         }
 
-        DP[idx][1]= 1;
+        DP[idx][1] = 1;
+        DP[idx][0] = 0;
         boolean isSelected = false;
         int selelctedValue = MAX_NODE + 1;
         for(int i = 0 ; i < nodeList[idx].size() ; i++){
@@ -44,33 +45,27 @@ public class Main {
             else{
                 // Consider this situation children of DP[idx][1] isn't selelcted but their children is selected
                 int subChildSum = 0;
-                for(int subChild : childMap.get(postIdx)){
-                    subChildSum += Math.min(DP[subChild][1], DP[subChild][0]); 
-                }
-
-                if(!childMap.get(postIdx).isEmpty()){
+                if(childMap.get(postIdx).isEmpty()){
                     DP[idx][1] += Math.min( Math.min(DP[postIdx][1], DP[postIdx][0]), subChildSum);
                 }
                 else{
-                    DP[idx][1] += Math.min(DP[postIdx][1], DP[postIdx][0]);
+                    for(int subChild : childMap.get(postIdx)){
+                        subChildSum += Math.min(DP[subChild][1], DP[subChild][0]); 
+                    }
+                    DP[idx][1] += Math.min( Math.min(DP[postIdx][1], DP[postIdx][0]), subChildSum);
                 }
 
-                DP[idx][0] += Math.min(DP[postIdx][1], DP[postIdx][0]);
-
-                // If their children isn't selected in DP[idx][0], It is not satisfied by condtion;
-                if(DP[postIdx][1] > DP[postIdx][0]){
+                if(DP[postIdx][1] < DP[postIdx][0]){
                     isSelected = true;
                 }
 
-                // At least, There are must being selelcted node;
                 selelctedValue = Math.min(selelctedValue, DP[postIdx][1] - DP[postIdx][0]);
-            }
-
-            if(!isSelected){
-                DP[postIdx][0] += selelctedValue;
+                DP[idx][0] += Math.min(DP[postIdx][1], DP[postIdx][0]);
             }
         }
-        
+        if(!isSelected){
+            DP[idx][0] += selelctedValue;
+        }
     }
 
     public static void main(String[] args) throws IOException{
