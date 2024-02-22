@@ -10,8 +10,6 @@ public class Main {
         if(uf[a] == a){
             return a;
         }
-        cnt[uf[a]] += cnt[a];
-        cnt[a] = 0;
         int rootIdx = find(uf[a]);
         return rootIdx;
     }
@@ -24,7 +22,6 @@ public class Main {
         int rootB = find(b);
         uf[rootA] = rootB;
         cnt[rootB] += cnt[rootA];
-        cnt[rootA] = 0;
     }
 
     public static void main(String[] args) throws IOException{
