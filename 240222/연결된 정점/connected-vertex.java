@@ -11,7 +11,6 @@ public class Main {
             return a;
         }
         int rootIdx = find(uf[a]);
-        cnt[rootIdx] += uf[a];
         uf[a] = rootIdx;
         return rootIdx;
     }
@@ -19,6 +18,7 @@ public class Main {
     public static void union(int a, int b){
         int rootA = find(a);
         int rootB = find(b);
+        // System.out.println("uni " + rootA + " " + rootB);
         uf[rootA] = rootB;
         cnt[rootB] += cnt[rootA];
     }
@@ -45,6 +45,10 @@ public class Main {
                 int a = Integer.parseInt(st.nextToken());
                 int root = find(a);
                 System.out.println(cnt[root]);
+                // System.out.println("-----------");
+                // for(int j = 1 ; j <= n ; j++){
+                //     System.out.println(uf[j] + " " + cnt[j]);
+                // }
             }
         }
     }
