@@ -34,11 +34,13 @@ public class Main {
 
         draw();
 
+        StringBuilder sb = new StringBuilder();
         for(int i = 0 ; i < n ; i++){
             for(int j = 0 ; j < n ; j++){
-                System.out.print(table[i][j] + " ");
+                sb.append(table[i][j] + " ");
             }
-            System.out.println();
+            sb.append("\n");
         }
+        System.out.print(sb.toString());
     }
 }
