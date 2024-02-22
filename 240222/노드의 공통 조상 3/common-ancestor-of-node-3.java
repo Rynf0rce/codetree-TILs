@@ -5,7 +5,7 @@ public class Main {
     public static final int MAX_NODE = 50000;
     public static final int MAX_DEPTH = (int)(Math.log(MAX_NODE) / Math.log(2));
     public static final int ROOT = 1;
-    public static int[][] parents = new int[MAX_DEPTH][MAX_NODE + 1];
+    public static int[][] parents = new int[MAX_DEPTH + 1][MAX_NODE + 1];
     public static int[] depth = new int[MAX_NODE + 1];
     public static boolean[] visited = new boolean[MAX_NODE + 1];
     public static ArrayList<Integer>[] nodeList = new ArrayList[MAX_NODE + 1];
@@ -60,7 +60,7 @@ public class Main {
                 c = parents[i][c];
             }
         }
-        
+
         return parents[0][a];
     }
     
