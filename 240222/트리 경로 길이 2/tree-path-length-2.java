@@ -51,8 +51,8 @@ public class Main {
             a = temp;
         }
 
-        int postA = a;
-        int postB = b;
+        int preA = a;
+        int preB = b;
 
         for(int i = d ; i >= 0 ; i--){
             if(depth[a] - depth[b] >= (1 << i)){
@@ -61,7 +61,7 @@ public class Main {
         }
 
         if(a == b){
-            return dist[postA] + dist[postB] - 2 * dist[a];
+            return dist[preA] + dist[preB] - 2 * dist[a];
         }
 
         for(int i = d ; i >= 0 ; i--){
@@ -71,7 +71,7 @@ public class Main {
             }
         }
 
-        return dist[postA] + dist[postB] - 2 * dist[parents[0][a]];
+        return dist[preA] + dist[preB] - 2 * dist[parents[0][a]];
     }
     
     public static void main(String[] args) throws IOException {
@@ -96,6 +96,8 @@ public class Main {
         visited[ROOT] = true;
         depth[ROOT] = 1;
         dfs(ROOT);
+        makeParents();
+
 
         int q = Integer.parseInt(br.readLine());
         StringBuilder sb = new StringBuilder();
