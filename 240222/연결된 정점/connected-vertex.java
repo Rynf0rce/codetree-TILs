@@ -17,6 +17,9 @@ public class Main {
     }
 
     public static void union(int a, int b){
+        if(a == b){
+            return;
+        }
         int rootA = find(a);
         int rootB = find(b);
         uf[rootA] = rootB;
