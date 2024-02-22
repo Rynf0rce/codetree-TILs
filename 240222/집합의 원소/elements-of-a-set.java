@@ -29,23 +29,26 @@ public class Main {
         }
 
         int m = Integer.parseInt(st.nextToken());
+        StringBuilder sb = new StringBuilder();
         for(int i = 0 ; i < m ; i++){
             st = new StringTokenizer(br.readLine(), " ");
             int order = Integer.parseInt(st.nextToken());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());;
 
+            
             if(order == 0){
                 union(a, b);
             }
             else{
                 if(find(a) == find(b)){
-                    System.out.println(1);
+                    sb.append(1 + "\n");
                 }
                 else{
-                    System.out.println(0);
+                    sb.append(0 + "\n");
                 }
             }
         }
+        System.out.print(sb.toString());
     }
 }
