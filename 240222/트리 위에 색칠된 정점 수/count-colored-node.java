@@ -80,6 +80,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st;
         n = Integer.parseInt(br.readLine());
         d = (int)(Math.log(n) / Math.log(2));
@@ -105,12 +106,16 @@ public class Main {
         makeParents();
 
         int q = Integer.parseInt(br.readLine());
+        StringBuilder sb = new StringBuilder();
         for(int i = 0 ; i < q ; i++){
             st = new StringTokenizer(br.readLine(), " ");
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
-            System.out.println(calSelected(a, b));
+            sb.append(calSelected(a, b) + "\n");
         }
+        bw.write(sb.toString());
 
+        br.close();
+        bw.close();
     }
 }
