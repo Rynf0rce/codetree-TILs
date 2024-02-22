@@ -15,11 +15,11 @@ public class Main {
     }
 
     public static void union(int a, int b){
-        if(a == b){
-            return;
-        }
         int rootA = find(a);
         int rootB = find(b);
+        if(rootA == rootB){
+            return;
+        }
         uf[rootA] = rootB;
         cnt[rootB] += cnt[rootA];
     }
