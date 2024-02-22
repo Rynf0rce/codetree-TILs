@@ -11,6 +11,7 @@ public class Main {
             return a;
         }
         int rootIdx = find(uf[a]);
+        cnt[rootIdx] += uf[a];
         uf[a] = rootIdx;
         return rootIdx;
     }
@@ -19,7 +20,7 @@ public class Main {
         int rootA = find(a);
         int rootB = find(b);
         uf[rootA] = rootB;
-        cnt[rootA] += cnt[rootB];
+        cnt[rootB] += cnt[rootA];
     }
 
     public static void main(String[] args) throws IOException{
@@ -43,17 +44,7 @@ public class Main {
             else{
                 int a = Integer.parseInt(st.nextToken());
                 int root = find(a);
-                int ans = 0;
-                for(int j = 1 ; j <= n ;j++){
-                    if(root == find(j)){
-                        ans++;
-                    }
-                }
-                System.out.println(ans);
-                // System.out.println("-----------");
-                // for(int j = 1 ; j <= n ; j++){
-                //     System.out.println(uf[j] + " " + cnt[j]);
-                // }
+                System.out.println(cnt[root]);
             }
         }
     }
