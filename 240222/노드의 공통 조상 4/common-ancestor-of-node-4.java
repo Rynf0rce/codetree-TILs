@@ -89,11 +89,14 @@ public class Main {
         // }
 
         int q = Integer.parseInt(br.readLine());
+        StringBuilder sb = new StringBuilder();
         for(int i = 0 ; i < q ; i++){
             st = new StringTokenizer(br.readLine(), " ");
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
-            System.out.println(lca(a, b));
+            sb.append(lca(a, b) + "\n");
         }
+
+        System.out.print(sb.toString());
     }
 }
