@@ -20,6 +20,30 @@ public class Main {
         int rootB = find(b);
         uf[rootA] = rootB;
     }
+
+    public static boolean chackAndMake(int a, int b){
+        int rootA = find(a);
+        int rootB = find(b);
+
+        if(rootA == rootB){
+            return false;
+        }
+
+        if(enemy[a] != 0){
+            union(enemy[a], b);
+        }
+
+        if(enemy[b] != 0){
+            union(a, enemy[b]);
+        }
+        
+        // After union with a and b, must define each roots as enemy;
+        rootA = find(rootA);
+        rootB = find(rootB);
+        enemy[rootA] = rootB;
+        enemy[rootB] = rootA;
+        return true;
+    }
     
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -34,34 +58,9 @@ public class Main {
             st = new StringTokenizer(br.readLine(), " ");
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
-
-            int rootA = find(a);
-            int rootB = find(b);
-            if(rootA == rootB){
-                System.out.print(0);
+            if(!chackAndMake(a, b)){
+                System.out.println(0);
                 System.exit(0);
-            }
-
-            if(enemy[a] == 0 && enemy[b] == 0){
-                enemy[a] = b;
-                enemy[b] = a;
-            }
-            else if(enemy[a] != 0 && enemy[b] == 0){
-                union(enemy[a], b);
-                enemy[b] = a;
-            }
-            else if(enemy[a] == 0 && enemy[b] != 0){
-                union(a, enemy[b]);
-                enemy[a] = b;
-            }
-            else{
-                union(a, enemy[b]);
-                union(b, enemy[a]);
-
-                if(find(a) == find(b)){
-                    System.out.print(0);
-                    System.exit(0);
-                }
             }
         }
         System.out.println(1);
