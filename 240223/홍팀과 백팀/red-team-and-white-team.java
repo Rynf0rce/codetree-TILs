@@ -29,11 +29,11 @@ public class Main {
             return false;
         }
 
-        if(enemy[a] != 0){
+        if(enemy[rootA] != 0){
             union(enemy[rootA], rootB);
         }
 
-        if(enemy[b] != 0){
+        if(enemy[rootB] != 0){
             union(rootA, enemy[rootB]);
         }
         
