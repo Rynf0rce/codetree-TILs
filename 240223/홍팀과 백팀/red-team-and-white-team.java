@@ -30,11 +30,11 @@ public class Main {
         }
 
         if(enemy[a] != 0){
-            union(enemy[a], b);
+            union(enemy[rootA], rootB);
         }
 
         if(enemy[b] != 0){
-            union(a, enemy[b]);
+            union(rootA, enemy[rootB]);
         }
         
         // After union with a and b, must define each roots as enemy;
