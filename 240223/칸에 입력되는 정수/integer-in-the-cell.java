@@ -2,26 +2,35 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-    public static TreeSet<Integer> ballSet = new TreeSet<>();
-    public static void main(String[] args) throws IOException{
+    public static final int MAX_ROCK = 100000;
+    public static int[] uf = new int[MAX_ROCK + 1];
+
+    public static int find(int idx){
+        if(uf[idx] == idx){
+            return idx;
+        }
+        return uf[idx] = find(uf[idx]);
+    }
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        for(int i = 1 ; i <= n ; i++){
-            ballSet.add(i);
-        }
-
         int m = Integer.parseInt(br.readLine());
+        for(int i = 1 ; i <= n ; i++){
+            uf[i] = i;
+        }
+        
         int ans = 0;
         for(int i = 0 ; i < m ; i++){
-            int range = Integer.parseInt(br.readLine());
-            if(ballSet.floor(range) == null){
+            int k = Integer.parseInt(br.readLine());
+            int root = find(k);
+            if(root == 0){
                 break;
             }
-            else{
-                ballSet.remove(ballSet.floor(range));
-                ans++;
-            }
+            ans++;
+            int lowRoot = find(root - 1);
+            uf[root] = lowRoot;
         }
         System.out.print(ans);
+        
     }
 }
