@@ -30,17 +30,25 @@ public class Main {
             uf[i] = i;
         }
 
+        int ans = 0;
         for(int i = 0 ; i < m ; i++){
             st = new StringTokenizer(br.readLine(), " ");
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
-            union(a, b);
+            if(find(a) == find(b)){
+                ans++;
+            }
+            else{
+                union(a, b);
+            }
         }
 
         for(int i = 1 ; i <= n ; i++){
             rootSet.add(find(i));
         }
 
-        System.out.println(rootSet.size() - 1);
+        ans += rootSet.size() - 1;
+
+        System.out.println(ans);
     }
 }
