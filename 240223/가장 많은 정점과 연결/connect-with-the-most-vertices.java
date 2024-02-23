@@ -6,6 +6,7 @@ public class Main {
     public static int[] uf = new int[MAX_NODE + 1];
     public static int[] minArr = new int[MAX_NODE + 1];
     public static boolean[] visited = new boolean[MAX_NODE + 1];
+    public static PriorityQueue<Integer> pq = new PriorityQueue<>();
 
     public static int find(int idx){
         if(uf[idx] == idx){
@@ -44,14 +45,19 @@ public class Main {
             union(a, b);
         }
 
-        int ans = 0;
         for(int i = 1 ; i <= n ; i++){
             int curIdx = find(i);
             if(visited[curIdx]){
                 continue;
             }
             visited[curIdx] = true;
-            ans += minArr[curIdx];
+            pq.add(minArr[curIdx]);
+        }
+
+        int minVal = pq.poll();
+        int ans = 0;
+        while(!pq.isEmpty()){
+            ans += minVal + pq.poll();
         }
 
         System.out.print(ans <= k ? ans : "NO");
