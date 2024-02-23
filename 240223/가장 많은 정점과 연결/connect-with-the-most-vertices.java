@@ -54,6 +54,6 @@ public class Main {
             ans += minArr[curIdx];
         }
 
-        System.out.print(ans);
+        System.out.print(ans <= k ? ans : "NO");
     }
 }
