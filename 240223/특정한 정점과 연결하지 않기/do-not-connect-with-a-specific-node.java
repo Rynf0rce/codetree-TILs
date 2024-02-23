@@ -66,7 +66,12 @@ public class Main {
             }
         }
 
-        Collections.sort(numList);
+        // for(int i = 1 ; i <= n ; i++){
+        //     System.out.print(cnt[i] + " ");
+        // }
+        // System.out.println();
+
+        Collections.sort(numList, Collections.reverseOrder());
         for(int i = 0 ; i < Math.min(K, numList.size()) ; i++){
             ans += numList.get(i);
         }
