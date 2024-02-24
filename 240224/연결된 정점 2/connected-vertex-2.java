@@ -23,6 +23,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st;
         int n = Integer.parseInt(br.readLine());
 
@@ -31,13 +32,17 @@ public class Main {
             cnt[i] = 1;
         }
         
+        StringBuilder sb = new StringBuilder();
         for(int i = 0 ; i < n ; i++){
             st = new StringTokenizer(br.readLine(), " ");
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
             union(a, b);
-            System.out.println(cnt[find(b)]);
+            sb.append(cnt[find(b)] + "\n");
         }
-
+        bw.write(sb.toString());
+        
+        br.close();
+        bw.close();
     }
 }
