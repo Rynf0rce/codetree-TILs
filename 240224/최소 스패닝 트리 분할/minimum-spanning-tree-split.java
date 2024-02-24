@@ -18,7 +18,6 @@ class path implements Comparable<path>{
 public class Main {
     public static final int MAX_NODE = 10000;
     public static int[] uf = new int[MAX_NODE + 1];
-    public static int[] cnt = new int[MAX_NODE + 1];
     public static PriorityQueue<path> pq = new PriorityQueue<>();
 
     public static int find(int idx){
@@ -35,7 +34,6 @@ public class Main {
         int rootB = find(b);
         if(rootA != rootB){
             uf[rootA] = rootB;
-            cnt[rootB] += cnt[rootA];
         }
     }
     
@@ -45,7 +43,6 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
         for(int i = 1 ; i <= n ; i++){
             uf[i] = i;
-            cnt[i] = 1;
         }
 
         int m = Integer.parseInt(st.nextToken());
@@ -58,6 +55,7 @@ public class Main {
         }
 
         int ans = 0;
+        int maxVal = 0;
         while(!pq.isEmpty()){
             path curPath = pq.poll();
             if(find(curPath.left) == find(curPath.right)){
@@ -65,11 +63,9 @@ public class Main {
             }
             union(curPath.left, curPath.right);
             ans += curPath.weight;
-            if(cnt[find(curPath.left)] == n - 1){
-                break;
-            }
+            maxVal = curPath.weight;
         }
 
-        System.out.print(ans);
+        System.out.print(ans - maxVal);
     }
 }
