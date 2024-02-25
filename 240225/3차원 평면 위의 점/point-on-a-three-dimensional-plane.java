@@ -51,8 +51,8 @@ public class Main {
     }
 
     public static void union(int a, int b){
-        int rootA = a;
-        int rootB = b;
+        int rootA = find(a);
+        int rootB = find(b);
         uf[rootA] = rootB;
     }
 
