@@ -63,7 +63,7 @@ public class Main {
         pq.add(new point(1, dist[1]));
         while(!pq.isEmpty()){
             point curPoint = pq.poll();
-            if(curPoint.weight != dist[curPoint.idx]){
+            if(curPoint.weight != dist[curPoint.idx] || uf[curPoint.idx] != curPoint.idx){
                 continue;
             }
 
@@ -73,7 +73,7 @@ public class Main {
             for(int i = 0 ; i < pointList[curPoint.idx].size(); i++){
                 point postPoint = pointList[curPoint.idx].get(i);
                 dist[postPoint.idx] = Math.min(dist[postPoint.idx], postPoint.weight);
-                if(find(postPoint.idx) == find(curPoint.idx)){
+                if(find(postPoint.idx) == find(1)){
                     continue;
                 }
                 pq.add(new point(postPoint.idx, dist[postPoint.idx]));
