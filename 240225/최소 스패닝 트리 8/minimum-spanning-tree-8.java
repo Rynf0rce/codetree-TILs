@@ -15,9 +15,6 @@ public class Main {
         n = Integer.parseInt(st.nextToken());
         for(int i = 1 ; i <= n ; i++){
             dist[i] = INF;
-            for(int j = 1 ; j <= n ; j++){
-                table[i][j] = INF;
-            }
         }
 
         int m = Integer.parseInt(st.nextToken());
@@ -26,8 +23,8 @@ public class Main {
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
             int w = Integer.parseInt(st.nextToken());
-            table[a][b] = Math.min(table[a][b], w);
-            table[b][a] = Math.min(table[b][a], w);
+            table[a][b] = table[a][b] == 0 ? w : Math.min(table[a][b], w);
+            table[b][a] = table[b][a] == 0 ? w : Math.min(table[b][a], w);
         }
 
         int ans = 0;
@@ -47,7 +44,7 @@ public class Main {
             visited[minIdx] = true;
             ans += dist[minIdx];
             for(int j = 1 ; j <= n ; j++){
-                if(table[minIdx][j] == INF){
+                if(table[minIdx][j] == 0){
                     continue;
                 }
                 dist[j] = Math.min(dist[j], table[minIdx][j]);
