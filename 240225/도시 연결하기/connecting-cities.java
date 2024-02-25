@@ -18,7 +18,7 @@ class node implements Comparable<node>{
 
     @Override
     public int compareTo(node n){
-        return this.weight - weight;
+        return this.weight - n.weight;
     }
 }
 
@@ -143,6 +143,13 @@ public class Main {
             }
         }
 
+        // for(int i = 0 ; i < n ; i++){
+        //     for(int j = 0 ; j < m ; j++){
+        //         System.out.print(label[i][j] + " ");
+        //     }
+        //     System.out.println();
+        // }
+
         // -- finshed initialize -- //
 
         for(int i = 1 ; i <= nodeNum ; i++){
@@ -159,6 +166,7 @@ public class Main {
             }
 
             visited[curNode.idx] = true;
+            // System.out.println(curNode.idx + " " + curNode.weight);
             ans += curNode.weight;
             for(int i = 0 ; i < nodeList[curNode.idx].size(); i++){
                 node postNode = nodeList[curNode.idx].get(i);
