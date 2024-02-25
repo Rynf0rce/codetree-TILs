@@ -28,6 +28,13 @@ public class Main {
             }
         }
 
+        // for(int i = 1 ; i <= n ; i++){
+        //     for(int j = 1 ; j <= n ; j++){
+        //         System.out.print(table[i][j] + " ");
+        //     }
+        //     System.out.println();
+        // }
+
         dist[minIdx] = 0;
         int ans = selelctedValue[minIdx];
         for(int i = 0 ; i < n ; i++){
@@ -37,7 +44,7 @@ public class Main {
                     continue;
                 }
 
-                if(idx == -1 || dist[idx] > dist[i]){
+                if(idx == -1 || dist[idx] > dist[j]){
                     idx = j;
                 }
             }
@@ -45,16 +52,10 @@ public class Main {
             visited[idx] = true;
             ans += dist[idx];
             for(int j = 1 ; j <= n ; j++){
-                if(table[idx][j] == 0){
-                    continue;
-                }
                 dist[j] = Math.min(dist[j], table[idx][j]);
             }
         }
 
         System.out.print(ans);
-
-
-
     }
 }
