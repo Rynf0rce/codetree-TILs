@@ -2,8 +2,9 @@ import java.util.*;
 import java.io.*;
 
 class path implements Comparable<path>{
-    int left, right, weight;
-    public path(int left, int right, int weight){
+    int left, right;
+    long weight;
+    public path(int left, int right, long weight){
         this.left = left;
         this.right = right;
         this.weight = weight;
@@ -11,7 +12,15 @@ class path implements Comparable<path>{
 
     @Override
     public int compareTo(path p){
-        return this.weight - p.weight;
+        if(this.weight > p.weight){
+            return 1;
+        }
+        else if(this.weight == p.weight){
+            return 0;
+        }
+        else{
+            return -1;
+        }
     }
 }
 
@@ -63,11 +72,11 @@ public class Main {
 
         for(int i = 1 ; i <= n - 1 ; i++){
             for(int j = i + 1; j <= n ; j++){
-                pq.add(new path(i, j, calMin(i, j)));
+                pq.add(new path(i, j, (long)calMin(i, j)));
             }
         }
 
-        int ans = 0;
+        long ans = 0;
         while(!pq.isEmpty()){
             path curPath = pq.poll();
             if(find(curPath.left) == find(curPath.right)){
