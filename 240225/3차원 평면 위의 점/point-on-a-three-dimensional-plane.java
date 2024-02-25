@@ -80,7 +80,7 @@ public class Main {
         for(int i = 1 ; i < pointList.size() ; i++){
             point prePoint = pointList.get(i - 1);
             point curPoint = pointList.get(i);
-            pq.add(new path(prePoint.idx, curPoint.idx, Math.abs(curPoint.x - prePoint.x)));
+            pq.add(new path(prePoint.idx, curPoint.idx, curPoint.x - prePoint.x));
         }
 
         Collections.sort(pointList, new Comparator<point>(){
@@ -93,7 +93,7 @@ public class Main {
         for(int i = 1 ; i < pointList.size() ; i++){
             point prePoint = pointList.get(i - 1);
             point curPoint = pointList.get(i);
-            pq.add(new path(prePoint.idx, curPoint.idx, Math.abs(curPoint.y - prePoint.y)));
+            pq.add(new path(prePoint.idx, curPoint.idx, curPoint.y - prePoint.y));
         }
 
         Collections.sort(pointList, new Comparator<point>(){
@@ -106,7 +106,7 @@ public class Main {
         for(int i = 1 ; i < pointList.size() ; i++){
             point prePoint = pointList.get(i - 1);
             point curPoint = pointList.get(i);
-            pq.add(new path(prePoint.idx, curPoint.idx, Math.abs(curPoint.z - prePoint.z)));
+            pq.add(new path(prePoint.idx, curPoint.idx, curPoint.z - prePoint.z));
         }
 
         long ans = 0;
