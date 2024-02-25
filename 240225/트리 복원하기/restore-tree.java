@@ -47,9 +47,22 @@ class ans implements Comparable<ans>{
 public class Main {
     public static final int MAX_LENGTH = 500;
     public static int[][] table = new int[MAX_LENGTH + 1][MAX_LENGTH + 1];
-    public static boolean[] visited = new boolean[MAX_LENGTH + 1];
+    public static int[] uf = new int[MAX_LENGTH + 1];
     public static PriorityQueue<path> pq = new PriorityQueue<>();
     public static PriorityQueue<ans> ansPQ = new PriorityQueue<>();
+
+    public static int find(int idx){
+        if(uf[idx] == idx){
+            return idx;
+        }
+        return uf[idx] = find(uf[idx]);
+    }
+
+    public static void union(int a, int b){
+        int rootA = find(a);
+        int rootB = find(b);
+        uf[rootA] = rootB;
+    }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -57,6 +70,7 @@ public class Main {
         int n = Integer.parseInt(br.readLine());
         for(int i = 1 ; i <= n ; i++){
             st = new StringTokenizer(br.readLine(), " ");
+            uf[i] = i;
             for(int j = 1 ; j <= n ; j++){
                 table[i][j] = Integer.parseInt(st.nextToken());
                 if(i != j){
@@ -67,11 +81,10 @@ public class Main {
 
         while(!pq.isEmpty()){
             path curPath = pq.poll();
-            if(visited[curPath.left] && visited[curPath.right]){
+            if(find(curPath.left) == find(curPath.right)){
                 continue;
             }
-            visited[curPath.left] = true;
-            visited[curPath.right] = true;
+            union(curPath.left, curPath.right);
             ansPQ.add(new ans(curPath.left, curPath.right, curPath.weight));
             // System.out.println(curPath.left + " " + curPath.right + " " + curPath.weight);
         }
