@@ -109,6 +109,9 @@ public class Main {
                         idx = label[i][j];
                         cnt = 0;
                     }
+                    else if(idx == label[i][j]){
+                        cnt = 0;
+                    }
                     else if(idx != label[i][j]){
                         nodeList[idx].add(new node(label[i][j], cnt));
                         nodeList[label[i][j]].add(new node(idx, cnt));
@@ -131,6 +134,9 @@ public class Main {
                 else{
                     if(idx == 0){
                         idx = label[i][j];
+                        cnt = 0;
+                    }
+                    else if(idx == label[i][j]){
                         cnt = 0;
                     }
                     else if(idx != label[i][j]){
@@ -161,7 +167,7 @@ public class Main {
         int ans = 0;
         while(!pq.isEmpty()){
             node curNode = pq.poll();
-            if(visited[curNode.idx]){
+            if(visited[curNode.idx] || dist[curNode.idx] != curNode.weight){
                 continue;
             }
 
