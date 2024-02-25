@@ -13,18 +13,21 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
         n = Integer.parseInt(st.nextToken());
+        for(int i = 1 ; i <= n ; i++){
+            dist[i] = INF;
+            for(int j = 1 ; j <= n ; j++){
+                table[i][j] = INF;
+            }
+        }
+
         int m = Integer.parseInt(st.nextToken());
         for(int i = 0 ; i < m ; i++){
             st = new StringTokenizer(br.readLine(), " ");
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
             int w = Integer.parseInt(st.nextToken());
-            table[a][b] = w;
-            table[b][a] = w;
-        }
-
-        for(int i = 1 ; i <= n ; i++){
-            dist[i] = INF;
+            table[a][b] = Math.min(table[a][b], w);
+            table[b][a] = Math.min(table[b][a], w);
         }
 
         int ans = 0;
@@ -44,10 +47,9 @@ public class Main {
             visited[minIdx] = true;
             ans += dist[minIdx];
             for(int j = 1 ; j <= n ; j++){
-                if(table[minIdx][j] == 0){
+                if(table[minIdx][j] == INF){
                     continue;
                 }
-
                 dist[j] = Math.min(dist[j], table[minIdx][j]);
             }
         }
