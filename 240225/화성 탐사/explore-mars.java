@@ -123,9 +123,6 @@ public class Main {
             }
             union(curPath.left, curPath.right);
             ans += curPath.weight;
-            if(cnt[find(curPath.left)] == pointList.size()){
-                break;
-            }
         }
         System.out.print(ans);
     }
