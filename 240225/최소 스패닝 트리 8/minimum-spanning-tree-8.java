@@ -32,7 +32,7 @@ public class Main {
         for(int i = 1 ; i <= n ; i++){
             int minIdx = -1;
             for(int j = 1 ; j <= n ; j++){
-                if(visited[j]){
+                if(visited[j] || dist[j] == INF){
                     continue;
                 }
 
