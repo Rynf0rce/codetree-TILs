@@ -1,6 +1,16 @@
 import java.util.*;
 import java.io.*;
 
+class point{
+    int idx, x, y, z;
+    public point(int idx, int x, int y, int z){
+        this.idx = idx;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+}
+
 class path implements Comparable<path>{
     int left, right;
     long weight;
@@ -26,9 +36,7 @@ class path implements Comparable<path>{
 
 public class Main {
     public static final int MAX_NODE = 100000;
-    public static int[] arrX = new int[MAX_NODE + 1];
-    public static int[] arrY = new int[MAX_NODE + 1];
-    public static int[] arrZ = new int[MAX_NODE + 1];
+    public static ArrayList<point> pointList = new ArrayList<>();
     public static int[] uf = new int[MAX_NODE + 1];
     public static PriorityQueue<path> pq = new PriorityQueue<>();
     public static int n = -1;
@@ -48,15 +56,6 @@ public class Main {
         uf[rootA] = rootB;
     }
 
-    public static int calMin(int a, int b){
-        int diffX = Math.abs(arrX[a] - arrX[b]);
-        int diffY = Math.abs(arrY[a] - arrY[b]);
-        int diffZ = Math.abs(arrZ[a] - arrZ[b]);
-
-        int ans = Math.min(diffX, diffY);
-        ans = Math.min(ans, diffZ);
-        return ans;
-    }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -65,15 +64,49 @@ public class Main {
         for(int i = 1 ; i <= n ; i++){
             uf[i] = i;
             st = new StringTokenizer(br.readLine(), " ");
-            arrX[i] = Integer.parseInt(st.nextToken());
-            arrY[i] = Integer.parseInt(st.nextToken());
-            arrZ[i] = Integer.parseInt(st.nextToken());
+            int x = Integer.parseInt(st.nextToken());
+            int y = Integer.parseInt(st.nextToken());
+            int z = Integer.parseInt(st.nextToken());
+            pointList.add(new point(i, x, y, z));
         }
 
-        for(int i = 1 ; i <= n - 1 ; i++){
-            for(int j = i + 1; j <= n ; j++){
-                pq.add(new path(i, j, (long)calMin(i, j)));
+        Collections.sort(pointList, new Comparator<point>(){
+            @Override
+            public int compare(point p1, point p2){
+                return p1.x - p2.x;
             }
+        });
+
+        for(int i = 1 ; i < pointList.size() ; i++){
+            point prePoint = pointList.get(i - 1);
+            point curPoint = pointList.get(i);
+            pq.add(new path(prePoint.idx, curPoint.idx, Math.abs(curPoint.x - prePoint.x)));
+        }
+
+        Collections.sort(pointList, new Comparator<point>(){
+            @Override
+            public int compare(point p1, point p2){
+                return p1.y - p2.y;
+            }
+        });
+
+        for(int i = 1 ; i < pointList.size() ; i++){
+            point prePoint = pointList.get(i - 1);
+            point curPoint = pointList.get(i);
+            pq.add(new path(prePoint.idx, curPoint.idx, Math.abs(curPoint.y - prePoint.y)));
+        }
+
+        Collections.sort(pointList, new Comparator<point>(){
+            @Override
+            public int compare(point p1, point p2){
+                return p1.z - p2.z;
+            }
+        });
+
+        for(int i = 1 ; i < pointList.size() ; i++){
+            point prePoint = pointList.get(i - 1);
+            point curPoint = pointList.get(i);
+            pq.add(new path(prePoint.idx, curPoint.idx, Math.abs(curPoint.z - prePoint.z)));
         }
 
         long ans = 0;
