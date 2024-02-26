@@ -29,7 +29,7 @@ public class Main {
     public static void dijkstra(int idx){
         pq.clear();
         for(int i = 1 ; i <= n ; i++){
-            dist[i] = MAX_NODE;
+            dist[i] = MAX_INT;
         }
         dist[idx] = 0;
 
@@ -37,7 +37,6 @@ public class Main {
         while(!pq.isEmpty()){
             node curNode = pq.poll();
             if(curNode.weight != dist[curNode.idx]){
-                System.out.println("cc");
                 continue;
             }
 
