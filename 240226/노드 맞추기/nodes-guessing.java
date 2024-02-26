@@ -7,7 +7,7 @@ public class Main {
     public static int[] inOrder = new int[MAX_NODE + 1];
     public static String[] nodeName = new String[MAX_NODE + 1];
     public static HashMap<String, Integer> nodeMap = new HashMap<>();
-    public static TreeSet<Integer>[] connectedSet = new TreeSet[MAX_NODE + 1];
+    public static TreeSet<String>[] connectedSet = new TreeSet[MAX_NODE + 1];
     public static PriorityQueue<Integer> pq = new PriorityQueue<>();
     public static PriorityQueue<String> ansPQ = new PriorityQueue<>();
 
@@ -53,7 +53,7 @@ public class Main {
                 int postIdx = nodeList[curIdx].get(i);
                 inOrder[postIdx]--;
                 if(inOrder[postIdx] == 0){
-                    connectedSet[curIdx].add(postIdx);
+                    connectedSet[curIdx].add(nodeName[postIdx]);
                     pq.add(postIdx);
                 }
             }
@@ -62,8 +62,8 @@ public class Main {
         while(!ansPQ.isEmpty()){
             int idx = nodeMap.get(ansPQ.poll());
             System.out.print(nodeName[idx] + " " + connectedSet[idx].size() + " ");
-            for(int i : connectedSet[idx]){
-                System.out.print(nodeName[i] + " ");
+            for(String s : connectedSet[idx]){
+                System.out.print(s + " ");
             }
             System.out.println();
         }
