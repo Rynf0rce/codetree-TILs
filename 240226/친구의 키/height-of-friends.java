@@ -43,9 +43,11 @@ public class Main {
             dfs(i);
         }
 
+        StringBuilder sb = new StringBuilder();
         while(!s.isEmpty()){
-            System.out.print(s.pop() + " ");
+            sb.append(s.pop() + " ");
         }
+        System.out.print(sb.toString());
     }
 }
 
