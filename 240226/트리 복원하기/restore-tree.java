@@ -29,7 +29,7 @@ public class Main {
     public static boolean[] visited = new boolean[MAX_LENGTH + 1];
     public static int[] dist = new int[MAX_LENGTH + 1];
     public static int[] connected = new int[MAX_LENGTH + 1];
-    public static PriorityQueue<tuple> pq = new PriorityQueue<>();
+    public static ArrayList<tuple> tupleList = new ArrayList<>();
 
 
     public static int n = -1;
@@ -64,7 +64,7 @@ public class Main {
             visited[minIdx] = true;
 
             if(minIdx != START_IDX){
-                pq.add(new tuple(Math.min(minIdx, connected[minIdx]), Math.max(minIdx, connected[minIdx]), dist[minIdx]));
+                tupleList.add(new tuple(Math.min(minIdx, connected[minIdx]), Math.max(minIdx, connected[minIdx]), dist[minIdx]));
             }
 
             for(int j = 1 ; j <= n ; j++){
@@ -77,11 +77,11 @@ public class Main {
                     connected[j] = minIdx;
                 }
             }
+        }
 
-            while(!pq.isEmpty()){
-                tuple t = pq.poll();
-                System.out.println(t.left + " " + t.right + " " + t.weight);
-            }
+        Collections.sort(tupleList);
+        for(tuple t : tupleList){
+            System.out.println(t.left + " " + t.right + " " + t.weight);
         }
     }
 }
