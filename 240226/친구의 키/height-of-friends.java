@@ -29,10 +29,12 @@ public class Main {
             }
         }
 
+        StringBuilder sb = new StringBuilder();
         while(!q.isEmpty()){
             int curIdx = q.poll();
 
-            System.out.print(curIdx + " ");
+            sb.append(curIdx + " ");
+
             for(int i = 0 ; i < nodeList[curIdx].size() ; i++){
                 int postIdx = nodeList[curIdx].get(i);
                 inOrder[postIdx]--;
@@ -41,5 +43,6 @@ public class Main {
                 }
             }
         }
+        System.out.print(sb.toString());
     }
 }
