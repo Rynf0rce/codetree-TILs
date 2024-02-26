@@ -44,7 +44,7 @@ public class Main {
         }
 
         dist[1] = 0;
-        int ans = 0;
+        long ans = 0;
         int cnt = 0;
         pq.add(new node(1, dist[1]));
         while(!pq.isEmpty()){
