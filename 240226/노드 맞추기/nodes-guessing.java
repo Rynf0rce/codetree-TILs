@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Main {
     public static final int MAX_NODE = 1000;
-    public static ArrayList<Integer>[] nodeList = new ArrayList[MAX_NODE];
+    public static ArrayList<Integer>[] nodeList = new ArrayList[MAX_NODE + 1];
     public static int[] inOrder = new int[MAX_NODE + 1];
     public static String[] nodeName = new String[MAX_NODE + 1];
     public static HashMap<String, Integer> nodeMap = new HashMap<>();
