@@ -82,8 +82,10 @@ public class Main {
 
             for(int i = 0 ; i < nodeList[curNode.idx].size() ; i++){
                 node postNode = nodeList[curNode.idx].get(i);
-                dist[postNode.idx] = Math.min(dist[postNode.idx], postNode.weight);
-                pq.add(new node(postNode.idx, dist[postNode.idx]));
+                if(dist[postNode.idx] > postNode.weight){
+                    dist[postNode.idx] = postNode.weight;
+                    pq.add(new node(postNode.idx, dist[postNode.idx]));
+                }
             }
         }
         System.out.println(ans <= k ? 1 : 0);   
