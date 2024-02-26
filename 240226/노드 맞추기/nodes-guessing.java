@@ -9,6 +9,7 @@ public class Main {
     public static HashMap<String, Integer> nodeMap = new HashMap<>();
     public static TreeSet<Integer>[] connectedSet = new TreeSet[MAX_NODE + 1];
     public static PriorityQueue<Integer> pq = new PriorityQueue<>();
+    public static PriorityQueue<String> ansPQ = new PriorityQueue<>();
 
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -19,6 +20,7 @@ public class Main {
             connectedSet[i] = new TreeSet<>();
             nodeName[i] = st.nextToken().toString();
             nodeMap.put(nodeName[i], i);
+            ansPQ.add(nodeName[i]);
         }
         int m = Integer.parseInt(br.readLine()); // num of edge;
         for(int i = 0 ; i < m ; i++){
@@ -57,12 +59,20 @@ public class Main {
             }
         }
 
-        for(int i = 1 ; i <= n ; i++){
-            System.out.print(nodeName[i] + " " + connectedSet[i].size() + " ");
-            for(int idx : connectedSet[i]){
-                System.out.print(nodeName[idx] + " ");
+        while(!ansPQ.isEmpty()){
+            int idx = nodeMap.get(ansPQ.poll());
+            System.out.print(nodeName[idx] + " " + connectedSet[idx].size() + " ");
+            for(int i : connectedSet[idx]){
+                System.out.print(nodeName[i] + " ");
             }
             System.out.println();
         }
+        // for(int i = 1 ; i <= n ; i++){
+        //     System.out.print(nodeName[i] + " " + connectedSet[i].size() + " ");
+        //     for(int idx : connectedSet[i]){
+        //         System.out.print(nodeName[idx] + " ");
+        //     }
+        //     System.out.println();
+        // }
     }
 }
