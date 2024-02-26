@@ -5,8 +5,8 @@ public class Main {
     public static final int MAX_NODE = 1000;
     public static ArrayList<Integer>[] nodeList = new ArrayList[MAX_NODE];
     public static int[] inOrder = new int[MAX_NODE + 1];
-    public static char[] nodeName = new char[MAX_NODE + 1];
-    public static HashMap<Character, Integer> nodeMap = new HashMap<>();
+    public static String[] nodeName = new String[MAX_NODE + 1];
+    public static HashMap<String, Integer> nodeMap = new HashMap<>();
     public static TreeSet<Integer>[] connectedSet = new TreeSet[MAX_NODE + 1];
     public static PriorityQueue<Integer> pq = new PriorityQueue<>();
 
@@ -17,14 +17,14 @@ public class Main {
         for(int i = 1 ; i <= n ; i++){
             nodeList[i] = new ArrayList<>();
             connectedSet[i] = new TreeSet<>();
-            nodeName[i] = st.nextToken().charAt(0);
+            nodeName[i] = st.nextToken().toString();
             nodeMap.put(nodeName[i], i);
         }
         int m = Integer.parseInt(br.readLine()); // num of edge;
         for(int i = 0 ; i < m ; i++){
             st = new StringTokenizer(br.readLine(), " ");
-            char c1 = st.nextToken().charAt(0);
-            char c2 = st.nextToken().charAt(0);
+            String c1 = st.nextToken().toString();
+            String c2 = st.nextToken().toString();
             int start = nodeMap.get(c1);
             int end = nodeMap.get(c2);
             nodeList[end].add(start);
