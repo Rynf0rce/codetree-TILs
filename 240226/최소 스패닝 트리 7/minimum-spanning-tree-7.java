@@ -16,7 +16,7 @@ class node implements Comparable<node>{
 
 public class Main {
     public static final int MAX_NODE = 40000;
-    public static final int MAX_INT = 40000;
+    public static final int MAX_INT = (int)1e9;
     public static final int START_IDX = 1;
     public static ArrayList<node>[] nodeList = new ArrayList[MAX_NODE + 1];
     public static ArrayList<node>[] restoredNodeList = new ArrayList[MAX_NODE + 1];
