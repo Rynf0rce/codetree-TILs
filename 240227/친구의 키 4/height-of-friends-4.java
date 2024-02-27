@@ -55,12 +55,10 @@ public class Main {
             }
         }
 
-        int cnt = 0;
         while(!q.isEmpty()){
             int curIdx = q.poll();
             for(int i = 0 ; i < nodeList[curIdx].size() ; i++){
                 int postIdx = nodeList[curIdx].get(i);
-                cnt++;
                 panIn[postIdx]--;
                 pathSet.add(new path(curIdx, postIdx));
                 if(panIn[postIdx] == 0){
@@ -69,7 +67,15 @@ public class Main {
             }
         }
 
-        if(cnt == n){
+        boolean flag = true;
+        for(int i = 1 ; i <= n ; i++){
+            if(panIn[i] > 0){
+                flag = false;
+                break;
+            }
+        }
+
+        if(flag){
             System.out.print("Consistent");
         }
         else{
@@ -77,7 +83,7 @@ public class Main {
                 if(pathSet.contains(pathArr[i])){
                     continue;
                 }
-                
+
                 if(visited[pathArr[i].start] && visited[pathArr[i].end]){
                     System.out.print(i);
                     break;
