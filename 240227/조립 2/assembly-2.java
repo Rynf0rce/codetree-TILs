@@ -5,7 +5,7 @@ public class Main {
     public static final int MAX_NODE = 100000;
     public static ArrayList<Integer>[] nodeList = new ArrayList[MAX_NODE + 1];
     public static boolean[] visited = new boolean[MAX_NODE + 1];
-    public static int[] inOrder = new int[MAX_NODE + 1];
+    public static int[] fanIn = new int[MAX_NODE + 1];
     public static PriorityQueue<Integer> pq = new PriorityQueue<>();
     public static PriorityQueue<Integer> ansPQ = new PriorityQueue<>();
 
@@ -27,7 +27,7 @@ public class Main {
             for(int j = 0 ; j < neededNum ; j++){
                 int neededIdx = Integer.parseInt(st.nextToken());
                 nodeList[neededIdx].add(composedIdx);
-                inOrder[composedIdx]++;
+                fanIn[composedIdx]++;
             }
         }
 
@@ -49,8 +49,8 @@ public class Main {
                     continue;
                 }
 
-                inOrder[postIdx]--;
-                if(inOrder[postIdx] == 0){
+                fanIn[postIdx]--;
+                if(fanIn[postIdx] == 0){
                     visited[postIdx] = true;
                     pq.add(postIdx);
                     ansPQ.add(postIdx);
