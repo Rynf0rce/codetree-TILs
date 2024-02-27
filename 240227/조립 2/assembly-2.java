@@ -7,7 +7,7 @@ public class Main {
     public static int[] inOrder = new int[MAX_NODE + 1];
     public static Queue<Integer> q = new LinkedList<>();
     public static HashSet<Integer>[] nodeSet = new HashSet[MAX_NODE + 1];
-    public static HashSet<Integer> ansSet = new HashSet<>();
+    public static ArrayList<Integer> ansList = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -37,7 +37,7 @@ public class Main {
         for(int i = 0 ; i < k ; i++){
             int inNode = Integer.parseInt(st.nextToken());
             q.add(inNode);
-            ansSet.add(inNode);
+            ansList.add(inNode);
         }
 
         while(!q.isEmpty()){
@@ -48,17 +48,20 @@ public class Main {
                 if(nodeSet[postIdx].contains(curIdx)){
                     inOrder[postIdx]--;
                     nodeSet[postIdx].remove(curIdx);
-                }
-                
-                if(inOrder[postIdx] == 0){
-                    q.add(postIdx);
-                    ansSet.add(postIdx);
+
+                    if(inOrder[postIdx] == 0){
+                        q.add(postIdx);
+                        if(!ansList.contains(postIdx)){
+                            ansList.add(postIdx);
+                        }
+                    }
                 }
             }
         }
 
-        System.out.println(ansSet.size());
-        for(int i : ansSet){
+        Collections.sort(ansList);
+        System.out.println(ansList.size());
+        for(int i : ansList){
             System.out.print(i + " ");
         }
     }
