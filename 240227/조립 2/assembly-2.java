@@ -4,17 +4,17 @@ import java.io.*;
 public class Main {
     public static final int MAX_NODE = 100000;
     public static ArrayList<Integer>[] nodeList = new ArrayList[MAX_NODE + 1];
-    public static int[] inOrder = new int[MAX_NODE + 1];
-    public static Queue<Integer> q = new LinkedList<>();
-    public static HashSet<Integer>[] nodeSet = new HashSet[MAX_NODE + 1];
+    public static HashSet<Integer>[] inNodeSet = new HashSet[MAX_NODE + 1];
+    public static PriorityQueue<Integer> pq = new PriorityQueue<>();
     public static HashSet<Integer> ansSet = new HashSet<>();
-
+    
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
         int n = Integer.parseInt(st.nextToken());
         for(int i = 1 ; i <= MAX_NODE; i++){
             nodeList[i] = new ArrayList<>();
+            inNodeSet[i] = new HashSet<>();
         }
 
         int m = Integer.parseInt(st.nextToken());
@@ -22,13 +22,11 @@ public class Main {
             st = new StringTokenizer(br.readLine(), " ");
             int nodeIdx = Integer.parseInt(st.nextToken());
             int num = Integer.parseInt(st.nextToken());
-            nodeSet[nodeIdx] = new HashSet<>();
             st = new StringTokenizer(br.readLine(), " ");
             for(int j = 0 ; j < num ; j++){
                 int neededIdx = Integer.parseInt(st.nextToken());
-                nodeSet[nodeIdx].add(neededIdx);
                 nodeList[neededIdx].add(nodeIdx);
-                inOrder[nodeIdx]++;
+                inNodeSet[nodeIdx].add(neededIdx);
             }
         }
 
@@ -36,32 +34,40 @@ public class Main {
         st = new StringTokenizer(br.readLine(), " ");
         for(int i = 0 ; i < k ; i++){
             int inNode = Integer.parseInt(st.nextToken());
-            q.add(inNode);
-            ansSet.add(inNode);
+            pq.add(inNode);
         }
 
-        while(!q.isEmpty()){
-            int curIdx = q.poll();
+
+        int cnt = 0;
+        StringBuilder sb = new StringBuilder();
+        while(!pq.isEmpty()){
+            int curIdx = pq.poll();
+
+            if(ansSet.contains(curIdx)){
+                continue;
+            }
+            sb.append(curIdx + " ");
+            ansSet.add(curIdx);
             
             for(int i = 0 ; i < nodeList[curIdx].size() ; i++){
                 int postIdx = nodeList[curIdx].get(i);
-                if(nodeSet[postIdx].contains(curIdx)){
-                    inOrder[postIdx]--;
-                    nodeSet[postIdx].remove(curIdx);
-
-                    if(inOrder[postIdx] == 0){
-                        q.add(postIdx);
-                        ansSet.add(postIdx);
-                    }
+                inNodeSet[postIdx].remove(curIdx);
+                
+                if(inNodeSet[postIdx].isEmpty()){
+                    pq.add(postIdx);
                 }
             }
         }
 
         System.out.println(ansSet.size());
-        ArrayList<Integer> ansList = new ArrayList<>(ansSet);
-        Collections.sort(ansList);
-        for(int i : ansList){
-            System.out.print(i + " ");
-        }
+        System.out.print(sb.toString());
+
+        // System.out.println(ansSet.size());
+        // ArrayList<Integer> ansList = new ArrayList<>(ansSet);
+        // Collections.sort(ansList);
+        // for(int i = 0 ; i < ansList.size() ; i++){
+        //     System.out.print(ansList.get(i) + " ");
+        // }
+
     }
 }
