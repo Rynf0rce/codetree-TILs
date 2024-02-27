@@ -39,6 +39,11 @@ public class Main {
             }
         }
 
+        if(alphaSet.size() == 1){
+            System.out.print(arr[0].charAt(0));
+            System.exit(0);
+        }
+
         for(int idx : inSet){
             if(panIn[idx] == 0){
                 q.add(idx);
