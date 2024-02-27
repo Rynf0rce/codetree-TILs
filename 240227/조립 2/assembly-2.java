@@ -7,7 +7,7 @@ public class Main {
     public static int[] inOrder = new int[MAX_NODE + 1];
     public static Queue<Integer> q = new LinkedList<>();
     public static HashSet<Integer>[] nodeSet = new HashSet[MAX_NODE + 1];
-    public static ArrayList<Integer> ansList = new ArrayList<>();
+    public static HashSet<Integer> ansSet = new HashSet<>();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -37,7 +37,7 @@ public class Main {
         for(int i = 0 ; i < k ; i++){
             int inNode = Integer.parseInt(st.nextToken());
             q.add(inNode);
-            ansList.add(inNode);
+            ansSet.add(inNode);
         }
 
         while(!q.isEmpty()){
@@ -51,16 +51,15 @@ public class Main {
 
                     if(inOrder[postIdx] == 0){
                         q.add(postIdx);
-                        if(!ansList.contains(postIdx)){
-                            ansList.add(postIdx);
-                        }
+                        ansSet.add(postIdx);
                     }
                 }
             }
         }
 
+        System.out.println(ansSet.size());
+        ArrayList<Integer> ansList = new ArrayList<>(ansSet);
         Collections.sort(ansList);
-        System.out.println(ansList.size());
         for(int i : ansList){
             System.out.print(i + " ");
         }
