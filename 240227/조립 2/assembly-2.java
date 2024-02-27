@@ -11,6 +11,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
@@ -57,10 +58,14 @@ public class Main {
             }
         }
 
-        System.out.println(ansPQ.size());
+        StringBuilder sb = new StringBuilder();
+        sb.append(ansPQ.size() + "\n");
         while(!ansPQ.isEmpty()){
-            System.out.print(ansPQ.poll() + " ");
+            sb.append(ansPQ.poll() + " ");
         }
+        bw.write(sb.toString());
 
+        br.close();
+        bw.close();
     }
 }
