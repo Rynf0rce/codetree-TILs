@@ -39,8 +39,10 @@ public class Main {
             }
         }
 
+        int zeroPanIn = 0;
         for(int idx : inSet){
             if(panIn[idx] == 0){
+                zeroPanIn++;
                 q.add(idx);
             }
         }
@@ -65,7 +67,6 @@ public class Main {
                 System.exit(0);
             }
         }
-
-        System.out.print(alphaSet.isEmpty() ? sb.toString() : "inf");
+        System.out.print(alphaSet.isEmpty() && zeroPanIn == 1 ? sb.toString() : "inf");
     }
 }
