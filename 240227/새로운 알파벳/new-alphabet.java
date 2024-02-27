@@ -70,6 +70,6 @@ public class Main {
             }
         }
 
-        System.out.print(alphaSet.isEmpty() || flag ? sb.toString() : "inf");
+        System.out.print( !alphaSet.isEmpty() || flag ? "inf" : sb.toString());
     }
 }
