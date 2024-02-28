@@ -4,6 +4,7 @@ import java.io.*;
 public class Main {
     public static final int MAX_NODE = 100000;
     public static final int START_IDX = 1;
+    public static final int MOD = 1000000007;
     public static ArrayList<Integer>[] nodeList = new ArrayList[MAX_NODE + 1];
     public static Queue<Integer> q = new LinkedList<>();
     public static int[] inDegree = new int[MAX_NODE + 1];
@@ -44,6 +45,6 @@ public class Main {
             }
         }
 
-        System.out.print(DP[n]);
+        System.out.print(DP[n] % MOD);
     }
 }
