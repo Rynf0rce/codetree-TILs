@@ -29,10 +29,11 @@ public class Main {
 
         for(int i = 1 ; i <= n ; i++){
             if(inDegree[i] == 0){
-                q.add(i);
                 DP[i] = 1;
             }
         }
+
+        q.add(1);
 
         while(!q.isEmpty()){
             int curIdx = q.poll();
