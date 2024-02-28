@@ -38,18 +38,17 @@ public class Main {
         while(!q.isEmpty()){
             int curIdx = q.poll();
 
-            pressure[curIdx] = DP[curIdx];
             ans = Math.max(ans, DP[curIdx]);
             
             for(int i = 0 ; i < nodeList[curIdx].size() ; i++){
                 int postIdx = nodeList[curIdx].get(i);
 
-                if(pressure[postIdx] < pressure[curIdx]){
-                    pressure[postIdx] = pressure[curIdx];
-                    DP[postIdx] = pressure[curIdx];
+                if(pressure[postIdx] < DP[curIdx]){
+                    pressure[postIdx] = DP[curIdx];
+                    DP[postIdx] = DP[curIdx];
                 }
-                else if(pressure[postIdx] == pressure[curIdx]){
-                    DP[postIdx]++;
+                else if(pressure[postIdx] == DP[curIdx]){
+                    DP[postIdx] = pressure[postIdx] + 1;
                 }
 
                 inDegree[postIdx]--;
