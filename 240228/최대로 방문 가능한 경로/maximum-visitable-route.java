@@ -10,6 +10,42 @@ public class Main {
     public static Queue<Integer> q = new LinkedList<>();
     public static ArrayList<Integer> ansList = new ArrayList<>();
 
+    public static void topological(){
+        while(!q.isEmpty()){
+            int curIdx = q.poll();
+            for(int i = 0 ; i < nodeList[curIdx].size() ; i++){
+                int postIdx = nodeList[curIdx].get(i);
+
+                inDegree[postIdx]--;
+                if(inDegree[postIdx] == 0){
+                    q.add(postIdx);
+                }
+            }
+        }
+    }
+
+    public static void findAns(){
+        while(!q.isEmpty()){
+            int curIdx = q.poll();
+            for(int i = 0 ; i < nodeList[curIdx].size() ; i++){
+                int postIdx = nodeList[curIdx].get(i);
+
+                inDegree[postIdx]--;
+                if(inDegree[postIdx] == 0){
+                    q.add(postIdx);
+                }
+                
+                if(DP[postIdx] < DP[curIdx] + 1){
+                    DP[postIdx] = DP[curIdx] + 1;
+                    connect[postIdx] = curIdx;                 
+                }
+                else if(DP[postIdx] == DP[curIdx] + 1 && connect[postIdx] > curIdx){
+                    connect[postIdx] = curIdx;
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
@@ -27,44 +63,19 @@ public class Main {
             inDegree[end]++;
         }
 
-        for(int i = 1 ; i <= n ; i++){
+        for(int i = 2 ; i <= n ; i++){
             if(inDegree[i] == 0){
+                q.add(i);
                 DP[i] = 1;
             }
         }
 
+        topological();
+
         q.add(1);
+        DP[1] = 1;
+        findAns();
 
-        while(!q.isEmpty()){
-            int curIdx = q.poll();
-            for(int i = 0 ; i < nodeList[curIdx].size() ; i++){
-                int postIdx = nodeList[curIdx].get(i);
-                inDegree[postIdx]--;
-                if(inDegree[postIdx] == 0){
-                    q.add(postIdx);
-                }
-                
-                if(DP[postIdx] < DP[curIdx] + 1){
-                    DP[postIdx] = DP[curIdx] + 1;
-                    connect[postIdx] = curIdx;                 
-                }
-                else if(DP[postIdx] == DP[curIdx] + 1 && connect[postIdx] > curIdx){
-                    connect[postIdx] = curIdx;
-                }
-            }
-        }
-
-        // for(int i = 1 ; i <= n ; i++){
-        //     System.out.print(connect[i] + " ");
-        // }
-        // System.out.println();
-
-        // for(int i = 1 ; i <= n ; i++){
-        //     System.out.print(DP[i] + " ");
-        // }
-        // System.out.println();
-
-        
         int idx = n;
         while(true){
             ansList.add(idx);
@@ -74,14 +85,14 @@ public class Main {
             }
         }
 
-        if(ansList.get(ansList.size() - 1) == 1){
-            System.out.println(DP[n]);
+        if(ansList.get(ansList.size() - 1) != 0){
+            System.out.print(-1);
+        }
+        else{
+            System.out.println(ansList.size());
             for(int i = ansList.size() - 1 ; i >= 0 ; i--){
                 System.out.print(ansList.get(i) + " ");
             }
-        }
-        else{
-            System.out.print(-1);
         }
     }
 }
