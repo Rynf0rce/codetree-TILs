@@ -35,6 +35,23 @@ public class Main {
             inDegree[end]++;
         }
 
+        for(int i = 2 ; i <= n ; i++){
+            if(inDegree[i] == 0){
+                q.add(i);
+            }
+        }
+
+        while(!q.isEmpty()){
+            int curIdx = q.poll();
+            for(int i = 0 ; i < nodeList[curIdx].size() ; i++){
+                node postNode = nodeList[curIdx].get(i);
+                inDegree[postNode.idx]--;
+                if(inDegree[postNode.idx] == 0){
+                    q.add(postNode.idx);
+                }
+            }
+        }
+
         q.add(1);
         while(!q.isEmpty()){
             int curIdx = q.poll();
