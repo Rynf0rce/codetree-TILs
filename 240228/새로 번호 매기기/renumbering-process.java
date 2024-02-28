@@ -1,27 +1,6 @@
 import java.util.*;
 import java.io.*;
 
-class node implements Comparable<node>{
-    int left, right, in;
-    public node(int left, int right, int in){
-        this.left = left;
-        this.right = right;
-        this.in = in;
-    }
-
-    @Override
-    public int compareTo(node n){
-        if(this.in == n.in){
-            if(this.left == n.left){
-                return this.right - n.right;
-            }
-
-            return this.left - n.left;
-        }
-        return this.in - n.in;
-    }
-}
-
 public class Main {
     public static final int MAX_NODE = 100000;
     public static ArrayList<Integer>[] nodeList = new ArrayList[MAX_NODE + 1];
@@ -32,6 +11,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
@@ -56,7 +36,6 @@ public class Main {
         int cnt = n;
         while(!pq.isEmpty()){
             int curIdx = pq.poll();
-            // System.out.print(curIdx + " ");
             ans[curIdx] = cnt--;
 
             for(int i = 0 ; i < nodeList[curIdx].size() ; i++){
@@ -76,13 +55,18 @@ public class Main {
             }
         }
 
+        StringBuilder sb = new StringBuilder();
         if(flag){
             System.out.print(-1);
         }
         else{
             for(int i = 1 ; i <= n ; i++){
-                System.out.print(ans[i] + " ");
+                sb.append(ans[i] + " ");
             }
         }
+        bw.write(sb.toString());
+
+        br.close();
+        bw.close();
     }
 }
