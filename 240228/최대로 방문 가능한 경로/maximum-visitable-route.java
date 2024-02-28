@@ -39,8 +39,8 @@ public class Main {
                     DP[postIdx] = DP[curIdx] + 1;
                     connect[postIdx] = curIdx;                 
                 }
-                else if(DP[postIdx] == DP[curIdx] + 1 && connect[postIdx] > curIdx){
-                    connect[postIdx] = curIdx;
+                else if(DP[postIdx] == DP[curIdx] + 1){
+                    connect[postIdx] = Math.min(connect[postIdx], curIdx);
                 }
             }
         }
