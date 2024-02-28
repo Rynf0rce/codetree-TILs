@@ -56,7 +56,6 @@ public class Main {
         while(!q.isEmpty()){
             int curIdx = q.poll();
 
-            // System.out.println("curidx : " + curIdx);
             for(int i = 0 ; i < nodeList[curIdx].size() ; i++){
                 node postNode = nodeList[curIdx].get(i);
                 inDegree[postNode.idx]--;
@@ -64,32 +63,16 @@ public class Main {
                     q.add(postNode.idx);
                 }
 
-                // System.out.println("postidx : " + postNode.idx);
-                // System.out.println("dist : " + distDP[postNode.idx] + " " + distDP[curIdx] + " " + postNode.weight);
-                // System.out.println("cnt : " + cntDP[postNode.idx] + " " + cntDP[curIdx]);
-
                 if(distDP[postNode.idx] < distDP[curIdx] + postNode.weight){
                     distDP[postNode.idx] = distDP[curIdx] + postNode.weight;
                     cntDP[postNode.idx] = cntDP[curIdx] + 1;
                 }
                 else if(distDP[postNode.idx] == distDP[curIdx] + postNode.weight){
-                    // System.out.println("cc");
                     cntDP[postNode.idx] += cntDP[curIdx] + 1;
                 }
-
-                // System.out.println("dist 결과 : " + distDP[postNode.idx] + " " + distDP[curIdx] + " " + postNode.weight);
-                // System.out.println("cnt 결과 : " + cntDP[postNode.idx] + " " + cntDP[curIdx]);
-                // System.out.println();
             }
         }
 
         System.out.println(distDP[n] + " " + cntDP[n]);
-
-        // for(int i = 1 ; i <= n ; i++){
-        //     System.out.print(cntDP[i] + " ");
-        // }
-        
-
-
     }
 }
