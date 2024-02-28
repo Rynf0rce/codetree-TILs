@@ -85,7 +85,7 @@ public class Main {
             }
         }
 
-        if(ansList.get(ansList.size() - 1) != 0){
+        if(ansList.get(ansList.size() - 1) != 1 || ansList.get(0) != n){
             System.out.print(-1);
         }
         else{
