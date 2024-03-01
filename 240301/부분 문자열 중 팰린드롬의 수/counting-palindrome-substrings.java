@@ -14,7 +14,7 @@ public class Main {
                 A[i] = 0;
             }
             else{
-                A[i] = Math.min(r - i, A[2 * p - 1]);
+                A[i] = Math.min(r - i, A[2 * p - i]);
             }
 
             while(i - A[i] - 1 >= 0 && i + A[i] + 1 < n && arr[i - A[i] - 1] == arr[i + A[i] + 1]){
