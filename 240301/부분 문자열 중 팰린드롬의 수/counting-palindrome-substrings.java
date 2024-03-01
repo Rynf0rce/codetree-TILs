@@ -40,7 +40,7 @@ public class Main {
         arr[n - 1] = '#';
         manacher();
 
-        int ans = 0;
+        long ans = 0;
         for(int i = 0 ; i < n ; i++){
             ans += A[i] / 2 + A[i] % 2;
         }
