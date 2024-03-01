@@ -29,6 +29,7 @@ public class Main {
     }
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
         n = Integer.parseInt(st.nextToken());
         int q = Integer.parseInt(st.nextToken());
@@ -47,13 +48,19 @@ public class Main {
         //     System.out.print(A[i] + " ");
         // }
 
+        StringBuilder sb = new StringBuilder();
         for(int i = 0 ; i < q ; i++){
             st = new StringTokenizer(br.readLine());
             int start = 2 * ( Integer.parseInt(st.nextToken()) - 1 ) + 1;
             int end = 2 * (Integer.parseInt(st.nextToken()) - 1 ) + 1;
             int mid = (start + end) / 2;
-            System.out.println( mid + A[mid] < end ? "No" : "Yes");
+            int l = 2 * A[mid] + 1;
+            sb.append( (l < end - start ? "No" : "Yes") + "\n");
         }
 
+        bw.write(sb.toString());
+        
+        br.close();
+        bw.close();
     }
 }
