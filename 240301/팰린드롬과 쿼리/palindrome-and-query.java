@@ -49,9 +49,9 @@ public class Main {
 
         for(int i = 0 ; i < q ; i++){
             st = new StringTokenizer(br.readLine());
-            int start = Integer.parseInt(st.nextToken());
-            int end = Integer.parseInt(st.nextToken());
-            System.out.println(A[(start + end - 1)] > 0 ? "Yes" : "No");
+            int start = (Integer.parseInt(st.nextToken()) - 1) * 2 + 1;
+            int end = (Integer.parseInt(st.nextToken()) - 1) * 2 + 1;
+            System.out.println(A[(start + end + 1)/ 2] > 0 ? "Yes" : "No");
         }
 
     }
