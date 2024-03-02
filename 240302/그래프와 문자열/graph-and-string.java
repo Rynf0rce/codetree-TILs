@@ -24,29 +24,27 @@ public class Main {
     public static int ans = 0;
 
     public static int toInt(char c){
-        return c - 'a' - 1;
+        return c - 'a' + 1;
     }
 
-    public static void DFS(int idx, int depth, int val){ 
+    public static void DFS(int idx, int depth, long h0, long h1, int val){ 
         value[depth] = val;
         if(depth <= str.length()){
-            for(int k = 0 ; k < 2 ; k++){
-                iH[k] += val;
-            }
+            h0 = (h0 + val * pPow[0][str.length() - depth]) % MOD[0];
+            h1 = (h1 + val * pPow[1][str.length() - depth]) % MOD[1];
         }
         else{
-            for(int k = 0 ; k < 2 ; k++){
-                iH[k] = (iH[k] * P[k] - value[depth - str.length()] * pPow[k][str.length()] + val) % MOD[k];
-            }
+            h0 = (h0 * P[0] - value[depth - str.length()] * pPow[0][str.length()] + val) % MOD[0];
+            h1 = (h1 * P[1] - value[depth - str.length()] * pPow[1][str.length()] + val) % MOD[1];
+        }
 
-            if(iH[0] == tH[0] && iH[1] == tH[1]){
-                ans++;
-            }
+        if(h0 == tH[0] && h1 == tH[1]){
+            ans++;
         }
 
         for(int i = 0 ; i < nodeList[idx].size() ; i++){
             node postNode= nodeList[idx].get(i);
-            DFS(postNode.idx, depth + 1, postNode.weight);
+            DFS(postNode.idx, depth + 1, h0, h1, postNode.weight);
         }
     }
 
@@ -81,7 +79,7 @@ public class Main {
             }
         }
 
-        DFS(1, 1, 0);
+        DFS(1, 0, 0, 0, 0);
         System.out.print(ans);
     }
 }
