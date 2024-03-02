@@ -35,6 +35,10 @@ public class Main {
 
         for(int i = 1 ; i <= str.length() - n ; i++){
             hashVal = (hashVal * P - str.charAt(i - 1) * pPow[n] + str.charAt(n + i - 1)) % MOD;
+
+            if(hashVal < 0){
+                hashVal += MOD;
+            }
             ansMap.put(hashVal, ansMap.getOrDefault(hashVal, 0) + 1);
             ans = Math.max(ansMap.get(hashVal), ans);
         }
