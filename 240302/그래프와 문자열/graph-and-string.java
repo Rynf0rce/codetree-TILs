@@ -36,6 +36,10 @@ public class Main {
         else{
             h0 = (h0 * P[0] - value[depth - str.length()] * pPow[0][str.length()] + val) % MOD[0];
             h1 = (h1 * P[1] - value[depth - str.length()] * pPow[1][str.length()] + val) % MOD[1];
+            if(h0 < 0){
+                h0 += MOD[0];
+                h1 += MOD[1];
+            }
         }
 
         if(h0 == tH[0] && h1 == tH[1]){
