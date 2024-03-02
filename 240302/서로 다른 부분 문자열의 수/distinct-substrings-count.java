@@ -27,7 +27,7 @@ public class Main {
     public static int[] P = new int[]{31, 37};
     public static int[] MOD = new int[]{(int)1e9 + 7, (int)1e9 + 9};
     public static long[][] pPow = new long[2][MAX_LENGTH + 1];
-    public static HashMap<Tuple, Integer> ansMap = new HashMap<>();
+    public static HashSet<Tuple> ansSet = new HashSet<>();
     public static String str = " ";
 
     public static int toInt(char c){
@@ -35,7 +35,7 @@ public class Main {
     }
 
     public static int hashing(int length){
-        ansMap.clear();
+        ansSet.clear();
         long[] h = new long[2];
         
         for(int k = 0 ; k < 2 ; k++){
@@ -44,8 +44,7 @@ public class Main {
             }
         }
 
-        Tuple startTuple = new Tuple(h[0], h[1]);
-        ansMap.put(startTuple, ansMap.getOrDefault(startTuple, 0) + 1);
+        ansSet.add(new Tuple(h[0], h[1]));
 
         for(int i = 1 ; i <= str.length() - length ; i++){
             for(int k = 0 ; k < 2 ; k++){
@@ -54,11 +53,11 @@ public class Main {
                     h[k] += MOD[k];
                 }
             }
-            Tuple inTuple = new Tuple(h[0], h[1]);
-            ansMap.put(inTuple, ansMap.getOrDefault(inTuple, 0) + 1);
+
+            ansSet.add(new Tuple(h[0], h[1]));
         }
 
-        return ansMap.size();
+        return ansSet.size();
     }
 
     public static void main(String[] args) throws IOException {
