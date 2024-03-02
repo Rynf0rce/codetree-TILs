@@ -34,7 +34,8 @@ public class Main {
         return c - 'a' + 1;
     }
 
-    public static void hashing(int length){
+    public static int hashing(int length){
+        ansMap.clear();
         long[] h = new long[2];
         
         for(int k = 0 ; k < 2 ; k++){
@@ -56,6 +57,8 @@ public class Main {
             Tuple inTuple = new Tuple(h[0], h[1]);
             ansMap.put(inTuple, ansMap.getOrDefault(inTuple, 0) + 1);
         }
+
+        return ansMap.size();
     }
 
     public static void main(String[] args) throws IOException {
@@ -69,10 +72,11 @@ public class Main {
             }
         }
 
+        int ans = 0;
         for(int i = 1 ; i <= str.length() ; i++){
-            hashing(i);
+            ans += hashing(i);
         }
         
-        System.out.print(ansMap.size());
+        System.out.print(ans);
     }
 }
