@@ -2,25 +2,41 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-    public static TreeMap<String, Integer> ansMap = new TreeMap<>();
+    public static final int MAX_LENGTH = 100000;
+    public static final int MOD = (int) 1e9 + 9;
+    public static final int P = 37;
+    public static long[] pPow = new long[MAX_LENGTH + 1];
+
+    public static TreeMap<Long, Integer> ansMap = new TreeMap<>();
+
+    public static int toInt(char c){
+        return c - 'a' + 1;
+    }
+
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
         int ans = 1;
         int n = Integer.parseInt(st.nextToken());
         String str = String.valueOf(st.nextToken());
-        StringBuilder sb = new StringBuilder();
-        for(int i = 0 ; i < n ; i++){
-            sb.append(str.charAt(i));
+
+        pPow[0] = 1;
+        for(int i = 1 ; i <= str.length() ; i++){
+            pPow[i] = (pPow[i - 1] * P) % MOD;
         }
 
-        ansMap.put(sb.toString(), 1);
+        long hashVal = 0;
+
+        for(int i = 0 ; i < n ; i++){
+            hashVal = (hashVal + str.charAt(i) * pPow[n - i - 1]) % MOD;
+        }
+
+        ansMap.put(hashVal, 1);
 
         for(int i = 1 ; i <= str.length() - n ; i++){
-            sb.deleteCharAt(0);
-            sb.append(str.charAt(i + n - 1));
-            ansMap.put(sb.toString(), ansMap.getOrDefault(sb.toString(), 0) + 1);
-            ans = Math.max(ansMap.get(sb.toString()), ans);
+            hashVal = (hashVal * P - str.charAt(i - 1) * pPow[n] + str.charAt(n + i - 1)) % MOD;
+            ansMap.put(hashVal, ansMap.getOrDefault(hashVal, 0) + 1);
+            ans = Math.max(ansMap.get(hashVal), ans);
         }
 
         System.out.print(ans);
