@@ -29,7 +29,7 @@ public class Main {
         
         int j = 0;
         for(int i = 1 ; i <= textLength ; i++){
-            while(j >= 0 && text.charAt(i) != text.charAt(j + 1)){
+            while(j >= 0 && text.charAt(i) != pattern.charAt(j + 1)){
                 j = f[j];
             }
             j++;
