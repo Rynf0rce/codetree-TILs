@@ -63,10 +63,10 @@ public class Main {
         int ans = 0;
         for(int i = 0 ; i < n ; i++){
             shift();
-            ansMap.put(sb.toString(), ansMap.getOrDefault(text, 0) + 1);
+            ansMap.put(sb.toString(), ansMap.getOrDefault(sb.toString(), 0) + 1);
         }
 
-        System.out.print(ansMap.getOrDefault(sb.toString(), 0));
+        System.out.print(ansMap.getOrDefault(text, 0));
         
     }
 }
