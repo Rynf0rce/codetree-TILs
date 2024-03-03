@@ -8,20 +8,10 @@ public class Main {
     public static int textLength = -1;
     public static StringBuilder sb = new StringBuilder();
 
-    public static void shift(){
-        int size = sb.length();
-        sb.append(sb.substring(0, size -1));
-        sb.delete(0, size - 1);
-    }
-
-    public static boolean isEqual(){
+    public static int isEqual(){
         String pattern = sb.toString();
         int patternLength = pattern.length();
         pattern = "#" + pattern;
-
-        for(int i = 0 ; i <= patternLength ; i++){
-            f[i] = 0;
-        }
 
         f[0] = -1;
 
@@ -34,40 +24,34 @@ public class Main {
             f[i] = j + 1;
         }
 
+        int ans = 0;
         int j = 0;
         for(int i = 1 ; i <= textLength ; i++){
             while(j >= 0 && text.charAt(i) != pattern.charAt(j + 1)){
-                return false;
+                j = f[j];
             }
 
             j++;
 
             if(j == patternLength){
-                return true;
+                j = f[j];
+                ans++;
             }
         }
 
-        return false;
+        return ans;
     }
 
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
         text = String.valueOf(br.readLine());
+        text += text.substring(0, text.length() / 2);
         textLength = text.length();
         text = "#" + text;
 
         sb.append(String.valueOf(br.readLine()));
 
-        int ans = 0;
-        for(int i = 0 ; i < n ; i++){
-            shift();
-            if(isEqual()){
-                ans++;
-            }
-        }
-
-        System.out.print(ans);
-        
+        System.out.println(isEqual());  
     }
 }
