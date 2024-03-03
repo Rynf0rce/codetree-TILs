@@ -46,7 +46,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
         text = String.valueOf(br.readLine());
-        text += text.substring(0, text.length() / 2);
+        text += text.substring(0, n / 2);
         textLength = text.length();
         text = "#" + text;
 
