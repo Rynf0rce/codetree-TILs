@@ -7,6 +7,7 @@ public class Main {
     public static String text = " ";
     public static int textLength = -1;
     public static StringBuilder sb = new StringBuilder();
+    public static HashMap<String, Integer> ansMap = new HashMap<>();
 
     public static void shift(){
         int size = sb.length();
@@ -55,19 +56,17 @@ public class Main {
         int n = Integer.parseInt(br.readLine());
         text = String.valueOf(br.readLine());
         textLength = text.length();
-        text = "#" + text;
+        // text = "#" + text;
 
         sb.append(String.valueOf(br.readLine()));
 
         int ans = 0;
         for(int i = 0 ; i < n ; i++){
             shift();
-            if(isEqual()){
-                ans++;
-            }
+            ansMap.put(sb.toString(), ansMap.getOrDefault(text, 0) + 1);
         }
 
-        System.out.print(ans);
+        System.out.print(ansMap.getOrDefault(sb.toString(), 0));
         
     }
 }
