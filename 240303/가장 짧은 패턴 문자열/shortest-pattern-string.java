@@ -8,28 +8,40 @@ public class Main {
     public static int strLength = -1;
 
     public static boolean satisfied(int length){
-        StringBuilder sb = new StringBuilder();
-        while(sb.length() < str.length()){
-            sb.append(str.substring(1, length + 1));
-        }
-
-        String text = sb.toString();
+        String text = str.substring(1, length + 1);
         int textLength = text.length();
         text = "#" + text;
 
-        int j = 0;
+        f[0] = -1;
         for(int i = 1 ; i <= textLength ; i++){
-            while(j >= 0 && str.charAt(j + 1) != text.charAt(i)){
+            int j = f[i - 1];
+            while(j >= 0 && str.charAt(i) != str.charAt(j + 1)){
                 j = f[j];
             }
 
-            j++;
-            if(j == strLength){
-                return true;
-            }
+            f[i] = j + 1;
         }
 
-        return false;
+        // System.out.println(str + " " + text);
+        // for(int i = 0 ; i <= textLength ; i++){
+        //     System.out.print(f[i] + " ");
+        // }
+        // System.out.println();
+
+        
+
+        int j = 0;
+        for(int i = 1 ; i <= strLength ; i++){
+            while(j >= 0 && text.charAt(j + 1) != str.charAt(i)){
+                return false;
+            }
+
+            j++;
+            if(j == textLength){
+                j = f[j];
+            }
+        }
+        return true;
     }
 
 
@@ -40,21 +52,7 @@ public class Main {
         strLength = str.length();
         str = "#" + str;
 
-        f[0] = -1;
-        for(int i = 1 ; i <= strLength ; i++){
-            int j = f[i - 1];
-            while(j >= 0 && str.charAt(i) != str.charAt(j + 1)){
-                j = f[j];
-            }
-
-            f[i] = j + 1;
-        }
-
-        // for(int i = 0 ; i <= strLength ; i++){
-        //     System.out.print(f[i] + " ");
-        // }
-
-        // System.out.println();
+        // satisfied(3);
 
         int start = 1;
         int end = str.length();
