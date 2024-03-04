@@ -68,6 +68,11 @@ public class Main {
             KMP(pattern);
         }
 
+        if(ansQueue.isEmpty()){
+            System.out.print(0);
+            System.exit(0);
+        }
+        
         tuple preTuple = ansQueue.poll();
         int ans = (preTuple.right - preTuple.left + 1);
         while(!ansQueue.isEmpty()){
