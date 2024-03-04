@@ -20,8 +20,10 @@ class tuple implements Comparable<tuple>{
 
 public class Main {
     public static final int MAX_LENGTH = 10000;
+    public static final int MAX_IN = 100;
     public static int[] f = new int[MAX_LENGTH + 1];
     public static String text = " ";
+    public static HashSet<String> strSet = new HashSet<>();
     public static int textLength = -1;
     public static PriorityQueue<tuple> ansQueue = new PriorityQueue<>();
 
@@ -53,6 +55,31 @@ public class Main {
         }
     }
 
+    public static boolean compress(String inStr){
+        String curStr = "#" + inStr;
+        f[0] = -1;
+        for(int i = 1 ; i <= inStr.length() ; i++){
+            int j = f[i - 1];
+            while(j >= 0 && curStr.charAt(j + 1) != curStr.charAt(i)){
+                j = f[j];
+            }
+            f[i] = j + 1;
+        }
+
+        if(f[inStr.length()] == 0){
+            return false;
+        }
+
+        int minimumLength = inStr.length() - f[inStr.length()];
+
+        for(int i = 0 ; i < minimumLength ; i++){
+            if(strSet.contains(inStr.substring(i, i + minimumLength))){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -65,14 +92,26 @@ public class Main {
         st = new StringTokenizer(br.readLine());
         for(int i = 0 ; i < m ; i++){
             String pattern = String.valueOf(st.nextToken());
-            KMP(pattern);
+            strSet.add(pattern);
+            // KMP(pattern);
+        }
+
+        ArrayList<String> strList = new ArrayList<>(strSet);
+        for(int i = 0 ; i < strList.size() ; i++){
+            if(compress(strList.get(i))){
+                strSet.remove(strList.get(i));
+            }
+        }
+
+        for(String s : strSet){
+            KMP(s);
         }
 
         if(ansQueue.isEmpty()){
             System.out.print(0);
             System.exit(0);
         }
-        
+
         tuple preTuple = ansQueue.poll();
         int ans = (preTuple.right - preTuple.left + 1);
         while(!ansQueue.isEmpty()){
