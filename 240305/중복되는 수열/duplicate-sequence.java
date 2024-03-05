@@ -4,11 +4,9 @@ import java.io.*;
 class trieNode{
     trieNode[] children = new trieNode[10];
     boolean isEnd;
-    boolean visited;
     
     public trieNode(){
         isEnd = false;
-        visited = false;
         for(int i = 0 ; i < children.length ; i++){
             children[i] = null;
         }
