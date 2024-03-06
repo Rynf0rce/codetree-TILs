@@ -3,8 +3,10 @@ import java.io.*;
 
 class trieNode{
     TreeMap<String, trieNode> children;
+    boolean isEnd;
     public trieNode(){
         this.children = new TreeMap<>();
+        this.isEnd = false;
     }
 }
 
@@ -25,8 +27,9 @@ public class Main {
             }
         }
 
-        if(str.length() == 0){
+        if(str.length() == 0 && !t.isEnd){
             ans++;
+            t.isEnd = true;
         }
     }
 
