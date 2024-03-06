@@ -3,9 +3,11 @@ import java.io.*;
 
 class trieNode{
     int cnt;
+    boolean isEnd;
     trieNode[] children = new trieNode[26];
     public trieNode(){
         this.cnt = 0;
+        this.isEnd = false;
         for(int i = 0 ; i < this.children.length ; i++){
             this.children[i] = null;
         }
@@ -18,13 +20,13 @@ public class Main {
     public static trieNode root = new trieNode();
 
     public static int findAns(String str){
-        int ans = 1;
+        int ans = 0;
         trieNode t = root;
         for(int i = 0 ; i < str.length() ; i++){
             int idx = str.charAt(i) - 'a';
             
             t = t.children[idx];
-            if(t.cnt > 1 && i != str.length() - 1){
+            if(t.cnt > 1 || t.isEnd){
                 ans++;
             }
         }
@@ -47,6 +49,7 @@ public class Main {
 
                 t = t.children[idx];
             }
+            t.isEnd = true;
         }
 
         for(int i = 0 ; i < n ; i++){
