@@ -19,15 +19,16 @@ class tuple implements Comparable<tuple>{
 public class Main {
     public static final int MAX_POINT = 1000;
     public static final int MAX_INT = (int) 1e9;
+    public static final long MAX_LONG = (long) 1e11;
     public static int[][] table = new int[MAX_POINT][MAX_POINT];
-    public static int[][] DP = new int[MAX_POINT][MAX_POINT];
+    public static long[][] DP = new long[MAX_POINT][MAX_POINT];
     public static tuple[] tupleArr = new tuple[MAX_POINT];
     public static int n = -1;
 
-    public static int bitonic(){
+    public static long bitonic(){
         for(int i = 0 ; i < n ; i++){
             for(int j = 0 ;  j < n ; j++){
-                DP[i][j] = MAX_INT;
+                DP[i][j] = MAX_LONG;
             }
         }
 
@@ -46,7 +47,7 @@ public class Main {
             }
         }
 
-        int ans = MAX_INT;
+        long ans = MAX_LONG;
         for(int i = 0 ; i < n ; i++){
             ans = Math.min(ans, DP[i][n - 1] + table[i][n - 1]);
         }
