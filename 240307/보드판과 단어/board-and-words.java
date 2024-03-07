@@ -46,8 +46,8 @@ public class Main {
         for(int i = 0 ; i < NUM_OF_DIRECTION ; i++){
             int postRow = row + arrRow[i];
             int postCol = col + arrCol[i];
-            if(inRange(postRow, postCol) && t.children[table[postCol][postRow]] != null){
-                findAns(postRow, postCol, depth + 1, t.children[table[postCol][postRow]]);
+            if(inRange(postRow, postCol) && t.children[table[postRow][postCol]] != null){
+                findAns(postRow, postCol, depth + 1, t.children[table[postRow][postCol]]);
             }
         }
     }
