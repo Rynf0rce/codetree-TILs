@@ -34,7 +34,7 @@ public class Main {
     }
 
     public static void findAns(int row, int col, int depth, trieNode t){
-        if(visited[row][col]){
+        if(visited[row][col] || t == null){
             return;
         }
 
@@ -46,8 +46,15 @@ public class Main {
         for(int i = 0 ; i < NUM_OF_DIRECTION ; i++){
             int postRow = row + arrRow[i];
             int postCol = col + arrCol[i];
-            if(inRange(postRow, postCol) && t.children[table[postRow][postCol]] != null){
-                findAns(postRow, postCol, depth + 1, t.children[table[postRow][postCol]]);
+            if(inRange(postRow, postCol)){
+                int idx = table[postRow][postCol];
+                // System.out.println("idx : " + (char)(idx + 'a'));
+                if(t.children[idx] == null){
+                    continue;
+                }
+                // System.out.println("pass");
+                findAns(postRow, postCol, depth + 1, t.children[idx]);
+                visited[postRow][postCol] = false;
             }
         }
     }
@@ -79,10 +86,10 @@ public class Main {
         for(int i = 0 ; i < BOARD_LENGTH ; i++){
             for(int j = 0 ; j < BOARD_LENGTH ; j++){
                 initialize();
-                findAns(i, j, 0, root);
+                findAns(i, j, 1, root.children[table[i][j]]);
             }
         }
-
+        
         System.out.print(ans);
     }
 }
