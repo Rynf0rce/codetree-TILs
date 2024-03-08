@@ -11,11 +11,7 @@ public class Main {
     public static int n = -1;
     public static int m = -1;
 
-    public static int getPoint(int i, int j, int k){
-        if(Math.max(i, j) <= k){
-            return MAX_INT;
-        }
-
+    public static int getPoint(int i, int j){
         if(i == 0 || j == 0){
             return 0;
         }
@@ -32,10 +28,10 @@ public class Main {
                     continue;
                 }
 
-                DP[i][next][depth] = Math.min(DP[i][next][depth], DP[i][j][depth] + getPoint(j, next, depth));
-                DP[next][j][depth] = Math.min(DP[next][j][depth], DP[i][j][depth] + getPoint(i, next, depth));
+                DP[i][next][depth] = Math.min(DP[i][next][depth], DP[i][j][depth] + getPoint(j, next));
+                DP[next][j][depth] = Math.min(DP[next][j][depth], DP[i][j][depth] + getPoint(i, next));
 
-                if(depth + 1 <= m){
+                if(depth + 1 <= m && depth + 1 <= next){
                     DP[i][next][depth + 1] = Math.min(DP[i][next][depth], DP[i][j][depth]);
                     DP[next][j][depth + 1] = Math.min(DP[next][j][depth], DP[i][j][depth]);
                 }
