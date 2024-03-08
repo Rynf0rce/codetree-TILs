@@ -43,6 +43,7 @@ public class Main {
         long ans = MAX_LONG;
         for(int i = 0 ; i <= n ; i++){
             ans = Math.min(ans, DP[i][n]);
+            ans = Math.min(ans, DP[n][i]);
         }
         return ans;
     }
