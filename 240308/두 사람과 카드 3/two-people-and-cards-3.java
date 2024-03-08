@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Main {
     public static final int MAX_LENGTH = 200;
-    public static final int MAX_INT = (int)1e7;
+    public static final int MAX_INT = (int)2e9;
     public static int[] arr = new int[MAX_LENGTH + 1];
 
     // DP[i가 선택][j가 선택][k 버렸던 수];
