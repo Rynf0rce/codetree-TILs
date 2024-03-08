@@ -32,8 +32,8 @@ public class Main {
                 DP[next][j][depth] = Math.min(DP[next][j][depth], DP[i][j][depth] + getPoint(i, next));
 
                 if(depth + 1 <= m && depth + 1 <= next){
-                    DP[i][next][depth + 1] = Math.min(DP[i][next][depth], DP[i][j][depth]);
-                    DP[next][j][depth + 1] = Math.min(DP[next][j][depth], DP[i][j][depth]);
+                    DP[i][next][depth + 1] = Math.min(DP[i][next][depth + 1], DP[i][j][depth]);
+                    DP[next][j][depth + 1] = Math.min(DP[next][j][depth + 1], DP[i][j][depth]);
                 }
             }
         }
