@@ -24,14 +24,14 @@ public class Main {
             for(int j = 0 ; j <= n ; j++){
                 int next = Math.max(i, j) + 1;
 
-                if(next > n || DP[i][j][depth] == MAX_INT){
+                if(next > n){
                     continue;
                 }
 
                 DP[i][next][depth] = Math.min(DP[i][next][depth], DP[i][j][depth] + getPoint(j, next));
                 DP[next][j][depth] = Math.min(DP[next][j][depth], DP[i][j][depth] + getPoint(i, next));
 
-                if(depth + 1 <= m && depth + 1 <= next){
+                if(depth + 1 <= m){
                     DP[i][next][depth + 1] = Math.min(DP[i][next][depth + 1], DP[i][j][depth]);
                     DP[next][j][depth + 1] = Math.min(DP[next][j][depth + 1], DP[i][j][depth]);
                 }
