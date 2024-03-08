@@ -4,7 +4,7 @@ import java.io.*;
 public class Main {
     public static final int MAX_LENGTH = 2000;
     public static final long MAX_LONG = (long)1e10;
-    public static int[] arr = new int[MAX_LENGTH];
+    public static int[] arr = new int[MAX_LENGTH + 1];
     public static long[][] DP = new long[MAX_LENGTH + 1][MAX_LENGTH + 1];
     public static int n = -1;
 
