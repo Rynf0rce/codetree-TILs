@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Main {
     public static final int MAX_LENGTH = 200;
-    public static final int MAX_INT = (int)1e6;
+    public static final int MAX_INT = (int)1e7;
     public static int[] arr = new int[MAX_LENGTH + 1];
 
     // DP[i가 선택][j가 선택][k 버렸던 수];
@@ -24,7 +24,7 @@ public class Main {
             for(int j = 0 ; j <= n ; j++){
                 int next = Math.max(i, j) + 1;
 
-                if(next > n){
+                if(next > n || DP[i][j][depth] == MAX_INT){
                     continue;
                 }
 
@@ -66,10 +66,8 @@ public class Main {
 
         int ans = MAX_INT;
         for(int i = 0 ; i <= n ; i++){
-            for(int k = 0 ; k <= m ; k++){
-                ans = Math.min(ans, DP[i][n][k]);
-                ans = Math.min(ans, DP[n][i][k]);
-            }
+            ans = Math.min(ans, DP[i][n][m]);
+            ans = Math.min(ans, DP[n][i][m]);
         }
 
         // for(int i = 0 ; i <= n ; i++){
