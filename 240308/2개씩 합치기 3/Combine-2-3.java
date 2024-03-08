@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Main {
     public static final int MAX_LENGTH = 500;
-    public static final int MAX_INT = (int) 1e7;
+    public static final int MAX_INT = (int) 1e9;
     public static int[] arr = new int[MAX_LENGTH + 1];
     public static int[][] merged = new int[MAX_LENGTH + 1][MAX_LENGTH  + 1];
     public static int[][] DP = new int[MAX_LENGTH + 1][MAX_LENGTH + 1];
