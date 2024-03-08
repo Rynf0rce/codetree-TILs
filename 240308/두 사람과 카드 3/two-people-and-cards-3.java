@@ -67,17 +67,8 @@ public class Main {
         int ans = MAX_INT;
         for(int i = 0 ; i <= n ; i++){
             ans = Math.min(ans, DP[i][n][m]);
-            ans = Math.min(ans, DP[n][i][m]);
         }
 
-        // for(int i = 0 ; i <= n ; i++){
-        //     for(int j = 0 ; j <= n ; j++){
-        //         System.out.print(DP[i][j][0] + " ");
-        //     }
-        //     System.out.println();
-        // }
-
         System.out.print(ans);
-
     }
 }
