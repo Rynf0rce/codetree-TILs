@@ -48,7 +48,7 @@ public class Main {
         n = Integer.parseInt(br.readLine());
 
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        for(int i = 0 ; i < n ; i++){
+        for(int i = 1 ; i <= n ; i++){
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
