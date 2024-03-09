@@ -33,9 +33,8 @@ public class Main {
                 int end = start + gap - 1;
 
                 if(str.charAt(start) != str.charAt(end)){
-                    for(int k = start ; k < end ; k++){
-                        DP[start][end] = Math.min(DP[start][end], DP[start][k] + DP[k + 1][end] + 1);
-                    }
+                    DP[start][end] = Math.min(DP[start][end], DP[start][end - 1] + 1);
+                    DP[start][end] = Math.min(DP[start][end], DP[start + 1][end] + 1);
                 }
                 else{
                     DP[start][end] = Math.min(DP[start][end], DP[start + 1][end - 1]);
