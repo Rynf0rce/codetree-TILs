@@ -23,25 +23,18 @@ public class Main {
             }
         }
 
+        int ans = 1;
         for(int gap = 3 ; gap <= n ; gap++){
             for(int i = 1 ; i <= n - gap + 1; i++){
                 int j = i + gap - 1;
 
                 if(DP[i + 1][j - 1] && str.charAt(i) == str.charAt(j)){
                     DP[i][j] = true;
+                    ans = gap;
                 }
             }
         }
 
-        int ans = 0;
-        for(int i = 1 ; i <= n ; i++){
-            for(int j = i ; j <= n ; j++){
-                if(DP[i][j]){
-                    ans = Math.max(ans, j - i + 1);
-                }
-            }
-        }
         System.out.print(ans);
-
     }
 }
