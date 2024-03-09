@@ -30,11 +30,10 @@ public class Main {
             DP[i][i] = 0;
         }
 
-
-
         for(int gap = 2 ; gap <= n ; gap++){
-            for(int i = 1 ; i <= n ; i++){
+            for(int i = 1 ; i <= n - gap + 1; i++){
                 int j = i + gap - 1;
+                
                 for(int k = i ; k < j ; k++){
                     DP[i][j] = Math.min(DP[i][j], DP[i][k] + DP[k + 1][j] + merge[i][k] + merge[k + 1][j]);
                 }
