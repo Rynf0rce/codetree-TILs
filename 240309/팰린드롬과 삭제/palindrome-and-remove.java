@@ -25,6 +25,9 @@ public class Main {
             if(str.charAt(i) != str.charAt(i + 1)){
                 DP[i][i + 1] = 1;
             }
+            else{
+                DP[i][i + 1] = 0;
+            }
         }
         
         int ans = 0;
