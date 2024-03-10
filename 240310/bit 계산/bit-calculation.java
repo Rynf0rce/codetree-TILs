@@ -18,7 +18,7 @@ public class Main {
                     break;
                 case "delete" :
                     order = Integer.parseInt(st.nextToken());
-                    if( (ans & (1 << (order - 1))) == 1){
+                    if( (ans & (1 << (order - 1))) == (1 << (order - 1))){
                         ans = ans - (1 << order - 1);
                     }
                     break;
