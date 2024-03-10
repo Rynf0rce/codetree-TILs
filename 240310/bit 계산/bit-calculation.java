@@ -5,6 +5,8 @@ public class Main {
     public static int ans = 0;
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder sb = new StringBuilder();
         StringTokenizer st;
         int n = Integer.parseInt(br.readLine());
         for(int i = 0 ; i < n ; i++){
@@ -24,7 +26,7 @@ public class Main {
                     break;
                 case "print" :
                     order = Integer.parseInt(st.nextToken());
-                    System.out.println((int)(ans >> (order - 1) & 1));
+                    sb.append((int)(ans >> (order - 1) & 1) + "\n");
                     break;
                 case "toggle" :
                     order = Integer.parseInt(st.nextToken());
@@ -33,8 +35,11 @@ public class Main {
                 case "clear" :
                     ans = ans & 0;
                     break;
-            }
-            
+            }  
         }
+
+        bw.write(sb.toString());
+        bw.close();
+        br.close();
     }
 }
