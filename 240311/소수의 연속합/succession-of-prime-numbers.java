@@ -26,6 +26,9 @@ public class Main {
             int sum = primeList.get(i);
             while(sum < n){
                 j++;
+                if(j >= primeList.size()){
+                    break;
+                }
                 sum += primeList.get(j);
             }
 
