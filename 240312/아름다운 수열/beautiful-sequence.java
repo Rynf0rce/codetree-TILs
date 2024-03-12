@@ -44,9 +44,11 @@ public class Main {
             }
         }
 
-        System.out.println(ansList.size());
+        StringBuilder sb = new StringBuilder();
+        sb.append(ansList.size() + "\n");
         for(int i = 0 ; i < ansList.size() ; i++){
-            System.out.println(ansList.get(i) + 1);
+            sb.append((ansList.get(i) + 1) + "\n");
         }
+        System.out.print(sb.toString());
     }
 }
