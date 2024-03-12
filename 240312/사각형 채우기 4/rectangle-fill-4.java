@@ -16,6 +16,6 @@ public class Main {
             DP[i][4] = DP[i - 1][1] % MOD;
             DP[i][5] = DP[i - 1][0] % MOD;
         }
-        System.out.print(DP[n][0]);
+        System.out.print(DP[n][0] % MOD);
     }
 }
