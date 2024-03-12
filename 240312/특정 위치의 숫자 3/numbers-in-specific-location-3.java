@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Main {
     public static final int MAX_LENGTH = 20;
-    public static int[] arr = new int[MAX_LENGTH];
+    public static int[] arr = new int[MAX_LENGTH + 1];
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
