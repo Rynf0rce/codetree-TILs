@@ -7,14 +7,14 @@ public class Main {
         int n = sc.nextInt();
         int cnt = 0, sum = 0;
         for(int i = 2 ; i <= 1000 ; i++){
+            if(num <= n){
+                break;
+            }
+
             if(i % 2 == 0){
                 cnt++;
                 sum += i;
                 num -= i;
-            }
-            
-            if(num <= n){
-                break;
             }
         }
         System.out.print(cnt + " " + sum);
