@@ -8,14 +8,14 @@ public class Main {
         int a = Integer.parseInt(st.nextToken());
         int b = Integer.parseInt(st.nextToken());
         int cnt = 0;
-        int sum = 0;
+        double sum = 0;
 
         if(a > b){
             int temp = a;
             a = b;
             b = temp;
         }
-        
+
         for(int i = a ; i <= b ; i++){
             if(i % 5 == 0){
                 continue;
@@ -24,6 +24,6 @@ public class Main {
             sum += i;
         }
         double avg = sum / cnt;
-        System.out.printf("%d %.1f", sum, avg);
+        System.out.printf("%d %.1f", (int)sum, avg);
     }
 }
