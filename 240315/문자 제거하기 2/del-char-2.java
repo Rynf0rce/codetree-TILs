@@ -10,7 +10,7 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
         for(int i = 0 ; i < n ; i++){
             int num = Integer.parseInt(br.readLine()) - 1;
-            if(sb.length() < num){
+            if(sb.length() <= num){
                 continue;
             }
 
