@@ -6,7 +6,7 @@ public class Main {
     public static ArrayList<Integer> ansList = new ArrayList<>();
 
     public static void makecase(int cnt, int val){
-        if(val != 1 && !ansList.contains(val)){
+        if(cnt >= 2 && !ansList.contains(val)){
             ansList.add(val);
         }
 
@@ -25,6 +25,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         for(int i = 0 ; i < 3 ; i++){
             arr[i] = sc.nextInt();
+            ansList.add(arr[i]);
         }
 
         makecase(0, 1);
