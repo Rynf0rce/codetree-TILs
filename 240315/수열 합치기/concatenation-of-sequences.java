@@ -1,6 +1,35 @@
 import java.util.*;
 import java.io.*;
 public class Main {
+    public static ArrayList<Integer> ansList = new ArrayList<>();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+
+        st = new StringTokenizer(br.readLine(), " ");
+        for(int i = 0 ; i < n ; i++){
+            ansList.add(Integer.parseInt(st.nextToken()));
+        }
+
+        st = new StringTokenizer(br.readLine(), " ");
+        for(int i = 0 ; i < m ; i++){
+            ansList.add(Integer.parseInt(st.nextToken()));
+        }
+
+        Collections.sort(ansList);
+
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0 ; i < ansList.size() ; i++){
+            sb.append(ansList.get(i) + " ");
+        }
+        System.out.print(sb.toString());
+    }
+}
+
+/*
+public class Main {
     public static final int MAX_LENGTH = 100000;
     public static int[] A = new int[MAX_LENGTH];
     public static int[] B = new int[MAX_LENGTH];
@@ -38,3 +67,4 @@ public class Main {
         System.out.print(sb.toString());
     }
 }
+*/
