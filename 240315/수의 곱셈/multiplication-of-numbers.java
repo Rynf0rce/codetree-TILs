@@ -6,7 +6,7 @@ public class Main {
     public static ArrayList<Integer> ansList = new ArrayList<>();
 
     public static void makecase(int cnt, int val){
-        if(!ansList.contains(val)){
+        if(val != 1 && !ansList.contains(val)){
             ansList.add(val);
         }
 
