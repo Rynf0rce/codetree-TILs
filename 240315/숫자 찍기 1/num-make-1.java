@@ -1,7 +1,7 @@
 import java.util.*;
 public class Main {
     public static final int MAX_LENGTH = 100;
-    public static int[][] table = new int[MAX_LENGTH + 1][2 * MAX_LENGTH - 1];
+    public static int[][] table = new int[MAX_LENGTH + 1][2 * (MAX_LENGTH - 1) + 1];
 
     public static void printNum(int num, int type){
         int cnt = 0;
