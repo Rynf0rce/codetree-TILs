@@ -4,6 +4,11 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         String str = String.valueOf(sc.next());
-        System.out.print(str.substring(0, n));
+        if(n >= str.length()){
+            System.out.print(str);
+        }
+        else{
+            System.out.print(str.substring(0, n));
+        }
     }
 }
