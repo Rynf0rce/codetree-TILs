@@ -6,10 +6,9 @@ public class Main {
         }
 
         int cnt = 0;
-        a = Math.sqrt(a);
-        b = Math.sqrt(b);
-
-        return (int)(b - a);
+        int A = (int)Math.sqrt(a);
+        int B = (int)Math.sqrt(b);
+        return B - A;
     }
     
     public static void main(String[] args) {
