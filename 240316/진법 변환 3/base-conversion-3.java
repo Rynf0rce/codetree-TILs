@@ -2,6 +2,8 @@ import java.util.*;
 
 public class Main {
     public static Stack<Integer> s = new Stack<>();
+    public static StringBuilder sb = new StringBuilder();
+
     public static void printBinary(int num, boolean isHead){
         for(int i = 0 ; i < 3 ; i++){
             if(((num >> i) & 1) == 1){
@@ -19,7 +21,7 @@ public class Main {
         }
 
         while(!s.isEmpty()){
-            System.out.print(s.pop());
+            sb.append(s.pop());
         }
     }
     public static void main(String[] args) {
@@ -30,5 +32,6 @@ public class Main {
         for(int i = 1 ; i < arr.length ; i++){
             printBinary(arr[i] - '0', false);
         }
+        System.out.print(sb.toString());
     }
 }
