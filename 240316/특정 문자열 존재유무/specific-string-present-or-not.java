@@ -9,16 +9,16 @@ public class Main {
         String word = String.valueOf(st.nextToken());
         for(int i = 0 ; i < n ; i++){
             String str = String.valueOf(br.readLine());
-            int k = 0;
-            for(int j = 0 ; j < str.length() ; j++){
-                if(str.charAt(j) == word.charAt(k)){
-                    k++;
-                }
-                else{
-                    k = 0;
+            for(int j = 0 ; j < str.length() - word.length() + 1 ; j++){
+                boolean flag = true;
+                for(int k = 0 ; k < word.length() ; k++){
+                    if(str.charAt(j + k) != word.charAt(k)){
+                        flag = false;
+                        break;
+                    }
                 }
 
-                if(k >= word.length()){
+                if(flag){
                     System.out.println(str);
                     break;
                 }
