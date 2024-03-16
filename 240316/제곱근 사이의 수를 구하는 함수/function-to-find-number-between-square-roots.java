@@ -9,18 +9,7 @@ public class Main {
         a = Math.sqrt(a);
         b = Math.sqrt(b);
 
-        for(int i = 0 ; i < 1000 ; i++){
-            if(i < a){
-                continue;
-            }
-
-            if(i > b){
-                break;
-            }
-
-            cnt++;
-        }
-        return cnt;
+        return (int)(b - a);
     }
     
     public static void main(String[] args) {
