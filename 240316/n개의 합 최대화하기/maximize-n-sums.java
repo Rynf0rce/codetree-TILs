@@ -4,7 +4,7 @@ import java.io.*;
 public class Main {
     public static final int MAX_LENGTH = 16;
     public static int[][] table = new int[MAX_LENGTH][MAX_LENGTH];
-    public static int[][] DP = new int[MAX_LENGTH][(1 << MAX_LENGTH)];
+    public static int[][] DP = new int[MAX_LENGTH + 1][(1 << MAX_LENGTH)];
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
