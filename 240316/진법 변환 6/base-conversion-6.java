@@ -20,9 +20,10 @@ public class Main {
                 val = arr[i] - '0';
             }
 
-            num += val * (int)Math.pow(n, i);
+            num += val * (int)Math.pow(n, (arr.length -1) - i);
         }
         
+
         while(num > 0){
             long c = num % m;
             if(c >= 10){
