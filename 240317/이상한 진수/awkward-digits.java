@@ -25,10 +25,10 @@ public class Main {
             num /= 3;
         }
 
-        int curIdx = b.length - 1;
+        int curIdx = 0;
         int cnt = 0;
         while(!s.isEmpty()){
-            if(b[curIdx--] != s.peek()){
+            if(b[curIdx++] != s.peek()){
                 cnt++;
             }
             s.pop();
