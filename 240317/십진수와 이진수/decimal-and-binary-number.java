@@ -11,7 +11,7 @@ public class Main {
 
         num *= 17;
 
-        Stack<Integer> s = new Stack<>();
+        Stack<Long> s = new Stack<>();
         while(num > 0){
             s.add(num % 2);
             num /= 2;
