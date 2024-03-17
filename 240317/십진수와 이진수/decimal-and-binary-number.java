@@ -34,6 +34,10 @@ public class Main {
             upBit = (s1.pop() - '0' + upBit) / 2;
         }
 
+        if(upBit == 1){
+            sumS.add(1);
+        }
+
         while(!sumS.isEmpty()){
             System.out.print(sumS.pop());
         }
