@@ -4,25 +4,18 @@ public class Main {
     public static double[] arr = new double[3];
     public static double[] sortedArr = new double[3];
 
-    public static int order(double num){
-        int type = 0;
-        for( ; type < 3 ; type++){
-            if(num == sortedArr[type]){
-                break;
-            }
-        }
-
-        switch(type){
+    public static int order(int idx){
+        switch(idx){
             case 0 :
-                return (int)num;
+                return (int)arr[0];
             case 1 :
-                return (int)Math.round(num);
+                return (int)Math.round(arr[1]);
             case 2 :
-                if(num % 1 > 0){
-                    return (int)num + 1;
+                if(arr[2] % 1 > 0){
+                    return (int)arr[2] + 1;
                 }
                 else{
-                    return (int)num;
+                    return (int)arr[2];
                 }
         }
         return -1;
@@ -33,13 +26,12 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         for(int i = 0 ; i < 3 ; i++){
             arr[i] = sc.nextDouble();
-            sortedArr[i] = arr[i];
         }
 
-        Arrays.sort(sortedArr);
+        Arrays.sort(arr);
 
-        for(int i = 0 ; i < 3 ; i++){
-            System.out.print(order(arr[i]) + " ");
-        }
+        System.out.print(order(2) + " ");
+        System.out.print(order(0) + " ");
+        System.out.print(order(1));
     }
 }
