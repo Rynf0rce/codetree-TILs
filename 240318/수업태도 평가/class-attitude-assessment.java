@@ -18,7 +18,7 @@ class tuple implements Comparable<tuple>{
 public class Main {
     public static HashMap<String, Integer> infoMap = new HashMap<>();
     public static String[] nameArr = new String[]{"Bessie", "Elsie", "Daisy", "Gertie", "Annabelle", "Maggie", "Henrietta"};
-    public static tuple[] ansArr = new tuple[7];
+    public static PriorityQueue<tuple> pq = new PriorityQueue<>();
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
@@ -37,31 +37,32 @@ public class Main {
 
         int idx = 0;
         for(Map.Entry<String, Integer> element : infoMap.entrySet() ){
-            ansArr[idx++] = new tuple(element.getKey(), element.getValue());
+            pq.add(new tuple(element.getKey(), element.getValue()));
         }
 
-        Arrays.sort(ansArr);
-
-        tuple minTuple = ansArr[0];
-        tuple ansTuple = null;
-        boolean flag = true;
-        for(int i = 1 ; i < ansArr.length ; i++){
-            if(minTuple.point == ansArr[i].point){
-                continue;
-            }
-
-            if(ansTuple == null){
-                ansTuple = ansArr[i];
+        tuple minTuple = pq.poll();
+        boolean flag = false;
+        boolean trigger = false;
+        while(!pq.isEmpty()){
+            tuple curTuple = pq.poll();
+            if(!trigger){
+                if(minTuple.point == curTuple.point){
+                    continue;
+                }
+                else{
+                    trigger = true;
+                    flag = true;
+                    minTuple = curTuple;
+                }
             }
             else{
-                if(ansTuple == ansArr[i]){
+                if(minTuple.point == curTuple.point){
                     flag = false;
                 }
-                
                 break;
             }
         }
 
-        System.out.print(flag ? ansTuple.name : "Tie");
+        System.out.print(flag ? minTuple.name : "Tie");
     }
 }
