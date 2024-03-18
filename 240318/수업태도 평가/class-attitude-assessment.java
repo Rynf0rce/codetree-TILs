@@ -44,7 +44,7 @@ public class Main {
 
         tuple minTuple = ansArr[0];
         tuple ansTuple = null;
-        boolean flag = false;
+        boolean flag = true;
         for(int i = 1 ; i < ansArr.length ; i++){
             if(minTuple.point == ansArr[i].point){
                 continue;
@@ -54,8 +54,8 @@ public class Main {
                 ansTuple = ansArr[i];
             }
             else{
-                if(ansTuple != ansArr[i]){
-                    flag = true;
+                if(ansTuple == ansArr[i]){
+                    flag = false;
                 }
                 
                 break;
