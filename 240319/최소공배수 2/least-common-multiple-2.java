@@ -21,6 +21,7 @@ public class Main {
         int a = sc.nextInt();
         int b = sc.nextInt();
         int GCD = findGCD(a, b);
-        System.out.print(GCD * (a / GCD) * (b / GCD));
+        long ans = GCD * ((long)a / GCD) * ((long)b / GCD);
+        System.out.print(ans);
     }
 }
