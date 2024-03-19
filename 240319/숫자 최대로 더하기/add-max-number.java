@@ -18,6 +18,6 @@ public class Main {
         for(int i = 0 ; i < n - 1 ; i++){
             ans += arr[i] / 2;
         }
-        System.out.print(ans);
+        System.out.printf("%.1f", ans);
     }
 }
