@@ -1,24 +1,11 @@
 import java.util.*;
 import java.io.*;
 
-class info implements Comparable<info>{
+class info{
     long loc, vel;
     public info(long loc, long vel){
         this.loc = loc;
         this.vel = vel;
-    }
-
-    @Override
-    public int compareTo(info i){
-        if(this.loc > i.loc){
-            return 1;
-        }
-        else if(this.loc == i.loc){
-            return 0;
-        }
-        else{
-            return -1;
-        }
     }
 }
 
@@ -35,8 +22,6 @@ public class Main {
             long vel = Long.parseLong(st.nextToken());
             arr[i] = new info(loc, vel);
         }
-
-        Arrays.sort(arr, 0 , N);
 
         long minVel = -1;
         int cnt = 0;
