@@ -22,9 +22,7 @@ public class Main {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        for(int i = (int)Math.sqrt(n) - 1  ; i >= 1 ; i--){
-            findAns(n, 1);
-        }
+        findAns(n, 1);
         System.out.print(ans);
     }
 }
