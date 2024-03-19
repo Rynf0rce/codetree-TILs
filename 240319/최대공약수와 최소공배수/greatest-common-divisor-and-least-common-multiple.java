@@ -8,7 +8,7 @@ public class Main {
 
         int ans = 1;
         for(int i = a ; i >= 1 ; i--){
-            if(b % i == 0){
+            if(b % i == 0 && a % i == 0){
                 ans = i;
                 break;
             }
@@ -21,7 +21,6 @@ public class Main {
         int a = sc.nextInt();
         int b = sc.nextInt();
         int gcd = findGCD(a, b);
-        System.out.print(gcd + " " + gcd * (a / gcd) * (b / gcd));
-        
+        System.out.print(gcd + " " + gcd * (a / gcd) * (b / gcd));   
     }
 }
