@@ -19,23 +19,20 @@ public class Main {
         }
 
         int ans = 0;
-        for(int i = 0 ; i < n - 1; i++){
-            for(int j = 0 ; j < m - 1 ; j++){
+        for(int i = 0 ; i < n; i++){
+            for(int j = 0 ; j < m ; j++){
                 int sum = 0;
                 int minVal = MAX_INT;
-                for(int k = i ; k < i + 2 ; k++){
-                    for(int h = j ; h < j + 2 ; h++){
+                for(int k = i ; k < Math.min(i + 2, n) ; k++){
+                    for(int h = j ; h < Math.min(j + 2, m) ; h++){
                         sum += table[k][h];
                         minVal = Math.min(minVal, table[k][h]);
                     }
                 }
-                ans = Math.max(ans, sum - minVal);
-            }
-        }
 
-        for(int i = 0 ; i < n ; i++){
-            for(int j = 0 ; j < m  ; j++){
-                int sum = 0;
+                ans = Math.max(ans, sum - minVal);
+
+                sum = 0;
                 for(int k = i ; k < Math.min(i + 3, n) ; k++){
                     sum += table[k][j];
                 }
@@ -44,10 +41,9 @@ public class Main {
 
                 sum = 0;
                 for(int k = j ; k < Math.min(j + 3, m) ; k++){
-                    
                     sum += table[i][k];
                 }
-                ans = Math.max(ans, sum);
+                ans = Math.max(ans, sum);   
             }
         }
         System.out.print(ans);
