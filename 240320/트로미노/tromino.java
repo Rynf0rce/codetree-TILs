@@ -13,7 +13,7 @@ public class Main {
         int m = Integer.parseInt(st.nextToken());
         for(int i = 0 ; i < n ; i++){
             st = new StringTokenizer(br.readLine(), " ");
-            for(int j = 0 ; j < n ; j++){
+            for(int j = 0 ; j < m ; j++){
                 table[i][j] = Integer.parseInt(st.nextToken());
             }
         }
@@ -34,7 +34,7 @@ public class Main {
         }
 
         for(int i = 0 ; i < n ; i++){
-            for(int j = 0 ; j < m - 1 ; j++){
+            for(int j = 0 ; j < m  ; j++){
                 int sum = 0;
                 for(int k = i ; k < Math.min(i + 3, n) ; k++){
                     sum += table[k][j];
@@ -44,13 +44,12 @@ public class Main {
 
                 sum = 0;
                 for(int k = j ; k < Math.min(j + 3, m) ; k++){
+                    
                     sum += table[i][k];
                 }
-
                 ans = Math.max(ans, sum);
             }
         }
-
         System.out.print(ans);
     }
 }
