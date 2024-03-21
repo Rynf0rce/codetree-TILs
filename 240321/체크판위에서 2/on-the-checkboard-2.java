@@ -19,21 +19,16 @@ public class Main {
             }
         }
 
-        if(table[0][0] == table[n - 1][m - 1]){
-            System.out.print(0);
-            System.exit(0);
-        }
-        
         int ans = 0;
-        for(int i = 0 ; i < n ; i++){
-            for(int j = 0 ; j < m ; j++){
+        for(int i = 1 ; i < n ; i++){
+            for(int j = 1 ; j < m ; j++){
                 if(table[0][0] == table[i][j]){
                     continue;
                 }
 
-                for(int k = i + 1 ; k < n ; k++){
-                    for(int h = j + 1 ; h < n ; h++){
-                        if(table[i][j] == table[k][h] || k == n - 1 || h == m - 1){
+                for(int k = i + 1 ; k < n - 1 ; k++){
+                    for(int h = j + 1 ; h < m - 1 ; h++){
+                        if(table[i][j] == table[k][h] || table[k][h] == table[n - 1][m - 1]){
                             continue;
                         }
                         ans++;
