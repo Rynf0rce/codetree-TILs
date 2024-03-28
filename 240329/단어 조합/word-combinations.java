@@ -25,7 +25,7 @@ public class Main {
                 System.out.print("_");
             }
 
-            if(n - 1 - i <= remain || arr[i + 1].charAt(0) >= 'a'){
+            if(remain > 0 && (n - 1 - i <= remain || arr[i + 1].charAt(0) >= 'a')){
                 remain--;
                 System.out.print("_");
             }
