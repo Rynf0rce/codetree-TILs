@@ -56,6 +56,20 @@ public class Main {
             return true;
         }
 
+        cnt = 0;
+        for(int i = -2 ; i <= 2 ; i++){
+            if(inRange(row - i, col + i) && table[row][col] == table[row - i][col + i]){
+                cnt++;
+            }
+            else{
+                break;
+            }
+        }
+
+        if(cnt == 5){
+            return true;
+        }
+
         return false;
     }
 
