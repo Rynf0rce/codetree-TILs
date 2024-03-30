@@ -39,7 +39,7 @@ public class Main {
             for(int j = 0 ; j < n ; j++){
                 for(int k = 0 ; k < n ; k++){
                     for(int h = 0 ; h < n ; h++){
-                        if(i == k && j <= h && h < j + 3){
+                        if(i == k && ((j <= h && h < j + 3) || (j >= h && j < h + 3))){
                             continue;
                         }
                         ans = Math.max(ans, findAns(i, j) + findAns(k, h));
