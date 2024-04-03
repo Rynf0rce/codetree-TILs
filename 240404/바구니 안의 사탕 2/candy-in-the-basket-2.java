@@ -11,12 +11,14 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
         int N = Integer.parseInt(st.nextToken());
         int K = Integer.parseInt(st.nextToken());
-        
+        int sum = 0;
+
         for(int i = 0 ; i < N ; i++){
             st = new StringTokenizer(br.readLine(), " ");
             int cnt = Integer.parseInt(st.nextToken());
             int idx = Integer.parseInt(st.nextToken());
             arr[idx] += cnt;
+            sum += cnt;
         }
 
         for(int i = 1 ; i <= MAX_LENGTH ; i++){
@@ -27,6 +29,12 @@ public class Main {
         for(int i = 1 ; i <= MAX_LENGTH - 2 * K ; i++){
             ans = Math.max(ans, prefix[i + 2 * K] - prefix[i - 1]);
         }
-        System.out.print(ans);
+
+        if(K >= 50){
+            System.out.print(sum);
+        }
+        else{
+            System.out.print(ans);
+        }
     }
 }
