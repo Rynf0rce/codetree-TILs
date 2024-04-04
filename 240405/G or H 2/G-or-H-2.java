@@ -11,6 +11,9 @@ public class Main {
         StringTokenizer st;
         int N = Integer.parseInt(br.readLine());
 
+        int minLoc = MAX_LENGTH;
+        int maxLoc = 0;
+
         for(int i = 0 ; i < N ; i++){
             st = new StringTokenizer(br.readLine(), " ");
             int loc = Integer.parseInt(st.nextToken());
@@ -21,11 +24,14 @@ public class Main {
             else{
                 arr[loc] = 2;
             }
+
+            minLoc = Math.min(loc, minLoc);
+            maxLoc = Math.max(loc, maxLoc);
         }
 
         
         int ans = 0;
-        for(int i = 0 ; i < MAX_LENGTH ; i++){
+        for(int i = minLoc ; i < maxLoc ; i++){
             if(arr[i] == 0){
                 continue;
             }
@@ -34,7 +40,7 @@ public class Main {
                 cnt[j] = 0;
             }
 
-            for(int j = i ; j <= MAX_LENGTH ; j++){
+            for(int j = i ; j <= maxLoc ; j++){
                 cnt[arr[j]]++;
                 if(arr[j] > 0 && cnt[1] == cnt[2]){
                     ans = Math.max(j - i, ans);
