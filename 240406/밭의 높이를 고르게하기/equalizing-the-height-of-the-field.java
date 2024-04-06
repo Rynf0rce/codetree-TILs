@@ -2,7 +2,10 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-    public static PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+    public static final int MAX_LENGTH = 100;
+    public static final int MAX_INT = (int)1e9;
+    public static int[] arr = new int[MAX_LENGTH  + 1];
+    public static int[] prefix = new int[MAX_LENGTH + 1];
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
@@ -11,20 +14,17 @@ public class Main {
         int T = Integer.parseInt(st.nextToken());
 
         st = new StringTokenizer(br.readLine(), " ");
-        for(int i = 0 ; i < N ; i++){
-            int gap = Math.abs(Integer.parseInt(st.nextToken()) - H);
-            if(pq.size() < T){
-                pq.add(Math.abs(gap));
-            }
-            else if(pq.peek() > Math.abs(gap)) {
-                pq.poll();
-                pq.add(gap);
-            }
+        for(int i = 1 ; i <= N ; i++){
+            arr[i] = Math.abs(Integer.parseInt(st.nextToken()) - H);
         }
 
-        int ans = 0;
-        while(!pq.isEmpty()){
-            ans += pq.poll();
+        for(int i = 1 ; i <= N ; i++){
+            prefix[i] = prefix[i - 1] + arr[i];
+        }
+
+        int ans = MAX_INT;
+        for(int i = 1 ; i <= N - T + 1 ; i++){
+            ans = Math.min(ans, prefix[i + T - 1] - prefix[i - 1]);
         }
         System.out.print(ans);
     }
