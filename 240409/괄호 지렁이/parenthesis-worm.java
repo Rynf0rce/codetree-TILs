@@ -21,7 +21,7 @@ public class Main {
             ans = Math.max(ans, s.size());
         }
 
-        for(int i = 0 ; i < n ; i++){
+        for(int i = 0 ; i < 4 ; i++){
             int postRow = row + arrRow[i];
             int postCol = col + arrCol[i];
             if(inRange(postRow, postCol) && !visited[postRow][postCol]){
