@@ -40,26 +40,13 @@ public class Main {
                                 for(int c = a ; c <= n ; c++){
                                     for(int d = b ; d <= m ; d++){
 
-                                        int rect2 = 0;
-                                        boolean flag = false;
-                                        for(int o = a ; o <= c ; o++){
-                                            for(int p = b ; p <= d ; p++){
-                                                if(inRange(o, p, i, j, k, h)){
-                                                    flag = true;
-                                                    break;
-                                                }
+                                        int rect2 = prefix[c][d] - prefix[c][b - 1] - prefix[a - 1][d] + prefix[a - 1][b - 1];
 
-                                                rect2 += table[o][p];
-                                            }
-
-                                            if(flag){
-                                                break;
-                                            }
+                                        if( !(h < b || k < a || c < i || d < j) ){
+                                            continue;
                                         }
 
-                                        if(!flag){
-                                            ans = Math.max(ans, rect1 + rect2);
-                                        }
+                                        ans = Math.max(ans, rect1 + rect2);
                                     }
                                 }
                             }
