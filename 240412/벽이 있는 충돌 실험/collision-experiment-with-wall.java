@@ -29,6 +29,7 @@ class point{
 public class Main {
     public static final int MAX_LENGTH = 100;
     public static HashSet<point> pointSet = new HashSet<>();
+    public static HashSet<point> removeSet = new HashSet<>();
     public static Queue<point> q = new LinkedList<>();
     public static int[] arrRow = new int[]{-1, 0, 1, 0};
     public static int[] arrCol = new int[]{0, 1, 0, -1};
@@ -38,7 +39,7 @@ public class Main {
     }
 
     public static int simulation(int N){
-        for(int i = 0 ; i < 2 * N ; i++){
+        for(int i = 0 ; i < 4 * N ; i++){
             for(point p : pointSet){
                 int preRow = p.row + arrRow[p.dir];
                 int preCol = p.col + arrCol[p.dir];
@@ -48,22 +49,24 @@ public class Main {
                 else{
                     q.add(new point(p.row, p.col, (p.dir + 2) % 4));
                 }
-
-                // System.out.println(preRow + " " + preCol);
-                
             }
-            // System.out.println();
+            
             pointSet.clear();
             
             while(!q.isEmpty()){
                 point curPoint = q.poll();
                 if(pointSet.contains(curPoint)){
-                    pointSet.remove(curPoint);
+                    removeSet.add(curPoint);
                 }
                 else{
                     pointSet.add(curPoint);
                 }
             }
+
+            for(point p : removeSet){
+                pointSet.remove(p);
+            }
+            removeSet.clear();
         }
         
         int ans = pointSet.size();
