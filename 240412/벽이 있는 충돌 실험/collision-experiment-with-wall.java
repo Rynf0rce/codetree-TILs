@@ -39,7 +39,7 @@ public class Main {
     }
 
     public static int simulation(int N){
-        for(int i = 0 ; i < 4 * N ; i++){
+        for(int i = 0 ; i <= 2 * N ; i++){
             for(point p : pointSet){
                 int preRow = p.row + arrRow[p.dir];
                 int preCol = p.col + arrCol[p.dir];
@@ -70,9 +70,6 @@ public class Main {
         }
         
         int ans = pointSet.size();
-        // for(point p : pointSet){
-        //     System.out.println(p.row + " " + p.col);
-        // }
         pointSet.clear();
         return ans;
     }
