@@ -16,7 +16,6 @@ class point{
         point p = (point) o;
         return this.row == p.row && this.col == p.col;
     }
-
 }
 
 public class Main {
@@ -53,19 +52,15 @@ public class Main {
         for(int i = 0 ; i < m ; i++){
             int num = Integer.parseInt(st.nextToken());
             point curPoint  = locArr[num];
-
-            // System.out.println("curPoint : " + curPoint.row + " " + curPoint.col);
             point postPoint = locArr[num];
+
             for(int j = n * n ; j > 0 ; j--){
                 point p = locArr[j];
-                // System.out.println(j + " " + inArea(curPoint.row, curPoint.col, p.row, p.col));
                 if(inArea(curPoint.row, curPoint.col, p.row, p.col)){
                     postPoint = new point(p.row, p.col);
                     break;
                 }
             }
-
-            // System.out.println("p : " + postPoint.row + " " + postPoint.col);
 
             if(curPoint == postPoint){
                 continue;
@@ -75,8 +70,6 @@ public class Main {
                 moveStack.push(table[curPoint.row][curPoint.col].pop());
             }
             moveStack.push(table[curPoint.row][curPoint.col].pop());
-
-
 
             while(!moveStack.isEmpty()){
                 int element = moveStack.pop();
@@ -98,6 +91,5 @@ public class Main {
                 System.out.println();
             }
         }
-
     }
 }
