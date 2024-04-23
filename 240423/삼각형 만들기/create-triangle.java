@@ -14,7 +14,7 @@ public class Main {
     public static point[] arr = new point[MAX_POINT];
 
     public static int calArea(point p1, point p2, point p3){
-        return Math.abs(p1.x - p2.x) * Math.abs(p2.y - p3.y);
+        return ((p1.x * p2.y + p2.x * p3.y + p3.x * p1.y) - (p2.x * p1.y + p3.x * p2.y + p1.x * p3.y));
     }
 
     public static void main(String[] args) throws IOException {
@@ -29,10 +29,13 @@ public class Main {
         }
 
         int ans = 0;
-        for(int i = 0 ; i < n - 2 ; i++){
-            for(int j = i + 1 ; j < n - 1 ; j++){
-                for(int k = j + 1 ; k < n ; k++){
-                    if(arr[i].y == arr[j].y || arr[j].x == arr[k].x){
+        for(int i = 0 ; i < n ; i++){
+            for(int j = 0 ; j < n; j++){
+                for(int k = 0 ; k < n ; k++){
+                    if(i == j || j == k || k == i){
+                        continue;
+                    }
+                    if(arr[i].y == arr[j].y && (arr[i].x == arr[k].x || arr[j].x == arr[k].x)){
                         ans = Math.max(ans, calArea(arr[i], arr[j], arr[k]));
                     }
                 }
