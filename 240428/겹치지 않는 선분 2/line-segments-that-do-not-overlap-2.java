@@ -44,21 +44,6 @@ public class Main {
             left[i] = Math.min(left[i + 1], arr[i].x2);
         }
 
-
-        // for(int i = 1 ; i <= n ; i++){
-        //     System.out.print(right[i] + " ");
-        // }
-        // System.out.println();
-
-        // for(int i = 1 ; i <= n ; i++){
-        //     System.out.print(arr[i].x2 + " ");
-        // }
-        // System.out.println();
-
-        // for(int i = 1 ; i <= n ; i++){
-        //     System.out.print(left[i] + " ");
-        // }
-
         int ans = 0;
         for(int i = 1 ; i <= n ; i++){
             if(right[i] <= arr[i].x2 && arr[i].x2 <= left[i]){
