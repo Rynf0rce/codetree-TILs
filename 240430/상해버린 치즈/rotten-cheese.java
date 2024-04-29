@@ -104,6 +104,7 @@ public class Main {
         int ans = 0;
         for(Integer cheeze : suspectSet){
             int cnt = 0;
+            System.out.println(cheeze);
             for(int i = 1 ; i <= N ; i++){
                 if(eatenSet[i].contains(cheeze)){
                     cnt++;
