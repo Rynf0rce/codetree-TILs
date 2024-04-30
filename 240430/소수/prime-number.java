@@ -12,7 +12,11 @@ public class Main {
             if(primeArr[i]){
                 continue;
             }
-            pq.add(i);
+
+            if(a <= i && i <= b){
+                pq.add(i);
+            }
+
             for(int j = 2 * i ; j <= b ; j += i){
                 primeArr[j] = true;
             }
