@@ -1,24 +1,28 @@
 import java.util.*;
+import java.io.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int n = sc.nextInt();
         int i = 1;
         while(i < n){
             if(i % 2 == 1){
-                System.out.print(1 + " ");
+                bw.write(1 + " ");
             }
             else{
-                System.out.print(2 + " ");
+                bw.write(2 + " ");
             }
             i++;
         }
         if(i % 2 == 1){
-            System.out.print(3);
+            bw.write(3 + " ");
         }
         else{
-            System.out.print(2);
+            bw.write(2 + " ");
         }
+        bw.flush();
+        bw.close();
     }
 }
