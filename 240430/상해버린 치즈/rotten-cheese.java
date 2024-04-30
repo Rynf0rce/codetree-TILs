@@ -39,7 +39,6 @@ public class Main {
     public static final int MAX_PEOPLE = 50;
     public static HashSet<Integer>[] eatenSet = new HashSet[MAX_PEOPLE + 1];
     public static HashSet<Integer> suspectSet = new HashSet<>();
-    public static HashSet<Integer> checkedSet = new HashSet<>();
     public static PriorityQueue<schedule> eatPQ = new PriorityQueue<>();
     public static PriorityQueue<infected> infectedPQ = new PriorityQueue<>();
 
@@ -71,6 +70,10 @@ public class Main {
         }
 
         while(!infectedPQ.isEmpty()){
+            if(suspectSet.size() == 1){
+                break;
+            }
+            
             infected i = infectedPQ.poll();
 
             while(!eatPQ.isEmpty() && eatPQ.peek().time < i.time){
@@ -78,20 +81,22 @@ public class Main {
                 eatenSet[s.idx].add(s.cheeze);
             }
 
-            ArrayList<Integer> refinedList = new ArrayList<>();
-            for(Integer cheeze : eatenSet[i.idx]){
-                if(!checkedSet.contains(cheeze) && !suspectSet.contains(cheeze)){
-                    checkedSet.add(cheeze);
-                    refinedList.add(cheeze);
+            if(suspectSet.isEmpty()){
+                for(Integer cheeze : eatenSet[i.idx]){
                     suspectSet.add(cheeze);
                 }
-                else if(checkedSet.contains(cheeze) && suspectSet.contains(cheeze)){
-                    refinedList.add(cheeze);
-                }
+                continue;
             }
 
+            ArrayList<Integer> suspectList = new ArrayList<>();
+            for(Integer cheeze : eatenSet[i.idx]){
+                if(suspectSet.contains(cheeze)){
+                    suspectList.add(cheeze);
+                }
+            }
             suspectSet.clear();
-            for(int cheeze : refinedList){
+
+            for(int cheeze : suspectList){
                 suspectSet.add(cheeze);
             }
         }
@@ -104,7 +109,6 @@ public class Main {
         int ans = 0;
         for(Integer cheeze : suspectSet){
             int cnt = 0;
-            System.out.println(cheeze);
             for(int i = 1 ; i <= N ; i++){
                 if(eatenSet[i].contains(cheeze)){
                     cnt++;
