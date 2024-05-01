@@ -14,7 +14,7 @@ public class Main {
         
         int ans = -1;
 
-        for(int i = 0 ; i < MAX_NUM ; i++){
+        for(int i = 1 ; i <= MAX_NUM ; i++){
             dist[i] = -1;
         }
 
