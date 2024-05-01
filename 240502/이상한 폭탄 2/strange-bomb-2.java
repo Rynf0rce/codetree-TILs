@@ -12,14 +12,19 @@ public class Main {
         int N = Integer.parseInt(st.nextToken());
         int K = Integer.parseInt(st.nextToken());
         
-        int ans = 0;
+        int ans = -1;
+
+        for(int i = 0 ; i < N ; i++){
+            dist[i] = -1;
+        }
+
         for(int i = 0 ; i < N ; i++){
             int num = Integer.parseInt(br.readLine());
-            if(dist[num] == 0){
+            if(dist[num] == -1){
                 dist[num] = i;
             }
             else{
-                if(dist[num] - i <= K && !bombed[num]){
+                if( i - dist[num] <= K && !bombed[num]){
                     bombed[num] = true;
                     ans = Math.max(ans, num);
                 }
