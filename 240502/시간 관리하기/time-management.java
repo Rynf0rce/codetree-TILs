@@ -2,17 +2,17 @@ import java.util.*;
 import java.io.*;
 
 class schedule implements Comparable<schedule>{
-    int start, end;
-    public schedule(int start, int end){
-        this.start = start;
+    int time, end;
+    public schedule(int time, int end){
+        this.time = time;
         this.end = end;
     }
     @Override
     public int compareTo(schedule s){
-        if(this.start == s.start){
-            return s.end - this.end;
+        if(this.end == s.end){
+            return s.time - this.time;
         }
-        return this.start - s.start;
+        return s.end - this.end;
     }
 }
 
@@ -26,30 +26,28 @@ public class Main {
         int n = Integer.parseInt(br.readLine());
         for(int i = 0 ; i < n ; i++){
             st = new StringTokenizer(br.readLine(), " ");
-            int start = Integer.parseInt(st.nextToken());
+            int time = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
-            arr[i] = new schedule(start, end);
+            arr[i] = new schedule(time, end);
         }
 
         Arrays.sort(arr, 0 , n);
 
-        int curTime = arr[0].start;
-        int postTime = arr[0].end;
-
-        for(int i = 1 ; i < n ; i++){
-            if(postTime <= arr[i].start){
-                curTime = arr[i].start;
-                postTime = arr[i].end;
+        int curTime = 0;
+        for(int i = 0 ; i < n ; i++){
+            if(i == 0){
+                curTime = arr[i].end;
             }
-            else if(curTime <= arr[i].start && arr[i].end <= postTime){
-                continue;
+            else if(curTime >= 0){
+                curTime = Math.min(curTime, arr[i].end);
             }
             else{
                 System.out.print(-1);
                 System.exit(0);
             }
-        }
 
-        System.out.print(arr[0].start);
+            curTime -= arr[i].time;
+        }
+        System.out.print(curTime);
     }
 }
