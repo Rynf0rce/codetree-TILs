@@ -48,6 +48,6 @@ public class Main {
 
             curTime -= arr[i].time;
         }
-        System.out.print(curTime);
+        System.out.print(curTime >= 0 ? curTime : -1);
     }
 }
