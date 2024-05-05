@@ -39,7 +39,7 @@ public class Main {
             }
 
             if(N_Set.floor(i) != null){
-                d2 = Math.min(d1, Math.abs(i - N_Set.floor(i)));
+                d2 = Math.min(d2, Math.abs(i - N_Set.floor(i)));
             }
 
             if(d1 <= d2){
