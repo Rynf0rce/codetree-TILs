@@ -32,7 +32,7 @@ public class Main {
             }
             locArr[i] = true;
             int cnt = 0;
-            for(int j = 0 ; j <= N ; j++){
+            for(int j = 0 ; j < N ; j++){
                 swap(leftArr[j], rightArr[j]);
                 if(locArr[chackArr[j]]){
                     cnt++;
