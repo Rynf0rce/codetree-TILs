@@ -8,13 +8,19 @@ public class Main {
         int siteZero = 0;
         int siteOne = 0;
 
-        
-        for(int i = 0 ; i < arr.length ; i++){
+        if(arr[0] == '1'){
+            siteOne++;
+        }
+        else{
+            siteZero++;
+        }
+
+        for(int i = 0 ; i < arr.length - 1; i++){
             if(arr[i] == '1' && arr[i] != arr[i + 1]){
-                siteOne++;
+                siteZero++;
             }
             else if(arr[i] == '0' && arr[i] != arr[i + 1]){
-                siteZero++;
+                siteOne++;
             }
             // System.out.println(siteZero + " " + siteOne);
         }
