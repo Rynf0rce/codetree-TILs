@@ -2,19 +2,21 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-    public static int MAX_LENGTH = 100000;
-    public static int[] arr = new int[MAX_LENGTH];
+    public static PriorityQueue<Integer> pq = new PriorityQueue<>();
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
         for(int i = 0 ; i < n ; i++){
-            arr[i] = Integer.parseInt(st.nextToken());
+            pq.add(Integer.parseInt(st.nextToken()));
         }
-        Arrays.sort(arr, 0, n);
-        int ans = arr[0] * (n - 1);
-        for(int i = 1 ; i < n ; i++){
-            ans += arr[i] * (n - i);
+
+        int ans = 0;
+        while(pq.size() > 1){
+            int a = pq.poll();
+            int b = pq.poll();
+            ans += a + b;
+            pq.add(a + b);
         }
         System.out.print(ans);
     }
