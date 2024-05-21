@@ -33,7 +33,7 @@ public class Main {
             meeting curMeeting = pq.poll();
             if(curTime <= curMeeting.s){
                 ans++;
-                curTime = curMeeting.s;
+                curTime = curMeeting.e;
             }
         }
         System.out.print(ans);
