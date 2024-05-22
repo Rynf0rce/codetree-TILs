@@ -8,9 +8,17 @@ class Type implements Comparable<Type>{
     }
     @Override
     public int compareTo(Type t){
-        int left = Integer.parseInt(Integer.toString(this.num) + Integer.toString(t.num));
-        int right = Integer.parseInt(Integer.toString(t.num) + Integer.toString(this.num));
-        return right - left;
+        double left = Double.parseDouble(Integer.toString(this.num) + Integer.toString(t.num));
+        double right = Double.parseDouble(Integer.toString(t.num) + Integer.toString(this.num));
+        if(left > right){
+            return -1;
+        }
+        else if(left == right){
+            return 0;
+        }
+        else{
+            return 1;
+        }
     }
 }
 
