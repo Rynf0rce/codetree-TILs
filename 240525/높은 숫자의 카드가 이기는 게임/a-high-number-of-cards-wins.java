@@ -2,6 +2,7 @@ import java.util.*;
 import java.io.*;
 public class Main {
     public static TreeSet<Integer> ts = new TreeSet<>();
+    public static ArrayList<Integer> cardList = new ArrayList<>();
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
@@ -12,6 +13,10 @@ public class Main {
         for(int i = 0 ; i < n ; i++){
             int removedNum = Integer.parseInt(br.readLine());
             ts.remove(removedNum);
+            cardList.add(removedNum);
+        }
+
+        for(Integer removedNum : cardList){
             if(ts.higher(removedNum) == null){
                 ts.remove(ts.first());
             }
