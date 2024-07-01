@@ -1,117 +1,117 @@
-import java.util.*;
+import java.util.Scanner;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.Collections;
 
-class point{
-    int row;
-    int col;
-
-    public point(int row, int col){
-        this.row = row;
-        this.col = col;
-    }
+class Pair {
+    int x, y;
+    public Pair(int x, int y) { 
+        this.x = x; 
+        this.y = y; 
+    } 
 }
 
 public class Main {
-    public static final int MAX_RANGE = 200;
-    public static final int NUM_DIRCTION = 4;
-
-    public static int[][] table = new int[MAX_RANGE][MAX_RANGE];
-    public static boolean[][] visited = new boolean[MAX_RANGE][MAX_RANGE];
-    public static int[] arrRow = new int[]{-1, 0, 1, 0};
-    public static int[] arrCol = new int[]{0, 1, 0, -1};
-
-    public static Queue<point> water = new LinkedList<>();
-    public static Queue<point> glacier = new LinkedList<>();
-
-    public static int N;
-    public static int M;
+    public static final int MAX_M = 200;
+    public static final int MAX_N = 200;
+    public static final int DIR_NUM = 4;
     
-    public static boolean inRange(int row, int col){
-        return (row >= 0 && col >= 0 && row < N && col < M);
+    public static final int WATER = 0;
+    public static final int GLACIER = 1;
+    
+    public static int n, m;
+    
+    public static int[][] a = new int[MAX_N][MAX_M];
+    
+    public static Queue<Pair> q = new LinkedList<>();
+    public static boolean[][] visited = new boolean[MAX_N][MAX_N];
+    public static int cnt;
+    
+    public static Queue<Pair> glaciersToMelt = new LinkedList<>();
+    
+    public static int[] dx = new int[]{1, -1, 0, 0};
+    public static int[] dy = new int[]{0, 0, 1, -1};
+    
+    public static int elapsedTime, lastMeltCnt;
+    
+    public static boolean inRange(int x, int y) {
+        return 0 <= x && x < n && 0 <= y && y < m;
     }
-
-    public static boolean canGo(int row, int col){
-        if(!inRange(row, col)){
-            return false;
-        }
-
-        if(visited[row][col] || table[row][col] == 1){
-            return false;
-        }
-
-        return true;
+    
+    public static boolean canGo(int x, int y) {
+        return inRange(x, y) && a[x][y] == WATER && !visited[x][y];
     }
-
-    public static boolean isBorder(int row, int col){
-        if(!inRange(row, col)){
-            return false;
-        }
-
-        if(table[row][col] == 0 || visited[row][col]){
-            return false;
-        }
-        
-        return true;
+    
+    public static boolean isGlacier(int x, int y) {
+        return inRange(x, y) && a[x][y] == GLACIER && !visited[x][y];
     }
-
-    public static void push(int row, int col, Queue<point> q){
-        visited[row][col] = true;
-        q.add(new point(row, col));
-    }
-
-    public static void BFS(){
-        glacier.clear();
-        while(!water.isEmpty()){
-            point curPoint = water.poll();
-            for(int i = 0 ; i < NUM_DIRCTION ; i++){
-                int postRow = curPoint.row + arrRow[i];
-                int postCol = curPoint.col + arrCol[i];
-                if(canGo(postRow, postCol)){
-                    push(postRow, postCol, water);
+    
+    public static void BFS() {
+        while(!q.isEmpty()) {
+            Pair currPos = q.poll();
+            int x = currPos.x, y = currPos.y;
+    
+            for(int dir = 0; dir < DIR_NUM; dir++) {
+                int nx = x + dx[dir], ny = y + dy[dir];
+    
+                if(canGo(nx, ny)) {
+                    q.add(new Pair(nx, ny));
+                    visited[nx][ny] = true;
                 }
-                
-                if(isBorder(postRow, postCol)){
-                    push(postRow, postCol, glacier);
+                else if(isGlacier(nx, ny)) {
+                    glaciersToMelt.add(new Pair(nx, ny));
+                    visited[nx][ny] = true;
                 }
             }
         }
+    }
+
+    public static void melt() {
+        while(!glaciersToMelt.isEmpty()) {
+            Pair pos = glaciersToMelt.poll();
+            int x = pos.x, y = pos.y;
+    
+            a[x][y] = WATER;
+        }
+    }
+    
+    public static boolean simulate() {
+        BFS();
+    
+        if((int) glaciersToMelt.size() == 0){
+            return false;
+        }
+            
+        elapsedTime++;
+        lastMeltCnt = (int) glaciersToMelt.size();
+        q = new LinkedList<> (glaciersToMelt);
+    
+        melt();
+    
+        return true;
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        N = sc.nextInt();
-        M = sc.nextInt();
+        n = sc.nextInt();
+        m = sc.nextInt();
 
-        for(int i = 0 ; i < N ; i++){
-            for(int j = 0 ; j < M ; j++){
-                table[i][j] = sc.nextInt();
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                a[i][j] = sc.nextInt();
             }
         }
+            
         
-        int numOfMelt = 0;
-        int time = 0;
-        int startRow = 0;
-        int startCol = 0;
+        q.add(new Pair(0, 0));
+        visited[0][0] = true;
 
-        while(true){
-            push(startRow, startCol, water);
-            BFS();
-            if(glacier.isEmpty()){
-                break;
-            }
+        boolean isGlacierExist = false;
 
-            time++;
-            numOfMelt = glacier.size();
+        do {
+            isGlacierExist = simulate();
+        } while(isGlacierExist);
 
-            startRow = glacier.peek().row;
-            startCol = glacier.peek().col;
-
-            while(!glacier.isEmpty()){
-                point delPoint = glacier.poll();
-                table[delPoint.row][delPoint.col] = 0;
-                visited[delPoint.row][delPoint.col] = false;
-            }
-        }
-
-        System.out.println(time + " " + numOfMelt);
+        System.out.print(elapsedTime + " " + lastMeltCnt);
     }
 }
