@@ -30,19 +30,11 @@ public class Main {
 
         DP[0][0] = 0;
 
-        // DP[x][0] = DP[x - 1][0] + dist between x - 1 and x
-        // DP[x][1] = Math.max(DP[x - 2][0] + dist between x - 2 and x, DP[x - 1][1] + dist between x - 1 and x)
         for(int i = 0 ; i < N ; i++){
             DP[i + 1][0] = DP[i][0] + dist(i, i + 1); 
             DP[i + 2][1] = Math.min(DP[i + 2][1], Math.min(DP[i + 1][1] + dist(i + 1, i + 2), DP[i][0] + dist(i, i + 2)));
         }
 
-        // for(int i = 0 ; i < N ; i++){
-        //     for(int j = 0 ; j < 2 ; j++){
-        //         System.out.print(DP[i][j] + " ");
-        //     }
-        //     System.out.println();
-        // }
         System.out.print(DP[N - 1][1]);
     }
 }
