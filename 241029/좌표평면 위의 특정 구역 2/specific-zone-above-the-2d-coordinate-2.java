@@ -22,14 +22,14 @@ class point implements Comparable<point>{
 
 public class Main {
     public static final int MAX_LENGTH = 100;
-    public static final int INVALID = (int)1e9;
+    public static final int INVALID = (int)1e13;
     public static ArrayList<point> arr = new ArrayList<>();
     
-    public static int calArea(){
-        int maxX = 0;
-        int maxY = 0;
-        int minX = INVALID;
-        int minY = INVALID;
+    public static double calArea(){
+        double maxX = 0;
+        double maxY = 0;
+        double minX = INVALID;
+        double minY = INVALID;
 
         for(point p : arr){
             maxX = Math.max(maxX, p.x);
@@ -53,7 +53,7 @@ public class Main {
         }
 
 
-        int ans = INVALID;
+        double ans = INVALID;
         for(int i = 0 ; i < arr.size() ; i++){
             point p = arr.get(0);
             arr.remove(0);
@@ -62,7 +62,6 @@ public class Main {
             arr.add(p);
         }
         
-        System.out.print(ans);
-        
+        System.out.print(String.format("%.0f",ans));
     }
 }
