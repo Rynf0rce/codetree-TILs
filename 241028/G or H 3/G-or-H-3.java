@@ -4,7 +4,7 @@ import java.io.*;
 public class Main {
     public static final int MAL_LENGTH = 10000;
     public static int[] arr = new int[MAL_LENGTH + 1];
-    public static int[] prefix = new int[MAL_LENGTH + 1];
+    public static int[] prefix = new int[2 * MAL_LENGTH + 1];
     public static PriorityQueue<Integer> pq = new PriorityQueue<>();
 
     public static void main(String[] args) throws IOException{
