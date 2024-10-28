@@ -11,7 +11,7 @@ public class Main {
     public static int horizontal(int row, int col){
         int ans = 0;
         for(int i = -2 ; i <= 2 ; i++){
-            if(!inRange(row, col + i) || table[row][col + i] == 0){
+            if(!inRange(row, col + i) || table[row][col + i] != table[row][col]){
                 return 0;
             }
         }
@@ -21,7 +21,7 @@ public class Main {
     public static int vertical(int row, int col){
         int ans = 0;
         for(int i = -2 ; i <= 2 ; i++){
-            if(!inRange(row + i, col) || table[row + i][col] == 0){
+            if(!inRange(row + i, col) || table[row + i][col] != table[row][col]){
                 return 0;
             }
         }
@@ -31,7 +31,7 @@ public class Main {
     public static int diagonal(int row, int col){
         int ans = 0;
         for(int i = -2 ; i <= 2 ; i++){
-            if(!inRange(row + i, col + i) || table[row + i][col + i] == 0){
+            if(!inRange(row + i, col + i) || table[row + i][col + i] != table[row][col]){
                 return 0;
             }
         }
