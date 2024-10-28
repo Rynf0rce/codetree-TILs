@@ -27,19 +27,17 @@ public class Main {
                 }
                 else{
                     s.clear();
+                    s.add(table[i][j]);
                 }
                 
                 if(s.size() >= m){
                     // System.out.println("row" + i + " " + j + " " + s.peek());
                     ans++;
-                    s.clear();
-                    s.add(table[i][j]);
                     break;
                 }
             }
+            s.clear();
         }
-
-        s.clear();
 
         for(int j = 0 ; j < n ; j++){
             for(int i = 0 ; i < n ; i++){
@@ -54,10 +52,10 @@ public class Main {
                 if(s.size() >= m){
                     // System.out.println("col" + i + " " + j + " " + s.peek());
                     ans++;
-                    s.clear();
                     break;
                 }
             }
+            s.clear();
         }
 
         System.out.print(ans);
