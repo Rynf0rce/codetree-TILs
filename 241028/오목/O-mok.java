@@ -68,8 +68,8 @@ public class Main {
 
         
         int ans = 0;
-        for(int i = 2 ; i < MAX_LENGTH - 2; i++){
-            for(int j = 2 ; j < MAX_LENGTH - 2; j++){
+        for(int i = 0 ; i < MAX_LENGTH ; i++){
+            for(int j = 0 ; j < MAX_LENGTH ; j++){
                 ans = Math.max(ans, horizontal(i, j));
                 ans = Math.max(ans, left_diagonal(i, j));
                 ans = Math.max(ans, right_diagonal(i, j));
