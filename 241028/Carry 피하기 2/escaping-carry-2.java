@@ -19,7 +19,7 @@ public class Main {
             }
         }
 
-        int ans = 0;
+        int ans = -1;
         boolean triger = true;
         for(int i = 0 ; i < N ; i++){
             for(int j = i + 1 ; j < N ; j++){
