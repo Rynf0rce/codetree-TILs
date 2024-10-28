@@ -24,8 +24,8 @@ public class Main {
     public static ArrayList<point> arr = new ArrayList<>();
     
 
-    public static int dist(point p1, point p2){
-        return Math.abs(p2.x - p1.x) + Math.abs(p2.y - p1.y);
+    public static double dist(point p1, point p2){
+        return Math.pow((p2.x - p1.x), 2) + Math.pow((p2.y - p1.y), 2);
     }
 
     public static void main(String[] args) throws IOException{
@@ -41,7 +41,7 @@ public class Main {
         
         Collections.sort(arr);
 
-        int ans = INVAILD;
+        double ans = INVAILD;
         for(int i = 1 ; i < arr.size() ; i++){
             ans = Math.min(ans, dist(arr.get(i - 1), arr.get(i)));
         }
@@ -62,6 +62,6 @@ public class Main {
             ans = Math.min(ans, dist(arr.get(i - 1), arr.get(i)));
         }
 
-        System.out.print(ans);
+        System.out.printf(String.format("%.0f", ans));
     }
 }
