@@ -22,8 +22,13 @@ public class Main {
         boolean triger = false;
         
         for(int i = col ; i < col + 3 ; i++){
+            if(visited[row][i]){
+                continue;
+            }
             cnt += table[row][i];
-            visited[row][i] = true;
+            if(!flag){
+                visited[row][i] = true;
+            }
         }
 
         if(flag){
@@ -35,9 +40,11 @@ public class Main {
         for(int i = 0 ; i < N ; i++){
             for(int j = 0 ; j < N - 2 ; j++){
                 if(visited[i][j]){
+                    // System.out.println("check" + " " + i + " " + j);
                     continue;
                 }
                 maxVal = Math.max(maxVal, search(i, j, true));
+                // System.out.println(i + " " + j + " " + search(i, j, true));
             }
         }
 
@@ -67,6 +74,8 @@ public class Main {
                 // System.out.println(i + " " + j + " " + ans);
             }
         }
+
+        // System.out.print(search(0, 0, false));
         System.out.print(ans);
     }
 }
