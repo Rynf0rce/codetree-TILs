@@ -32,8 +32,9 @@ public class Main {
         // }
 
         int left = 0;
+        int right = 0;
         int ans = 0;
-        for(int i = 0 ; i <= MAX_LENGTH - 2 * K ; i++){
+        for(int i = 0 ; i <= MAX_LENGTH ; i++){
             if(i == 0){
                 left = 0;
             }
@@ -41,9 +42,16 @@ public class Main {
                 left = prefix[i - 1];
             }
 
-            ans = Math.max(ans, prefix[i + 2 * K] - left);
+            if(i + 2 * K > MAX_LENGTH){
+                right = prefix[MAX_LENGTH];
+            }
+            else{
+                right = prefix[i + 2 * K];
+            }
+
+            ans = Math.max(ans, right - left);
         }
-        
+
         System.out.print(ans);
     }
 }
