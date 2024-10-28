@@ -21,7 +21,7 @@ public class Main {
         int ans = INVALID;
         int j = 0;
         int val = 0;
-        for(int i = 0 ; i < N - T + 1 ; i++){
+        for(int i = 0 ; i < N ; i++){
             // System.out.println(i + " " + j);
             val += arr[i];
             if(i - j + 1 > T){
