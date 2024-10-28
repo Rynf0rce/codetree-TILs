@@ -33,6 +33,7 @@ public class Main {
                     // System.out.println("row" + i + " " + j + " " + s.peek());
                     ans++;
                     s.clear();
+                    s.add(table[i][j]);
                     break;
                 }
             }
@@ -47,6 +48,7 @@ public class Main {
                 }
                 else{
                     s.clear();
+                    s.add(table[i][j]);
                 }
                 
                 if(s.size() >= m){
