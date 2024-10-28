@@ -46,12 +46,12 @@ public class Main {
         int ans = 0;
         while(!q.isEmpty()){
             point p = q.poll();
-            if(p.row >= R - 1 || p.col >= C - 1){
+            if(p.row >= R - 1 || p.col >= C - 1 || p.row == 0 || p.col == 0){
                 continue;
             }
             ans += prefixTable[R - 2][C - 2] - prefixTable[p.row][C - 2] - prefixTable[R - 2][p.col] + prefixTable[p.row][p.col];
         }
-        
+
         System.out.print(ans);
     }
 }
