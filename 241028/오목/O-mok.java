@@ -59,14 +59,6 @@ public class Main {
             }
         }
 
-        // for(int i = 0 ; i < MAX_LENGTH ; i++){
-        //     for(int j = 0 ; j < MAX_LENGTH ; j++){
-        //         System.out.print(table[i][j] + " ");
-        //     }
-        //     System.out.println();
-        // }
-
-        
         int ans = 0;
         for(int i = 0 ; i < MAX_LENGTH ; i++){
             for(int j = 0 ; j < MAX_LENGTH ; j++){
