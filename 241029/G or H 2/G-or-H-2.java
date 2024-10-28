@@ -17,7 +17,6 @@ class point implements Comparable<point>{
 }
 
 public class Main {
-    public static final int MAX_LENGTH = 100;
     public static ArrayList<point> arr = new ArrayList<>();
 
     public static void main(String[] args) throws IOException{
@@ -52,7 +51,7 @@ public class Main {
                     hCnt++;
                 }
 
-                if(gCnt == hCnt){
+                if(gCnt == hCnt || hCnt == 0 || gCnt == 0){
                     ans = Math.max(arr.get(j).idx - arr.get(i).idx, ans);
                 }
             }
