@@ -28,10 +28,20 @@ public class Main {
         return table[row][col];
     }
 
-    public static int diagonal(int row, int col){
+    public static int left_diagonal(int row, int col){
         int ans = 0;
         for(int i = -2 ; i <= 2 ; i++){
             if(!inRange(row + i, col + i) || table[row + i][col + i] != table[row][col]){
+                return 0;
+            }
+        }
+        return table[row][col];
+    }
+
+    public static int right_diagonal(int row, int col){
+        int ans = 0;
+        for(int i = -2 ; i <= 2 ; i++){
+            if(!inRange(row - i, col + i) || table[row - i][col + i] != table[row][col]){
                 return 0;
             }
         }
@@ -61,7 +71,8 @@ public class Main {
         for(int i = 2 ; i < MAX_LENGTH - 2; i++){
             for(int j = 2 ; j < MAX_LENGTH - 2; j++){
                 ans = Math.max(ans, horizontal(i, j));
-                ans = Math.max(ans, diagonal(i, j));
+                ans = Math.max(ans, left_diagonal(i, j));
+                ans = Math.max(ans, right_diagonal(i, j));
                 ans = Math.max(ans, vertical(i, j));
                 if(ans > 0){
                     System.out.println(ans);
