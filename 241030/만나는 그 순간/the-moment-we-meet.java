@@ -27,6 +27,8 @@ public class Main {
             }
         }
 
+        int max_dist = cnt;
+
         cnt = 1;
         for(int i = 0 ; i < M ; i++){
             st = new StringTokenizer(br.readLine(), " ");
@@ -43,8 +45,11 @@ public class Main {
             }
         }
 
+        max_dist = Math.max(max_dist, cnt);
+
         int ans = -1;
-        for(int i = 1 ; i <= MAX_LENGTH ; i++){
+        for(int i = 1 ; i < max_dist ; i++){
+            // System.out.println(A[i] + " " + B[i]);
             if(A[i] == B[i]){
                 ans = i;
                 break;
