@@ -38,7 +38,6 @@ public class Main {
                 if(arr.get(j).right < arr.get(i).right){
                     solo[i] = true;
                     solo[j] = true;
-                    break;
                 }
             }
         }
