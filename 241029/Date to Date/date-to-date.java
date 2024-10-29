@@ -18,6 +18,12 @@ public class Main {
             right += arr[i];
         }
 
-        System.out.print(Math.abs(right - left));
+        if( a == c ){
+            System.out.print(Math.abs(right - left + 1));
+        }
+        else{
+            System.out.print(Math.abs(right - left));
+        }
+        
     }
 }
