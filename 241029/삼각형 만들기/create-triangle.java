@@ -20,17 +20,17 @@ public class Main {
         for(int i = 0 ; i < n ; i++){
             for(int j = i + 1 ; j < n ; j++){
                 for(int k = j + 1 ; k < n ; k++){
-                    if(i == j || j == k || i == k){
-                        continue;
-                    }
-
-                    if((arrX[i] == arrX[j] || arrX[j] == arrX[k] || arrX[k] == arrX[i]) && (arrY[i] == arrY[j] || arrY[j] == arrY[k] || arrY[k] == arrY[i])){
-                        ans = Math.max(ans, (arrX[i] * arrY[j] + arrX[j] * arrY[k] + arrX[k] * arrY[i]) - (arrX[j] * arrY[i] + arrX[i] * arrY[k] + arrX[k] * arrY[j]));
-                        // System.out.println(i + " " + j + " " + k + " " + ans);
+                    // x 좌표 또는 y 좌표가 두 개 이상 같은지 확인
+                    if ((arrX[i] == arrX[j] || arrX[j] == arrX[k] || arrX[k] == arrX[i]) &&
+                        (arrY[i] == arrY[j] || arrY[j] == arrY[k] || arrY[k] == arrY[i])) {
+                        int area = Math.abs(arrX[i] * (arrY[j] - arrY[k]) +
+                                            arrX[j] * (arrY[k] - arrY[i]) +
+                                            arrX[k] * (arrY[i] - arrY[j]));
+                        ans = Math.max(ans, area);
                     }
                 }
             }
         }
-        System.out.print(ans);
+        System.out.print(ans); // 넓이를 출력할 때 2로 나누기
     }
 }
