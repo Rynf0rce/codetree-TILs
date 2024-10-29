@@ -1,97 +1,89 @@
 import java.util.*;
 import java.io.*;
 
-class info implements Comparable<info>{
-    int p, m, t;
-    public info(int p, int m, int t){
-        this.p = p;
-        this.m = m;
-        this.t = t;
+class Info implements Comparable<Info> {
+    int person, cheese, time;
+
+    public Info(int person, int cheese, int time) {
+        this.person = person;
+        this.cheese = cheese;
+        this.time = time;
     }
+
     @Override
-    public int compareTo(info i){
-        return this.t - i.t;
+    public int compareTo(Info other) {
+        return this.time - other.time;
     }
 }
 
 public class Main {
     public static final int MAX_PEOPLE = 50;
-    public static final int MAX_CHEEZE = 50;
-    public static boolean[] cheezeArr = new boolean[MAX_CHEEZE + 1];
-    public static int rottencheeze = -1;
-    public static ArrayList<info> arr = new ArrayList<>();
-    public static HashSet<Integer> hs = new HashSet<>();
-    
-    public static void main(String[] args) throws IOException{
+    public static final int MAX_CHEESE = 50;
+
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        int subjet = Integer.parseInt(st.nextToken());
-        int numOfCheeze = Integer.parseInt(st.nextToken());
-        int numOfRecord = Integer.parseInt(st.nextToken());
-        int numOfPatient = Integer.parseInt(st.nextToken());
 
-        // n th - subject / n th - cheeze / time
-        for(int i = 0 ; i < numOfRecord ; i++){
+        int numPeople = Integer.parseInt(st.nextToken());
+        int numCheese = Integer.parseInt(st.nextToken());
+        int numRecords = Integer.parseInt(st.nextToken());
+        int numPatients = Integer.parseInt(st.nextToken());
+
+        ArrayList<Info> records = new ArrayList<>();
+        HashSet<Integer> sickPeople = new HashSet<>();
+        HashMap<Integer, Integer> sickTimes = new HashMap<>();
+
+        for (int i = 0; i < numRecords; i++) {
             st = new StringTokenizer(br.readLine(), " ");
-            int p = Integer.parseInt(st.nextToken());
-            int m = Integer.parseInt(st.nextToken());
-            int t = Integer.parseInt(st.nextToken());
-            arr.add(new info(p, m, t));
+            int person = Integer.parseInt(st.nextToken());
+            int cheese = Integer.parseInt(st.nextToken());
+            int time = Integer.parseInt(st.nextToken());
+            records.add(new Info(person, cheese, time));
         }
 
-        Collections.sort(arr);
-
-        for(int i = 0 ; i < numOfPatient ; i++){
+        for (int i = 0; i < numPatients; i++) {
             st = new StringTokenizer(br.readLine(), " ");
-            int p = Integer.parseInt(st.nextToken());
-            int t = Integer.parseInt(st.nextToken());
+            int person = Integer.parseInt(st.nextToken());
+            int sickTime = Integer.parseInt(st.nextToken());
+            sickPeople.add(person);
+            sickTimes.put(person, sickTime);
+        }
 
-            hs.add(p);
+        Collections.sort(records);
 
-            for(int j = 0 ; j < numOfRecord ; j++){
-                if(arr.get(j).t > t){
+        int maxAffected = 0;
+
+        for (int cheese = 1; cheese <= numCheese; cheese++) {
+            boolean possible = true;
+            HashSet<Integer> affectedPeople = new HashSet<>();
+
+            for (int person : sickPeople) {
+                boolean ateBeforeSick = false;
+
+                for (Info record : records) {
+                    if (record.person == person && record.cheese == cheese && record.time < sickTimes.get(person)) {
+                        ateBeforeSick = true;
+                        affectedPeople.add(person);
+                        break;
+                    }
+                }
+
+                if (!ateBeforeSick) {
+                    possible = false;
                     break;
                 }
+            }
 
-                if(arr.get(j).p == p){
-                    cheezeArr[arr.get(j).m] = true;
+            if (possible) {
+                for (Info record : records) {
+                    if (record.cheese == cheese) {
+                        affectedPeople.add(record.person);
+                    }
                 }
+                maxAffected = Math.max(maxAffected, affectedPeople.size());
             }
         }
 
-        int ans = 0;
-        for(int i = 1 ; i <= numOfCheeze ; i++){
-            if(!cheezeArr[i]){
-                continue;
-            }
-
-            boolean[] infectedArr = new boolean[MAX_PEOPLE + 1];
-            boolean[] visited = new boolean[MAX_PEOPLE + 1];
-
-            int visit = 0;
-            for(int j = 0 ; j < numOfRecord ; j++){
-                if(arr.get(j).m == i){
-                    infectedArr[arr.get(j).p] = true;
-                }
-
-                if(!visited[arr.get(j).p] && hs.contains(arr.get(j).p)){
-                    visit++;
-                    visited[arr.get(j).p] = true;
-                }
-            }
-
-            if(visit != hs.size()){
-                continue;
-            }
-
-            int cnt = 0;
-            for(int j = 1 ; j <= numOfCheeze ; j++){
-                if(infectedArr[j]){
-                    cnt++;
-                }
-            }
-            ans = Math.max(ans, cnt);
-        }
-        System.out.print(ans);
+        System.out.println(maxAffected);
     }
 }
