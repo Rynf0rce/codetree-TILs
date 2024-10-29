@@ -11,6 +11,7 @@ public class Main {
         int b = sc.nextInt();
         int c = sc.nextInt();
         
-        System.out.print(( a * DAY_TO_HOUR * HOUR_TO_MINTE + b * HOUR_TO_MINTE + c) - ( DAY * DAY_TO_HOUR * HOUR_TO_MINTE + HOUR * HOUR_TO_MINTE + MINTE ));
+        int ans = ( a * DAY_TO_HOUR * HOUR_TO_MINTE + b * HOUR_TO_MINTE + c) - ( DAY * DAY_TO_HOUR * HOUR_TO_MINTE + HOUR * HOUR_TO_MINTE + MINTE );
+        System.out.print(ans < 0 ? -1 : ans);
     }
 }
