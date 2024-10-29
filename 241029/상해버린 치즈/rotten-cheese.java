@@ -63,7 +63,7 @@ public class Main {
 
             for(int j = 0 ; j < numOfRecord ; j++){
                 if(arr.get(j).m == i){
-                    infectedArr[j] = true;
+                    infectedArr[arr.get(j).p] = true;
                 }
             }
         }
