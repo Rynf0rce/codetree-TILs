@@ -9,21 +9,15 @@ public class Main {
         int d = sc.nextInt();
 
         int left = b;
-        for(int i = 0 ; i <= a ; i++){
+        for(int i = 0 ; i < a ; i++){
             left += arr[i];
         }
 
         int right = d;
-        for(int i = 0 ; i <= c ; i++){
+        for(int i = 0 ; i < c ; i++){
             right += arr[i];
         }
 
-        if( a == c ){
-            System.out.print(Math.abs(right - left + 1));
-        }
-        else{
-            System.out.print(Math.abs(right - left));
-        }
-        
+        System.out.print(Math.abs(right - left + 1));  
     }
 }
