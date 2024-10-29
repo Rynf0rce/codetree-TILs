@@ -22,6 +22,7 @@ public class Main {
                 cnt = 1;
             }
         }
-        System.out.print(ans);
+        
+        System.out.print(Math.max(ans, cnt));
     }
 }
