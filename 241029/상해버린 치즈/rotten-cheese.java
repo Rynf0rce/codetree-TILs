@@ -66,10 +66,22 @@ public class Main {
             }
 
             boolean[] infectedArr = new boolean[MAX_PEOPLE + 1];
+            boolean[] visited = new boolean[MAX_PEOPLE + 1];
+
+            int visit = 0;
             for(int j = 0 ; j < numOfRecord ; j++){
                 if(arr.get(j).m == i){
                     infectedArr[arr.get(j).p] = true;
                 }
+
+                if(!visited[arr.get(j).p] && hs.contains(arr.get(j).p)){
+                    visit++;
+                    visited[arr.get(j).p] = true;
+                }
+            }
+
+            if(visit != hs.size()){
+                continue;
             }
 
             int cnt = 0;
