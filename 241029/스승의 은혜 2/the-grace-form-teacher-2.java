@@ -21,7 +21,7 @@ public class Main {
             for(int j = 0 ; j < arr.size() ; j++){
                 int cost = i == j ? arr.get(j) / 2 : arr.get(j);
 
-                if(budget - arr.get(j) >= 0){
+                if(budget - cost >= 0){
                     cnt++;
                     budget -= cost;
                 }
