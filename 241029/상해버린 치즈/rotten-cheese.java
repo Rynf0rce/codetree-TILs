@@ -17,9 +17,10 @@ class info implements Comparable<info>{
 public class Main {
     public static final int MAX_PEOPLE = 50;
     public static final int MAX_CHEEZE = 50;
-    public static boolean[] infectedArr = new boolean[MAX_PEOPLE + 1];
     public static boolean[] cheezeArr = new boolean[MAX_CHEEZE + 1];
+    public static int rottencheeze = -1;
     public static ArrayList<info> arr = new ArrayList<>();
+    public static HashSet<Integer> hs = new HashSet<>();
     
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -45,6 +46,8 @@ public class Main {
             int p = Integer.parseInt(st.nextToken());
             int t = Integer.parseInt(st.nextToken());
 
+            hs.add(p);
+
             for(int j = 0 ; j < numOfRecord ; j++){
                 if(arr.get(j).t > t){
                     break;
@@ -56,23 +59,26 @@ public class Main {
             }
         }
 
+        int ans = 0;
         for(int i = 1 ; i <= numOfCheeze ; i++){
             if(!cheezeArr[i]){
                 continue;
             }
 
+            boolean[] infectedArr = new boolean[MAX_PEOPLE + 1];
             for(int j = 0 ; j < numOfRecord ; j++){
                 if(arr.get(j).m == i){
                     infectedArr[arr.get(j).p] = true;
                 }
             }
-        }
 
-        int ans = 0;
-        for(int i = 1 ; i <= subjet ; i++){
-            if(infectedArr[i]){
-                ans++;
+            int cnt = 0;
+            for(int j = 1 ; j <= numOfCheeze ; j++){
+                if(infectedArr[j]){
+                    cnt++;
+                }
             }
+            ans = Math.max(ans, cnt);
         }
         System.out.print(ans);
     }
