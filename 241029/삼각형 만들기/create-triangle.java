@@ -18,14 +18,15 @@ public class Main {
 
         int ans = 0;
         for(int i = 0 ; i < n ; i++){
-            for(int j = 0 ; j < n ; j++){
-                for(int k = 0 ; k < n ; k++){
+            for(int j = i + 1 ; j < n ; j++){
+                for(int k = j + 1 ; k < n ; k++){
                     if(i == j || j == k || i == k){
                         continue;
                     }
 
-                    if(arrX[i] == arrX[j] || arrX[j] == arrX[k] || arrX[k] == arrX[i] || arrY[i] == arrY[j] || arrY[j] == arrY[k] || arrY[k] == arrY[i]){
+                    if((arrX[i] == arrX[j] || arrX[j] == arrX[k] || arrX[k] == arrX[i]) && (arrY[i] == arrY[j] || arrY[j] == arrY[k] || arrY[k] == arrY[i])){
                         ans = Math.max(ans, (arrX[i] * arrY[j] + arrX[j] * arrY[k] + arrX[k] * arrY[i]) - (arrX[j] * arrY[i] + arrX[i] * arrY[k] + arrX[k] * arrY[j]));
+                        // System.out.println(i + " " + j + " " + k + " " + ans);
                     }
                 }
             }
