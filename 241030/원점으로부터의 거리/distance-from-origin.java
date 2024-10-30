@@ -12,6 +12,9 @@ class info implements Comparable<info>{
 
     @Override
     public int compareTo(info i){
+        if(this.dist == i.dist){
+            return this.idx - i.idx;
+        }
         return this.dist - i.dist;
     }
 
