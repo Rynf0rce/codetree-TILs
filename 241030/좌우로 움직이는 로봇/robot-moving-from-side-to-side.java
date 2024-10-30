@@ -45,9 +45,9 @@ public class Main {
 
         int A_pos = 0;
         int B_pos = 0;
-        boolean flag = true;
+        boolean flag = false;
         int ans = 0;
-        for(int i = 1 ; i <= Math.max(A_loc, B_loc) ; i++){
+        for(int i = 1 ; i < Math.max(A_loc, B_loc) ; i++){
             if(i <= A_loc){
                 A_pos = A[i];
             }
