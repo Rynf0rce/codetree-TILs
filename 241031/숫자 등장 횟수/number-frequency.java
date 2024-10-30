@@ -13,18 +13,13 @@ public class Main {
         st = new StringTokenizer(br.readLine(), " ");
         for(int i = 0 ; i < n ; i++){
             int num = Integer.parseInt(st.nextToken());
-            if(!hm.containsKey(num)){
-                hm.put(num, 1);
-            }
-            else{
-                hm.put(num, hm.get(num) + 1);
-            }
+            hm.put(num, hm.getOrDefault(num, 0) + 1);
         }
 
         st = new StringTokenizer(br.readLine(), " ");
         for(int i = 0 ; i < m ; i++){
             int num = Integer.parseInt(st.nextToken());
-            System.out.print(hm.get(num) == null ? 0 : hm.get(num) + " ");
+            System.out.print(hm.getOrDefault(num, 0) + " ");
         }
     }
 }
