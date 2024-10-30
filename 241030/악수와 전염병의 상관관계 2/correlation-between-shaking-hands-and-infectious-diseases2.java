@@ -23,12 +23,19 @@ public class Main {
     public static int K = 0;
 
     public static void infect(int odd, int even){
+        boolean preStateOdd = infected[odd];
+        boolean preStateEven = infected[even];
+
         if(chance[odd] > 0){
             if(!infected[even]){
                 chance[even] = K;
             }
             infected[even] = true;
             chance[odd]--;
+        }
+
+        if(!preStateEven){
+            return;
         }
 
         if(chance[even] > 0){
