@@ -10,18 +10,14 @@ public class Main {
 
         Arrays.sort(arr);
 
-        int ans = 2;
-        if(arr[2] - arr[1] == 1){
-            ans--;
+        if(arr[2] - arr[1] == 0 && arr[1] - arr[0] == 0){
+            System.out.print(0);
         }
-        
-        if(arr[1] - arr[0] == 1){
-            ans--;
+        else if(arr[2] - arr[1] == 2 || arr[1] - arr[0] == 2){
+            System.out.print(1);
         }
-
-        if(arr[2] - arr[1] == 2 || arr[1] - arr[0] == 2){
-            ans = 1;
+        else{
+            System.out.print(2);
         }
-        System.out.print(ans);
     }
 }
