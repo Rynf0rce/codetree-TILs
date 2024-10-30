@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-    public static final int MAX_LENGTH = 50000;
+    public static final int MAX_LENGTH = 1000000;
     public static int[] A = new int[MAX_LENGTH + 1];
     public static int[] B = new int[MAX_LENGTH + 1];
     public static void main(String[] args) throws IOException{
