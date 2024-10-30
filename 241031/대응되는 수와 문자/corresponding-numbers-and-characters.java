@@ -17,7 +17,7 @@ public class Main {
 
         for(int i = 0 ; i < m ; i++){
             String str = br.readLine();
-            if('0' <= str.charAt(0) && str.charAt(0) < '9'){
+            if('0' <= str.charAt(0) && str.charAt(0) <= '9'){
                 System.out.println(arr.get(Integer.parseInt(str) - 1));
             }
             else{
