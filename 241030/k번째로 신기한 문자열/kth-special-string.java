@@ -15,7 +15,7 @@ public class Main {
 
         while(!pq.isEmpty()){
             String s = pq.poll();
-            if(s.substring(0, T.length()).equals(T)){
+            if(s.length() >= T.length() && s.substring(0, T.length()).equals(T)){
                 k--;
             }
 
