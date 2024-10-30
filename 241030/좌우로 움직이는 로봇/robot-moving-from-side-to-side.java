@@ -48,18 +48,21 @@ public class Main {
         boolean flag = false;
         int ans = 0;
         for(int i = 1 ; i < Math.max(A_loc, B_loc) ; i++){
-            if(i <= A_loc){
+            if(i < A_loc){
                 A_pos = A[i];
             }
 
-            if(i <= B_loc){
+            if(i < B_loc){
                 B_pos = B[i];
             }
+
+            // System.out.println(i + " " + A_pos + " " + B_pos);
             
             if(A_pos == B_pos){
                 if(flag){
                     ans++;
                 }
+                // System.out.println("hit" + i);
                 flag = false;
                 continue;
             }
