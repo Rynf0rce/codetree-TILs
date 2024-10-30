@@ -19,11 +19,11 @@ public class Main {
         int val1 = 0;
         int val2 = 0;
         for(int i = 0 ; i < n ; i++){
-            if(left[i] > right[i]){
+            if(left[i] > right[i] || (left[i] == 3 && right[i] == 1)){
                 val1++;
             }
 
-            if(left[i] < right[i]){
+            if(left[i] < right[i] || left[i] == 1 && right[i] == 3){
                 val2++;
             }
         }
