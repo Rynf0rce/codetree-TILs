@@ -12,21 +12,32 @@ public class Main {
             StringTokenizer st = new StringTokenizer(br.readLine(), " ");
             rightPQ.clear();
             leftPQ.clear();
+            int mid = 0;
             for(int j = 1 ; j <= m ; j++){
                 int num = Integer.parseInt(st.nextToken());
-                rightPQ.add(num);
+                if(j == 1){
+                    mid = num;
+                }
+                else{
+                    if(mid <= num){
+                        rightPQ.add(num);
+                    }
+                    else{
+                        leftPQ.add(num * -1);
+                    }
+                }
+
+                if(leftPQ.size() < rightPQ.size()){
+                    leftPQ.add(mid * - 1);
+                    mid = rightPQ.poll();
+                }
+                else if(leftPQ.size() > rightPQ.size()){
+                    rightPQ.add(mid);
+                    mid = leftPQ.poll() * -1;
+                }
 
                 if(j % 2 == 1){
-                    int cnt = j / 2;
-                    while(cnt > 0){
-                        leftPQ.add(rightPQ.poll());
-                        cnt--;
-                    }
-                    System.out.print(rightPQ.peek() + " ");
-
-                    while(!leftPQ.isEmpty()){
-                        rightPQ.add(leftPQ.poll());
-                    }
+                    System.out.print(mid + " ");
                 }
             }
             System.out.println();
