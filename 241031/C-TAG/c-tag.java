@@ -4,7 +4,7 @@ import java.io.*;
 public class Main {
     public static final int MAX_CASE = 50;
     public static final int MAX_LENGTH = 500;
-    public static char[][] table = new char[MAX_CASE * 2][MAX_LENGTH];
+    public static char[][] table = new char[MAX_CASE * 2 + 1][MAX_LENGTH];
     public static HashSet<String> hs = new HashSet<>();
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
