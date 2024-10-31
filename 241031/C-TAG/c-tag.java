@@ -9,6 +9,7 @@ public class Main {
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        StringBuilder sb = new StringBuilder();
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
 
@@ -25,14 +26,21 @@ public class Main {
                 for(int k = j + 1 ; k < M ; k++){
                     boolean flag = true;
                     for(int h = 0 ; h < N ; h++){
-                        hs.add(new String(table[h][i] + table[h][j] + table[h][k] + ""));
+                        sb.append(table[h][i]);
+                        sb.append(table[h][j]);
+                        sb.append(table[h][k]);
+                        hs.add(sb.toString());
+                        sb.setLength(0);
                     }
 
                     for(int h = N ; h < 2 * N ; h++){
-                        if(hs.contains(new String(table[h][i] + table[h][j] + table[h][k] + ""))){
+                        sb.append(table[h][i]);
+                        sb.append(table[h][j]);
+                        sb.append(table[h][k]);
+                        if(hs.contains(sb.toString())){
                             flag = false;
-                            break;
                         }
+                        sb.setLength(0);
                     }
 
                     if(flag){
