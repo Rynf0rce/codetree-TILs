@@ -21,7 +21,7 @@ public class Main {
         for(int i = n - 2 ; i >= 0 ; i--){
             pq.add(arr[i]);
             sum += arr[i];
-            ans = Math.max(ans, (sum - pq.peek()) / cnt);
+            ans = Math.max(ans, (double)(sum - pq.peek()) / cnt);
             cnt++;
         }
         System.out.printf("%.2f", ans);
