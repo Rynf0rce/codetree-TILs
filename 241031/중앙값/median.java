@@ -4,8 +4,11 @@ import java.io.*;
 public class Main {
     public static PriorityQueue<Integer> leftPQ = new PriorityQueue<>();
     public static PriorityQueue<Integer> rightPQ = new PriorityQueue<>();
+    
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder sb = new StringBuilder();
         int t = Integer.parseInt(br.readLine());
         for(int i = 0 ; i < t ; i++){
             int m = Integer.parseInt(br.readLine());
@@ -37,10 +40,14 @@ public class Main {
                 }
 
                 if(j % 2 == 1){
-                    System.out.print(mid + " ");
+                    sb.append(mid + " ");
                 }
             }
-            System.out.println();
+            sb.append("\n");
         }
+
+        bw.write(sb.toString());
+        bw.close();
+        br.close();
     }
 }
