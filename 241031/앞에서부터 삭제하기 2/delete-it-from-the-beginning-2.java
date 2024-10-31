@@ -10,32 +10,19 @@ public class Main {
         int n = Integer.parseInt(br.readLine());
         
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        int sum = 0;
         for(int i = 0 ; i < n ; i++){
             arr[i] = Integer.parseInt(st.nextToken());
-            sum += arr[i];
         }
 
-        double ans = sum / n;
-        for(int i = 0 ; i < n - 2; i++){
-            for(int j = i + 1 ; j < n ; j++){
-                pq.add(arr[j]);
-            }
-
-            boolean triger = true;
-            int val = 0;
-            int cnt = 0;
-            while(!pq.isEmpty()){
-                int num = pq.poll();
-                if(triger){
-                    triger = false;
-                    continue;
-                }
-
-                val += num;
-                cnt++;
-            }
-            ans = Math.max(ans, val / cnt);
+        pq.add(arr[n - 1]);
+        int sum = arr[n - 1];
+        int cnt = 1;
+        double ans = arr[n - 1];
+        for(int i = n - 2 ; i >= 0 ; i--){
+            pq.add(arr[i]);
+            sum += arr[i];
+            ans = Math.max(ans, (sum - pq.peek()) / cnt);
+            cnt++;
         }
         System.out.printf("%.2f", ans);
     }
