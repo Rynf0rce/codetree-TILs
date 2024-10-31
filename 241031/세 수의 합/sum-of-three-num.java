@@ -27,8 +27,7 @@ public class Main {
                 hm.put(arr[j], hm.getOrDefault(arr[j], 0) - 1);
                 if(hm.getOrDefault(k - arr[i] - arr[j], 0) > 0){
                     ans += hm.get(k - arr[i] - arr[j]);
-                    System.out.println(arr[i] + " " + arr[j] + " " + ((k - arr[i] - arr[j])));
-                    
+                    // System.out.println(arr[i] + " " + arr[j] + " " + ((k - arr[i] - arr[j])));
                 }
                 s.push(arr[j]);
             }
