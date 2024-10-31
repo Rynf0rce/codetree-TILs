@@ -23,6 +23,6 @@ public class Main {
             pq.add((first - second));
         }
 
-        System.out.print((pq.peek() * -1));
+        System.out.print(pq.isEmpty() ? -1 : (pq.peek() * -1));
     }
 }
