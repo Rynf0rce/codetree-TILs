@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 class point{
-    int x, y
+    int x, y;
     public point(int x, int y){
         this.x = x;
         this.y = y;
@@ -17,7 +17,7 @@ public class Main {
     public static int ans = (int)1e9;
 
     public static int dist(point p1, point p2){
-        return Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2);
+        return (int)Math.pow(p1.x - p2.x, 2) + (int)Math.pow(p1.y - p2.y, 2);
     }
 
     public static int cal(){
