@@ -15,9 +15,22 @@ public class Main {
         if(idx >= n){
             // System.out.println(arr);
             int val = table[1][arr.get(0)];
+
+            if(val == 0){
+                return;
+            }
+
             for(int i = 1 ; i < arr.size(); i++){
+                if(table[arr.get(i - 1)][arr.get(i)] == 0){
+                    return;
+                }
                 val += table[arr.get(i - 1)][arr.get(i)];
             }
+
+            if(table[arr.get(arr.size() - 1)][1] == 0){
+                return;
+            }
+
             val += table[arr.get(arr.size() - 1)][1];
             ans = Math.min(ans, val);
             return;
