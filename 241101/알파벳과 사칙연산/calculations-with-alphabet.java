@@ -4,7 +4,7 @@ public class Main {
     public static final int MAX_LENGTH = 200;
     public static char[] arr;
     public static HashMap<Character, Integer> hm = new HashMap<>();
-    public static long ans = 0;
+    public static long ans = Long.MIN_VALUE;
 
     public static long check(){
         long ans = hm.get(arr[0]);
@@ -25,7 +25,7 @@ public class Main {
     }
 
     public static void simulation(int idx){
-        if(idx > arr.length / 2){
+        if(idx > 6){
             ans = Math.max(ans, check());
             return;
         }
@@ -42,6 +42,6 @@ public class Main {
 
         simulation(0);
 
-        System.out.print(ans);
+        System.out.printf("%d", ans);
     }
 }
