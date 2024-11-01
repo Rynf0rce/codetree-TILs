@@ -19,21 +19,20 @@ public class Main {
     }
 
     public static void simulate(int idx, int cnt){
-        if(idx >= m){
-            if(cnt == m){
-                ans = Math.max(ans, cal());
-            }
+        if(cnt == m){
+            ans = Math.max(ans, cal());
             return;
         }
 
-        for(int i = 0 ; i < n ; i++){
-            
-            simulate(idx + 1, cnt);
-            
-            selected.add(arr[i]);
-            simulate(idx + 1, cnt + 1);
-            selected.remove(selected.size() - 1);
+        if(idx >= n){
+            return;
         }
+
+        simulate(idx + 1, cnt);
+        
+        selected.add(arr[idx]);
+        simulate(idx + 1, cnt + 1);
+        selected.remove(selected.size() - 1);
         
     }
     public static void main(String[] args) throws IOException{
