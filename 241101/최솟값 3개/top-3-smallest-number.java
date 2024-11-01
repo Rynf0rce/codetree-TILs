@@ -11,31 +11,29 @@ public class Main {
         int ans = 0;
         for(int i = 0 ; i < n ; i++){
             int num = Integer.parseInt(st.nextToken());
-            if(i == 0){
-                ans = num;
-            }
-            else if(i < 3){
-                ans *= num;
-            }
-
-            pq.add(num);
-            if(pq.size() < 3){
-                System.out.println(-1);
-            }
-            else if(pq.size() == 3){
-                System.out.println(ans);
-            }
-            else{
-                if(pq.peek() > num){
-                    ans /= pq.poll();
-                    ans *= num;
-                    pq.add(num);
+            if(i < 3){
+                if(i == 0){
+                    ans = num;
                 }
                 else{
-                    pq.poll();
+                    ans *= num;
                 }
-                System.out.println(ans);
+                pq.add(num);
+                if(i == 2){
+                    System.out.println(ans);
+                }
+                else{
+                    System.out.println(-1);
+                }
+                continue;
             }
+
+            if(pq.peek() > num){
+                ans /= pq.poll();
+                ans *= num;
+                pq.add(num);
+            }
+            System.out.println(ans);
         }
     }
 }
