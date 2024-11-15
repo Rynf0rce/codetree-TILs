@@ -12,16 +12,39 @@ public class Main {
     }
 
     public static int findMinTravelTime(Person[] people) {
-        // Sort people by A -> B travel time
-        Arrays.sort(people, Comparator.comparingInt(p -> p.toB));
+        // Lists for early and late scheduling
+        List<Person> early = new ArrayList<>();
+        List<Person> late = new ArrayList<>();
 
-        int currentTime = 0; // Tracks the current time for movements
-        int totalTime = 0;   // Tracks the total time required
-
-        // Simulate the travel process
+        // Partition the persons into early and late groups
         for (Person person : people) {
-            currentTime += person.toB; // Person travels from A to B
-            totalTime = Math.max(totalTime, currentTime + person.toA); // Include return time
+            if (person.toB <= person.toA) {
+                early.add(person);
+            } else {
+                late.add(person);
+            }
+        }
+
+        // Sort early group by ascending A -> B time
+        early.sort(Comparator.comparingInt(p -> p.toB));
+
+        // Sort late group by descending B -> A time
+        late.sort((p1, p2) -> p2.toA - p1.toA);
+
+        // Combine the two groups
+        List<Person> schedule = new ArrayList<>();
+        schedule.addAll(early);
+        schedule.addAll(late);
+
+        int timeAtoB = 0; // Time tracker for A -> B
+        int timeBtoA = 0; // Time tracker for B -> A
+        int totalTime = 0; // Total time required
+
+        // Simulate the movements based on the schedule
+        for (Person person : schedule) {
+            timeAtoB += person.toB; // Accumulate A -> B time
+            timeBtoA = Math.max(timeBtoA, timeAtoB) + person.toA; // Ensure B -> A starts after A -> B
+            totalTime = Math.max(totalTime, timeBtoA); // Update total time
         }
 
         return totalTime;
@@ -34,7 +57,7 @@ public class Main {
         int n = scanner.nextInt();
         Person[] people = new Person[n];
 
-        // Second line onward: travel times for each person
+        // Next N lines: travel times for each person
         for (int i = 0; i < n; i++) {
             int toB = scanner.nextInt(); // A -> B time
             int toA = scanner.nextInt(); // B -> A time
