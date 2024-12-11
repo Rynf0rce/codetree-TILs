@@ -7,8 +7,8 @@ class AhoCorasick {
 
     class Node {
         int[] next = new int[ALPHABET_SIZE];
-        int fail; 
-        ArrayList<Integer> out = new ArrayList<>(); 
+        int fail;
+        ArrayList<Integer> out = new ArrayList<>();
         Node() {
             Arrays.fill(next, -1);
         }
@@ -24,7 +24,7 @@ class AhoCorasick {
         return c - 'a';
     }
 
-    public void insert(String s, int idx) {
+    public void insert(String s) {
         int cur = 0;
         for (char c : s.toCharArray()) {
             int cidx = charToIndex(c);
@@ -34,8 +34,6 @@ class AhoCorasick {
             }
             cur = trie.get(cur).next[cidx];
         }
-        // 패턴 종료 시 out에 패턴 인덱스 기록 (패턴 길이 대신 바로 기록 가능)
-        // 여기서는 패턴 인덱스 대신 패턴 길이를 저장하자.
         trie.get(cur).out.add(s.length());
     }
 
@@ -75,9 +73,8 @@ class AhoCorasick {
         for (int i = 0; i < T.length(); i++) {
             int c = T.charAt(i) - 'a';
             state = trie.get(state).next[c];
-            // 해당 상태(또는 suffix link를 통해)에서 나오는 패턴들의 길이로 dp 갱신
             for (int length : trie.get(state).out) {
-                int startIndex = i + 1 - length; // 패턴 시작 지점
+                int startIndex = i + 1 - length;
                 dp[i + 1] = (dp[i + 1] + dp[startIndex]) % MOD;
             }
         }
@@ -93,11 +90,15 @@ public class Main {
         String T = st.nextToken();
         int m = Integer.parseInt(st.nextToken());
         st = new StringTokenizer(br.readLine());
-        
-        AhoCorasick aho = new AhoCorasick();
+
+        HashSet<String> uniquePatterns = new HashSet<>();
         for (int i = 0; i < m; i++) {
-            String p = st.nextToken();
-            aho.insert(p, i);
+            uniquePatterns.add(st.nextToken());
+        }
+
+        AhoCorasick aho = new AhoCorasick();
+        for (String p : uniquePatterns) {
+            aho.insert(p);
         }
 
         aho.buildFail();
