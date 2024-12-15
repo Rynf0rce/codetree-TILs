@@ -1,15 +1,53 @@
+import java.io.*;
 import java.util.*;
 
-public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+// Interval 클래스 정의
+class Interval implements Comparable<Interval> {
+    int start;
+    int end;
 
-        // 입력 받기
-        int n = sc.nextInt();
-        int[][] intervals = new int[n][2];
+    public Interval(int start, int end) {
+        this.start = start;
+        this.end = end;
+    }
+
+    @Override
+    public int compareTo(Interval other) {
+        // 시작점 기준 오름차순 정렬
+        // 시작점이 같으면 끝점 기준 내림차순 정렬
+        if (this.start != other.start) {
+            return Integer.compare(this.start, other.start);
+        }
+        return Integer.compare(other.end, this.end);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        List<Interval> intervals = new ArrayList<>();
+
+        // 첫 번째 줄에서 구간의 총 개수 n 읽음
+        String firstLine = br.readLine();
+        if (firstLine == null || firstLine.isEmpty()) {
+            System.out.println(0);
+            return;
+        }
+
+        int n = Integer.parseInt(firstLine); // 구간 개수
+
+        // 입력 구간 처리
         for (int i = 0; i < n; i++) {
-            intervals[i][0] = sc.nextInt(); // 시작점
-            intervals[i][1] = sc.nextInt(); // 끝점
+            String line = br.readLine();
+            if (line == null || line.trim().isEmpty()) {
+                // 빈 줄이면 건너뜀
+                continue;
+            }
+
+            StringTokenizer st = new StringTokenizer(line);
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+            intervals.add(new Interval(a, b));
         }
 
         // 최소 구간 개수 계산
@@ -17,14 +55,9 @@ public class Main {
         System.out.println(result);
     }
 
-    public static int findMinimumIntervals(int[][] intervals) {
-        // 구간 정렬: 시작점 기준 오름차순, 끝점 기준 내림차순
-        Arrays.sort(intervals, (a, b) -> {
-            if (a[0] != b[0]) {
-                return a[0] - b[0];
-            }
-            return b[1] - a[1];
-        });
+    public static int findMinimumIntervals(List<Interval> intervals) {
+        // 구간 정렬: Comparable을 활용
+        Collections.sort(intervals);
 
         int targetStart = 3, targetEnd = 220;
         int currentEnd = targetStart; // 현재 커버 가능한 범위
@@ -37,8 +70,8 @@ public class Main {
             boolean found = false;
 
             // 현재 커버 가능한 범위 내에서 가장 큰 끝점 찾기
-            while (i < intervals.length && intervals[i][0] <= currentEnd) {
-                maxEnd = Math.max(maxEnd, intervals[i][1]);
+            while (i < intervals.size() && intervals.get(i).start <= currentEnd) {
+                maxEnd = Math.max(maxEnd, intervals.get(i).end);
                 found = true;
                 i++;
             }
