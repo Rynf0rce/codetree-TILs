@@ -10,29 +10,25 @@ public class Main {
     }
 
     public static int minBoxes(int n) {
-        // 1. 삼각수 계산
-        List<Integer> triangularNumbers = new ArrayList<>();
-        int k = 1;
-        while (true) {
-            int triangle = k * (k + 1) / 2; // T_k = k(k+1)/2
-            if (triangle > n) break;
-            triangularNumbers.add(triangle);
-            k++;
+        List<Integer> weights = new ArrayList<>();
+        int currentWeight = 0, step = 1;
+        while (currentWeight <= n) {
+            currentWeight += step * (step + 1) / 2; // 박스 무게: 계단식 합
+            if (currentWeight > n) break;
+            weights.add(currentWeight);
+            step++;
         }
 
-        // 2. DP 배열 초기화
         int[] dp = new int[n + 1];
-        Arrays.fill(dp, Integer.MAX_VALUE); // 큰 값으로 초기화
-        dp[0] = 0; // 무게 0은 상자가 필요 없음
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[0] = 0;
 
-        // 3. DP 점화식 계산
-        for (int triangle : triangularNumbers) {
-            for (int i = triangle; i <= n; i++) {
-                dp[i] = Math.min(dp[i], dp[i - triangle] + 1);
+        for (int weight : weights) {
+            for (int i = weight; i <= n; i++) {
+                dp[i] = Math.min(dp[i], dp[i - weight] + 1);
             }
         }
 
-        // 4. 결과 반환
         return dp[n];
     }
 }
