@@ -10,28 +10,27 @@ public class Main {
     }
 
     public static int minBoxes(int n) {
-        // 삼각수의 합 리스트 생성
-        List<Integer> weights = new ArrayList<>();
+        // 삼각수 리스트 생성
+        List<Integer> triangularNumbers = new ArrayList<>();
         int k = 1;
-        int sum = 0;
 
+        // n 이하의 삼각수를 리스트에 추가
         while (true) {
-            int triangle = k * (k + 1) / 2; // 삼각수 T_k
-            sum += triangle; // 삼각수의 합 S_k
-            if (sum > n) break;
-            weights.add(sum);
+            int triangle = k * (k + 1) / 2; // T_k = k(k+1)/2
+            if (triangle > n) break;       // n보다 크면 종료
+            triangularNumbers.add(triangle);
             k++;
         }
 
-        // 그리디 알고리즘
+        // 역순 탐색하여 최소 개수 찾기
         int count = 0;
-        for (int i = weights.size() - 1; i >= 0; i--) {
-            int weight = weights.get(i);
-            while (n >= weight) {
-                n -= weight;
+        for (int i = triangularNumbers.size() - 1; i >= 0; i--) {
+            int triangle = triangularNumbers.get(i);
+            while (n >= triangle) {
+                n -= triangle;
                 count++;
             }
-            if (n == 0) break;
+            if (n == 0) break; // 목표를 달성하면 종료
         }
 
         return count;
