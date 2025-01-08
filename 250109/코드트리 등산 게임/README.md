@@ -1,5 +1,8 @@
 # [코드트리 등산 게임 ![Platinum3][p3]](https://www.codetree.ai/training-field/frequent-problems/problems/codetree-mountain-climbing-games)
 
+	
+삼성 SW 역량테스트 2024 하반기 오후 2번 문제
+
 |유형|출처|
 |---|---|
 ||[기출문제](https://www.codetree.ai/training-field/frequent-problems)|
